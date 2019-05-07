@@ -102,7 +102,6 @@ brew install zopfli
 # Install TextMate
 brew cask install textmate
 # Install iTerm2
-brew tap caskroom/cask
 brew cask install iterm2
 
 # Upgrade everything again, and cleanup!
