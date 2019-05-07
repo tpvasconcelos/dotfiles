@@ -1,0 +1,29 @@
+<application>
+  <component name="SonarLintGlobalSettings">
+    <option name="excludedRules">
+      <set>
+        <option value="python:S104" />
+        <option value="python:S1720" />
+      </set>
+    </option>
+    <option name="includedRules">
+      <set>
+        <option value="python:FunctionComplexity" />
+        <option value="python:LineLength" />
+        <option value="python:LongIntegerWithLowercaseSuffixUsage" />
+        <option value="python:OneStatementPerLine" />
+        <option value="python:ParsingError" />
+        <option value="python:S113" />
+        <option value="python:S1142" />
+        <option value="python:S134" />
+        <option value="python:S139" />
+        <option value="python:S1578" />
+        <option value="python:S1707" />
+        <option value="python:S1717" />
+        <option value="python:S1721" />
+        <option value="python:S1722" />
+        <option value="python:S2325" />
+      </set>
+    </option>
+  </component>
+</application>

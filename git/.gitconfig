@@ -1,0 +1,50 @@
+# Copy to home folder
+# $ cp .gitconfig ~/.gitconfig
+
+
+[core]
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
+
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+
+[user]
+    name = <name>
+    email = <email>
+
+[credential]
+    helper = osxkeychain
+
+[push]
+    default = upstream
+
+[pull]
+    rebase = true
+
+[help]
+    autocorrect = 1
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    ui = auto
+
+[alias]
+    co = checkout
+    cm = commit -m
+    st = status
+    sync = !git pull && git push
+
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
+
+    publish = !"git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    pr = !"git push -u origin $(git rev-parse --abbrev-ref HEAD) && hub pull-request"

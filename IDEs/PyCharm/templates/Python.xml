@@ -1,0 +1,13 @@
+<templateSet group="Python">
+  <template name="defi" value="def __init__(self):&#10;    $END$" description="def __init__" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python_Class" value="true" />
+    </context>
+  </template>
+  <template name="defis" value="def __init__(self):&#10;    super($class$, self).__init__()&#10;    &#10;    $END$" description="def __init__ super()" toReformat="false" toShortenFQNames="true">
+    <variable name="class" expression="pyClassName()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="Python_Class" value="true" />
+    </context>
+  </template>
+</templateSet>
