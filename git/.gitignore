@@ -4,7 +4,6 @@
 
 # Misc
 .gitignore
-!/git/.gitconfig
 vcs.xml
 
 # Compiled code
