@@ -1,5 +1,5 @@
 # Copy to home folder
-# $ cp .gitconfig ~/.gitconfig
+# $ cp git/.gitconfig ~/.gitconfig
 
 
 [core]

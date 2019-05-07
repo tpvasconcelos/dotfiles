@@ -1,3 +1,6 @@
+# Copy to home folder
+# $ cp zsh/.zshrc ~/.zshrc  && source ~/.zshrc
+
 # Load Nerd Fonts with Powerlevel9k theme for Zsh
 # and Customise the Powerlevel9k prompts
 POWERLEVEL9K_MODE='nerdfont-complete'
