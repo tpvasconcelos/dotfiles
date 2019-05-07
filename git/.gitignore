@@ -1,0 +1,69 @@
+# Set global .gitignore
+# $ cp git/.gitignore ~/.gitignore_global
+# $ git config --global core.excludesFile ~/.gitignore_global
+
+# Misc
+.gitignore
+!/git/.gitconfig
+vcs.xml
+
+# Compiled code
+*.o
+*.py[cod]
+*.class
+__pycache__/
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# System files
+.DS_Store
+Desktop.ini
+Thumbs.db
+
+# IDE config files
+.idea/
+.vscode/
+Removeria IDEs/
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Building, instalation, and compilation output
+# and other files generated at runtime
+lib/
+var/
+bin/
+out/
+*.log
+*.lock
+*.tmp
+*.egg
+eggs/
+dist/
+lib64/
+parts/
+sdist/
+.eggs/
+build/
+_build/
+target/
+wheels/
+pip-log.txt
+.mypy_cache/
+*.egg-info/
+develop-eggs/
+.installed.cfg
+.ipynb_checkpoints/
