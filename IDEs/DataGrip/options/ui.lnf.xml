@@ -1,7 +1,0 @@
-<application>
-  <component name="UISettings">
-    <option name="DISABLE_MNEMONICS" value="false" />
-    <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
-    <option name="SHOW_MEMORY_INDICATOR" value="true" />
-  </component>
-</application>
