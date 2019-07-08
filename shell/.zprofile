@@ -1,5 +1,5 @@
 # Copy to home folder
-# $ cp zsh/.zprofile ~/.zprofile  && source ~/.zprofile
+# $ cp shell/.zprofile ~/.zprofile  && source ~/.zprofile
 
 # Setting PATH for Python 2.7
 # The orginal version is saved in .zprofile.pysave

@@ -2,17 +2,15 @@
 
 function add_app_to_dock {
   # adds an application to macOS Dock
-  # usage: add_app_to_dock "Application Name"
   # example add_app_to_dock "Terminal"
-
   app_name="${1}"
   launchservices_path="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister"
   app_path=$(${launchservices_path} -dump | grep -o "/.*${app_name}.app" | grep -v -E "Backups|Caches|TimeMachine|Temporary|/Volumes/${app_name}" | uniq | sort | head -n1)
   if open -Ra "${app_path}"; then
-      echo "$app_path added to the Dock."
       defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app_path}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+      echo "$app_name added to the Dock."
   else
-      echo "ERROR: $1 not found."
+      echo "ERROR: $app_name not found."
   fi
 }
 
@@ -35,7 +33,6 @@ function add_folder_to_dock {
   # 1 -> Fan
   # 2 -> Grid
   # 3 -> List
-
   folder_path="${1}"
   sortby="1"
   displayas="0"
@@ -84,29 +81,64 @@ function add_folder_to_dock {
 
 function add_spacer_to_dock {
   # adds an empty space to macOS Dock
-
   defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'
 }
 
 function clear_dock {
   # removes all persistent icons from macOS Dock
-
   defaults write com.apple.dock persistent-apps -array
 }
 
 function reset_dock {
   # reset macOS Dock to default settings
-
   defaults write com.apple.dock; killall Dock
 }
 
-
 # WARNING: permanently clears existing dock
-#clear_dock
+clear_dock
 
-#add_app_to_dock "Finder"
+add_app_to_dock "Mail"
+add_app_to_dock "WhatsApp"
+add_app_to_dock "Slack"
 #add_spacer_to_dock
-#add_app_to_dock "TextMate"
+add_app_to_dock "Tor Browser"
+add_app_to_dock "Firefox"
+add_app_to_dock "Google Chrome"
+add_app_to_dock "Safari"
 #add_spacer_to_dock
+add_app_to_dock "Spotify"
+add_app_to_dock "Vuze"
+add_app_to_dock "Popcorn-Time"
+add_app_to_dock "Streamio"
+add_app_to_dock "VLC"
+#add_spacer_to_dock
+add_app_to_dock "Photos"
+add_app_to_dock "Adobe Photoshop CC 2018"
+add_app_to_dock "Adobe Lighroom Classic CC"
+add_app_to_dock "Affinity Photo"
+add_app_to_dock "Affinity Designer"
+add_app_to_dock "blender"
+#add_spacer_to_dock
+add_app_to_dock "Stickies"
+add_app_to_dock "Calendar"
+add_app_to_dock "Microsoft OneNote"
+add_app_to_dock "Skitch"
+add_app_to_dock "Preview"
+add_app_to_dock "Notability"
+add_app_to_dock "Texpad"
+add_app_to_dock "TextMate"
+#add_spacer_to_dock
+add_app_to_dock "Mathematica"
+add_app_to_dock "RStudio"
+add_app_to_dock "Visual Studio Code"
+add_app_to_dock "PyCharm"
+add_app_to_dock "WebStorm"
+add_app_to_dock "DataGrip"
+add_app_to_dock "File Viewer"
+add_app_to_dock "iTerm"
+#add_spacer_to_dock
+add_app_to_dock "Activity Monitor"
+add_app_to_dock "Disk Utility"
+add_app_to_dock "System Preferences"
 
-#killall Dock
+killall Dock

@@ -1,5 +1,5 @@
 # Copy to home folder
-# $ cp bash/.bashrc ~/.bashrc && source ~/.bashrc
+# $ cp shell/.bashrc ~/.bashrc && source ~/.bashrc
 
 # Create alias for Blender
 alias blender=/Applications/blender_latest/blender.app/Contents/MacOS/blender
