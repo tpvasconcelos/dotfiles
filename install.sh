@@ -58,16 +58,37 @@ chsh -s /bin/zsh
 
 
 # Data Science (python, anaconda, and stuff...)
+
+# Python
 brew install python
 brew install python3
-brew cask install r
-brew cask install rstudio
-brew cask install anaconda
-conda init zsh
-jupyter notebook --generate-config
 sudo pip install bpython
 brew install mypy
 pip install black
+
+# R
+brew cask install r
+brew cask install rstudio
+
+# Anaconda and jupyter
+jupyter notebook --generate-config
+brew cask install anaconda
+conda init zsh
+
+conda create --name tiqds python=3.6
+conda activate tiqds
+pip install environment_kernels
+conda install nb_conda nb_conda_kernels ipykernel
+python -m ipykernel install --user --name tiqds --display-name "Python 3.6 [conda env:tiqds]"
+
+conda install -c conda-forge jupyter_contrib_nbextensions jupyter_nbextensions_configurator
+conda install autopep8 yapf isort
+pip install blackcellmagic
+for e in code_font_size/code_font_size navigation-hotkeys/main nbextensions_configurator/config_menu/main code_prettify/code_prettify varInspector/main autosavetime/main collapsible_headings/main equation-numbering/main code_prettify/isort livemdpreview/livemdpreview python-markdown/main spellchecker/main codefolding/main comment-uncomment/main execute_time/ExecuteTime keyboard_shortcut_editor/main scratchpad/main code_prettify/autopep8 contrib_nbextensions_help_item/main freeze/main hinterland/hinterland nbextensions_configurator/tree_tab/main ruler/main snippets/main snippets_menu/main toc2/main hide_input_all/main
+do
+   jupyter nbextension enable $e --sys-prefix
+done
+
 
 # Install more recent versions of some macOS tools.
 brew install vim
@@ -172,9 +193,6 @@ mas install 909760813 # Who's On My WiFi
 # - File Viewer
 # -
 
-# Upgrade everything again, and cleanup!
-brew update && brew upgrade && brew cleanup
-
 # Setup Tiqets Python env
 virtualenv -p python2.7 envs/tiqetsapi
 source ~/envs/tiqetsapi/bin/activate
@@ -188,3 +206,6 @@ pre-commit install -t pre-commit
 pre-commit install -t pre-push
 pre-commit install -t commit-msg
 
+
+# Upgrade everything again, and cleanup!
+brew update && brew upgrade && brew cleanup
