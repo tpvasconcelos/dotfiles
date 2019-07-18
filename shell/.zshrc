@@ -98,7 +98,7 @@ function py2nb() {
     jupytext --sync $1
 }
 
-function bn2py() {
+function nb2py() {
     jupytext --to py $1
     jupytext --sync $1
 }
