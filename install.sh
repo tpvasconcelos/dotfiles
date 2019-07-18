@@ -89,6 +89,11 @@ do
    jupyter nbextension enable $e --sys-prefix
 done
 
+# Install jupytext
+conda install -c conda-forge jupytext
+jupyter nbextension install --py jupytext
+jupyter nbextension enable --py jupytext
+
 
 # Install more recent versions of some macOS tools.
 brew install vim
