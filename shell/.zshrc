@@ -93,6 +93,15 @@ unset __conda_setup
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
 
+function py2nb() {
+    jupytext --to notebook $1
+    jupytext --sync $1
+}
+
+function bn2py() {
+    jupytext --to py $1
+    jupytext --sync $1
+}
 
 # Misch
 export LANG="en_US.UTF-8"
