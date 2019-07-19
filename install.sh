@@ -118,6 +118,7 @@ brew install rename
 brew install htop
 brew install git
 brew install git-lfs
+brew install hub
 brew install mdv
 brew install howdoi
 

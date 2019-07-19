@@ -40,8 +40,9 @@
     co = checkout
     cm = commit -m
     st = status
+    s = status
     pp = !git pull && git push
-    mm = !git co master && git pull && git co - && git merge master
+    mm = !git pull && git co master && git pull && git co - && git merge master && git push
 
     publish = !"git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     pr = !"git push -u origin $(git rev-parse --abbrev-ref HEAD) && hub pull-request"
