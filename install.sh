@@ -185,6 +185,7 @@ brew cask install vlc
 brew cask install adobe-creative-cloud
 brew cask install blender
 brew cask install appcleaner
+brew cask install omnidisksweeper
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 
