@@ -71,18 +71,19 @@ brew cask install r
 brew cask install rstudio
 
 # Anaconda and jupyter
-jupyter notebook --generate-config
+yes n | jupyter notebook --generate-config
 brew cask install anaconda
+yes | conda update -n base -c defaults conda
 conda init zsh
 
-conda create --name tiqds python=3.6
+yes | conda create --name tiqds python=3.6
 conda activate tiqds
 pip install environment_kernels
-conda install nb_conda nb_conda_kernels ipykernel
+yes | conda install nb_conda nb_conda_kernels ipykernel
 python -m ipykernel install --user --name tiqds --display-name "Python 3.6 [conda env:tiqds]"
 
-conda install -c conda-forge jupyter_contrib_nbextensions jupyter_nbextensions_configurator
-conda install autopep8 yapf isort
+yes | conda install -c conda-forge jupyter_contrib_nbextensions jupyter_nbextensions_configurator
+yes | conda install autopep8 yapf isort
 pip install blackcellmagic
 for e in code_font_size/code_font_size navigation-hotkeys/main nbextensions_configurator/config_menu/main code_prettify/code_prettify varInspector/main autosavetime/main collapsible_headings/main equation-numbering/main code_prettify/isort livemdpreview/livemdpreview python-markdown/main spellchecker/main codefolding/main comment-uncomment/main execute_time/ExecuteTime keyboard_shortcut_editor/main scratchpad/main code_prettify/autopep8 contrib_nbextensions_help_item/main freeze/main hinterland/hinterland nbextensions_configurator/tree_tab/main ruler/main snippets/main snippets_menu/main toc2/main hide_input_all/main
 do
@@ -90,7 +91,7 @@ do
 done
 
 # Install jupytext
-conda install -c conda-forge jupytext
+yes | conda install -c conda-forge jupytext
 jupyter nbextension install --py jupytext
 jupyter nbextension enable --py jupytext
 
@@ -166,8 +167,6 @@ brew cask install virtualbox
 brew cask install google-chrome
 brew cask install tor-browser
 brew cask install firefox
-mas install 1335413823 # Ka-Block!
-mas install 1436953057 # GhosteryLite
 
 # Productivity & Office
 brew cask install alfred
