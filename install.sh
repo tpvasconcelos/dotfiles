@@ -212,6 +212,8 @@ pre-commit install -t pre-commit
 pre-commit install -t pre-push
 pre-commit install -t commit-msg
 
+brew cask install tunnelblick
+
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
