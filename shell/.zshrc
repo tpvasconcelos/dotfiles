@@ -94,22 +94,15 @@ alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
 
 function py2nb() {
-    jupytext --set-formats ipynb,py:percent --sync $1
     jupytext --to notebook $1
     jupytext --sync $1
 }
 
 function nb2py() {
-    jupytext --set-formats ipynb,py:percent --sync $1
     jupytext --to py:percent $1
     jupytext --sync $1
 }
 
-function nb2md() {
-    jupytext --set-formats ipynb,py:percent --sync $1
-    jupytext --to md $1
-    jupytext --sync $1
-}
 
 # Misch
 export LANG="en_US.UTF-8"
