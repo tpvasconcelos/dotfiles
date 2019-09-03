@@ -135,7 +135,6 @@ brew install yarn && yarn && yarn build
 brew install redis
 npm install -g lookml-parser
 pip install lookml-tools
-brew cask install virtualbox
 
 # -- Install some Apps
 
@@ -213,6 +212,7 @@ pre-commit install -t pre-commit
 pre-commit install -t pre-push
 pre-commit install -t commit-msg
 
+# Tiqets VPN
 brew cask install tunnelblick
 
 
