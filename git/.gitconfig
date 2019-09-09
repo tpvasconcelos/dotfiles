@@ -19,7 +19,7 @@
     email = tomas@tiqets.com
 
 [credential]
-    helper = store
+    helper = osxkeychain
 
 [push]
     default = upstream
