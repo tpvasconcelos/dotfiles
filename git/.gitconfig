@@ -37,6 +37,7 @@
     ui = auto
 
 [alias]
+    aa = add -A
     co = checkout
     cm = commit -m
     st = status

@@ -185,6 +185,8 @@ brew cask install blender
 brew cask install appcleaner
 brew cask install omnidisksweeper
 brew cask install muzzle
+brew cask install p4v
+brew cask install diffmerge
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 
