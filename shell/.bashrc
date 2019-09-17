@@ -43,3 +43,6 @@ unset __conda_setup
 
 # Use the sed installed with brew instead of the the system's sed
 export PATH=$(brew --prefix gnu-sed)/libexec/gnubin:$PATH
+
+export PATH=~/mongodb/bin:$PATH
+

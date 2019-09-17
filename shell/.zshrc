@@ -68,6 +68,7 @@ export PATH=/Library/TeX/texbin:$PATH
 # /Library/Frameworks/Python.framework/Versions/3.6/bin
 # /Library/Frameworks/Python.framework/Versions/2.7/bin
 
+export PATH=~/mongodb/bin:$PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -110,3 +111,4 @@ export TIQETS_ENV="tomas"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

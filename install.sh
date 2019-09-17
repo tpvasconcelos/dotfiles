@@ -127,6 +127,7 @@ brew install howdoi
 brew install zlib
 brew install sqlite
 brew install postgresql && sudo pip install psycopg2
+# brew tap mongodb/brew && brew install mongodb-community@4.2
 brew install freetype
 brew install libxslt
 brew install libpq
