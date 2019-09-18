@@ -4,6 +4,13 @@ dotfiles, settings, and config files
 
 tags: `dotfiles`, `configuration`, `config`, `configuration-files`, `configs`, `configurations`, `settings`
 
+## Steps
+
+1. Open *Terminal*
+2. Run `.\01_shell_setup.sh`
+3. Open *iTerm*
+4. Run remaining scripts
+5. ...
 
 ## Migrate app settings and system preferences
 
