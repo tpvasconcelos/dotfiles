@@ -36,8 +36,8 @@ brew cask install kitematic
 
 # Misc Devs
 brew cask install virtualbox
-#brew install awscli
-#brew cask install postman
+brew install awscli
+brew cask install postman
 #brew cask install paw
 
 # Browsers

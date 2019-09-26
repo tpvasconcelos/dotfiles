@@ -40,6 +40,7 @@ brew install git-lfs
 brew install hub
 brew install mdv
 brew install howdoi
+pip install termdown
 
 # Misc tools
 brew install zlib
