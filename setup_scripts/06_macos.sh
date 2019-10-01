@@ -35,8 +35,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Enabling subpixel font rendering on non-Apple LCDs
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
-
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 # Save screenshots as PNG
 defaults write com.apple.screencapture type -string "png"
@@ -46,3 +45,9 @@ defaults write com.apple.screencapture type -string "png"
 defaults write -g com.apple.trackpad.scaling 2.5
 defaults write -g com.apple.mouse.scaling 3
 
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
