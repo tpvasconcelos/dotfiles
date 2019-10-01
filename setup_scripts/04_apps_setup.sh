@@ -17,7 +17,7 @@ brew update && brew upgrade
 # -- Install some Apps
 
 # Text editors/IDEs
-brew cask install textmate
+brew cask install qlmarkdown
 brew cask install sublime-text
 brew cask install brackets
 brew cask install atom
@@ -48,11 +48,17 @@ brew cask install firefox
 # Productivity & Office
 brew cask install alfred
 brew cask install skitch
-brew cask install microsoft-office
+# brew cask install microsoft-office
+mas install 462054704  # Microsoft Word
+mas install 462058435  # Microsoft Excel
 brew cask install skype
-brew cask install the-unarchiver
-brew cask install whatsapp
-brew cask install slack
+# brew cask install the-unarchiver
+mas install 425424353  # The Unarchiver
+# brew cask install whatsapp
+mas install 1147396723  # WhatsApp
+# brew cask install slack
+mas install 803453959  # Slack
+mas install 1176895641  # Spark
 
 # Misc
 brew cask install vuze
@@ -82,3 +88,9 @@ mas install 909760813 # Who's On My WiFi
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
+
+
+# Set up Sublime  ---
+git clone https://github.com/andresmichel/one-dark-theme.git
+mv one-dark-theme ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Theme\ -\ One\ Dark
+cp settings/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
