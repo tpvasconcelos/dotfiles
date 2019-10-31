@@ -16,11 +16,11 @@ brew update && brew upgrade
 # Conda
 
 # tiqds
-yes | conda create --name tiqds python=3.6
+yes | conda create --name tiqds python=3.7
 conda activate tiqds
 pip install environment_kernels
 yes | conda install nb_conda nb_conda_kernels ipykernel
-python -m ipykernel install --user --name tiqds --display-name "Python 3.6 [conda env:tiqds]"
+python -m ipykernel install --user --name tiqds --display-name "Python 3.7 [conda env:tiqds]"
 
 yes | conda install -c conda-forge jupyter_contrib_nbextensions jupyter_nbextensions_configurator
 yes | conda install autopep8 yapf isort
