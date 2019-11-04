@@ -23,7 +23,7 @@ brew cask install brackets
 brew cask install atom
 brew cask install visual-studio-code
 brew cask install texpad
-mas install 497799835 && sudo xcodebuild -license accept  # Xcode
+mas install 497799835 && xcode-select --install && sudo xcodebuild -license accept  # Xcode
 mas install 1225570693 # Ulysses
 brew cask install pycharm
 brew cask install datagrip
