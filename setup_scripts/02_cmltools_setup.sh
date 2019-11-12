@@ -58,7 +58,16 @@ pip install lookml-tools
 brew cask install adoptopenjdk
 brew install mas
 
+# Xcode
+mas install 497799835
+sudo rm -rf /Library/Developer/CommandLineTools
+xcode-select --install
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo sudo xcodebuild -license accept
+
 # Compilers
+brew install cmake
+brew install llvm
 brew install gcc
 
 # Docker
