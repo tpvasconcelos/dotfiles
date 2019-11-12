@@ -29,13 +29,7 @@ brew cask install pycharm
 brew cask install datagrip
 brew cask install webstorm
 
-# Docker
-brew cask install docker
-brew cask install kitematic
-
-# Misc Devs
-brew cask install virtualbox
-brew install awscli
+# Misc dev
 brew cask install postman
 #brew cask install paw
 

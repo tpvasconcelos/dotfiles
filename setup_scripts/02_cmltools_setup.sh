@@ -35,7 +35,7 @@ brew install wget
 brew install tree
 brew install rename
 brew install htop
-brew install git
+brew install git && git lfs install
 brew install git-lfs
 brew install hub
 brew install mdv
@@ -43,10 +43,10 @@ brew install howdoi
 pip install termdown
 
 # Misc tools
+brew install luarocks
 brew install zlib
 brew install sqlite
 brew install postgresql && sudo pip install psycopg2
-# brew tap mongodb/brew && brew install mongodb-community@4.2
 brew install freetype
 brew install libxslt
 brew install libpq
@@ -55,6 +55,19 @@ brew install yarn && yarn && yarn build
 brew install redis
 npm install -g lookml-parser
 pip install lookml-tools
+brew cask install adoptopenjdk
+brew install mas
+
+# Compilers
+brew install gcc
+
+# Docker
+brew cask install docker
+brew cask install kitematic
+
+# Misc Devs
+brew cask install virtualbox
+brew install awscli
 
 
 # Upgrade everything again, and cleanup!

@@ -55,20 +55,9 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/anaconda3/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/Library/TeX/texbin:$PATH
+export PATH=/usr/local/lib/ruby/gems/2.6.0/bin
 # export PATH=:$PATH
-# export PATH=:$PATH
-# /sbin
-# /usr/sbin
-# /usr/local/sbin
-# /opt/X11/bin
-# ~/.gem/ruby/2.5.0/bin
-# /Library/Frameworks/Python.framework/Versions/3.7/bin
-# /Library/Frameworks/Python.framework/Versions/2.7/bin
-# /Library/Frameworks/Python.framework/Versions/3.7/bin
-# /Library/Frameworks/Python.framework/Versions/3.6/bin
-# /Library/Frameworks/Python.framework/Versions/2.7/bin
 
-export PATH=~/mongodb/bin:$PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
