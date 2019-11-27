@@ -56,6 +56,7 @@ brew install redis
 npm install -g lookml-parser
 pip install lookml-tools
 brew cask install adoptopenjdk
+brew install gnupg2
 brew install mas
 
 # Xcode
