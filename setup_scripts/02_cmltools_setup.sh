@@ -12,6 +12,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Upgrade everything
 brew update && brew upgrade
+brew cask upgrade --greedy
 
 
 # Install more recent versions of some macOS tools.
@@ -57,6 +58,7 @@ npm install -g lookml-parser
 pip install lookml-tools
 brew cask install adoptopenjdk
 brew install gnupg2
+brew install mackup
 brew install mas
 
 # Xcode
