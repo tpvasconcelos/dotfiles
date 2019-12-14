@@ -19,7 +19,7 @@ brew update && brew upgrade
 # Python
 brew install python
 brew install python3
-sudo pip install bpython
+pip install bpython
 brew install mypy
 pip install black
 
