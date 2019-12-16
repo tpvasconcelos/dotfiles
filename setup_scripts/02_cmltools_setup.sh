@@ -8,12 +8,15 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
 # Upgrade everything
 brew update && brew upgrade
 brew cask upgrade --greedy
-
 
 # Install more recent versions of some macOS tools.
 brew install vim
@@ -80,7 +83,6 @@ brew cask install kitematic
 # Misc Devs
 brew cask install virtualbox
 brew install awscli
-
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup

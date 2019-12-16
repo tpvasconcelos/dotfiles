@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-function add_app_to_dock {
+function add_app_to_dock() {
   # adds an application to macOS Dock
   # example add_app_to_dock "Terminal"
   app_name="${1}"
   launchservices_path="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister"
   app_path=$(${launchservices_path} -dump | grep -o "/.*${app_name}.app" | grep -v -E "Backups|Caches|TimeMachine|Temporary|/Volumes/${app_name}" | uniq | sort | head -n1)
   if open -Ra "${app_path}"; then
-      defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app_path}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-      echo "$app_name added to the Dock."
+    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app_path}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+    echo "$app_name added to the Dock."
   else
-      echo "ERROR: $app_name not found."
+    echo "ERROR: $app_name not found."
   fi
 }
 
-function add_folder_to_dock {
+function add_folder_to_dock() {
   # adds a folder to macOS Dock
   # usage: add_folder_to_dock "Folder Path" -s n -d n -v n
   # example: add_folder_to_dock "~/Downloads" -d 0 -s 2 -v 1
@@ -37,31 +37,30 @@ function add_folder_to_dock {
   sortby="1"
   displayas="0"
   viewcontentas="0"
-  while [[ "$#" -gt 0 ]]
-  do
-      case $1 in
-          -s|--sortby)
-          if [[ $2 =~ ^[1-5]$ ]]; then
-              sortby="${2}"
-          fi
-          ;;
-          -d|--displayas)
-          if [[ $2 =~ ^[0-1]$ ]]; then
-              displayas="${2}"
-          fi
-          ;;
-          -v|--viewcontentas)
-          if [[ $2 =~ ^[0-3]$ ]]; then
-              viewcontentas="${2}"
-          fi
-          ;;
-      esac
-      shift
+  while [[ "$#" -gt 0 ]]; do
+    case $1 in
+    -s | --sortby)
+      if [[ $2 =~ ^[1-5]$ ]]; then
+        sortby="${2}"
+      fi
+      ;;
+    -d | --displayas)
+      if [[ $2 =~ ^[0-1]$ ]]; then
+        displayas="${2}"
+      fi
+      ;;
+    -v | --viewcontentas)
+      if [[ $2 =~ ^[0-3]$ ]]; then
+        viewcontentas="${2}"
+      fi
+      ;;
+    esac
+    shift
   done
 
   if [ -d "$folder_path" ]; then
-      echo "$folder_path added to the Dock."
-      defaults write com.apple.dock persistent-others -array-add "<dict>
+    echo "$folder_path added to the Dock."
+    defaults write com.apple.dock persistent-others -array-add "<dict>
               <key>tile-data</key> <dict>
                   <key>arrangement</key> <integer>${sortby}</integer>
                   <key>displayas</key> <integer>${displayas}</integer>
@@ -75,23 +74,24 @@ function add_folder_to_dock {
               <key>tile-type</key> <string>directory-tile</string>
           </dict>"
   else
-      echo "ERROR: $folder_path not found."
+    echo "ERROR: $folder_path not found."
   fi
 }
 
-function add_spacer_to_dock {
+function add_spacer_to_dock() {
   # adds an empty space to macOS Dock
   defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'
 }
 
-function clear_dock {
+function clear_dock() {
   # removes all persistent icons from macOS Dock
   defaults write com.apple.dock persistent-apps -array
 }
 
-function reset_dock {
+function reset_dock() {
   # reset macOS Dock to default settings
-  defaults write com.apple.dock; killall Dock
+  defaults write com.apple.dock
+  killall Dock
 }
 
 # WARNING: permanently clears existing dock

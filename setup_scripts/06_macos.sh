@@ -29,7 +29,6 @@ sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Aut
 # Disable keyboard from automatically adjusting backlight brightness in low light
 sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Keyboard Enabled" -bool false
 
-
 # Requiring password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0

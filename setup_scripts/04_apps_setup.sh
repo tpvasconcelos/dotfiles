@@ -8,11 +8,14 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
 # Upgrade everything
 brew update && brew upgrade
-
 
 # -- Install some Apps
 
@@ -23,6 +26,7 @@ brew cask install brackets
 brew cask install atom
 brew cask install visual-studio-code
 brew cask install texpad
+mas install 497799835 && sudo xcodebuild -license accept # Xcode
 mas install 1225570693 # Ulysses
 brew cask install pycharm
 brew cask install datagrip
@@ -40,13 +44,13 @@ brew cask install firefox
 # Productivity & Office
 brew cask install alfred
 brew cask install skitch
-mas install 462054704  # Microsoft Word: brew cask install microsoft-office
-mas install 462058435  # Microsoft Excel
+mas install 462054704 # Microsoft Word: brew cask install microsoft-office
+mas install 462058435 # Microsoft Excel
 brew cask install skype
 mas install 425424353  # The Unarchiver: brew cask install the-unarchiver
-mas install 1147396723  # WhatsApp: brew cask install whatsapp
+mas install 1147396723 # WhatsApp: brew cask install whatsapp
 mas install 803453959  # Slack: brew cask install slack
-mas install 1176895641  # Spark
+mas install 1176895641 # Spark
 brew cask install the-unarchiver
 brew cask install whatsapp
 brew cask install slack
@@ -67,7 +71,6 @@ brew cask install diffmerge
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 
-
 # Manual install:
 # - Photoshop
 # - Lightroom
@@ -75,10 +78,8 @@ mas install 909760813 # Who's On My WiFi
 # - Affinity Designer
 # - File Viewer
 
-
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
-
 
 # Set up Sublime  ---
 git clone https://github.com/andresmichel/one-dark-theme.git
