@@ -63,7 +63,7 @@ brew cask install omnidisksweeper
 brew cask install muzzle
 brew cask install p4v
 brew cask install diffmerge
-brew cask install popcorn-official/popcorn-desktop/popcorn-time
+# brew cask install popcorn-official/popcorn-desktop/popcorn-time
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 
