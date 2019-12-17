@@ -59,6 +59,7 @@ brew install yarn && yarn && yarn build
 brew install redis
 npm install -g lookml-parser
 pip install lookml-tools
+<<<<<<< HEAD
 brew cask install adoptopenjdk
 brew install gnupg2
 brew install mackup
@@ -83,6 +84,8 @@ brew cask install kitematic
 # Misc Devs
 brew cask install virtualbox
 brew install awscli
+=======
+>>>>>>> Get prophet working
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup

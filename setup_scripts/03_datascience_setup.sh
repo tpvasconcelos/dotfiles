@@ -34,11 +34,17 @@ brew cask install rstudio
 yes n | jupyter notebook --generate-config
 brew cask install anaconda
 yes | conda update -n base -c defaults conda
+yes | conda update --all
 conda init zsh
 
 # Get prophet working
-# conda should install the appropriate requiremetns: gcc, clang, etc
-conda install -c conda-forge fbprophet
+# conda should install the appropriate requiremetns
+#yes | conda install -c anaconda ephem
+#yes | conda install -c anaconda gcc
+#yes | conda install -c anaconda cython
+#yes | conda install -c plotly plotly
+#yes | conda install -c conda-forge pystan
+yes | conda install -c conda-forge fbprophet
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
