@@ -87,6 +87,10 @@ function nb2py() {
   jupytext --sync $1
 }
 
+function login-ec2() {
+  AWS_PROFILE=data-eng aws ssm start-session --target i-"$1"
+}
+
 # Misch
 export LANG="en_US.UTF-8"
 export TIQETS_ENV="tomas"
