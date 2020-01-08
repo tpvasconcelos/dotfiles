@@ -11,7 +11,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv anaconda pyenv dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
-
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='yellow'
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='yellow'
@@ -47,7 +46,6 @@ plugins=(
 fpath=(~/.zsh-completions/src $fpath)
 fpath=(~/.zsh $fpath)
 
-
 # Fix PATH
 export PATH=/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -59,38 +57,35 @@ export PATH=/usr/local/opt/llvm/bin:$PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
+  if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/usr/local/anaconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 # ENV Variables
 # ...
-
 
 # My aliasis
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
 
 function py2nb() {
-    jupytext --to notebook $1
-    jupytext --sync $1
+  jupytext --to notebook $1
+  jupytext --sync $1
 }
 
 function nb2py() {
-    jupytext --to py:percent $1
-    jupytext --sync $1
+  jupytext --to py:percent $1
+  jupytext --sync $1
 }
-
 
 # Misch
 export LANG="en_US.UTF-8"
@@ -98,6 +93,5 @@ export TIQETS_ENV="tomas"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"export
 LDFLAGS="-L/usr/local/opt/llvm/lib"
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
