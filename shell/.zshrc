@@ -50,14 +50,12 @@ fpath=(~/.zsh $fpath)
 
 # Fix PATH
 export PATH=/bin:$PATH
-# export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/anaconda3/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/Library/TeX/texbin:$PATH
-export PATH=/usr/local/lib/ruby/gems/2.6.0/bin
-# export PATH=:$PATH
-
+export PATH=~/mongodb/bin:$PATH
+export PATH=/usr/local/opt/llvm/bin:$PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -98,6 +96,8 @@ function nb2py() {
 export LANG="en_US.UTF-8"
 export TIQETS_ENV="tomas"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"export
+LDFLAGS="-L/usr/local/opt/llvm/lib"
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
