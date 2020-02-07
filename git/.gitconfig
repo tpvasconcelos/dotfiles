@@ -38,10 +38,11 @@
 
 [alias]
     aa = add -A
-    co = checkout
     cm = commit -m
+    ca = !git add -A && git commit -m
+    co = checkout
     st = status
     pp = !git pull && git push
     mm =  !git pull && git co master && git pull && git co - && git merge master && git push
-    mtm = !git pull && git co master && git pull && git co - && git merge master && git co master && git merge - && git push && git co -
+    # mtm = !git pull && git co master && git pull && git co - && git merge master && git co master && git merge - && git push && git co -
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
