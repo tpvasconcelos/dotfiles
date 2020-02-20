@@ -27,6 +27,8 @@ brew install php
 brew install gmp
 
 # Install font tools.
+# Error: caskroom/fonts was moved. Tap homebrew/cask-fonts instead.
+# Error: Cask 'font-hack-nerd-font' is unavailable: No Cask with this name exists.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
@@ -39,7 +41,17 @@ brew install wget
 brew install tree
 brew install rename
 brew install htop
-brew install git && git lfs install
+#Bash completion has been installed to:
+#  /usr/local/etc/bash_completion.d
+#
+#zsh completions and functions have been installed to:
+#  /usr/local/share/zsh/site-functions
+#
+#Emacs Lisp files have been installed to:
+#  /usr/local/share/emacs/site-lisp/git
+brew install git
+#ERROR: git: 'lfs' is not a git command. See 'git --help'.
+git lfs install
 brew install git-lfs
 brew install hub
 brew install mdv
@@ -50,15 +62,17 @@ pip install termdown
 brew install luarocks
 brew install zlib
 brew install sqlite
-brew install postgresql && sudo pip install psycopg2
+brew install postgresql
+#The directory '/Users/tpvasconcelos/Library/Caches/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+#The directory '/Users/tpvasconcelos/Library/Caches/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+#Running setup.py install for psycopg2 ... error
+sudo pip install psycopg2
 brew install freetype
 brew install libxslt
 brew install libpq
-brew install node@10
+brew install node
 brew install yarn && yarn && yarn build
 brew install redis
-npm install -g lookml-parser
-pip install lookml-tools
 brew cask install adoptopenjdk
 brew install gnupg2
 brew install mackup
@@ -71,12 +85,16 @@ xcode-select --install
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo sudo xcodebuild -license accept
 
-# Compilers
+# More ompilers
 brew install cmake
+#For compilers to find llvm you may need to set:
+#  export LDFLAGS="-L/usr/local/opt/llvm/lib"
+#  export CPPFLAGS="-I/usr/local/opt/llvm/include"
 brew install llvm
 brew install gcc
 
 # Docker
+#Error: Download failed on Cask 'docker' with message: Download failed: https://download.docker.com/mac/stable/40693/Docker.dmg
 brew cask install docker
 brew cask install kitematic
 

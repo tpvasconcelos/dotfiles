@@ -4,6 +4,11 @@ dotfiles, settings, and config files
 
 tags: `dotfiles`, `configuration`, `config`, `configuration-files`, `configs`, `configurations`, `settings`
 
+## References
+
+* (New Computer Checklist)[https://github.com/grant/new-computer-checklist]
+* ()[]
+
 ## Steps
 
 1. Open *Terminal*

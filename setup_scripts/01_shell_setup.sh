@@ -58,8 +58,4 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
 # Change the default shell to zsh
-<<<<<<< HEAD
 chsh -s /bin/zsh
-=======
-chsh -s /bin/zsh
->>>>>>> Get prophet working
