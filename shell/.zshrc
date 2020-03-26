@@ -122,4 +122,8 @@ export PATH="/usr/local/opt/node@10/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"export
 LDFLAGS="-L/usr/local/opt/llvm/lib"
 
+# Golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

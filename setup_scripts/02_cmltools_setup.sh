@@ -104,6 +104,10 @@ brew install awscli
 brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
 
+# Golang
+brew install golang  --cross-compile-common
+mkdir -p $HOME/go/bin $HOME/go/src
+
 # Kubernetes
 brew install kubectx  # https://github.com/ahmetb/kubectx
 brew install derailed/k9s/k9s  # https://github.com/derailed/k9s
