@@ -117,6 +117,7 @@ brew install helm  # https://github.com/helm/helm
 helm plugin install https://github.com/databus23/helm-diff --version master  # https://github.com/databus23/helm-diff
 
 # Jekyll
+brew install ruby
 gem install --user-install bundler jekyll
 
 # Upgrade everything again, and cleanup!

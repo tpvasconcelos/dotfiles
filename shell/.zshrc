@@ -47,13 +47,17 @@ fpath=(~/.zsh-completions/src $fpath)
 fpath=(~/.zsh $fpath)
 
 # Fix PATH
-export PATH=/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/anaconda3/bin:$PATH
-export PATH=/usr/local/mysql/bin:$PATH
-export PATH=/Library/TeX/texbin:$PATH
-export PATH=~/mongodb/bin:$PATH
-export PATH=/usr/local/opt/llvm/bin:$PATH
+export PATH="/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/anaconda3/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="/Library/TeX/texbin:$PATH"
+export PATH="$HOME/mongodb/bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
