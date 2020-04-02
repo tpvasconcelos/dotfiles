@@ -37,6 +37,7 @@ brew cask install anaconda
 yes | conda update -n base -c defaults conda
 yes | conda update --all
 conda init zsh
+conda config --set auto_activate_base false
 
 # Get prophet working
 # conda should install the appropriate requiremetns
