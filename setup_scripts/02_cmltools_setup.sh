@@ -118,7 +118,11 @@ helm plugin install https://github.com/databus23/helm-diff --version master  # h
 
 # Jekyll
 brew install ruby
-gem install --user-install bundler jekyll
+brew install rbenv
+eval "$(rbenv init -)"
+rbenv install 2.7.0
+sudo gem install bundler
+sudo gem install --user-install bundler jekyll
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup

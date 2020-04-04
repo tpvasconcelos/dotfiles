@@ -46,3 +46,6 @@ export PATH=$(brew --prefix gnu-sed)/libexec/gnubin:$PATH
 
 export PATH=~/mongodb/bin:$PATH
 
+# X13 ARIMA-SEATS
+export PATH="$HOME/x13as/bin/:$PATH"
+export X13PATH="$HOME/x13as/bin/"

@@ -41,7 +41,7 @@ plugins=(
 # git autocomplete
 # source ~/.zsh/_git/.git-prompt.sh
 # source ~/.zsh/_git/.git-completion.zsh
-# fpath=(~/.zsh/_git $fpath)
+# fpath=(~/.zsh/_git $fpath)Deploying to namespace: ci
 
 fpath=(~/.zsh-completions/src $fpath)
 fpath=(~/.zsh $fpath)
@@ -55,9 +55,15 @@ export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/mongodb/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+
+# X13 ARIMA-SEATS
+export PATH="$HOME/x13as/bin/:$PATH"
+export X13PATH="$HOME/x13as/bin/"
 
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+eval "$(rbenv init -)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
