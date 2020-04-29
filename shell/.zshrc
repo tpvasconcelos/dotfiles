@@ -56,6 +56,8 @@ export PATH="$HOME/mongodb/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="/usr/local/opt/python3/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # X13 ARIMA-SEATS
 export PATH="$HOME/x13as/bin/:$PATH"
