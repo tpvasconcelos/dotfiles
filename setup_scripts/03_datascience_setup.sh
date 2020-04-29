@@ -20,8 +20,8 @@ brew update && brew upgrade
 # Data Science (python, anaconda, and stuff...)
 
 # Python
-brew install python
 brew install python3
+brew install python@3.8
 pip3 install --upgrade pip
 pip3 install bpython
 brew install mypy
@@ -31,22 +31,17 @@ pip3 install black
 brew cask install r
 brew cask install rstudio
 
-# Anaconda and jupyter
+# Jupyter
 yes n | jupyter notebook --generate-config
-brew cask install anaconda
-yes | conda update -n base -c defaults conda
-yes | conda update --all
-conda init zsh
-conda config --set auto_activate_base false
 
+# Anaconda  ---
+#brew cask install anaconda
+#yes | conda update -n base -c defaults conda
+#yes | conda update --all
+#conda init zsh
+#conda config --set auto_activate_base false
 # Get prophet working
-# conda should install the appropriate requiremetns
-#yes | conda install -c anaconda ephem
-#yes | conda install -c anaconda gcc
-#yes | conda install -c anaconda cython
-#yes | conda install -c plotly plotly
-#yes | conda install -c conda-forge pystan
-yes | conda install -c conda-forge fbprophet
+#yes | conda install -c conda-forge fbprophet
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup

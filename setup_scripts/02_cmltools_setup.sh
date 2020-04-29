@@ -77,6 +77,7 @@ brew cask install adoptopenjdk
 brew install gnupg2
 brew install mackup
 brew install mas
+brew install ffmpeg
 
 # Xcode
 mas install 497799835
@@ -85,7 +86,7 @@ xcode-select --install
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo sudo xcodebuild -license accept
 
-# More ompilers
+# More compilers
 brew install cmake
 #For compilers to find llvm you may need to set:
 #  export LDFLAGS="-L/usr/local/opt/llvm/lib"
