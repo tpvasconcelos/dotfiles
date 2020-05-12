@@ -78,6 +78,7 @@ brew install gnupg2
 brew install mackup
 brew install mas
 brew install ffmpeg
+brew cask install keepingyouawake
 
 # Xcode
 mas install 497799835

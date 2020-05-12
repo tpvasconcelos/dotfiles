@@ -23,9 +23,6 @@ brew update && brew upgrade
 brew install python3
 brew install python@3.8
 pip3 install --upgrade pip
-pip3 install bpython
-brew install mypy
-pip3 install black
 
 # R
 brew cask install r
