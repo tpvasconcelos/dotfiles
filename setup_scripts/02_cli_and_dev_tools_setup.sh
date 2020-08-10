@@ -94,13 +94,10 @@ xcode-select --install
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo sudo xcodebuild -license accept
 sudo xcodebuild -runFirstLaunch
-softwareupdate --all --install --force
+softwareupdate --force --install --all --verbose
 
 # More compilers
 brew install cmake
-#For compilers to find llvm you may need to set:
-#  export LDFLAGS="-L/usr/local/opt/llvm/lib"
-#  export CPPFLAGS="-I/usr/local/opt/llvm/include"
 brew install llvm
 brew install gcc
 brew install libomp

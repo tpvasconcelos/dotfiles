@@ -49,17 +49,18 @@ fpath=(~/.zsh $fpath)
 # Fix PATH
 export PATH="/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/anaconda3/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/mongodb/bin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
-export PATH="/usr/local/opt/python3/bin:$PATH"
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="$HOME/dev/flutter/bin:$PATH"
+export PATH="$(brew --prefix llvm)/bin:$PATH"
+export PATH="$(brew --prefix ruby)/bin:$PATH"
+export PATH="$(brew --prefix openssl)/bin:$PATH"
+export PATH="$(brew --prefix sqlite)/bin:$PATH"
+#export PATH="/usr/local/opt/python3/bin:$PATH"
+#export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+#export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # X13 ARIMA-SEATS
@@ -69,6 +70,14 @@ export X13PATH="$HOME/x13as/bin/"
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 eval "$(rbenv init -)"
+
+# Golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# pyenv
+export PYENV_ROOT=$(pyenv root)
+eval "$(pyenv init -)"
 
 
 ##############################################################################
@@ -120,16 +129,32 @@ function login-ec2() {
 export LANG="en_US.UTF-8"
 export TIQETS_ENV="tomas"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-# export LDFLAGS="-L/usr/local/opt/python@3.7/lib"
-# export PKG_CONFIG_PATH="/usr/local/opt/python@3.7/lib/pkgconfig"
 
-# Golang
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+# CPP and LDF Flags and PKG_CONFIG_PATH
+# # openssl
+# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+# # readline
+# export LDFLAGS="-L/usr/local/opt/readline/lib"
+# export CPPFLAGS="-I/usr/local/opt/readline/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+# # sqlite
+# export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+# export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+# # llvm
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# # zlib
+# export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+# export LDFLAGS="-L/usr/local/opt/zlib/lib"
+# export CPPFLAGS="-I/usr/local/opt/zlib/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+# # MERGED
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/llvm/lib -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/llvm/include -I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
 
-# pyenv
-eval "$(pyenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
