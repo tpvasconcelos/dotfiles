@@ -124,4 +124,7 @@ LDFLAGS="-L/usr/local/opt/llvm/lib"
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
+# pyenv
+eval "$(pyenv init -)"
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

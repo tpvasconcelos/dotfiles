@@ -20,8 +20,12 @@ brew update && brew upgrade
 # Data Science (python, anaconda, and stuff...)
 
 # Python
-brew install python3
-brew install python@3.8
+brew install pyenv
+pyenv install 2.7.18
+pyenv install 3.7.8
+pyenv install 3.8.5
+#brew install python@3.7
+#brew install python@3.8
 pip3 install --upgrade pip
 
 # R
@@ -39,6 +43,11 @@ yes n | jupyter notebook --generate-config
 #conda config --set auto_activate_base false
 # Get prophet working
 #yes | conda install -c conda-forge fbprophet
+
+# misc
+brew install graphviz
+brew cask install jupyter-notebook-viewer
+
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
