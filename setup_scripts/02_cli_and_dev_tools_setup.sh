@@ -18,6 +18,9 @@ done 2>/dev/null &
 brew update && brew upgrade
 brew cask upgrade --greedy
 
+# create ~/dev/ directory
+mkdir ~/dev/
+
 # Install more recent versions of some macOS tools.
 brew install vim
 brew install grep
@@ -60,6 +63,10 @@ pip install termdown
 
 # Misc tools
 brew install luarocks
+brew install openssl
+brew install readline
+brew install sqlite3
+brew install xz
 brew install zlib
 brew install sqlite
 brew install postgresql
@@ -86,6 +93,8 @@ sudo rm -rf /Library/Developer/CommandLineTools
 xcode-select --install
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo sudo xcodebuild -license accept
+sudo xcodebuild -runFirstLaunch
+softwareupdate --all --install --force
 
 # More compilers
 brew install cmake
@@ -94,6 +103,7 @@ brew install cmake
 #  export CPPFLAGS="-I/usr/local/opt/llvm/include"
 brew install llvm
 brew install gcc
+brew install libomp
 
 # Docker
 #Error: Download failed on Cask 'docker' with message: Download failed: https://download.docker.com/mac/stable/40693/Docker.dmg
@@ -125,6 +135,17 @@ eval "$(rbenv init -)"
 rbenv install 2.7.0
 sudo gem install bundler
 sudo gem install --user-install bundler jekyll
+
+
+# Flutter
+# https://flutter.dev/docs/get-started/install/macos
+sudo gem install cocoapods
+gem install cocoapods --user-install
+pod setup
+brew tap dart-lang/dart
+brew install dart
+git clone https://github.com/flutter/flutter.git -b stable --depth 1 ~/dev/flutter
+
 
 # Upgrade everything again, and cleanup!
 brew update && brew upgrade && brew cleanup
