@@ -27,7 +27,6 @@ brew cask install atom
 brew cask install visual-studio-code
 brew cask install texpad
 mas install 497799835 && sudo xcodebuild -license accept # Xcode
-mas install 1225570693 # Ulysses
 brew cask install pycharm
 brew cask install datagrip
 brew cask install webstorm
@@ -42,19 +41,20 @@ brew cask install tor-browser
 brew cask install firefox
 
 # Productivity & Office
-brew cask install alfred
-brew cask install skitch
 mas install 462054704 # Microsoft Word: brew cask install microsoft-office
 mas install 462058435 # Microsoft Excel
-brew cask install skype
 mas install 425424353  # The Unarchiver: brew cask install the-unarchiver
 mas install 1147396723 # WhatsApp: brew cask install whatsapp
 mas install 803453959  # Slack: brew cask install slack
 mas install 1176895641 # Spark
+brew cask install alfred
+brew cask install skitch
+brew cask install skype
 brew cask install the-unarchiver
 brew cask install whatsapp
 brew cask install slack
 brew cask install google-drive
+brew cask install notion
 
 # Misc
 brew cask install vuze
