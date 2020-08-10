@@ -57,7 +57,10 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="/usr/local/opt/python3/bin:$PATH"
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="$HOME/dev/flutter/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # X13 ARIMA-SEATS
 export PATH="$HOME/x13as/bin/:$PATH"
@@ -117,8 +120,10 @@ function login-ec2() {
 export LANG="en_US.UTF-8"
 export TIQETS_ENV="tomas"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"export
-LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export LDFLAGS="-L/usr/local/opt/python@3.7/lib"
+# export PKG_CONFIG_PATH="/usr/local/opt/python@3.7/lib/pkgconfig"
 
 # Golang
 export GOPATH=$HOME/go
