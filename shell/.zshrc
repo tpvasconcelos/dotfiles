@@ -58,6 +58,7 @@ export PATH="$(brew --prefix llvm)/bin:$PATH"
 export PATH="$(brew --prefix ruby)/bin:$PATH"
 export PATH="$(brew --prefix openssl)/bin:$PATH"
 export PATH="$(brew --prefix sqlite)/bin:$PATH"
+export PATH="$(brew --prefix node)/bin:$PATH"
 #export PATH="/usr/local/opt/python3/bin:$PATH"
 #export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 #export PATH="/usr/local/opt/python@3.8/bin:$PATH"
@@ -77,7 +78,9 @@ export PATH=$GOPATH/bin:$PATH
 
 # pyenv
 export PYENV_ROOT=$(pyenv root)
-eval "$(pyenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 
 ##############################################################################
@@ -128,7 +131,6 @@ function login-ec2() {
 # Misch
 export LANG="en_US.UTF-8"
 export TIQETS_ENV="tomas"
-export PATH="/usr/local/opt/node@10/bin:$PATH"
 
 # CPP and LDF Flags and PKG_CONFIG_PATH
 # # openssl

@@ -1,9 +1,23 @@
 #!/usr/bin/env bash
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
 
+# ============================================================
+#
+# Data Science
+# * Python
+#     * pyenv
+#     * pipenv
+#     * python for brew
+#     * Jupyter
+#     * Anaconda
+# * R
+# * Misc
+#
+# ============================================================
+
+
+
+# Setup script and permissions =========================== >>>
 # Ask for the administrator password upfront
 sudo -v
 
@@ -13,27 +27,35 @@ while true; do
   sleep 60
   kill -0 "$$" || exit
 done 2>/dev/null &
+# ======================================================== <<<
 
-# Upgrade everything
+
+
+# Upgrade everything ===================================== >>>
 brew update && brew upgrade
+# ======================================================== <<<
 
-# Data Science (python, anaconda, and stuff...)
 
-# Python
+
+# Python ================================================= >>>
+
+# pyenv  ---
 brew install pyenv
-pyenv install 2.7.18
-pyenv install 3.7.8
-pyenv install 3.8.5
-#brew install python@3.7
-#brew install python@3.8
-pip3 install --upgrade pip
+SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPOLOYMENT_TARGET=10.15 \
+    pyenv install 2.7.18 && \
+    pyenv install 3.7.8  && \
+    pyenv install 3.8.5
+pyenv global 3.8.5 && eval "$(pyenv init -)"
 
-# R
-brew cask install r
-brew cask install rstudio
+# pipenv  ---
+brew install pipenv
 
-# Jupyter
+# python for brew  ---
+brew install python && brew unlink python
+
+# Jupyter  ---
 yes n | jupyter notebook --generate-config
+brew cask install jupyter-notebook-viewer
 
 # Anaconda  ---
 #brew cask install anaconda
@@ -44,10 +66,20 @@ yes n | jupyter notebook --generate-config
 # Get prophet working
 #yes | conda install -c conda-forge fbprophet
 
-# misc
+# ======================================================== <<<
+
+
+# R ====================================================== >>>
+brew cask install r
+brew cask install rstudio
+# ======================================================== <<<
+
+
+# Misc =================================================== >>>
 brew install graphviz
-brew cask install jupyter-notebook-viewer
+# ======================================================== <<<
 
 
-# Upgrade everything again, and cleanup!
+# Upgrade everything again, and cleanup ================== >>>
 brew update && brew upgrade && brew cleanup
+# ======================================================== <<<
