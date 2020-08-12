@@ -49,13 +49,19 @@ brew cask install iterm2
 killall cfprefsd
 cp shell/com.googlecode.iterm2.plist ~/Library/Preferences
 brew install zsh
+
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Powerlevel9k
 brew tap sambadevi/powerlevel9k
 brew install powerlevel9k
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
+
 # Change the default shell to zsh
 chsh -s /bin/zsh
+
+# Download Shell Integration script
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh

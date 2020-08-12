@@ -46,6 +46,10 @@ plugins=(
 fpath=(~/.zsh-completions/src $fpath)
 fpath=(~/.zsh $fpath)
 
+# Shell Integration
+source "${HOME}/.iterm2_shell_integration.zsh"
+
+
 # Fix PATH
 export PATH="/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -108,12 +112,18 @@ setopt HIST_BEEP                # Beep when accessing nonexistent history.
 
 
 # ENV Variables
-# ...
+export LANG="en_US.UTF-8"
+# Tiqets
+export TIQETS_ENV="tomas"
 
-# My aliasis
+
+# Aliases  ---
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
+alias ppp='tr ":" "\n" <<< "$PATH"'
 
+
+# Functions  ---
 function py2nb() {
   jupytext --to notebook $1
   jupytext --sync $1
@@ -128,11 +138,8 @@ function login-ec2() {
   AWS_PROFILE=data-eng aws ssm start-session --target i-"$1"
 }
 
-# Misch
-export LANG="en_US.UTF-8"
-export TIQETS_ENV="tomas"
 
-# CPP and LDF Flags and PKG_CONFIG_PATH
+# CPP and LDF Flags and PKG_CONFIG_PATH  ---
 # # openssl
 # export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 # export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
@@ -158,5 +165,3 @@ export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/llvm/include -I/usr/local/opt/zlib/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
 
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
