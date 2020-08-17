@@ -1,9 +1,17 @@
 # Copy to home folder
 # $ cp shell/.zshrc ~/.zshrc  && source ~/.zshrc
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 # Load Nerd Fonts with Powerlevel9k theme for Zsh
 # and Customise the Powerlevel9k prompts
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
@@ -17,7 +25,7 @@ POWERLEVEL9K_DIR_HOME_BACKGROUND='yellow'
 POWERLEVEL9K_DIR_ETC_BACKGROUND='yellow'
 
 HOMEBREW_FOLDER="/usr/local/share"
-source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
@@ -26,7 +34,11 @@ ZSH_DISABLE_COMPFIX=true
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+# /System/Volumes/Data/Users/tpvasconcelos/.oh-my-zsh
+# /Users/tpvasconcelos/.oh-my-zsh
 plugins=(
+  # custom
+  poetry
   git
   iterm2
   docker
@@ -36,6 +48,284 @@ plugins=(
   composer
   zsh-syntax-highlighting
   zsh-autosuggestions
+  # all
+#   adb
+#   alias-finder
+#   ansible
+#   ant
+#   apache2-macports
+#   arcanist
+#   archlinux
+#   asdf
+#   autoenv
+#   autojump
+#   autopep8
+#   aws
+#   battery
+#   bazel
+#   bbedit
+#   bgnotify
+#   boot2docker
+#   bower
+#   branch
+#   brew
+#   bundler
+#   cabal
+#   cake
+#   cakephp3
+#   capistrano
+#   cargo
+#   cask
+#   catimg
+#   celery
+#   chruby
+#   chucknorris
+#   cloudfoundry
+#   codeclimate
+#   coffee
+#   colemak
+#   colored-man-pages
+#   colorize
+#   command-not-found
+#   common-aliases
+#   compleat
+#   composer
+#   copybuffer
+#   copydir
+#   copyfile
+#   cp
+#   cpanm
+#   dash
+#   debian
+#   dircycle
+#   direnv
+#   dirhistory
+#   dirpersist
+#   django
+#   dnf
+#   dnote
+#   docker-compose
+#   docker-machine
+#   docker
+#   doctl
+#   dotenv
+#   dotnet
+#   droplr
+#   drush
+#   eecms
+#   emacs
+#   ember-cli
+#   emoji-clock
+#   emoji
+#   emotty
+#   encode64
+#   extract
+#   fabric
+#   fancy-ctrl-z
+#   fasd
+#   fastfile
+#   fbterm
+#   fd
+#   firewalld
+#   flutter
+#   forklift
+#   fossil
+#   frontend-search
+#   fzf
+#   gas
+#   gatsby
+#   gb
+#   gcloud
+#   geeknote
+#   gem
+#   git-auto-fetch
+#   git-escape-magic
+#   git-extras
+#   git-flow-avh
+#   git-flow
+#   git-hubflow
+#   git-prompt
+#   git
+#   gitfast
+#   github
+#   gitignore
+#   glassfish
+#   globalias
+#   gnu-utils
+#   golang
+#   gpg-agent
+#   gradle
+#   grails
+#   grunt
+#   gulp
+#   hanami
+#   helm
+#   heroku
+#   history-substring-search
+#   history
+#   hitokoto
+#   homestead
+#   httpie
+#   ionic
+#   iterm2
+#   jake-node
+#   jenv
+#   jfrog
+#   jhbuild
+#   jira
+#   jruby
+#   jsontools
+#   jump
+#   kate
+#   keychain
+#   kitchen
+#   knife_ssh
+#   knife
+#   kops
+#   kube-ps1
+#   kubectl
+#   laravel
+#   laravel4
+#   laravel5
+#   last-working-dir
+#   lein
+#   lighthouse
+#   lol
+#   lxd
+#   macports
+#   magic-enter
+#   man
+#   marked2
+#   mercurial
+#   meteor
+#   microk8s
+#   minikube
+#   mix-fast
+#   mix
+#   mosh
+#   mvn
+#   mysql-macports
+#   n98-magerun
+#   nanoc
+#   ng
+#   nmap
+#   node
+#   nomad
+#   npm
+#   npx
+#   nvm
+#   oc
+#   osx
+#   otp
+#   pass
+#   paver
+#   pep8
+#   per-directory-history
+#   percol
+#   perl
+#   perms
+#   phing
+#   pip
+#   pipenv
+#   pj
+#   please
+#   pod
+#   postgres
+#   pow
+#   powder
+#   powify
+#   profiles
+#   pyenv
+#   pylint
+#   python
+#   rails
+#   rake-fast
+#   rake
+#   rand-quote
+#   rbenv
+#   rbfu
+#   react-native
+#   rebar
+#   redis-cli
+#   repo
+#   ripgrep
+#   ros
+#   rsync
+#   ruby
+#   rust
+#   rustup
+#   rvm
+#   safe-paste
+#   salt
+#   sbt
+#   scala
+#   scd
+#   screen
+#   scw
+#   sdk
+#   sfdx
+#   sfffe
+#   shell-proxy
+#   shrink-path
+#   singlechar
+#   spring
+#   sprunge
+#   ssh-agent
+#   stack
+#   sublime
+#   sudo
+#   supervisor
+#   suse
+#   svcat
+#   svn-fast-info
+#   svn
+#   swiftpm
+#   symfony
+#   symfony2
+#   systemadmin
+#   systemd
+#   taskwarrior
+#   terminitor
+#   terraform
+#   textastic
+#   textmate
+#   thefuck
+#   themes
+#   thor
+#   tig
+#   timer
+#   tmux-cssh
+#   tmux
+#   tmuxinator
+#   torrent
+#   transfer
+#   tugboat
+#   ubuntu
+#   ufw
+#   urltools
+#   vagrant-prompt
+#   vagrant
+#   vault
+#   vi-mode
+#   vim-interaction
+#   virtualenv
+#   virtualenvwrapper
+#   vscode
+#   vundle
+#   wakeonlan
+#   wd
+#   web-search
+#   wp-cli
+#   xcode
+#   yarn
+#   yii
+#   yii2
+#   yum
+#   z
+#   zeus
+#   zsh_reload
+#   zsh-interactive-cd
+#   zsh-navigation-tools
 )
 
 # git autocomplete
@@ -43,8 +333,7 @@ plugins=(
 # source ~/.zsh/_git/.git-completion.zsh
 # fpath=(~/.zsh/_git $fpath)Deploying to namespace: ci
 
-fpath=(~/.zsh-completions/src $fpath)
-fpath=(~/.zsh $fpath)
+fpath+=/usr/local/share/zsh/site-functions
 
 # Shell Integration
 source "${HOME}/.iterm2_shell_integration.zsh"
@@ -58,6 +347,7 @@ export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/mongodb/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="$HOME/dev/flutter/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$(brew --prefix llvm)/bin:$PATH"
 export PATH="$(brew --prefix ruby)/bin:$PATH"
 export PATH="$(brew --prefix openssl)/bin:$PATH"
@@ -165,3 +455,5 @@ export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/llvm/include -I/usr/local/opt/zlib/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

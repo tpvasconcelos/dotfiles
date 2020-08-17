@@ -86,6 +86,8 @@ function add_spacer_to_dock() {
 function clear_dock() {
   # removes all persistent icons from macOS Dock
   defaults write com.apple.dock persistent-apps -array
+  # Show only open applications in the Dock (don't)
+  defaults write com.apple.dock static-only -bool false
 }
 
 function reset_dock() {
