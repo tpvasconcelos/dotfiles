@@ -70,6 +70,7 @@ brew cask install diffmerge
 # brew cask install popcorn-official/popcorn-desktop/popcorn-time
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
+mas install 668208984 # GIPHY Capture. The GIF Maker
 
 # Manual install:
 # - Photoshop
