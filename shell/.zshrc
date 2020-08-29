@@ -4,35 +4,25 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/tpvasconcelos/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+source "${HOME}/.iterm2_shell_integration.zsh"
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Load Nerd Fonts with Powerlevel9k theme for Zsh
 # and Customise the Powerlevel9k prompts
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv anaconda pyenv dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='yellow'
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
-POWERLEVEL9K_DIR_HOME_BACKGROUND='yellow'
-POWERLEVEL9K_DIR_ETC_BACKGROUND='yellow'
+ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 
-HOMEBREW_FOLDER="/usr/local/share"
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-ZSH_DISABLE_COMPFIX=true
-
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
 
 # /System/Volumes/Data/Users/tpvasconcelos/.oh-my-zsh
 # /Users/tpvasconcelos/.oh-my-zsh
@@ -335,9 +325,6 @@ plugins=(
 
 fpath+=/usr/local/share/zsh/site-functions
 
-# Shell Integration
-source "${HOME}/.iterm2_shell_integration.zsh"
-
 
 # Fix PATH
 export PATH="/bin:$PATH"
@@ -456,4 +443,4 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/readline/
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

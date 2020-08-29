@@ -57,7 +57,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # Powerlevel10k
 brew install romkatv/powerlevel10k/powerlevel10k
 p10k configure
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
 
