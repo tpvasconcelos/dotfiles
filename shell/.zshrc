@@ -17,8 +17,6 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-# Load Nerd Fonts with Powerlevel9k theme for Zsh
-# and Customise the Powerlevel9k prompts
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
@@ -323,7 +321,11 @@ plugins=(
 # source ~/.zsh/_git/.git-completion.zsh
 # fpath=(~/.zsh/_git $fpath)Deploying to namespace: ci
 
-fpath+=/usr/local/share/zsh/site-functions
+fpath=(
+    ~/.zsh/completion
+    /usr/local/share/zsh/site-functions
+    $fpath
+)
 
 
 # Fix PATH
@@ -367,9 +369,9 @@ fi
 ##############################################################################
 # History Configuration
 ##############################################################################
-HISTSIZE=10000                  # How many lines of history to keep in memory
-SAVEHIST=50000                  # Number of history entries to save to disk
-HISTFILE="$HOME/.zsh_history"   # Where to save history to disk
+HISTFILE=~/.zsh_history         # Where to save history to disk
+HISTSIZE=4096                   # How many lines of history to keep in memory
+SAVEHIST=4096                   # Number of history entries to save to disk
 HISTDUP=erase                   # Erase duplicates in the history file
 setopt appendhistory            # Append history to the history file (no overwriting)
 setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
@@ -385,6 +387,7 @@ setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history f
 setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                # Beep when accessing nonexistent history.
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 
 
@@ -397,7 +400,7 @@ export TIQETS_ENV="tomas"
 # Aliases  ---
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
-alias ppp='tr ":" "\n" <<< "$PATH"'
+alias path='echo $PATH | tr -s ":" "\n"'
 
 
 # Functions  ---
@@ -415,6 +418,9 @@ function login-ec2() {
   AWS_PROFILE=data-eng aws ssm start-session --target i-"$1"
 }
 
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
 
 # CPP and LDF Flags and PKG_CONFIG_PATH  ---
 # # openssl
