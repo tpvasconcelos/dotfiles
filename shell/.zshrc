@@ -25,7 +25,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highligh
 # /System/Volumes/Data/Users/tpvasconcelos/.oh-my-zsh
 # /Users/tpvasconcelos/.oh-my-zsh
 plugins=(
-  # custom
+  # custom  ---
   poetry
   git
   iterm2
@@ -34,9 +34,7 @@ plugins=(
   osx
   python
   composer
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  # all
+  # all  ---
 #   adb
 #   alias-finder
 #   ansible
@@ -347,6 +345,16 @@ export PATH="$(brew --prefix node)/bin:$PATH"
 #export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# Golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# guile
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+
 # X13 ARIMA-SEATS
 export PATH="$HOME/x13as/bin/:$PATH"
 export X13PATH="$HOME/x13as/bin/"
@@ -354,10 +362,6 @@ export X13PATH="$HOME/x13as/bin/"
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 eval "$(rbenv init -)"
-
-# Golang
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
 
 # pyenv
 export PYENV_ROOT=$(pyenv root)
@@ -401,6 +405,7 @@ export TIQETS_ENV="tomas"
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
 alias path='echo $PATH | tr -s ":" "\n"'
+eval $(thefuck --alias)
 
 
 # Functions  ---
