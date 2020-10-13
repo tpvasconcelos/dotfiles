@@ -86,6 +86,8 @@ brew install mackup
 brew install mas
 brew install ffmpeg
 brew cask install keepingyouawake
+brew install tree
+brew install thefuck
 
 # Xcode
 mas install 497799835
