@@ -405,6 +405,7 @@ export TIQETS_ENV="tomas"
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
 alias path='echo $PATH | tr -s ":" "\n"'
+alias pag='ps aux | head -1; ps aux | grep -v grep | grep'
 eval $(thefuck --alias)
 
 
