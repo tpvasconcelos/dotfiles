@@ -36,6 +36,7 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 brew tap homebrew/cask-fonts
+brew cask install font-juliamono
 brew cask install font-hack-nerd-font
 
 # Useful command line tools
