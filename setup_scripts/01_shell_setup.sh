@@ -8,7 +8,7 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do
