@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 
 # ============================================================
@@ -41,11 +41,16 @@ brew update && brew upgrade
 
 # pyenv  ---
 brew install pyenv
+LATEST_PY27="$(pyenv install --list | grep "^  2.7" | tail -n 1)"
+LATEST_PY37="$(pyenv install --list | grep "^  3.7" | tail -n 1)"
+LATEST_PY38="$(pyenv install --list | grep "^  3.8" | tail -n 1)"
+# LATEST_PY39="$(pyenv install --list | grep "^  3.9" | tail -n 1)"
 SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPOLOYMENT_TARGET=10.15 \
-    pyenv install 2.7.18 && \
-    pyenv install 3.7.8  && \
-    pyenv install 3.8.5
-pyenv global 3.8.5 && eval "$(pyenv init -)"
+    pyenv install "$LATEST_PY27" \
+    pyenv install "$LATEST_PY37" \
+    pyenv install "$LATEST_PY38"
+    # pyenv install "$LATEST_PY39"
+pyenv global "$LATEST_PY38" && eval "$(pyenv init -)"
 
 # pipenv  ---
 brew install pipenv

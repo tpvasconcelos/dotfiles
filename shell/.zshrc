@@ -4,9 +4,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/tpvasconcelos/.oh-my-zsh"
@@ -332,7 +332,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/mongodb/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.7.2/bin:$PATH"
 export PATH="$HOME/dev/flutter/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/opt/bin:$PATH"
@@ -361,6 +361,7 @@ export X13PATH="$HOME/x13as/bin/"
 
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
 eval "$(rbenv init -)"
 
 # pyenv

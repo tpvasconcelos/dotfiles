@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -30,13 +30,12 @@ brew install php
 brew install gmp
 
 # Install font tools.
-# Error: caskroom/fonts was moved. Tap homebrew/cask-fonts instead.
 # Error: Cask 'font-hack-nerd-font' is unavailable: No Cask with this name exists.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
 
 # Useful command line tools
@@ -44,17 +43,7 @@ brew install wget
 brew install tree
 brew install rename
 brew install htop
-#Bash completion has been installed to:
-#  /usr/local/etc/bash_completion.d
-#
-#zsh completions and functions have been installed to:
-#  /usr/local/share/zsh/site-functions
-#
-#Emacs Lisp files have been installed to:
-#  /usr/local/share/emacs/site-lisp/git
-brew install git
-#ERROR: git: 'lfs' is not a git command. See 'git --help'.
-git lfs install
+brew install git && git lfs install
 brew install git-lfs
 brew install hub
 brew install mdv
@@ -70,33 +59,19 @@ brew install xz
 brew install zlib
 brew install sqlite
 brew install postgresql
-#The directory '/Users/tpvasconcelos/Library/Caches/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-#The directory '/Users/tpvasconcelos/Library/Caches/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-#Running setup.py install for psycopg2 ... error
-sudo pip install psycopg2
 brew install freetype
 brew install libxslt
 brew install libpq
 brew install node
-brew install yarn && yarn && yarn build
+brew install yarn
 brew install redis
 brew cask install adoptopenjdk
 brew install gnupg2
 brew install mackup
 brew install mas
 brew install ffmpeg
-brew cask install keepingyouawake
 brew install tree
 brew install thefuck
-
-# Xcode
-mas install 497799835
-sudo rm -rf /Library/Developer/CommandLineTools
-xcode-select --install
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-sudo sudo xcodebuild -license accept
-sudo xcodebuild -runFirstLaunch
-softwareupdate --force --install --all --verbose
 
 # More compilers
 brew install cmake
@@ -105,7 +80,6 @@ brew install gcc
 brew install libomp
 
 # Docker
-#Error: Download failed on Cask 'docker' with message: Download failed: https://download.docker.com/mac/stable/40693/Docker.dmg
 brew cask install docker
 brew cask install kitematic
 
@@ -116,8 +90,8 @@ brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
 
 # Golang
-brew install golang  --cross-compile-common
-mkdir -p $HOME/go/bin $HOME/go/src
+brew install golang  # old unnavailable flag: --cross-compile-common
+mkdir -p "$HOME"/go/bin "$HOME"/go/src
 
 # Kubernetes
 brew install kubectx  # https://github.com/ahmetb/kubectx
@@ -127,17 +101,20 @@ brew install aws-iam-authenticator  # https://github.com/kubernetes-sigs/aws-iam
 brew install helm  # https://github.com/helm/helm
 helm plugin install https://github.com/databus23/helm-diff --version master  # https://github.com/databus23/helm-diff
 
-# Jekyll
+# Jekyll - <https://jekyllrb.com/docs/installation/macos/>
 brew install ruby
 brew install rbenv
-eval "$(rbenv init -)"
-rbenv install 2.7.0
+rbenv install 2.7.2
+rbenv global 2.7.2
 sudo gem install bundler
+# the next commands do not work... Probably something to do with current cpp compiler?
+sudo gem install -n /usr/local/bin/ jekyll
 sudo gem install --user-install bundler jekyll
 
 
 # Flutter
 # https://flutter.dev/docs/get-started/install/macos
+# the next commands do not work... Probably something to do with current cpp compiler?
 sudo gem install cocoapods
 gem install cocoapods --user-install
 pod setup

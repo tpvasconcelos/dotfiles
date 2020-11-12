@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -55,6 +55,7 @@ brew cask install whatsapp
 brew cask install slack
 brew cask install google-drive
 brew cask install notion
+brew cask install keepingyouawake
 
 # Misc
 brew cask install vuze
