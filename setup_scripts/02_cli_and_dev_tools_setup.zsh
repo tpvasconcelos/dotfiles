@@ -89,6 +89,7 @@ brew cask install virtualbox
 brew install awscli
 brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
+brew install cookiecutter
 
 # Golang
 brew install golang  # old unnavailable flag: --cross-compile-common
