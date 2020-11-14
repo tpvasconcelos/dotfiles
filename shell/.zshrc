@@ -314,13 +314,8 @@ plugins=(
 #   zsh-navigation-tools
 )
 
-# git autocomplete
-# source ~/.zsh/_git/.git-prompt.sh
-# source ~/.zsh/_git/.git-completion.zsh
-# fpath=(~/.zsh/_git $fpath)Deploying to namespace: ci
 
 fpath=(
-    ~/.zsh/completion
     /usr/local/share/zsh/site-functions
     $fpath
 )
