@@ -64,7 +64,7 @@ brew cask install vlc
 brew cask install adobe-creative-cloud
 brew cask install blender
 brew cask install appcleaner
-brew cask install omnidisksweeper
+brew cask install disk-inventory-x      # <http://www.derlien.com/>
 brew cask install muzzle
 brew cask install p4v
 brew cask install diffmerge

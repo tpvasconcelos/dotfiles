@@ -73,6 +73,7 @@ brew install mas
 brew install ffmpeg
 brew install tree
 brew install thefuck
+brew install ncdu               # <https://dev.yorhel.nl/ncdu>
 
 # More compilers
 brew install cmake
