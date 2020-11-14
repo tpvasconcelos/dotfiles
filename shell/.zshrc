@@ -26,7 +26,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highligh
 # /Users/tpvasconcelos/.oh-my-zsh
 plugins=(
   # custom  ---
-  poetry
+  # poetry
   git
   iterm2
   docker
