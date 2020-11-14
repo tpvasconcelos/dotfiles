@@ -1,13 +1,10 @@
-# dotfiles
-
-dotfiles, settings, and config files
-
-tags: `dotfiles`, `configuration`, `config`, `configuration-files`, `configs`, `configurations`, `settings`
+# My dotfiles
 
 ## References
 
-* (New Computer Checklist)[https://github.com/grant/new-computer-checklist]
-* ()[]
+* <https://github.com/grant/new-computer-checklist>
+* <https://wiki.archlinux.org/index.php/Dotfiles>
+* <https://github.com/unixorn/awesome-zsh-plugins>
 
 ## Steps
 
