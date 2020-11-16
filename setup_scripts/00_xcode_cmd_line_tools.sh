@@ -2,16 +2,25 @@
 
 # Install and update Xcode and command-line tools  ---
 
-mas install 497799835
+# Download Xcode from the App Store
+# mas install 497799835
 
-sudo rm -rf /Library/Developer/CommandLineTools
-xcode-select --install  # this didnt work last time! dont know why...
+# FIXME: is this still needed?
+# sudo rm -rf /Library/Developer/CommandLineTools
+
+# Make sure `xcode-select` is pointing to the correct delevoper directory
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 
+# Install Xcode
+xcode-select --install
+
+# Accept Xcode's Licence
 sudo sudo xcodebuild -license accept
+
+# Simulate lauching Xcode once
 sudo xcodebuild -runFirstLaunch
 
+# Update everything and restart the computer
 printf "The computer will restart after running softwareupdate. \nPress ENTER to continue..."
 read
-
 sudo softwareupdate --force --install --all --verbose --restart
