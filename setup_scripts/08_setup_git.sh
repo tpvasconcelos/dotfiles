@@ -2,7 +2,7 @@
 # https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2
 
 yes | ssh-keygen -P "" -f ~/.ssh/id_rsa
-eval $(ssh-agent)
+eval "$(ssh-agent)"
 echo -e "Host *\n  IgnoreUnknown UseKeychain\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_rsa" >~/.ssh/config
 /usr/bin/ssh-add -K ~/.ssh/id_rsa
 
