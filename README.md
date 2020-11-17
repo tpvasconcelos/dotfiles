@@ -28,7 +28,7 @@
     ```shell script
     sudo xcodebuild -runFirstLaunch
     ```
-1. Update everything. **Note:** if needed, this will automatically restart your computer!
+1. Update everything. **Note that, if needed, this command will automatically restart your machine!**
     ```shell script
     sudo softwareupdate --install --all --verbose --force --restart
     ```
