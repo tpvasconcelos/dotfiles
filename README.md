@@ -12,23 +12,23 @@
 ### Install Xcode and Command Line Developer Tools
 1. Download Xcode from the App Store
 2. Open *Terminal* and run the following commands:
-  2.1 Make sure `xcode-select` is pointing to the correct developer directory
+    2.1 Make sure `xcode-select` is pointing to the correct developer directory
     ```shell script
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
     ```
-  2.2 Install Command Line Developer Tools
+    2.2 Install Command Line Developer Tools
     ```shell script
     xcode-select --install
     ```
-  2.3 Accept Xcode's Licence
+    2.3 Accept Xcode's Licence
     ```shell script
     sudo xcodebuild -license accept
     ```
-  2.4 Simulates launching Xcode, which installs some extra packages and checks the license agreement
+    2.4 Simulates launching Xcode, which installs some extra packages and checks the license agreement
     ```shell script
     sudo xcodebuild -runFirstLaunch
     ```
-  2.5 Update everything and restart the computer
+    2.5 Update everything and restart the computer
     ```shell script
     sudo softwareupdate --force --install --all --verbose
     ```
