@@ -5,6 +5,7 @@
 * <https://github.com/grant/new-computer-checklist>
 * <https://wiki.archlinux.org/index.php/Dotfiles>
 * <https://github.com/unixorn/awesome-zsh-plugins>
+* <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 
 ## Steps
 
