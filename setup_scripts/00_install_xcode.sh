@@ -21,6 +21,6 @@ sudo sudo xcodebuild -license accept
 sudo xcodebuild -runFirstLaunch
 
 # Update everything and restart the computer
-printf "The computer will restart after running softwareupdate. \nPress ENTER to continue..."
-read
+printf "The computer will restart after running softwareupdate. Press ENTER to continue...\n"
+read -r
 sudo softwareupdate --force --install --all --verbose --restart

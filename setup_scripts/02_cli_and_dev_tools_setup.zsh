@@ -21,12 +21,18 @@ brew cask upgrade --greedy
 # create ~/dev/ directory
 mkdir ~/dev/
 
+# Install GNU utils  ---
+brew install coreutils  # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+brew install findutils  # PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+brew install gnu-sed    # PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+brew install gnu-tar    # PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+brew install grep       # PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+brew install moreutils
+
 # Install more recent versions of some macOS tools.
 brew install vim
-brew install grep
 brew install openssh
 brew install screen
-brew install php
 brew install gmp
 
 # Install font tools.
@@ -73,7 +79,8 @@ brew install mas
 brew install ffmpeg
 brew install tree
 brew install thefuck
-brew install ncdu               # <https://dev.yorhel.nl/ncdu>
+brew install ncdu               # https://dev.yorhel.nl/ncdu
+brew install shellcheck         # https://github.com/koalaman/shellcheck
 
 # More compilers
 brew install cmake
