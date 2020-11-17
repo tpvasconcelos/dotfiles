@@ -15,12 +15,16 @@
 ```shell script
 # Make sure `xcode-select` is pointing to the correct delevoper directory
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+
 # Install Xcode
 xcode-select --install
+
 # Accept Xcode's Licence
 sudo sudo xcodebuild -license accept
+
 # Simulate lauching Xcode once
 sudo xcodebuild -runFirstLaunch
+
 # Update everything and restart the computer
 printf "The computer will restart after running softwareupdate. Press ENTER to continue...\n"
 read -r
