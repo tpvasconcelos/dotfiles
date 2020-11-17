@@ -11,11 +11,22 @@
 
 ### Install Xcode and Developer Command Line Tools
 1. Download Xcode from the App Store
-2. Open *Terminal* and run
-    ```shell script
-    ./setup_scripts/00_install_xcode.sh
-    ```
-3. Your computer will restart
+2. Open *Terminal* and run the following commands:
+```shell script
+# Make sure `xcode-select` is pointing to the correct delevoper directory
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+# Install Xcode
+xcode-select --install
+# Accept Xcode's Licence
+sudo sudo xcodebuild -license accept
+# Simulate lauching Xcode once
+sudo xcodebuild -runFirstLaunch
+# Update everything and restart the computer
+printf "The computer will restart after running softwareupdate. Press ENTER to continue...\n"
+read -r
+sudo softwareupdate --force --install --all --verbose
+```
+3. Restart your machine before continuing!
 
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
