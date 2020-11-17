@@ -7,31 +7,33 @@
 * <https://github.com/unixorn/awesome-zsh-plugins>
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 
+
 ## Steps
 
 ### Install Xcode and Command Line Developer Tools
 1. Download Xcode from the App Store, and run the following commands from the Terminal app:
-1. Make sure `xcode-select` is pointing to the correct developer directory
+1. Make sure `xcode-select` is pointing to the correct active developer directory
     ```shell script
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
     ```
-1. Install Command Line Developer Tools
+1. Install the command line developer tools (this will open a user interface dialog)
     ```shell script
     xcode-select --install
     ```
-1. Accept Xcode's Licence
+1. Accept Xcode and SDK license agreements
     ```shell script
     sudo xcodebuild -license accept
     ```
-1. Simulates launching Xcode, which installs some extra packages and checks the license agreement
+1. Install extra packages
     ```shell script
     sudo xcodebuild -runFirstLaunch
     ```
 1. Update everything and restart the computer
     ```shell script
-    sudo softwareupdate --force --install --all --verbose
+    sudo softwareupdate --install --all --verbose
     ```
 1. Restart your machine before continuing!
+
 
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
