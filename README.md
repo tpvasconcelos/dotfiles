@@ -9,6 +9,14 @@
 
 ## Steps
 
+### Clone this repository
+Clone this repository under `~/.dotfiles`
+```shell script
+mkdir ~/.dotfiles && \
+  cd ~/.dotfiles && \
+  git clone https://github.com/tpvasconcelos/dotfiles.git .
+```
+
 ### Install Xcode and Developer Command Line Tools
 1. Download Xcode from the App Store
 2. Open *Terminal* and run
