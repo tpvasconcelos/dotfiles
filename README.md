@@ -3,6 +3,16 @@
 
 ## Steps
 
+
+### Clone this repository
+Clone this repository under `~/.dotfiles`
+```shell script
+mkdir ~/.dotfiles && \
+  cd ~/.dotfiles && \
+  git clone https://github.com/tpvasconcelos/dotfiles.git .
+```
+
+
 ### Install Xcode and Command Line Developer Tools
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following shell 
 commands from the Terminal app.
@@ -25,11 +35,13 @@ command will automatically restart your machine!**
     sudo softwareupdate --install --all --verbose --force --restart
     ```
 
+
 ### Install Homebrew (brew)
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update && brew upgrade
 ```
+
 
 ### Install iTerm2
 After installing iTerm2, you can switch to using the iTerm2 terminal emulater as oposed to Apple's Terminal 
@@ -43,6 +55,7 @@ cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 ```
 
+
 ### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
 the Iterm2 app installed in the previous step.
@@ -50,14 +63,13 @@ the Iterm2 app installed in the previous step.
 ./setup_scripts/01_setup_shells.sh
 ```
 
-### Clone this repository
-Clone this repository under `~/.dotfiles`
-```shell script
-mkdir ~/.dotfiles && \
-  cd ~/.dotfiles && \
-  git clone https://github.com/tpvasconcelos/dotfiles.git .
-```
 
+### Update general macos preferences
+This update many of the defualt macos settings and system preferences. Restart you machine after runnning 
+this script.
+```
+./setup_scripts/macos_preferences.sh
+```
 
 ### Migrate app settings and system preferences
 
@@ -70,11 +82,27 @@ References:
 - https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs
 
 
+### Update everything
+**Note that, if needed, the first command will automatically restart your machine!**
+```shell script
+sudo softwareupdate --install --all --verbose --force --restart
+```
+
+Update any packages installed with brew
+```shell script
+brew update
+brew upgrade
+brew cask upgrade --greedy
+brew cleanup
+```
+
+
 ### Check for issues
 Run `brew doctor` to check for any hanging issues
 ```shell script
 brew doctor
 ```
+
 
 # Apps
 

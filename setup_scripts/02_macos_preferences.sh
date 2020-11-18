@@ -6,11 +6,18 @@
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-# Ask for the administrator password upfront
+# ============================================================================
+# --- Ask for root password upfront and keep updating the existing `sudo`
+# --- timestamp on a background process until the script finishes. Note that
+# --- you'll still need to use `sudo` where needed throughout the scipts.
+# ============================================================================
 sudo -v
+while true; do
+  sudo -n true
+  sleep 30
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #

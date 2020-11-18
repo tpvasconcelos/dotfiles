@@ -1,25 +1,17 @@
 #!/usr/bin/env zsh
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
-
-# Ask for the administrator password upfront
+# ============================================================================
+# --- Ask for root password upfront and keep updating the existing `sudo`
+# --- timestamp on a background process until the script finishes. Note that
+# --- you'll still need to use `sudo` where needed throughout the scipts.
+# ============================================================================
 sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do
   sudo -n true
-  sleep 60
+  sleep 30
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-# Upgrade everything
-brew update && brew upgrade
-brew cask upgrade --greedy
-
-# create ~/dev/ directory
-mkdir ~/dev/
 
 # Install GNU utils  ---
 brew install coreutils  # PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
