@@ -11,24 +11,23 @@
 ## Steps
 
 ### Install Xcode and Command Line Developer Tools
-1. Download Xcode from the App Store, and run the following commands from the Terminal app:
-1. Make sure `xcode-select` is pointing to the correct active developer directory
+1. Start by downloading Xcode from the App Store. Once this download is complete, run the following shell 
+commands from the Terminal app.
+1. Here, we will install the Command Line Developer Tools. Note that the first command ensures 
+`xcode-select` is pointing to the correct (active) developer directory. Follow the installation steps that 
+will open in a user interface dialog.
     ```shell script
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    ```
-1. Install the command line developer tools (this will open a user interface dialog)
-    ```shell script
     xcode-select --install
     ```
-1. Accept Xcode and SDK license agreements
+1. As a final step, you'll need to accept the Xcode and SDK license agreements. The second command will also
+install any missing packages.
     ```shell script
     sudo xcodebuild -license accept
-    ```
-1. Install extra packages
-    ```shell script
     sudo xcodebuild -runFirstLaunch
     ```
-1. Update everything. **Note that, if needed, this command will automatically restart your machine!**
+1. This command will install all pending software updates for your machine. **Note that, if needed, this 
+command will automatically restart your machine!**
     ```shell script
     sudo softwareupdate --install --all --verbose --force --restart
     ```
@@ -113,8 +112,8 @@ Utilities
 - Go2Shell
 - AppCleaner (alternative or make my own?)
 - Kaleidoscope
-	- p4merge
-	- DiffMerge
+   - p4merge
+   - DiffMerge
 - Skitch (alternative?)
 - smcFanControl (alternative?)
 - The Unarchiver (needed? alternative?)
