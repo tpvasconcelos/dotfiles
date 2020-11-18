@@ -55,6 +55,9 @@ cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 ```
 
+Alternatives:
+- [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
+
 
 ### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
@@ -69,6 +72,14 @@ ln -shfv "$(realpath .zshrc)" ~
 ln -shfv "$(realpath .p10k.zsh)" ~
 ```
 
+Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a 
+[powerlevel10k](https://github.com/romkatv/powerlevel10k) theme. You can consider other frameworks, such as:
+- [prezto](https://github.com/sorin-ionescu/prezto) - The configuration framework for Zsh
+- [zinit](https://github.com/zdharma/zinit) - Ultra-flexible and fast Zsh plugin manager with clean fpath, 
+reports, completion management, Turbo, annexes, services, packages.
+- [zplug](https://github.com/zplug/zplug) - 🌺 A next-generation plugin manager for zsh
+- [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
+
 
 ### Update general macos preferences
 This update many of the defualt macos settings and system preferences. Restart you machine after runnning 
@@ -76,6 +87,31 @@ this script.
 ```shell script
 ./setup_scripts/macos.sh
 ```
+
+#### Security preferences
+FileVault Service
+```shell script
+# Status
+sudo fdesetup status
+# Enable
+sudo fdesetup enable
+# Disable (Default)
+sudo fdesetup disable
+```
+Firewall Service
+```shell script
+# Show Status
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+# Enable
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+# Disable (Default)
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
+```
+Set Login Window Text
+```shell script
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact tomasvasconcelos1@gmail.com"
+```
+
 
 ### Migrate app settings and system preferences
 
@@ -205,4 +241,4 @@ Office
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 * <https://github.com/herrbischoff/awesome-macos-command-line>
 * <https://github.com/iCHAIT/awesome-macOS>
-
+* <https://github.com/freshshell/fresh>
