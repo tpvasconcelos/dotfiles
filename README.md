@@ -60,15 +60,15 @@ curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
 the Iterm2 app installed in the previous step.
 ```shell script
-./setup_scripts/01_setup_shells.sh
+./setup_scripts/setup_shells.sh
 ```
 
 
 ### Update general macos preferences
 This update many of the defualt macos settings and system preferences. Restart you machine after runnning 
 this script.
-```
-./setup_scripts/macos_preferences.sh
+```shell script
+./setup_scripts/macos.sh
 ```
 
 ### Migrate app settings and system preferences
