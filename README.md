@@ -63,6 +63,12 @@ the Iterm2 app installed in the previous step.
 ./setup_scripts/setup_shells.sh
 ```
 
+Create symlinks to your config files
+```shell script
+ln -snv "$(realpath shell/.zshrc)" ~
+ln -snv "$(realpath shell/.p10k.zsh)" ~
+```
+
 
 ### Update general macos preferences
 This update many of the defualt macos settings and system preferences. Restart you machine after runnning 
