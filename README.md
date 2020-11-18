@@ -242,3 +242,4 @@ Office
 * <https://github.com/herrbischoff/awesome-macos-command-line>
 * <https://github.com/iCHAIT/awesome-macOS>
 * <https://github.com/freshshell/fresh>
+* <https://project-awesome.org/unixorn/awesome-zsh-plugins>
