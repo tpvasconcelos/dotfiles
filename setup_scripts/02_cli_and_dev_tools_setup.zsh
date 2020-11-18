@@ -130,7 +130,7 @@ gem install cocoapods --user-install
 pod setup
 brew tap dart-lang/dart
 brew install dart
-git clone https://github.com/flutter/flutter.git -b stable --depth 1 ~/dev/flutter
+git clone https://github.com/flutter/flutter.git -b stable --depth 1 ~/.flutter
 
 
 # Upgrade everything again, and cleanup!

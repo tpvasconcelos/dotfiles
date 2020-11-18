@@ -321,28 +321,27 @@ fpath=(
 )
 
 
-# Fix PATH
-export PATH="/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/Library/TeX/texbin:$PATH"
-export PATH="$HOME/mongodb/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.7.2/bin:$PATH"
-export PATH="$HOME/dev/flutter/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="/usr/local/opt/bin:$PATH"
-export PATH="/usr/local/opt/bin:$PATH"
-export PATH="/usr/local/opt/bin:$PATH"
-export PATH="/usr/local/opt/bin:$PATH"
-export PATH="/usr/local/opt/bin:$PATH"
-#export PATH="/usr/local/opt/python3/bin:$PATH"
-#export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-#export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+# Fix PATH  ---
+# $ echo $PATH | tr -s ":" "\n"
+# /usr/local/bin
+# /usr/bin
+# /bin
+# /usr/sbin
+# /sbin
+# /usr/local/go/bin
+# /Library/Apple/usr/bin
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.flutter/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+# export PATH="$HOME/.gem/ruby/2.7.2/bin:$PATH"
+# export PATH="/usr/local/opt/bin:$PATH"
+# export PATH="/usr/local/opt/python3/bin:$PATH"
+# export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+# export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # Golang
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+export PATH="$GOPATH/bin:$PATH"
 
 # guile
 export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
@@ -350,14 +349,9 @@ export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
 export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
 
-# X13 ARIMA-SEATS
-export PATH="$HOME/x13as/bin/:$PATH"
-export X13PATH="$HOME/x13as/bin/"
-
 # Ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
-eval "$(rbenv init -)"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
 
 # pyenv
 export PYENV_ROOT=$(pyenv root)
