@@ -25,6 +25,11 @@ command will automatically restart your machine!**
     sudo softwareupdate --install --all --verbose --force --restart
     ```
 
+### Install Homebrew (brew)
+```shell script
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew update && brew upgrade
+```
 
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
