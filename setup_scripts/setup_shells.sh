@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
 
+# ============================================================================
+# --- Ask for root password upfront and keep updating the existing `sudo`
+# --- timestamp on a background process until the script finishes. Note that
+# --- you'll still need to use `sudo` where needed throughout the scripts.
+# ============================================================================
+sudo -v
+while true; do
+  sudo -n true
+  sleep 30
+  kill -0 "$$" || exit
+done 2>/dev/null &
+
+
 # ===================================================================
 # --- Install bash
 # ===================================================================

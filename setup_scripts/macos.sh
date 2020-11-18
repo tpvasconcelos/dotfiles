@@ -9,7 +9,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # ============================================================================
 # --- Ask for root password upfront and keep updating the existing `sudo`
 # --- timestamp on a background process until the script finishes. Note that
-# --- you'll still need to use `sudo` where needed throughout the scipts.
+# --- you'll still need to use `sudo` where needed throughout the scripts.
 # ============================================================================
 sudo -v
 while true; do
