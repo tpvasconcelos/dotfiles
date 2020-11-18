@@ -322,22 +322,26 @@ fpath=(
 
 
 # Fix PATH  ---
-# $ echo $PATH | tr -s ":" "\n"
-# /usr/local/bin
-# /usr/bin
-# /bin
-# /usr/sbin
-# /sbin
-# /usr/local/go/bin
-# /Library/Apple/usr/bin
-export PATH="$BREW_PREFIX/sbin:$PATH"
-export PATH="$HOME/.flutter/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
-# export PATH="$HOME/.gem/ruby/2.7.2/bin:$PATH"
-# export PATH="$BREW_PREFIX/opt/bin:$PATH"
-# export PATH="$BREW_PREFIX/opt/python3/bin:$PATH"
-# export PATH="$BREW_PREFIX/opt/python@3.7/bin:$PATH"
-# export PATH="$BREW_PREFIX/opt/python@3.8/bin:$PATH"
+typeset -U PATH path
+path=(
+    # /usr/local/bin
+    # /usr/bin
+    # /bin
+    # /usr/sbin
+    # /sbin
+    # /usr/local/go/bin
+    # /Library/Apple/usr/bin
+    "$BREW_PREFIX/sbin"
+    "$HOME/.flutter/bin"
+    "$HOME/.poetry/bin"
+    # "$HOME/.gem/ruby/2.7.2/bin"
+    # "$BREW_PREFIX/opt/bin"
+    # "$BREW_PREFIX/opt/python3/bin"
+    # "$BREW_PREFIX/opt/python@3.7/bin"
+    # "$BREW_PREFIX/opt/python@3.8/bin"
+    $path
+)
+export PATH
 
 # Golang
 export GOPATH=$HOME/go
@@ -394,7 +398,7 @@ export TIQETS_ENV="tomas"
 # Aliases  ---
 alias ls='ls -G -la'
 alias gotodsdir='cd $(find . -name "*$(git branch | grep \* | cut -d '-' -f2)*" -not -path "./.*" | head -n 1)'
-alias path='echo $PATH | tr -s ":" "\n"'
+alias printpath='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep'
 eval $(thefuck --alias)
 
