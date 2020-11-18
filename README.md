@@ -31,6 +31,25 @@ command will automatically restart your machine!**
 brew update && brew upgrade
 ```
 
+### Install iTerm2
+After installing iTerm2, you can switch to using the iTerm2 terminal emulater as oposed to Apple's Terminal 
+app
+```shell script
+brew cask install iterm2
+killall cfprefsd
+# Migrate iTerm settings
+cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
+# Download Shell Integration script
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+```
+
+### Upgrade and configure shells
+This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
+the Iterm2 app installed in the previous step.
+```shell script
+./setup_scripts/01_setup_shells.sh
+```
+
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
 ```shell script
