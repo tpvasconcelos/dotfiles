@@ -63,10 +63,10 @@ the Iterm2 app installed in the previous step.
 ./setup_scripts/setup_shells.sh
 ```
 
-Create symlinks to your config files
+Create symlinks to your config files. **Warning: this will overwrite any existing config files.**
 ```shell script
-ln -snv "$(realpath .zshrc)" ~
-ln -snv "$(realpath .p10k.zsh)" ~
+ln -shfv "$(realpath .zshrc)" ~
+ln -shfv "$(realpath .p10k.zsh)" ~
 ```
 
 
