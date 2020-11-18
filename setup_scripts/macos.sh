@@ -122,6 +122,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # all wallpapers are in `/Library/Desktop Pictures/`.
 #sudo rm -rf /System/Library/CoreServices/DefaultBackground.jpg
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultBackground.jpg
+# sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "update data set value = '$(realpath wallpaper.png)'" && killall Dock
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -249,6 +250,9 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# Enable subpixel anti-aliasing (font smoothing)
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
 
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true

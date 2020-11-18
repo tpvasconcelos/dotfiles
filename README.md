@@ -203,5 +203,6 @@ Office
 * <https://wiki.archlinux.org/index.php/Dotfiles>
 * <https://github.com/unixorn/awesome-zsh-plugins>
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
-
+* <https://github.com/herrbischoff/awesome-macos-command-line>
+* <https://github.com/iCHAIT/awesome-macOS>
 
