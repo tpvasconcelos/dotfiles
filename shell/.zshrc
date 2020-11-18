@@ -319,8 +319,8 @@ plugins=(
 
 
 fpath=(
-    "$BREW_PREFIX/share/zsh/site-functions"
-    "$fpath"
+    $BREW_PREFIX/share/zsh/site-functions
+    $fpath
 )
 
 
