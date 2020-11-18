@@ -22,11 +22,11 @@ brew cask upgrade --greedy
 mkdir ~/dev/
 
 # Install GNU utils  ---
-brew install coreutils  # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-brew install findutils  # PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-brew install gnu-sed    # PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-brew install gnu-tar    # PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-brew install grep       # PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+brew install coreutils  # PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+brew install findutils  # PATH="$BREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+brew install gnu-sed    # PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+brew install gnu-tar    # PATH="$BREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
+brew install grep       # PATH="$BREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
 brew install moreutils
 
 # Install more recent versions of some macOS tools.
@@ -118,7 +118,7 @@ rbenv install 2.7.2
 rbenv global 2.7.2
 sudo gem install bundler
 # the next commands do not work... Probably something to do with current cpp compiler?
-sudo gem install -n /usr/local/bin/ jekyll
+sudo gem install -n "$BREW_PREFIX/bin/" jekyll
 sudo gem install --user-install bundler jekyll
 
 

@@ -60,7 +60,7 @@ brew install python && brew unlink python
 
 # python-poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-poetry completions zsh > /usr/local/share/zsh/site-functions/_poetry
+poetry completions zsh > "$BREW_PREFIX/share/zsh/site-functions/_poetry"
 
 # Jupyter  ---
 yes n | jupyter notebook --generate-config

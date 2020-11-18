@@ -8,18 +8,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Fast path to the brew prefix ---> /usr/local
+BREW_PREFIX="$(brew --prefix)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/tpvasconcelos/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 source "${HOME}/.iterm2_shell_integration.zsh"
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$BREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
+source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR="$BREW_PREFIX/share/zsh-syntax-highlighting/highlighters"
 
 
 # /System/Volumes/Data/Users/tpvasconcelos/.oh-my-zsh
@@ -316,8 +319,8 @@ plugins=(
 
 
 fpath=(
-    /usr/local/share/zsh/site-functions
-    $fpath
+    "$BREW_PREFIX/share/zsh/site-functions"
+    "$fpath"
 )
 
 
@@ -330,28 +333,28 @@ fpath=(
 # /sbin
 # /usr/local/go/bin
 # /Library/Apple/usr/bin
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$BREW_PREFIX/sbin:$PATH"
 export PATH="$HOME/.flutter/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 # export PATH="$HOME/.gem/ruby/2.7.2/bin:$PATH"
-# export PATH="/usr/local/opt/bin:$PATH"
-# export PATH="/usr/local/opt/python3/bin:$PATH"
-# export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-# export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+# export PATH="$BREW_PREFIX/opt/bin:$PATH"
+# export PATH="$BREW_PREFIX/opt/python3/bin:$PATH"
+# export PATH="$BREW_PREFIX/opt/python@3.7/bin:$PATH"
+# export PATH="$BREW_PREFIX/opt/python@3.8/bin:$PATH"
 
 # Golang
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
 # guile
-export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
-export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
-export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
-export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+export GUILE_LOAD_PATH="$BREW_PREFIX/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="$BREW_PREFIX/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="$BREW_PREFIX/lib/guile/3.0/extensions"
+export GUILE_TLS_CERTIFICATE_DIRECTORY="$BREW_PREFIX/etc/gnutls/"
 
 # Ruby
-# export PATH="/usr/local/opt/ruby/bin:$PATH"
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+# export PATH="$BREW_PREFIX/opt/ruby/bin:$PATH"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$BREW_PREFIX/opt/openssl@1.1"
 
 # pyenv
 export PYENV_ROOT=$(pyenv root)
@@ -420,29 +423,29 @@ function mcd() {
 
 # CPP and LDF Flags and PKG_CONFIG_PATH  ---
 # # openssl
-# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+# export LDFLAGS="-L$BREW_PREFIX/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I$BREW_PREFIX/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="$BREW_PREFIX/opt/openssl@1.1/lib/pkgconfig"
 # # readline
-# export LDFLAGS="-L/usr/local/opt/readline/lib"
-# export CPPFLAGS="-I/usr/local/opt/readline/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+# export LDFLAGS="-L$BREW_PREFIX/opt/readline/lib"
+# export CPPFLAGS="-I$BREW_PREFIX/opt/readline/include"
+# export PKG_CONFIG_PATH="$BREW_PREFIX/opt/readline/lib/pkgconfig"
 # # sqlite
-# export LDFLAGS="-L/usr/local/opt/sqlite/lib"
-# export CPPFLAGS="-I/usr/local/opt/sqlite/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+# export LDFLAGS="-L$BREW_PREFIX/opt/sqlite/lib"
+# export CPPFLAGS="-I$BREW_PREFIX/opt/sqlite/include"
+# export PKG_CONFIG_PATH="$BREW_PREFIX/opt/sqlite/lib/pkgconfig"
 # # llvm
-# export LDFLAGS="-L/usr/local/opt/llvm/lib"
-# export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# export LDFLAGS="-L$BREW_PREFIX/opt/llvm/lib"
+# export CPPFLAGS="-I$BREW_PREFIX/opt/llvm/include"
 # # zlib
-# export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-# export LDFLAGS="-L/usr/local/opt/zlib/lib"
-# export CPPFLAGS="-I/usr/local/opt/zlib/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+# export LDFLAGS="-L$BREW_PREFIX/opt/llvm/lib -Wl,-rpath,$BREW_PREFIX/opt/llvm/lib"
+# export LDFLAGS="-L$BREW_PREFIX/opt/zlib/lib"
+# export CPPFLAGS="-I$BREW_PREFIX/opt/zlib/include"
+# export PKG_CONFIG_PATH="$BREW_PREFIX/opt/zlib/lib/pkgconfig"
 # # MERGED
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/llvm/lib -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/readline/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/llvm/include -I/usr/local/opt/zlib/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
+export LDFLAGS="-L$BREW_PREFIX/opt/openssl@1.1/lib -L$BREW_PREFIX/opt/readline/lib -L$BREW_PREFIX/opt/sqlite/lib -L$BREW_PREFIX/opt/llvm/lib -L$BREW_PREFIX/opt/zlib/lib"
+export CPPFLAGS="-I$BREW_PREFIX/opt/openssl@1.1/include -I$BREW_PREFIX/opt/readline/include -I$BREW_PREFIX/opt/sqlite/include -I$BREW_PREFIX/opt/llvm/include -I$BREW_PREFIX/opt/zlib/include"
+export PKG_CONFIG_PATH="$BREW_PREFIX/opt/openssl@1.1/lib/pkgconfig:$BREW_PREFIX/opt/readline/lib/pkgconfig:$BREW_PREFIX/opt/sqlite/lib/pkgconfig:$BREW_PREFIX/opt/zlib/lib/pkgconfig"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
