@@ -1,12 +1,5 @@
 # My dotfiles
 
-## References
-
-* <https://github.com/grant/new-computer-checklist>
-* <https://wiki.archlinux.org/index.php/Dotfiles>
-* <https://github.com/unixorn/awesome-zsh-plugins>
-* <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
-
 
 ## Steps
 
@@ -42,9 +35,7 @@ mkdir ~/.dotfiles && \
 ```
 
 
-### Install iTerm
-
-## Migrate app settings and system preferences
+### Migrate app settings and system preferences
 
 App settings:
 1. Migrate all relevant config directories from `~/Library/Application\ Support`
@@ -142,5 +133,11 @@ Office
 - Apple iWork
 - 
 
+## References
+
+* <https://github.com/grant/new-computer-checklist>
+* <https://wiki.archlinux.org/index.php/Dotfiles>
+* <https://github.com/unixorn/awesome-zsh-plugins>
+* <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 
 
