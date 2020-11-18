@@ -65,8 +65,8 @@ the Iterm2 app installed in the previous step.
 
 Create symlinks to your config files
 ```shell script
-ln -snv "$(realpath shell/.zshrc)" ~
-ln -snv "$(realpath shell/.p10k.zsh)" ~
+ln -snv "$(realpath .zshrc)" ~
+ln -snv "$(realpath .p10k.zsh)" ~
 ```
 
 
