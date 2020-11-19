@@ -235,11 +235,14 @@ Office
 
 ## References
 
+* [The "Hacker News Comment" Method](https://news.ycombinator.com/item?id=11070797) - This Hacker News comment
+popularised the "bare repository and alias method" for managing dotfiles. This method is also references in
+[Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
+* [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) - inspiration for 
+most of the settings in [macos.sh](setup_scripts/macos.sh). Take everything in this repository with a pinch 
+of salt. macOS is a fast-moving environment that does not prioritise backwards compatibility for these 
+settings or preferences.
 * <https://github.com/grant/new-computer-checklist>
-* <https://wiki.archlinux.org/index.php/Dotfiles>
 * <https://github.com/unixorn/awesome-zsh-plugins>
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
-* <https://github.com/herrbischoff/awesome-macos-command-line>
 * <https://github.com/iCHAIT/awesome-macOS>
-* <https://github.com/freshshell/fresh>
-* <https://project-awesome.org/unixorn/awesome-zsh-plugins>

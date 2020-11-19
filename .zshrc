@@ -422,6 +422,50 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+clean_core_pips() {
+    local py_command pyv
+    for pyv in '' '2' '2.7' '3' '3.7' '3.8' '3.9'th; do
+      py_command="python$pyv"
+      if command -v "$py_command" 1>/dev/null 2>&1; then
+        echo "Uninstalling all packages under $py_command"
+        $py_command -m pip freeze | xargs $py_command -m pip uninstall -y
+      else
+        echo "$py_command does not exist"
+      fi
+    done
+}
+
+# =========================================================
+# --- fzf - https://github.com/junegunn/fzf/wiki/examples
+# =========================================================
+# fh - repeat history
+fh() {
+  print -z "$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')"
+}
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+fbr() {
+  local branches branch
+  # branches=$(git for-each-ref --no-merged master --count=30 --sort=-committerdate --format='%(committerdate:relative),%(authorname),%(refname),%(if)%(upstream)%(then)%(upstream)%(end)' |
+  #            column -t -s ',' | grep -v "$(git branch --show-current)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  # sed "s#remotes/[^/]i*/##"
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#origin/*/##")
+}
+
 # CPP and LDF Flags and PKG_CONFIG_PATH  ---
 # # openssl
 # export LDFLAGS="-L$BREW_PREFIX/opt/openssl@1.1/lib"
