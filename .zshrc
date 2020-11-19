@@ -458,12 +458,12 @@ fkill() {
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 fbr() {
   local branches branch
-  # branches=$(git for-each-ref --no-merged master --count=30 --sort=-committerdate --format='%(committerdate:relative),%(authorname),%(refname),%(if)%(upstream)%(then)%(upstream)%(end)' |
-  #            column -t -s ',' | grep -v "$(git branch --show-current)") &&
+  branches=$(git for-each-ref --no-merged master --count=30 --sort=-committerdate --format='%(committerdate:relative),%(authorname),%(refname:short),%(if)%(upstream)%(then)%(upstream)%(end)' refs/heads |
+             column -t -s ',' | grep -v "$(git branch --show-current)") &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  # sed "s#remotes/[^/]i*/##"
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#origin/*/##")
+  # sed "s#remotes/[^/]i*/##"
 }
 
 # CPP and LDF Flags and PKG_CONFIG_PATH  ---
