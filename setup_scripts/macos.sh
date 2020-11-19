@@ -830,9 +830,9 @@ cp -r settings/Preferences.sublime-settings ~/Library/Application\ Support/Subli
 sudo pmset -a sms 0
 
 # Use digital clock
-sudo defaults write com.apple.menuextra.clock IsAnalog -bool false
+defaults write com.apple.menuextra.clock IsAnalog -bool false
 # Change time format to: Thu 18 Aug 23:46:18
-sudo defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM HH:mm:ss"
+defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM HH:mm"
 
 # Change standby time. Larger values make waking up from sleep faster. Lower values save more batery.
 # https://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
