@@ -246,3 +246,4 @@ settings or preferences.
 * <https://github.com/unixorn/awesome-zsh-plugins>
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 * <https://github.com/iCHAIT/awesome-macOS>
+* [A collection of useful .gitignore templates](https://github.com/github/gitignore)
