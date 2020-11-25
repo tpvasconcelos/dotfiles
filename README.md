@@ -101,6 +101,22 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 ```
 
 
+
+### Install CLI and dev tools
+Have a look inside this script to see what will be installed...
+```shell script
+./setup_scripts/cli_and_dev_tools.zsh
+```
+
+
+### Install Desktop Applications
+Have a look inside this script to see what will be installed...
+```shell script
+./setup_scripts/desktop_apps.zsh
+```
+
+
+
 ### Migrate app settings and system preferences
 
 App settings:

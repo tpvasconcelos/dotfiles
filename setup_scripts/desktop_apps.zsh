@@ -1,25 +1,20 @@
 #!/usr/bin/env zsh
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
-
-# Ask for the administrator password upfront
+# ============================================================================
+# --- Ask for root password upfront and keep updating the existing `sudo`
+# --- timestamp on a background process until the script finishes. Note that
+# --- you'll still need to use `sudo` where needed throughout the scripts.
+# ============================================================================
+echo "🔑 Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
 sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do
   sudo -n true
-  sleep 60
+  sleep 30
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-# Upgrade everything
-brew update && brew upgrade
 
-# -- Install some Apps
-
-# Text editors/IDEs
+echo "🚀 Installing Text editors and IDEs..."
 brew cask install qlmarkdown
 brew cask install sublime-text
 brew cask install brackets
@@ -31,16 +26,13 @@ brew cask install pycharm
 brew cask install datagrip
 brew cask install webstorm
 
-# Misc dev
-brew cask install postman
-#brew cask install paw
-
-# Browsers
+echo "🚀 Installing Browsers..."
 brew cask install google-chrome
 brew cask install tor-browser
 brew cask install firefox
 
-# Productivity & Office
+
+echo "🚀 Installing Productivity & Office apps..."
 mas install 462054704 # Microsoft Word: brew cask install microsoft-office
 mas install 462058435 # Microsoft Excel
 mas install 425424353  # The Unarchiver: brew cask install the-unarchiver
@@ -57,7 +49,8 @@ brew cask install google-drive
 brew cask install notion
 brew cask install keepingyouawake
 
-# Misc
+
+echo "🚀 Installing Misc apps..."
 brew cask install vuze
 brew cask install spotify
 brew cask install vlc
@@ -68,22 +61,19 @@ brew cask install disk-inventory-x      # <http://www.derlien.com/>
 brew cask install muzzle
 brew cask install p4v
 brew cask install diffmerge
+brew cask install postman
+#brew cask install paw
 # brew cask install popcorn-official/popcorn-desktop/popcorn-time
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 mas install 668208984 # GIPHY Capture. The GIF Maker
 
-# Manual install:
-# - Photoshop
-# - Lightroom
-# - Affinity Photo
-# - Affinity Designer
-# - File Viewer
 
-# Upgrade everything again, and cleanup!
-brew update && brew upgrade && brew cleanup
-
-# Set up Sublime  ---
+echo "🚀 Setting-up Sublime"
 git clone https://github.com/andresmichel/one-dark-theme.git
 mv one-dark-theme ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Theme\ -\ One\ Dark
 cp settings/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+
+
+echo "🚀 update, upgrade, and cleanup..."
+brew update && brew upgrade && brew cleanup
