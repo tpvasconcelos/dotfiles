@@ -402,6 +402,8 @@ alias printpath='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep'
 eval $(thefuck --alias)
 
+BOLD_START="$(tput bold)"
+BOLD_END="$(tput sgr0)"
 
 # Functions  ---
 function py2nb() {

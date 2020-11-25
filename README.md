@@ -7,45 +7,50 @@
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
 ```shell script
-mkdir ~/.dotfiles && \
-  cd ~/.dotfiles && \
-  git clone https://github.com/tpvasconcelos/dotfiles.git .
+mkdir ~/.dotfiles
+cd ~/.dotfiles
+git clone https://github.com/tpvasconcelos/dotfiles.git .
 ```
 
 
 ### Install Xcode and Command Line Developer Tools
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following shell 
 commands from the Terminal app.
-1. Here, we will install the Command Line Developer Tools. Note that the first command ensures 
-`xcode-select` is pointing to the correct (active) developer directory. Follow the installation steps that 
-will open in a user interface dialog.
+1. Here, we will install the Command Line Developer Tools. The first command ensures `xcode-select` is 
+pointing to the correct (active) developer directory. Follow the installation steps that will open in a user 
+interface dialog and proceed to the next step.
     ```shell script
-    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    xcode-select --install
+    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer && \
+      xcode-select --install
     ```
 1. As a final step, you'll need to accept the Xcode and SDK license agreements. The second command will also
 install any missing packages.
     ```shell script
-    sudo xcodebuild -license accept
-    sudo xcodebuild -runFirstLaunch
-    ```
-1. This command will install all pending software updates for your machine. **Note that, if needed, this 
-command will automatically restart your machine!**
-    ```shell script
-    sudo softwareupdate --install --all --verbose --force --restart
+    sudo xcodebuild -license accept && \
+       sudo xcodebuild -runFirstLaunch
     ```
 
 
-### Install Homebrew (brew)
+
+### Install any pending software updates
+We'll now install any pending software updates for your machine. **Note that, if needed, this command will 
+automatically restart your machine!**
 ```shell script
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-brew update && brew upgrade
+sudo softwareupdate --install --all --verbose --force --restart
 ```
 
 
-### Install iTerm2
-After installing iTerm2, you can switch to using the iTerm2 terminal emulater as oposed to Apple's Terminal 
-app
+### Install Homebrew (brew)
+From here on out we will use Homebrew (`brew`) as the go-to package manager for macOS.
+```shell script
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && \
+  brew update && brew upgrade
+```
+
+
+### Install a better terminal emulator (iTerm2)
+After installing iTerm2, you can switch to using the iTerm2 terminal emulator as opposed to Apple's Terminal 
+app.
 ```shell script
 brew cask install iterm2
 killall cfprefsd
@@ -55,21 +60,19 @@ cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 ```
 
-Alternatives:
+Other terminal emulators to consider:
 - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
+
 
 
 ### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
-the Iterm2 app installed in the previous step.
+the terminal emulator installed in the previous step (e.g. Iterm2). The last two lines will create symlinks 
+to your config files. **Warning: this will overwrite any existing config files.**
 ```shell script
-./setup_scripts/setup_shells.sh
-```
-
-Create symlinks to your config files. **Warning: this will overwrite any existing config files.**
-```shell script
-ln -shfv "$(realpath .zshrc)" ~
-ln -shfv "$(realpath .p10k.zsh)" ~
+./setup_scripts/setup_shells.sh && \
+  ln -shfv "$(realpath .zshrc)" ~ && \
+  ln -shfv "$(realpath .p10k.zsh)" ~
 ```
 
 Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a 
@@ -81,35 +84,20 @@ reports, completion management, Turbo, annexes, services, packages.
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
 
 
-### Update general macos preferences
-This update many of the defualt macos settings and system preferences. Restart you machine after runnning 
-this script.
+
+### Update general macOS preferences
+This will update many of the default macos settings and system preferences. **Warning: It's recommended to 
+reboot your machine after updating many of these preferences.** For convenience, this script will prompt you 
+for an automatic reboot at the end 💪
 ```shell script
 ./setup_scripts/macos.sh
 ```
 
-#### Security preferences
-FileVault Service
+From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option 
+to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced 
+computer."_ 
 ```shell script
-# Status
-sudo fdesetup status
-# Enable
-sudo fdesetup enable
-# Disable (Default)
-sudo fdesetup disable
-```
-Firewall Service
-```shell script
-# Show Status
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
-# Enable
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-# Disable (Default)
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
-```
-Set Login Window Text
-```shell script
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact tomasvasconcelos1@gmail.com"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact your_email_here@example.com"
 ```
 
 

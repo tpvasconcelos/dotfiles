@@ -851,6 +851,12 @@ sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Aut
 defaults write -g com.apple.trackpad.scaling 2.5
 defaults write -g com.apple.mouse.scaling 3
 
+# Security  ---
+# Enable the system's FileVault Service
+sudo fdesetup enable
+# Enable the system's Firewall Service
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
@@ -874,3 +880,23 @@ for app in "Activity Monitor" \
   killall "${app}" &>/dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+###############################################################################
+# Reboot
+###############################################################################
+
+reboot () {
+  YESNO_MSG="Please type yes ${BOLD_START}(y)${BOLD_END} to proceed or no ${BOLD_START}(n)${BOLD_END} to abort... ${BOLD_START}[y/n]${BOLD_END} "
+  echo "${BOLD_START}It's recommended to reboot your machine after running this script.${BOLD_END}"
+  while true; do
+      echo -n "$YESNO_MSG"
+      read -r -k 1 yn
+      case $yn in
+          [Yy]* ) echo -e "${BOLD_START}\nRebooting...${BOLD_END}"; sudo shutdown -r now;;
+          [Nn]* ) echo -e "\n${BOLD_START}Fine... Please manually reboot your machine then\!${BOLD_END} 👀"; break;;
+          * ) echo -e "\nOption not recognised... ";;
+      esac
+  done
+}
+
+reboot
