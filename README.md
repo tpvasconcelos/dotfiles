@@ -80,12 +80,12 @@ reports, completion management, Turbo, annexes, services, packages.
 - [zplug](https://github.com/zplug/zplug) - 🌺 A next-generation plugin manager for zsh
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
 
-#### Shell startup scripts
+#### Shell Startup Files
 Create symlinks to your startup scripts. **Warning: this will overwrite any existing files under the same 
 path.**
 ```shell script
+ln -shfv "$(realpath .zshenv)" ~
 ln -shfv "$(realpath .zshrc)" ~
-ln -shfv "$(realpath .p10k.zsh)" ~
 ```
 The rules that define whether a startup script gets sources (and in which order) differs depending on which
 UNIX shell, type of initialization, and even operating system... If you have been following these 

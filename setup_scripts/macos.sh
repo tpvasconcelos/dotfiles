@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-# Forked from: https://mths.be/macos
-# More ideas from: https://github.com/herrbischoff/awesome-macos-command-line
+# Adapted from:
+# * https://mths.be/macos
+# * https://github.com/herrbischoff/awesome-macos-command-line
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
 
 # ============================================================================
 # --- Ask for root password upfront and keep updating the existing `sudo`
@@ -18,6 +16,12 @@ while true; do
   sleep 30
   kill -0 "$$" || exit
 done 2>/dev/null &
+
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -857,46 +861,10 @@ sudo fdesetup enable
 # Enable the system's Firewall Service
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
-for app in "Activity Monitor" \
-  "Address Book" \
-  "Calendar" \
-  "cfprefsd" \
-  "Contacts" \
-  "Dock" \
-  "Finder" \
-  "Google Chrome Canary" \
-  "Google Chrome" \
-  "Mail" \
-  "Messages" \
-  "Photos" \
-  "Safari" \
-  "SystemUIServer" \
-  "Terminal" \
-  "iCal"; do
-  killall "${app}" &>/dev/null
-done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 ###############################################################################
 # Reboot
 ###############################################################################
 
-reboot () {
-  YESNO_MSG="Please type yes ${BOLD_START}(y)${BOLD_END} to proceed or no ${BOLD_START}(n)${BOLD_END} to abort... ${BOLD_START}[y/n]${BOLD_END} "
-  echo "${BOLD_START}It's recommended to reboot your machine after running this script.${BOLD_END}"
-  while true; do
-      echo -n "$YESNO_MSG"
-      read -r -k 1 yn
-      case $yn in
-          [Yy]* ) echo -e "${BOLD_START}\nRebooting...${BOLD_END}"; sudo shutdown -r now;;
-          [Nn]* ) echo -e "\n${BOLD_START}Fine... Please manually reboot your machine then\!${BOLD_END} 👀"; break;;
-          * ) echo -e "\nOption not recognised... ";;
-      esac
-  done
-}
-
+bold "It's recommended to reboot your machine after running this script."
 reboot

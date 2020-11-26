@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "🚀 Installing bash..."
+bold "🚀 Installing bash..." | underline
 brew install bash
 brew install bash-completion2
 
@@ -11,11 +11,13 @@ echo "🚀 Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "🚀 Installing Powerlevel10k..."
-brew install romkatv/powerlevel10k/powerlevel10k
-p10k configure
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+echo "🚀 Installing zsh-autosuggestions..."
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+
+echo "🚀 Installing zsh-syntax-highlighting..."
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
 
 PATH_TO_SHELL="$(brew --prefix)/bin/zsh"
 echo "🚀 Changing the default shell to the brew-installed zsh shell ---> ${PATH_TO_SHELL}"

@@ -1,0 +1,53 @@
+
+python_upgrade() {
+  local py_version py_version_parsed version_to_uninstall
+
+  py_version="$1"
+  py_version_parsed="$(pyenv install --list | grep "^  $py_version" | tail -n 1 | xargs)"
+
+  if contains "$(pyenv versions)" "$py_version_parsed"; then
+    echo "Python $py_version_parsed is already installed"
+  else
+    # TODO: Check if it's still necessary to export SDKROOT and MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
+    local SDKROOT MACOSX_DEPLOYMENT_TARGET
+    SDKROOT="$(xcrun --show-sdk-path)"
+    MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
+    export SDKROOT
+    export MACOSX_DEPLOYMENT_TARGET
+
+    echo "🚀 Installing Python $py_version_parsed"
+    pyenv install "$py_version_parsed"
+
+    echo "🚀 Setting Python $py_version_parsed as the global python..."
+    pyenv global "$py_version_parsed"
+  fi
+
+  # Uninstall older versions
+  while read -r version_to_uninstall ; do
+      echo "Uninstalling Python $version_to_uninstall"
+      pyenv uninstall --force "$version_to_uninstall"
+  done < <(pyenv versions | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+" | grep "$py_version" | grep -v "$py_version_parsed")
+}
+
+
+python_upgrade_all() {
+  local py_version
+  echo "🚀 Installing latest python versions (${PYENV_TARGET_VERSIONS[*]})"
+  for py_version in "${PYENV_TARGET_VERSIONS[@]}"; do
+    python_upgrade "$py_version"
+  done
+}
+
+clean_core_pips() {
+    local py_command pyv
+    # TODO: review, fix, and cleanup
+    for pyv in '' '2' '2.7' '3' '3.7' '3.8' '3.9'; do
+      py_command="python$pyv"
+      if command -v "$py_command" 1>/dev/null 2>&1; then
+        echo "Uninstalling all packages under $py_command"
+        $py_command -m pip freeze | xargs $py_command -m pip uninstall -y
+      else
+        echo "$py_command does not exist"
+      fi
+    done
+}
