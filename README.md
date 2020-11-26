@@ -67,12 +67,9 @@ Other terminal emulators to consider:
 
 ### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
-the terminal emulator installed in the previous step (e.g. Iterm2). The last two lines will create symlinks 
-to your config files. **Warning: this will overwrite any existing config files.**
+the terminal emulator installed in the previous step (e.g. Iterm2).
 ```shell script
-./setup_scripts/setup_shells.sh && \
-  ln -shfv "$(realpath .zshrc)" ~ && \
-  ln -shfv "$(realpath .p10k.zsh)" ~
+./setup_scripts/setup_shells.sh
 ```
 
 Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a 
@@ -82,6 +79,31 @@ Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configura
 reports, completion management, Turbo, annexes, services, packages.
 - [zplug](https://github.com/zplug/zplug) - 🌺 A next-generation plugin manager for zsh
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
+
+#### Shell startup scripts
+Create symlinks to your startup scripts. **Warning: this will overwrite any existing files under the same 
+path.**
+```shell script
+ln -shfv "$(realpath .zshrc)" ~
+ln -shfv "$(realpath .p10k.zsh)" ~
+```
+The rules that define whether a startup script gets sources (and in which order) differs depending on which
+UNIX shell, type of initialization, and even operating system... If you have been following these 
+installations steps, you are on a macOS machine and using the zsh Unix Shell. So here are some simple 
+examples.
+- When opening a new terminal shell (on iTerm2 or Terminal) the following files get sources
+  `.zshenv --> .zprofile --> .zshrc --> .zlogin`. You are now using an interactive login shell. Once you kill
+  the current shell the `.zlogout` script will be sourced before killing the process.
+- If you source a script (e.g. `source some_script` or `. ./some_script`), no startup files get sourced. 
+  This is because `source` reads and executes the contents of your script in the current shell environment.
+- If you run a script as an executable, the script will run in an **new shell**. By default, and in most 
+  cases, this will be a non-interactive non-login shell and, therefore, will only source `.zshenv` before 
+  executing the script. You can extend this logic _ad infinitum_... if script calls yet another script, 
+  which in turn calls yet again another script, etc, etc... each one will run in a new shell. Here I'm 
+  assuming that the script will be executed within a zsh shell of course! If script contains a 
+  `#!/usr/bin/env zsh` shebang line, it can be executed directly as `./some_script` or called as a regular 
+  command if it exists under `$PATH`. Alternatively you can explicitly execute the script as 
+  `zsh some_script`.
 
 
 

@@ -62,6 +62,7 @@ brew cask install muzzle
 brew cask install p4v
 brew cask install diffmerge
 brew cask install postman
+brew cask install jupyter-notebook-viewer
 #brew cask install paw
 # brew cask install popcorn-official/popcorn-desktop/popcorn-time
 mas install 909566003 # iHex

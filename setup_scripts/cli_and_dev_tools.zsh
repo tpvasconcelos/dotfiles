@@ -22,13 +22,11 @@ brew install gnu-tar    # PATH="$BREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
 brew install grep       # PATH="$BREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
 brew install moreutils
 
-
 echo "🚀 Installing more recent versions of some macOS tools..."
 brew install vim
 brew install openssh
 brew install screen
 brew install gmp
-
 
 echo "🚀 Installing cool fonts..."
 # Error: Cask 'font-hack-nerd-font' is unavailable: No Cask with this name exists.
@@ -39,7 +37,6 @@ brew install woff2
 brew tap homebrew/cask-fonts
 brew cask install font-juliamono
 brew cask install font-hack-nerd-font
-
 
 echo "🚀 Installing useful more command line utils..."
 brew install wget
@@ -77,13 +74,11 @@ brew install thefuck
 brew install ncdu               # https://dev.yorhel.nl/ncdu
 brew install shellcheck         # https://github.com/koalaman/shellcheck
 
-
 echo "🚀 Installing compilers..."
 brew install cmake
 brew install llvm
 brew install gcc
 brew install libomp
-
 
 echo "🚀 Installing misc dev tools..."
 brew cask install docker
@@ -128,6 +123,12 @@ brew tap dart-lang/dart
 brew install dart
 git clone https://github.com/flutter/flutter.git -b stable --depth 1 ~/.flutter
 
+echo "🚀 Installing R and RStudio..."
+brew cask install r
+brew cask install rstudio
+
+echo "🚀 Installing graphviz..."
+brew install graphviz
 
 echo "🚀 update, upgrade, and cleanup..."
 brew update && brew upgrade && brew cleanup
