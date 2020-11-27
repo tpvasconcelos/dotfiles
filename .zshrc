@@ -10,36 +10,40 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
-
 # Fast path to the brew prefix ---> /usr/local
 # This variable is exported first because it's
 # used by several of the following scripts
 BREW_PREFIX="$(brew --prefix)"
 export BREW_PREFIX
 
+# Path to your oh-my-zsh installation.
+export ZSH="${HOME}/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="random"
+#ZSH_THEME="random"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-source "${DOTFILES}/shell/sources/interactive/oncall/plugins"
+# Load plugins
+source_if_exists "${DOTFILES}/shell/sources/interactive/oncall/plugins"
 
-source "${ZSH}/oh-my-zsh.sh"
-source "${HOME}/.iterm2_shell_integration.zsh"
+# Load om-my-zsh
+source_if_exists "${ZSH}/oh-my-zsh.sh"
 
-# load configs
+# Load configs
 for dotscript in "${DOTFILES}"/shell/sources/interactive/*(.); do
-  source "$dotscript"
+  source_if_exists "$dotscript"
 done
 
-# load functions
+# Load functions
 for dotscript in "${DOTFILES}"/shell/functions/interactive/*(.); do
-  source "$dotscript"
+  source_if_exists "$dotscript"
 done
+
+# FIXME: iTerm2 Shell Integration
+#source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
-source "${DOTFILES}/shell/sources/interactive/oncall/.p10k.zsh"
+source_if_exists "${DOTFILES}/shell/sources/interactive/oncall/.p10k.zsh"
