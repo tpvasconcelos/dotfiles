@@ -23,6 +23,6 @@ for dotscript in "${DOTFILES}"/shell/sources/environment/*(.); do
 done
 
 # Load functions
-for dotscript in "${DOTFILES}"/shell/functions/environment/*(.); do
-  source_if_exists "$dotscript"
-done
+#for dotscript in "${DOTFILES}"/shell/functions/environment/*(.); do
+#  source_if_exists "$dotscript"
+#done
