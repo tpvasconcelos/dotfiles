@@ -25,18 +25,18 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Load plugins
-source_if_exists "${DOTFILES}/shell/sources/interactive/oncall/plugins"
+source_if_exists "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins"
 
 # Load om-my-zsh
 source_if_exists "${ZSH}/oh-my-zsh.sh"
 
 # Load configs
-for dotscript in "${DOTFILES}"/shell/sources/interactive/*(.); do
+for dotscript in "${SHELL_DIR_INTERACTIVE}"/sources/*(.); do
   source_if_exists "$dotscript"
 done
 
 # Load functions
-for dotscript in "${DOTFILES}"/shell/functions/interactive/*(.); do
+for dotscript in "${SHELL_DIR_INTERACTIVE}"/functions/*(.); do
   source_if_exists "$dotscript"
 done
 
@@ -44,4 +44,4 @@ done
 #source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
-source_if_exists "${DOTFILES}/shell/sources/interactive/oncall/.p10k.zsh"
+source_if_exists "${SHELL_DIR_INTERACTIVE}/sources/oncall/.p10k.zsh"

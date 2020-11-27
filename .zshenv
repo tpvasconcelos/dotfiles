@@ -7,6 +7,9 @@
 # a priori since all other configs live under this path!
 export DOTFILES="${HOME}/.dotfiles"
 
+export SHELL_DIR_ENVIRONMENT="${DOTFILES}/shell/environment"
+export SHELL_DIR_INTERACTIVE="${DOTFILES}/shell/interactive"
+
 source_if_exists() {
   # If file exists (and is readable), source it. Else, print an error message.
   # alternative names: import, include
@@ -18,11 +21,11 @@ source_if_exists() {
 }
 
 # Load configs
-for dotscript in "${DOTFILES}"/shell/sources/environment/*(.); do
+for dotscript in "${SHELL_DIR_ENVIRONMENT}"/sources/*(.); do
   source_if_exists "$dotscript"
 done
 
 # Load functions
-#for dotscript in "${DOTFILES}"/shell/functions/environment/*(.); do
+#for dotscript in "${SHELL_DIR_ENVIRONMENT}"/functions/*(.); do
 #  source_if_exists "$dotscript"
 #done
