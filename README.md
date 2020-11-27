@@ -131,6 +131,24 @@ Have a look inside this script to see what will be installed...
 ```
 
 
+
+### Install Python Development Tools
+I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. Then 
+[pipenv](https://github.com/pypa/pipenv) and [poetry](https://github.com/python-poetry/poetry) to manage
+virtual environments. The following script will install your whole python development environment. To check 
+which python versions will be installed run `echo "$PYENV_TARGET_VERSIONS`. You can pass either the exact 
+patch version, or the minor version (in which case the latest patch will be installed).
+- Install with the default versions `"$PYENV_TARGET_VERSIONS`
+    ```shell script
+    ./setup_scripts/python_dev_environment.zsh
+    ```
+- Pass your own versions
+    ```shell script
+    PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" ./setup_scripts/python_dev_environment.zsh
+    ```
+
+
+
 ### Install Desktop Applications
 Have a look inside this script to see what will be installed...
 ```shell script

@@ -29,11 +29,15 @@ python_upgrade() {
 }
 
 python_upgrade_all() {
-  local py_version
-  echo "🚀 Installing latest python versions (${PYENV_TARGET_VERSIONS[*]})"
-  for py_version in "${PYENV_TARGET_VERSIONS[@]}"; do
-    echo "$py_version"
-    #python_upgrade "$py_version"
+  local py_versions pyv
+  if [[ $PYENV_TARGET_VERSIONS_OVERWRITE ]]; then
+    IFS=" " read -rA py_versions <<< "${PYENV_TARGET_VERSIONS_OVERWRITE}"
+  else
+    py_versions=$PYENV_TARGET_VERSIONS
+  fi
+  echo "🚀 Installing latest python versions (${py_versions[*]})"
+  for pyv in "${py_versions[@]}"; do
+    python_upgrade "$py_version"
   done
 }
 
