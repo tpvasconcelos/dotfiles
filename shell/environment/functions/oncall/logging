@@ -1,0 +1,7 @@
+log_success() {
+  bold "$(fg_green "✔ ${*}")" >&2
+}
+
+log_failure() {
+  bold "$(fg_red "✖ ${*}")" >&2
+}

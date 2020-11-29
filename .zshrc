@@ -6,7 +6,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+load "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Fast path to the brew prefix ---> /usr/local
 # This variable is exported first because it's
@@ -25,23 +25,23 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Load plugins
-source_if_exists "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins"
+load "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins"
 
 # Load om-my-zsh
-source_if_exists "${ZSH}/oh-my-zsh.sh"
+load "${ZSH}/oh-my-zsh.sh"
 
 # Load configs
 for dotscript in "${SHELL_DIR_INTERACTIVE}"/sources/*(.); do
-  source_if_exists "$dotscript"
+  load "$dotscript"
 done
 
 # Load functions
 for dotscript in "${SHELL_DIR_INTERACTIVE}"/functions/*(.); do
-  source_if_exists "$dotscript"
+  load "$dotscript"
 done
 
 # FIXME: iTerm2 Shell Integration
-#source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
+#load "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
-source_if_exists "${SHELL_DIR_INTERACTIVE}/sources/oncall/.p10k.zsh"
+load "${SHELL_DIR_INTERACTIVE}/sources/oncall/.p10k.zsh"

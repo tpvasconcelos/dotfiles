@@ -1,4 +1,4 @@
-# shellcheck disable=SC2034,SC1090
+# shellcheck disable=SC1090
 ########################################
 # .zshenv: zsh environment settings
 ########################################
@@ -10,22 +10,27 @@ export DOTFILES="${HOME}/.dotfiles"
 export SHELL_DIR_ENVIRONMENT="${DOTFILES}/shell/environment"
 export SHELL_DIR_INTERACTIVE="${DOTFILES}/shell/interactive"
 
-source_if_exists() {
-  # If file exists (and is readable), source it. Else, print an error message.
-  # alternative names: import, include
-  if [[ -r "${1}" ]]; then
-    source "${1}"
-  else
-    print "Couldn't source '${1}'. File does not exist!"
-  fi
-}
+# Load core functions  ---
+# These have to be sourced first since I use some
+# on the utils defined here in the upcoming steps
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi"
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging"
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing"
+loaded_scripts=(
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi"
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging"
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing"
+)
+export loaded_scripts
+typeset -U loaded_scripts
+
 
 # Load configs
 for dotscript in "${SHELL_DIR_ENVIRONMENT}"/sources/*(.); do
-  source_if_exists "$dotscript"
+  load "$dotscript"
 done
 
 # Load functions
 #for dotscript in "${SHELL_DIR_ENVIRONMENT}"/functions/*(.); do
-#  source_if_exists "$dotscript"
+#  source "$dotscript"
 #done

@@ -1,11 +1,42 @@
 contains() {
-  # test if a string contains a substring
+  # Test if a string contains a substring
+  # Arguments:
+  #   * $1 : string
+  #   * $2 : substring
+  # Examples
+  #   $ contains "hello world" "world"; echo $?
+  #   0
+  #   $ contains "hello world" "bye"; echo $?
+  #   1
   local string substring
-  string="$1"
-  substring="$2"
+  string="${1}"
+  substring="${2}"
   if test "${string#*$substring}" != "$string"; then
     return 0
   else
     return 1
+  fi
+}
+
+get_stem() {
+  # Gets the stem of a given path. It does not check if the path
+  # Arguments:
+  #   * $1 : path-like string
+  # Examples:
+  #   $ get_stem /path/to/script.sh
+  #   file
+  #   $ get_stem /path/to/file
+  #   file
+  #   $ get_stem /path/to/directory
+  #   directory
+  #   $ get_stem meh
+  #   meh
+  #   $ get_stem
+  #   ✖ get_stem: No path provided!
+  if [[ -z "${*}" ]]; then
+    # shellcheck disable=SC2154
+    log_failure "${funcstack[1]}: No path provided\!"
+  else
+    printf "%s" "${$(basename -- "${*}")%.*}"
   fi
 }
