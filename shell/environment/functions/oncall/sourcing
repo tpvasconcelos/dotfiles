@@ -1,19 +1,26 @@
+abspath() {
+  # This my replacement for `source`
+  # Arguments:
+  #   * $@ : path-like string
+  echo "$(cd "$(dirname "${@}")" && pwd)/$(basename "${@}")"
+}
+
 load() {
   # This my replacement for `source`
   # Arguments:
-  #   * $1 : path-like string
+  #   * $* : path-like string
   local path_to_script
-  path_to_script="$(realpath -- "${*}")"
+  path_to_script="$(abspath "${*}")"
   # shellcheck disable=SC2154
   if [[ ! "${loaded_scripts+x}" ]]; then
-    log_failure "Can't load $path_to_script! Something went wrong initializing this shell. The \$loaded_scripts environment variable is not set. This variable should be set in your ~/.zshenv file."
+    log_error "Can't load $path_to_script! Something went wrong initializing this shell. The \$loaded_scripts environment variable is not set. This variable should be set in your ~/.zshenv file."
   elif [[ ${loaded_scripts[(ie)$path_to_script]} -le ${#loaded_scripts} ]]; then
-    log_failure "The script '$path_to_script' has already been loaded!"
+    log_error "The script '$path_to_script' has already been loaded!"
   elif [[ -r "${path_to_script}" ]]; then
     # shellcheck disable=SC1090
     source "${path_to_script}"
     loaded_scripts=("${path_to_script}" "${loaded_scripts[@]}")
   else
-    log_failure "Could not source '${1}'. The file does not exist!"
+    log_error "Could not source '${1}'. The file does not exist!"
   fi
 }
