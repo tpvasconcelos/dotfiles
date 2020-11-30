@@ -1,4 +1,9 @@
-ansi()          { echo -e "\e[${1}m${*:2}\e[0m"; }
+ansi() {
+  local ansi_code msg
+  ansi_code="${1}"
+  msg="${*:2}"
+  echo -e "\e[${ansi_code}m${msg}\e[0m"
+}
 
 # generic
 bold()          { ansi 1 "$@"; }

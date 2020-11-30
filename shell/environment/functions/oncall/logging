@@ -1,19 +1,25 @@
-log_info() {
-  faint "❱ ${*}" >&2
+# debug:
+# info:     ❱
+# warn:     ✕
+# error:    ✖
+# success:  ✔
+
+log_debug() {
+  faint "[DEBUG] - ${*}" >&2
 }
 
 log_info() {
-  bold "$(fg_cyan "❱ ${*}")" >&2
+  bold "$(fg_cyan "[INFO] - ${*}")" >&2
 }
 
 log_warning() {
-  bold "$(fg_yellow "✕ ${*}")" >&2
+  bold "$(fg_yellow "[WARNING] - ${*}")" >&2
 }
 
 log_error() {
-  bold "$(fg_red "✖ ${*}")" >&2
+  bold "$(fg_red "[ERROR] - ${*}")" >&2
 }
 
 log_success() {
-  bold "$(fg_green "✔ ${*}")" >&2
+  bold "$(fg_green "[SUCCESS] - ${*}")" >&2
 }
