@@ -9,7 +9,7 @@ Add this to the top of your shell script.
 # --- timestamp on a background process until the script finishes. Note that
 # --- you'll still need to use `sudo` where needed throughout the scripts.
 # ============================================================================
-echo "🔑 Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
+echo "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
 sudo -v
 while true; do
   sudo -n true

@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh
+set -eu
 
 # ============================================================================
 # --- Ask for root password upfront and keep updating the existing `sudo`
 # --- timestamp on a background process until the script finishes. Note that
 # --- you'll still need to use `sudo` where needed throughout the scripts.
 # ============================================================================
-echo "🔑 Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
+log_info "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
 sudo -v
 while true; do
   sudo -n true

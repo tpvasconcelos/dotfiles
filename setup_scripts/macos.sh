@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -eu
 
 # Adapted from:
 # * https://mths.be/macos
@@ -10,6 +11,7 @@
 # --- timestamp on a background process until the script finishes. Note that
 # --- you'll still need to use `sudo` where needed throughout the scripts.
 # ============================================================================
+log_info "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
 sudo -v
 while true; do
   sudo -n true
@@ -866,5 +868,5 @@ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 # Reboot
 ###############################################################################
 
-bold "It's recommended to reboot your machine after running this script."
+log_warning "It's recommended to reboot your machine after running this script."
 reboot
