@@ -1,7 +1,22 @@
 # My dotfiles
 
 
-## Steps
+
+## Fresh macOS Install (a step-by-step guide)
+
+1. [Clone this repository](#clone-this-repository)  
+1. [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+1. [Install any pending software updates](#install-any-pending-software-updates)
+1. [Install Homebrew (brew)](#install-homebrew-brew)
+1. [Install a better terminal emulator (iTerm2)](#install-a-better-terminal-emulator-iterm2)
+1. [Upgrade and configure shells](#upgrade-and-configure-shells)
+1. [Update general macOS preferences](#update-general-macos-preferences)
+1. [Install CLI and dev tools](#install-cli-and-dev-tools)
+1. [Install Python Development Tools](#install-python-development-tools)
+1. [Install Desktop Applications](#install-desktop-applications)
+1. [Migrate app settings and system preferences](#migrate-app-settings-and-system-preferences)
+1. [Update everything](#update-everything)
+1. [Check for issues](#check-for-issues)
 
 
 ### Clone this repository
