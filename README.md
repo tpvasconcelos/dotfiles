@@ -1,30 +1,39 @@
 # My dotfiles
 
+These are my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles). This repository helps me 
+keep a reproducible version of my development environments, configuration files, system preferences, and 
+even my desktop applications.
 
+I keep a step-by-step guide in this README on how to get from a fresh macOS installation to a fully-setup 
+working and development environment. From setting up my zsh shell and various CLI tools, to installing my 
+desktop apps, to migrating configuration files and updating the default macOS preferences... these steps
+are all automated (and reproducible) through shell scripts.
+
+## Table of Contents
+
+1. [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-a-step-by-step-guide)
+    1. [Clone this repository](#clone-this-repository)  
+    1. [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+    1. [Install any pending software updates](#install-any-pending-software-updates)
+    1. [Install Homebrew (brew)](#install-homebrew-brew)
+    1. [Install a better terminal emulator (iTerm2)](#install-a-better-terminal-emulator-iterm2)
+    1. [Upgrade and configure shells](#upgrade-and-configure-shells)
+    1. [Update general macOS preferences](#update-general-macos-preferences)
+    1. [Install CLI and dev tools](#install-cli-and-dev-tools)
+    1. [Install Python Development Tools](#install-python-development-tools)
+    1. [Install Desktop Applications](#install-desktop-applications)
+    1. [Migrate app settings and system preferences](#migrate-app-settings-and-system-preferences)
+    1. [Update everything](#update-everything)
+    1. [Check for issues](#check-for-issues)
+1. [References](references)
 
 ## Fresh macOS Install (a step-by-step guide)
-
-1. [Clone this repository](#clone-this-repository)  
-1. [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
-1. [Install any pending software updates](#install-any-pending-software-updates)
-1. [Install Homebrew (brew)](#install-homebrew-brew)
-1. [Install a better terminal emulator (iTerm2)](#install-a-better-terminal-emulator-iterm2)
-1. [Upgrade and configure shells](#upgrade-and-configure-shells)
-1. [Update general macOS preferences](#update-general-macos-preferences)
-1. [Install CLI and dev tools](#install-cli-and-dev-tools)
-1. [Install Python Development Tools](#install-python-development-tools)
-1. [Install Desktop Applications](#install-desktop-applications)
-1. [Migrate app settings and system preferences](#migrate-app-settings-and-system-preferences)
-1. [Update everything](#update-everything)
-1. [Check for issues](#check-for-issues)
-
 
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
 ```shell script
-mkdir ~/.dotfiles
-cd ~/.dotfiles
-git clone https://github.com/tpvasconcelos/dotfiles.git .
+git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles && \
+  cd ~/.dotfiles
 ```
 
 
