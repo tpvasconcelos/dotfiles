@@ -44,6 +44,7 @@
     co = checkout
     st = status
     db = branch -D
+    undo = !git reset HEAD~
     dbo = push origin --delete
     nb = "!f() { git co -b $1 && git sus; }; f"
     pp = !git pull && git push
