@@ -37,12 +37,15 @@
     ui = auto
 
 [alias]
+    ls = log --oneline
     aa = add -A
     cm = commit -m
     ca = !git add -A && git commit -m
     co = checkout
     st = status
-    db = branch -d
+    db = branch -D
+    dbo = push origin --delete
+    nb = "!f() { git co -b $1 && git sus; }; f"
     pp = !git pull && git push
     mm =  !git pull && git co master && git pull && git co - && git merge master && git push
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
