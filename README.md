@@ -23,7 +23,7 @@ are all automated (and reproducible) through shell scripts.
 
 
 
-## Fresh macOS Install (a step-by-step guide)
+## Fresh macOS install (a step-by-step guide)
 
 
 ### Clone this repository
@@ -157,7 +157,7 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 ```
 
 
-### Install Desktop Applications
+### Install desktop applications
 Have a look inside this script to see what will be installed...
 ```shell script
 ./setup_scripts/desktop_apps.zsh
