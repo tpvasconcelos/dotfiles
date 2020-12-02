@@ -16,14 +16,14 @@ are all automated (and reproducible) through shell scripts.
     - [Clone this repository](#clone-this-repository)  
     - [Setup development environment](#setup-development-environment)
     - [Update general macOS preferences](#update-general-macos-preferences)
-    - [Install Desktop Applications](#install-desktop-applications)
+    - [Install desktop applications](#install-desktop-applications)
     - [Update everything](#update-everything)
     - [Check for issues](#check-for-issues)
 - [References](#references)
 
 
 
-## Fresh macOS install (a step-by-step guide)
+## Fresh macOS Install (a step-by-step guide)
 
 
 ### Clone this repository
