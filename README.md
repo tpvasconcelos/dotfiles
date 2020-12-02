@@ -1,7 +1,7 @@
 # My dotfiles
 
 These are my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles). This repository helps me 
-keep a reproducible version of my development environments, configuration files, system preferences, and 
+keep a reproducible version of my development environment, configuration files, system preferences, and 
 even my desktop applications.
 
 I keep a step-by-step guide in this README on how to get from a fresh macOS installation to a fully-setup 
@@ -12,14 +12,14 @@ are all automated (and reproducible) through shell scripts.
 
 ## Table of Contents
 
-1. [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-a-step-by-step-guide)
-    1. [Clone this repository](#clone-this-repository)  
-    1. [Setup development environment](#setup-development-environment)
-    1. [Update general macOS preferences](#update-general-macos-preferences)
-    1. [Install Desktop Applications](#install-desktop-applications)
-    1. [Update everything](#update-everything)
-    1. [Check for issues](#check-for-issues)
-1. [References](#references)
+- [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-a-step-by-step-guide)
+    - [Clone this repository](#clone-this-repository)  
+    - [Setup development environment](#setup-development-environment)
+    - [Update general macOS preferences](#update-general-macos-preferences)
+    - [Install Desktop Applications](#install-desktop-applications)
+    - [Update everything](#update-everything)
+    - [Check for issues](#check-for-issues)
+- [References](#references)
 
 
 
