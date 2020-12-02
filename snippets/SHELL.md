@@ -20,7 +20,7 @@ done 2>/dev/null &
 
 #### Setup `ssh` for `git`
 For more read the relevant docs
-- [GitHub](# https://help.github.com/en/articles/connecting-to-github-with-ssh)
+- [GitHub](https://help.github.com/en/articles/connecting-to-github-with-ssh)
 - [Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2)
 - [GitLab](https://docs.gitlab.com/ee/ssh/)
 ```shell script
