@@ -9,25 +9,22 @@ working and development environment. From setting up my zsh shell and various CL
 desktop apps, to migrating configuration files and updating the default macOS preferences... these steps
 are all automated (and reproducible) through shell scripts.
 
+
 ## Table of Contents
 
 1. [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-a-step-by-step-guide)
     1. [Clone this repository](#clone-this-repository)  
-    1. [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
-    1. [Install any pending software updates](#install-any-pending-software-updates)
-    1. [Install Homebrew (brew)](#install-homebrew-brew)
-    1. [Install a better terminal emulator (iTerm2)](#install-a-better-terminal-emulator-iterm2)
-    1. [Upgrade and configure shells](#upgrade-and-configure-shells)
+    1. [Setup development environment](#setup-development-environment)
     1. [Update general macOS preferences](#update-general-macos-preferences)
-    1. [Install CLI and dev tools](#install-cli-and-dev-tools)
-    1. [Install Python Development Tools](#install-python-development-tools)
     1. [Install Desktop Applications](#install-desktop-applications)
-    1. [Migrate app settings and system preferences](#migrate-app-settings-and-system-preferences)
     1. [Update everything](#update-everything)
     1. [Check for issues](#check-for-issues)
-1. [References](references)
+1. [References](#references)
+
+
 
 ## Fresh macOS Install (a step-by-step guide)
+
 
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
@@ -37,7 +34,9 @@ git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles && \
 ```
 
 
-### Install Xcode and Command Line Developer Tools
+### Setup development environment
+
+#### Install Xcode and Command Line Developer Tools
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following shell 
 commands from the Terminal app.
 1. Here, we will install the Command Line Developer Tools. The first command ensures `xcode-select` is 
@@ -54,27 +53,23 @@ install any missing packages.
        sudo xcodebuild -runFirstLaunch
     ```
 
-
-
-### Install any pending software updates
+##### Install any pending software updates
 We'll now install any pending software updates for your machine. **Note that, if needed, this command will 
 automatically restart your machine!**
 ```shell script
 sudo softwareupdate --install --all --verbose --force --restart
 ```
 
-
-### Install Homebrew (brew)
+#### Install Homebrew (brew)
 From here on out we will use Homebrew (`brew`) as the go-to package manager for macOS.
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && \
   brew update && brew upgrade
 ```
 
-
-### Install a better terminal emulator (iTerm2)
+#### Install a better terminal emulator (iTerm2)
 After installing iTerm2, you can switch to using the iTerm2 terminal emulator as opposed to Apple's Terminal 
-app.
+app. _[Todo: Add a note here explaining why `killall cfprefsd` is needed!]_
 ```shell script
 brew cask install iterm2
 killall cfprefsd
@@ -83,19 +78,15 @@ cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
 # Download Shell Integration script
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 ```
-
 Other terminal emulators to consider:
 - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
 
-
-
-### Upgrade and configure shells
+#### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
 the terminal emulator installed in the previous step (e.g. Iterm2).
 ```shell script
 ./setup_scripts/setup_shells.sh
 ```
-
 Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a 
 [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme. You can consider other frameworks, such as:
 - [prezto](https://github.com/sorin-ionescu/prezto) - The configuration framework for Zsh
@@ -129,34 +120,13 @@ examples.
   command if it exists under `$PATH`. Alternatively you can explicitly execute the script as 
   `zsh some_script`.
 
-
-
-### Update general macOS preferences
-This will update many of the default macos settings and system preferences. **Warning: It's recommended to 
-reboot your machine after updating many of these preferences.** For convenience, this script will prompt you 
-for an automatic reboot at the end 💪
-```shell script
-./setup_scripts/macos.sh
-```
-
-From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option 
-to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced 
-computer."_ 
-```shell script
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact your_email_here@example.com"
-```
-
-
-
-### Install CLI and dev tools
+#### Install CLI and dev tools
 Have a look inside this script to see what will be installed...
 ```shell script
 ./setup_scripts/cli_and_dev_tools.zsh
 ```
 
-
-
-### Install Python Development Tools
+#### Install Python Development Tools
 I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. Then 
 [pipenv](https://github.com/pypa/pipenv) and [poetry](https://github.com/python-poetry/poetry) to manage
 virtual environments. The following script will install your whole python development environment. To check 
@@ -172,6 +142,20 @@ patch version, or the minor version (in which case the latest patch will be inst
     ```
 
 
+### Update general macOS preferences
+This will update many of the default macos settings and system preferences. **Warning: It's recommended to 
+reboot your machine after updating many of these preferences.** For convenience, this script will prompt you 
+for an automatic reboot at the end 💪
+```shell script
+./setup_scripts/macos.sh
+```
+From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option 
+to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced 
+computer."_ 
+```shell script
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact your_email_here@example.com"
+```
+
 
 ### Install Desktop Applications
 Have a look inside this script to see what will be installed...
@@ -179,9 +163,7 @@ Have a look inside this script to see what will be installed...
 ./setup_scripts/desktop_apps.zsh
 ```
 
-
-
-### Migrate app settings and system preferences
+#### Migrate app settings and system preferences
 
 App settings:
 1. Migrate all relevant config directories from `~/Library/Application\ Support`
