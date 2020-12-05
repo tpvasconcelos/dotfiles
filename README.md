@@ -297,3 +297,5 @@ settings or preferences.
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
 * <https://github.com/iCHAIT/awesome-macOS>
 * [A collection of useful .gitignore templates](https://github.com/github/gitignore)
+* [Shell startup scripts](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html) - An article about
+  standardizing shell startup scripts.
