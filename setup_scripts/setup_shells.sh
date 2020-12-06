@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-log_info "Installing bash..." | underline
+log_info "Installing bash..."
 brew install bash
 brew install bash-completion2
 
