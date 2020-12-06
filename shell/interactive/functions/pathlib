@@ -21,3 +21,7 @@ get_stem() {
     printf "%s" "${$(basename -- "${*}")%.*}"
   fi
 }
+
+sizeof() {
+ du -hs "${*:-.}"
+}
