@@ -29,6 +29,10 @@ brew install openssh
 brew install screen
 brew install gmp
 
+echo "🚀 Installing Golang..."
+brew install golang  # old unavailable flag: --cross-compile-common
+mkdir -p "$HOME"/go/bin "$HOME"/go/src
+
 echo "🚀 Installing cool fonts..."
 # Error: Cask 'font-hack-nerd-font' is unavailable: No Cask with this name exists.
 brew tap bramstein/webfonttools
@@ -74,6 +78,8 @@ brew install tree
 brew install thefuck
 brew install ncdu               # https://dev.yorhel.nl/ncdu
 brew install shellcheck         # https://github.com/koalaman/shellcheck
+brew install pygments           # https://pygments.org/
+go get -u github.com/alecthomas/chroma/cmd/chroma
 
 echo "🚀 Installing compilers..."
 brew install cmake
@@ -89,11 +95,6 @@ brew install awscli
 brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
 brew install cookiecutter
-
-echo "🚀 Installing Golang..."
-brew install golang  # old unnavailable flag: --cross-compile-common
-mkdir -p "$HOME"/go/bin "$HOME"/go/src
-
 
 echo "🚀 Installing Kubernetes..."
 brew install kubectx  # https://github.com/ahmetb/kubectx
