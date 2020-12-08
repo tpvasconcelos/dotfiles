@@ -1,6 +1,12 @@
 # SQL Snippets
 
 
+#### Disable results caching for current session
+```sql
+set enable_result_cache_for_session to off;
+```
+
+
 #### Compare two queries
 Use the following template to get the difference between two queries: 
 ```sql
