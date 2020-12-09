@@ -857,6 +857,9 @@ sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Aut
 defaults write -g com.apple.trackpad.scaling 2.5
 defaults write -g com.apple.mouse.scaling 3
 
+# Disable spotlight keyboard shortcut
+defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "{ enabled = 0; value = { parameters = (32, 49, 524288); type = 'standard'; }; }"
+
 # Security  ---
 # Enable the system's FileVault Service
 sudo fdesetup enable
