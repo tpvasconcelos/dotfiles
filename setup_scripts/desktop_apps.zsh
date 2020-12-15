@@ -17,7 +17,6 @@ done 2>/dev/null &
 
 echo "🚀 Installing Text editors and IDEs..."
 brew cask install qlmarkdown
-brew cask install sublime-text
 brew cask install brackets
 brew cask install atom
 brew cask install visual-studio-code
@@ -26,6 +25,11 @@ mas install 497799835 && sudo xcodebuild -license accept # Xcode
 brew cask install pycharm
 brew cask install datagrip
 brew cask install webstorm
+echo "🚀 Setting-up Sublime Text"
+brew cask install sublime-text
+sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
+git clone --depth=1 https://github.com/andresmichel/one-dark-theme.git "${sublime_pkgs}/Theme - One Dark"
+ln -shfv "$(realpath settings/Preferences.sublime-settings)" "${sublime_pkgs}/User/Preferences.sublime-settings"
 
 echo "🚀 Installing Browsers..."
 brew cask install google-chrome
@@ -69,12 +73,6 @@ brew cask install jupyter-notebook-viewer
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 mas install 668208984 # GIPHY Capture. The GIF Maker
-
-
-echo "🚀 Setting-up Sublime"
-git clone https://github.com/andresmichel/one-dark-theme.git
-mv one-dark-theme ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Theme\ -\ One\ Dark
-cp settings/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
 
 
 echo "🚀 update, upgrade, and cleanup..."
