@@ -35,6 +35,9 @@ echo "🚀 Installing Browsers..."
 brew cask install google-chrome
 brew cask install tor-browser
 brew cask install firefox
+brew install --cask brave-browser
+# Safari Extensions
+mas install 1462114288  # Grammarly
 
 
 echo "🚀 Installing Productivity & Office apps..."
