@@ -71,7 +71,7 @@ From here on out we will use Homebrew (`brew`) as the go-to package manager for 
 After installing iTerm2, you can switch to using the iTerm2 terminal emulator as opposed to Apple's Terminal 
 app. _[Todo: Add a note here explaining why `killall cfprefsd` is needed!]_
 ```shell script
-brew cask install iterm2
+brew install --cask iterm2
 killall cfprefsd
 # Migrate iTerm settings
 cp settings/com.googlecode.iterm2.plist ~/Library/Preferences

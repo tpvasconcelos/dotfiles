@@ -16,63 +16,63 @@ done 2>/dev/null &
 
 
 echo "🚀 Installing Text editors and IDEs..."
-brew cask install qlmarkdown
-brew cask install brackets
-brew cask install atom
-brew cask install visual-studio-code
-brew cask install texpad
+brew install --cask qlmarkdown
+brew install --cask brackets
+brew install --cask atom
+brew install --cask visual-studio-code
+brew install --cask texpad
 mas install 497799835 && sudo xcodebuild -license accept # Xcode
-brew cask install pycharm
-brew cask install datagrip
-brew cask install webstorm
+brew install --cask pycharm
+brew install --cask datagrip
+brew install --cask webstorm
 echo "🚀 Setting-up Sublime Text"
-brew cask install sublime-text
+brew install --cask sublime-text
 sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
 git clone --depth=1 https://github.com/andresmichel/one-dark-theme.git "${sublime_pkgs}/Theme - One Dark"
 ln -shfv "$(realpath settings/Preferences.sublime-settings)" "${sublime_pkgs}/User/Preferences.sublime-settings"
 
 echo "🚀 Installing Browsers..."
-brew cask install google-chrome
-brew cask install tor-browser
-brew cask install firefox
+brew install --cask google-chrome
+brew install --cask tor-browser
+brew install --cask firefox
 brew install --cask brave-browser
 # Safari Extensions
 mas install 1462114288  # Grammarly
 
 
 echo "🚀 Installing Productivity & Office apps..."
-mas install 462054704 # Microsoft Word: brew cask install microsoft-office
+mas install 462054704 # Microsoft Word: brew install --cask microsoft-office
 mas install 462058435 # Microsoft Excel
-mas install 425424353  # The Unarchiver: brew cask install the-unarchiver
-mas install 1147396723 # WhatsApp: brew cask install whatsapp
-mas install 803453959  # Slack: brew cask install slack
+mas install 425424353  # The Unarchiver: brew install --cask the-unarchiver
+mas install 1147396723 # WhatsApp: brew install --cask whatsapp
+mas install 803453959  # Slack: brew install --cask slack
 mas install 1176895641 # Spark
-brew cask install alfred
-brew cask install skitch
-brew cask install skype
-brew cask install the-unarchiver
-brew cask install whatsapp
-brew cask install slack
-brew cask install google-drive
-brew cask install notion
-brew cask install keepingyouawake
+brew install --cask alfred
+brew install --cask skitch
+brew install --cask skype
+brew install --cask the-unarchiver
+brew install --cask whatsapp
+brew install --cask slack
+brew install --cask google-drive
+brew install --cask notion
+brew install --cask keepingyouawake
 
 
 echo "🚀 Installing Misc apps..."
-brew cask install vuze
-brew cask install spotify
-brew cask install vlc
-brew cask install adobe-creative-cloud
-brew cask install blender
-brew cask install appcleaner
-brew cask install disk-inventory-x      # <http://www.derlien.com/>
-brew cask install muzzle
-brew cask install p4v
-brew cask install diffmerge
-brew cask install postman
-brew cask install jupyter-notebook-viewer
-#brew cask install paw
-# brew cask install popcorn-official/popcorn-desktop/popcorn-time
+brew install --cask vuze
+brew install --cask spotify
+brew install --cask vlc
+brew install --cask adobe-creative-cloud
+brew install --cask blender
+brew install --cask appcleaner
+brew install --cask disk-inventory-x      # <http://www.derlien.com/>
+brew install --cask muzzle
+brew install --cask p4v
+brew install --cask diffmerge
+brew install --cask postman
+brew install --cask jupyter-notebook-viewer
+#brew install --cask paw
+# brew install --cask popcorn-official/popcorn-desktop/popcorn-time
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 mas install 668208984 # GIPHY Capture. The GIF Maker

@@ -40,8 +40,8 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 brew tap homebrew/cask-fonts
-brew cask install font-juliamono
-brew cask install font-hack-nerd-font
+brew install --cask font-juliamono
+brew install --cask font-hack-nerd-font
 
 echo "🚀 Installing useful more command line utils..."
 brew install wget
@@ -69,7 +69,7 @@ brew install libpq
 brew install node
 brew install yarn
 brew install redis
-brew cask install adoptopenjdk
+brew install --cask adoptopenjdk
 brew install gnupg2
 brew install mackup
 brew install mas
@@ -88,9 +88,9 @@ brew install gcc
 brew install libomp
 
 echo "🚀 Installing misc dev tools..."
-brew cask install docker
-brew cask install kitematic
-brew cask install virtualbox
+brew install --cask docker
+brew install --cask kitematic
+brew install --cask virtualbox
 brew install awscli
 brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
@@ -126,8 +126,8 @@ brew install dart
 git clone https://github.com/flutter/flutter.git -b stable --depth 1 ~/.flutter
 
 echo "🚀 Installing R and RStudio..."
-brew cask install r
-brew cask install rstudio
+brew install --cask r
+brew install --cask rstudio
 
 echo "🚀 Installing graphviz..."
 brew install graphviz
