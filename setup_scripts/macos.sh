@@ -407,7 +407,7 @@ defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -int 0.1
+defaults write com.apple.dock expose-animation-duration -int 0
 
 # Don’t group windows by application in Mission Control
 # (i.e. use the old Exposé behavior instead)
