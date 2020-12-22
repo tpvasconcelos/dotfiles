@@ -17,14 +17,10 @@ done 2>/dev/null &
 
 echo "🚀 Installing Text editors and IDEs..."
 brew install --cask qlmarkdown
-brew install --cask brackets
 brew install --cask atom
 brew install --cask visual-studio-code
 brew install --cask texpad
-mas install 497799835 && sudo xcodebuild -license accept # Xcode
-brew install --cask pycharm
-brew install --cask datagrip
-brew install --cask webstorm
+brew install --cask jetbrains-toolbox
 echo "🚀 Setting-up Sublime Text"
 brew install --cask sublime-text
 sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
