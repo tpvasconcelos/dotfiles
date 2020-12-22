@@ -115,6 +115,10 @@ sudo gem install bundler
 sudo gem install -n "$BREW_PREFIX/bin/" jekyll
 sudo gem install --user-install bundler jekyll
 
+echo "🚀 Installing Hugo..."
+# Hugo - <https://gohugo.io/getting-started/installing/>
+brew install hugo
+
 echo "🚀 Installing Flutter..."
 # Flutter - https://flutter.dev/docs/get-started/install/macos
 # the next commands do not work... Probably something to do with current cpp compiler?
