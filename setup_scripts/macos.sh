@@ -414,7 +414,7 @@ defaults write com.apple.dock expose-animation-duration -int 0
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock mru-spaces -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true

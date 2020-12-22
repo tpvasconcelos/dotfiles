@@ -170,9 +170,6 @@ App settings:
 2. Migrate all relevant app preferences from `~/Library/Preferences/`
 
 
-References:
-- https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs
-
 
 ### Update everything
 **Note that, if needed, the first command will automatically restart your machine!**
