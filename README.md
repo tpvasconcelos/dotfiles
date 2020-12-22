@@ -184,7 +184,7 @@ Update any packages installed with brew
 ```shell script
 brew update
 brew upgrade
-brew cask upgrade --greedy
+brew upgrade --cask --greedy
 brew cleanup
 ```
 
