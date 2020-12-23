@@ -75,8 +75,8 @@ brew install --cask iterm2
 killall cfprefsd
 # Migrate iTerm settings
 cp settings/com.googlecode.iterm2.plist ~/Library/Preferences
-# Download Shell Integration script
-curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+# Download Shell Integration and iTerm2 utilities
+curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 ```
 Other terminal emulators to consider:
 - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator

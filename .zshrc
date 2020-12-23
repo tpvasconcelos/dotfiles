@@ -40,8 +40,7 @@ for dotscript in "${SHELL_DIR_INTERACTIVE}"/functions/*(.); do
   load "$dotscript"
 done
 
-# FIXME: iTerm2 Shell Integration
-#load "${HOME}/.iterm2_shell_integration.zsh"
+load "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
 load "${SHELL_DIR_INTERACTIVE}/sources/oncall/.p10k.zsh"
