@@ -109,13 +109,7 @@ helm plugin install https://github.com/databus23/helm-diff --version master  # h
 echo "🚀 Installing Jekyll..."
 # Jekyll - <https://jekyllrb.com/docs/installation/macos/>
 brew install ruby
-brew install rbenv
-rbenv install 2.7.2
-rbenv global 2.7.2
-sudo gem install bundler
-# the next commands do not work... Probably something to do with current cpp compiler?
-sudo gem install -n "$BREW_PREFIX/bin/" jekyll
-sudo gem install --user-install bundler jekyll
+gem install --user-install bundler jekyll
 
 echo "🚀 Installing Hugo..."
 # Hugo - <https://gohugo.io/getting-started/installing/>
