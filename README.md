@@ -193,6 +193,23 @@ brew doctor
 ```
 
 
+### Reclaim some disk space
+Safely delete some `CoreSimulator` caches used by Xcode
+```shell script
+xcrun simctl delete all && xcrun simctl erase all
+rm -rf ~/Library/Developer/CoreSimulator/Caches/*
+```
+
+You can occasionally also clear your caches for tools like Homebrew and `pip`
+```shell script
+# clear homebrew's caches
+brew cleanup -s
+
+# Clears caches (pipenv, pip, and pip-tools)
+pipenv --clear
+```
+
+
 
 ## References
 
