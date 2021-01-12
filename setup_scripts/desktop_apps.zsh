@@ -15,6 +15,11 @@ while true; do
 done 2>/dev/null &
 
 
+echo "🚀 Installing drivers..."
+brew tap homebrew/cask-drivers
+brew install --cask logitech-options
+
+
 echo "🚀 Installing Text editors and IDEs..."
 brew install --cask qlmarkdown
 brew install --cask visual-studio-code
@@ -25,6 +30,7 @@ brew install --cask sublime-text
 sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
 git clone --depth=1 https://github.com/andresmichel/one-dark-theme.git "${sublime_pkgs}/Theme - One Dark"
 ln -shfv "$(realpath settings/Preferences.sublime-settings)" "${sublime_pkgs}/User/Preferences.sublime-settings"
+
 
 echo "🚀 Installing Browsers..."
 brew install --cask google-chrome
