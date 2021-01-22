@@ -73,7 +73,8 @@ brew install --cask diffmerge
 brew install --cask postman
 brew install --cask jupyter-notebook-viewer
 #brew install --cask paw
-# brew install --cask popcorn-official/popcorn-desktop/popcorn-time
+brew tap popcorn-official/popcorn-desktop https://github.com/popcorn-official/popcorn-desktop.git && \
+  brew install --cask popcorn-time
 mas install 909566003 # iHex
 mas install 909760813 # Who's On My WiFi
 mas install 668208984 # GIPHY Capture. The GIF Maker
