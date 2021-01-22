@@ -13,8 +13,11 @@ log_info "Installing pipenv..."
 brew install pipenv
 
 log_info "Installing brew's python (and unlinking it!)..."
-# TODO: is this step necessary? isnt python already installed? maybe simply unlink?
-brew install python && brew unlink python
+# TODO: is this step necessary?
+#       isn't brew's python already installed?
+#       maybe simply unlink?
+#       or simply do nothing?
+#brew install python && brew unlink python
 
 log_info "Installing poetry..."
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
