@@ -71,7 +71,8 @@ brew install --cask muzzle
 brew install --cask p4v
 brew install --cask diffmerge
 brew install --cask postman
-brew install --cask jupyter-notebook-viewer
+brew install --cask jupyter-notebook-viewer # https://github.com/tuxu/nbviewer-app
+brew install --cask eul                     # https://github.com/gao-sun/eul/
 #brew install --cask paw
 brew tap popcorn-official/popcorn-desktop https://github.com/popcorn-official/popcorn-desktop.git && \
   brew install --cask popcorn-time
