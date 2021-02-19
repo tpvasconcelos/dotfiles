@@ -1,37 +1,38 @@
 {
-
-    // Theme settings
-    "color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
-    "theme": "One Dark.sublime-theme",
-    "one_dark_native_title_bar": true,  // Only for Mac & Sublime Text 3 >= build 3127
-    "one_dark_show_scroll_tabs": false,  // Only for Sublime Text 3
-    "one_dark_show_tabs_dropdown": false,  // Only for Sublime Text 3
-    "one_dark_bigger_sidebar": true,  // Uses font-size 14 for the sidebar
-    "one_dark_sidebar_font_fira_light": false,  // Uses Fira Light for the sidebar
-
-    // My Changes
-    "font_size": 12,
-    "rulers": [72, 79, 120],
-    "spell_check": true,
-    "translate_tabs_to_spaces": true,
-    "trim_trailing_white_space_on_save": true,
-    "save_on_focus_lost": true,
-    "animation_enabled": true,
-    "caret_extra_top": 1,
-    "caret_extra_bottom": 1,
-    "caret_extra_width": 1,
-    "caret_style": "smooth",
-    "ensure_newline_at_eof_on_save": true,
-    "highlight_line": true,
-    "line_padding_bottom": 1,
-    "line_padding_top": 1,
-    "margin": 0,
-    "match_selection": false,
-    "tree_animation_enabled": true,
-    "show_definitions": true,
-    "show_tab_close_buttons": true,
-    "auto_complete_commit_on_tab": true,
-    "shift_tab_unindent": true,
-    "drag_text": false,
-    "always_show_minimap_viewport": true,
+	"always_show_minimap_viewport": true,
+	"animation_enabled": true,
+	"auto_complete_commit_on_tab": true,
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 1,
+	"caret_extra_width": 1,
+	"caret_style": "smooth",
+	"color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
+	"drag_text": false,
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 13,
+	"highlight_line": true,
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"margin": 0,
+	"match_selection": false,
+	"one_dark_bigger_sidebar": true,
+	"one_dark_native_title_bar": true,
+	"one_dark_show_scroll_tabs": false,
+	"one_dark_show_tabs_dropdown": false,
+	"one_dark_sidebar_font_fira_light": false,
+	"rulers":
+	[
+		72,
+		79,
+		120
+	],
+	"save_on_focus_lost": true,
+	"shift_tab_unindent": true,
+	"show_definitions": true,
+	"show_tab_close_buttons": true,
+	"spell_check": true,
+	"theme": "One Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"tree_animation_enabled": true,
+	"trim_trailing_white_space_on_save": true
 }
