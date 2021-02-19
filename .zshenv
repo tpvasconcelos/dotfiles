@@ -3,6 +3,12 @@
 # .zshenv: zsh environment settings
 ########################################
 
+# Fast path to the brew prefix ---> $(brew --prefix)
+# This variable is exported first because it's
+# used by several of the following scripts
+BREW_PREFIX="/usr/local"
+export BREW_PREFIX
+
 # The path to the ~/.dotfiles directory needs to be known
 # a priori since all other configs live under this path!
 export DOTFILES="${HOME}/.dotfiles"

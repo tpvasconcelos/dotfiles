@@ -8,12 +8,6 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 load "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
-# Fast path to the brew prefix ---> /usr/local
-# This variable is exported first because it's
-# used by several of the following scripts
-BREW_PREFIX="$(brew --prefix)"
-export BREW_PREFIX
-
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
