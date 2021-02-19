@@ -97,14 +97,18 @@ brew install awscli
 brew install pre-commit
 brew install shellcheck  # (for pre-commit hooks with shellcheck)
 brew install cookiecutter
+brew tap fishtown-analytics/dbt && brew install dbt
 
-echo "🚀 Installing Kubernetes..."
-brew install kubectx  # https://github.com/ahmetb/kubectx
-brew install derailed/k9s/k9s  # https://github.com/derailed/k9s
-brew install kube-ps1  # https://github.com/jonmosco/kube-ps1
-brew install aws-iam-authenticator  # https://github.com/kubernetes-sigs/aws-iam-authenticator
-brew install helm  # https://github.com/helm/helm
-helm plugin install https://github.com/databus23/helm-diff --version master  # https://github.com/databus23/helm-diff
+echo "🚀 Installing Kubernetes... (well... not really...)"
+brew install kubectx                  # https://github.com/ahmetb/kubectx
+brew install derailed/k9s/k9s         # https://github.com/derailed/k9s
+brew install kube-ps1                 # https://github.com/jonmosco/kube-ps1
+brew install aws-iam-authenticator    # https://github.com/kubernetes-sigs/aws-iam-authenticator
+brew install ubuntu/microk8s/microk8s # https://microk8s.io/
+microk8s install -y
+microk8s enable kubeflow              # https://www.kubeflow.org/
+brew install helm                     # https://github.com/helm/helm
+helm plugin install https://github.com/databus23/helm-diff --version master
 
 echo "🚀 Installing Jekyll..."
 # Jekyll - <https://jekyllrb.com/docs/installation/macos/>
