@@ -43,14 +43,14 @@ commands from the Terminal app.
 pointing to the correct (active) developer directory. Follow the installation steps that will open in a user 
 interface dialog and proceed to the next step.
     ```shell script
-    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer && \
-      xcode-select --install
+    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+    xcode-select --install
     ```
 1. As a final step, you'll need to accept the Xcode and SDK license agreements. The second command will also
 install any missing packages.
     ```shell script
-    sudo xcodebuild -license accept && \
-       sudo xcodebuild -runFirstLaunch
+    sudo xcodebuild -license accept
+    sudo xcodebuild -runFirstLaunch
     ```
 
 ##### Install any pending software updates
@@ -63,8 +63,8 @@ sudo softwareupdate --install --all --verbose --force --agree-to-license --resta
 #### Install Homebrew (brew)
 From here on out we will use [Homebrew](https://brew.sh) (`brew`) as the go-to package manager for macOS.
 ```shell script
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-  brew update && brew upgrade
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew update && brew upgrade
 ```
 
 #### Upgrade and configure shells
