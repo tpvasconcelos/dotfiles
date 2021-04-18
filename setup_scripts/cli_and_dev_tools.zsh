@@ -50,8 +50,9 @@ brew install wget
 brew install tree
 brew install rename
 brew install htop
-brew install git && git lfs install
+brew install git
 brew install git-lfs
+git lfs install
 ln -shfv "$(realpath preferences/git/.gitconfig)" ~
 ln -shfv "$(realpath preferences/git/.gitignore_global)" ~
 brew install hub
