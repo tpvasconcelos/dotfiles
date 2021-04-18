@@ -57,7 +57,7 @@ install any missing packages.
 We'll now install any pending software updates for your machine. **Note that, if needed, this command will 
 automatically restart your machine!**
 ```shell script
-sudo softwareupdate --install --all --verbose --force --restart
+sudo softwareupdate --install --all --verbose --force --agree-to-license --restart
 ```
 
 #### Install Homebrew (brew)
