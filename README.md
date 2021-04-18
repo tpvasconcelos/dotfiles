@@ -67,21 +67,6 @@ From here on out we will use [Homebrew](https://brew.sh) (`brew`) as the go-to p
   brew update && brew upgrade
 ```
 
-#### Install a better terminal emulator (iTerm2)
-After installing [iTerm2](https://iterm2.com/), you can switch to using the iTerm2 terminal emulator as 
-opposed to Apple's Terminal app. _[Todo: Add a note here explaining why `killall cfprefsd` is needed!]_
-```shell script
-brew install --cask iterm2
-killall cfprefsd
-# Create a symlink to iTerm's preferences plist. Note that this will overwrite
-# the existing plist under ~/Library/Preferences/com.googlecode.iterm2.plist
-ln -shfv "$(realpath preferences/com.googlecode.iterm2.plist)" ~/Library/Preferences
-# Download Shell Integration and iTerm2 utilities
-curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
-```
-Other terminal emulators to consider:
-- [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
-
 #### Upgrade and configure shells
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
 the terminal emulator installed in the previous step (e.g. Iterm2).
@@ -95,6 +80,12 @@ Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configura
 reports, completion management, Turbo, annexes, services, packages.
 - [zplug](https://github.com/zplug/zplug) - 🌺 A next-generation plugin manager for zsh
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
+
+#### Install CLI and dev tools
+Have a look inside this script to see what will be installed...
+```shell script
+./setup_scripts/cli_and_dev_tools.zsh
+```
 
 #### Shell Startup Files
 Create symlinks to your startup scripts. **Warning: this will overwrite any existing files under the same 
@@ -120,12 +111,6 @@ examples.
   `#!/usr/bin/env zsh` shebang line, it can be executed directly as `./some_script` or called as a regular 
   command if it exists under `$PATH`. Alternatively you can explicitly execute the script as 
   `zsh some_script`.
-
-#### Install CLI and dev tools
-Have a look inside this script to see what will be installed...
-```shell script
-./setup_scripts/cli_and_dev_tools.zsh
-```
 
 #### Install Python Development Tools
 I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. Then 
