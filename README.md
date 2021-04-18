@@ -68,8 +68,8 @@ From here on out we will use [Homebrew](https://brew.sh) (`brew`) as the go-to p
 ```
 
 #### Install a better terminal emulator (iTerm2)
-After installing iTerm2, you can switch to using the iTerm2 terminal emulator as opposed to Apple's Terminal 
-app. _[Todo: Add a note here explaining why `killall cfprefsd` is needed!]_
+After installing [iTerm2](https://iterm2.com/), you can switch to using the iTerm2 terminal emulator as 
+opposed to Apple's Terminal app. _[Todo: Add a note here explaining why `killall cfprefsd` is needed!]_
 ```shell script
 brew install --cask iterm2
 killall cfprefsd
