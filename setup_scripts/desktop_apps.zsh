@@ -42,12 +42,11 @@ mas install 1462114288  # Grammarly
 
 
 echo "🚀 Installing Productivity & Office apps..."
-mas install 462054704 # Microsoft Word: brew install --cask microsoft-office
-mas install 462058435 # Microsoft Excel
-mas install 425424353  # The Unarchiver: brew install --cask the-unarchiver
-mas install 1147396723 # WhatsApp: brew install --cask whatsapp
-mas install 803453959  # Slack: brew install --cask slack
-mas install 1176895641 # Spark
+brew install --cask microsoft-office  # mas install 462054704
+brew install --cask microsoft-excel   # mas install 462058435
+brew install --cask the-unarchiver    # mas install 425424353
+brew install --cask whatsapp          # mas install 1147396723
+brew install --cask slack             # mas install 803453959
 brew install --cask alfred
 brew install --cask skitch
 brew install --cask skype
@@ -57,6 +56,7 @@ brew install --cask slack
 brew install --cask google-drive
 brew install --cask notion
 brew install --cask keepingyouawake
+brew install --cask raindropio
 
 
 echo "🚀 Installing Misc apps..."
