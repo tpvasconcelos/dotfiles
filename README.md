@@ -142,6 +142,22 @@ patch version, or the minor version (in which case the latest patch will be inst
     PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" ./setup_scripts/python_dev_environment.zsh
     ```
 
+#### Setup `ssh` for `git`
+For a more detailed guide, look at the official documentation from
+[GitHub](https://help.github.com/en/articles/connecting-to-github-with-ssh),
+[Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2),
+and [GitLab](https://docs.gitlab.com/ee/ssh/). 
+However, if you are just looking for a reminder, use the snipped bellow 
+```shell script
+yes | ssh-keygen -P "" -f ~/.ssh/id_rsa
+eval "$(ssh-agent)"
+ln -shfv "$(realpath preferences/ssh/config)" ~/.ssh
+/usr/bin/ssh-add -K ~/.ssh/id_rsa
+
+# Here, we are copying the public key to the clipboard.
+# After running this, add it to your GitHub/GitLab/Bitbucket known SSH keys!
+pbcopy < ~/.ssh/id_rsa.pub
+```
 
 ### Update general macOS preferences
 This will update many of the default macos settings and system preferences. **Warning: It's recommended to 
