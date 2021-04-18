@@ -26,7 +26,7 @@ For more read the relevant docs
 ```shell script
 yes | ssh-keygen -P "" -f ~/.ssh/id_rsa
 eval "$(ssh-agent)"
-echo -e "Host *\n  IgnoreUnknown UseKeychain\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_rsa" >~/.ssh/config
+ln -shfv "$(realpath preferences/ssh/config)" ~/.ssh
 /usr/bin/ssh-add -K ~/.ssh/id_rsa
 
 # Here, we are copying the public key to the clipboard.
