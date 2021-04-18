@@ -57,7 +57,6 @@ ln -shfv "$(realpath preferences/git/.gitignore_global)" ~
 brew install hub
 brew install mdv
 brew install howdoi
-pip install termdown
 brew install fzf      # Command-line fuzzy finder written in Go - <https://github.com/junegunn/fzf>
 brew install luarocks
 brew install openssl
