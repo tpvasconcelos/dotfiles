@@ -61,9 +61,9 @@ sudo softwareupdate --install --all --verbose --force --agree-to-license --resta
 ```
 
 #### Install Homebrew (brew)
-From here on out we will use Homebrew (`brew`) as the go-to package manager for macOS.
+From here on out we will use [Homebrew](https://brew.sh) (`brew`) as the go-to package manager for macOS.
 ```shell script
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && \
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
   brew update && brew upgrade
 ```
 
