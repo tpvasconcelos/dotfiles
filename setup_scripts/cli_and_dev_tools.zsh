@@ -52,8 +52,8 @@ brew install rename
 brew install htop
 brew install git && git lfs install
 brew install git-lfs
-ln -shfv "$(realpath git/.gitconfig)" ~
-ln -shfv "$(realpath git/.gitignore_global)" ~
+ln -shfv "$(realpath preferences/git/.gitconfig)" ~
+ln -shfv "$(realpath preferences/git/.gitignore_global)" ~
 brew install hub
 brew install mdv
 brew install howdoi

@@ -29,7 +29,7 @@ echo "🚀 Setting-up Sublime Text"
 brew install --cask sublime-text
 sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
 git clone --depth=1 https://github.com/andresmichel/one-dark-theme.git "${sublime_pkgs}/Theme - One Dark"
-ln -shfv "$(realpath settings/Preferences.sublime-settings)" "${sublime_pkgs}/User/Preferences.sublime-settings"
+ln -shfv "$(realpath preferences/Preferences.sublime-settings)" "${sublime_pkgs}/User/Preferences.sublime-settings"
 
 
 echo "🚀 Installing Browsers..."
