@@ -19,7 +19,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Load plugins
-load "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins"
+load "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins.zsh"
 
 # Load om-my-zsh
 load "${ZSH}/oh-my-zsh.sh"

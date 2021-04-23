@@ -19,13 +19,13 @@ export SHELL_DIR_INTERACTIVE="${DOTFILES}/shell/interactive"
 # Load core functions  ---
 # These have to be sourced first since I use some
 # on the utils defined here in the upcoming steps
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing"
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi.zsh"
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging.zsh"
+source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing.zsh"
 loaded_scripts=(
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi"
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging"
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing"
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi.zsh"
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging.zsh"
+  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing.zsh"
 )
 export loaded_scripts
 typeset -U loaded_scripts
