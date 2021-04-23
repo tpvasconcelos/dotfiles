@@ -47,43 +47,36 @@ brew install --cask font-hack-nerd-font
 
 echo "🚀 Installing useful more command line utils..."
 brew install wget
-brew install tree
-brew install rename
 brew install htop
+brew install tree
+brew install glow     # https://github.com/charmbracelet/glow
+brew install fzf      # https://github.com/junegunn/fzf
+brew install openssl
+brew install readline
+brew install sqlite
+brew install postgresql
+brew install node
+brew install yarn
+brew install redis
+brew install mackup
+brew install mas
+brew install ffmpeg
+brew install thefuck
+brew install ncdu               # https://dev.yorhel.nl/ncdu
+brew install shellcheck         # https://github.com/koalaman/shellcheck
+brew install pygments           # https://pygments.org/
+brew install awscli
+brew install pre-commit
+brew install cookiecutter
+brew tap fishtown-analytics/dbt && brew install dbt
+go get -u github.com/alecthomas/chroma/cmd/chroma
+
+echo "🚀 Upgrading git..."
 brew install git
 brew install git-lfs
 git lfs install
 ln -shfv "$(realpath preferences/git/.gitconfig)" ~
 ln -shfv "$(realpath preferences/git/.gitignore_global)" ~
-brew install hub
-brew install mdv
-brew install howdoi
-brew install fzf      # Command-line fuzzy finder written in Go - <https://github.com/junegunn/fzf>
-brew install luarocks
-brew install openssl
-brew install readline
-brew install sqlite3
-brew install xz
-brew install zlib
-brew install sqlite
-brew install postgresql
-brew install freetype
-brew install libxslt
-brew install libpq
-brew install node
-brew install yarn
-brew install redis
-brew install --cask adoptopenjdk
-brew install gnupg2
-brew install mackup
-brew install mas
-brew install ffmpeg
-brew install tree
-brew install thefuck
-brew install ncdu               # https://dev.yorhel.nl/ncdu
-brew install shellcheck         # https://github.com/koalaman/shellcheck
-brew install pygments           # https://pygments.org/
-go get -u github.com/alecthomas/chroma/cmd/chroma
 
 echo "🚀 Installing compilers..."
 brew install cmake
@@ -101,15 +94,10 @@ ln -shfv "$(realpath preferences/com.googlecode.iterm2.plist)" ~/Library/Prefere
 # Download Shell Integration and iTerm2 utilities
 curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 
-echo "🚀 Installing misc dev tools..."
+echo "🚀 Installing docker and virtualbox..."
 brew install --cask docker
 brew install --cask kitematic
 brew install --cask virtualbox
-brew install awscli
-brew install pre-commit
-brew install shellcheck  # (for pre-commit hooks with shellcheck)
-brew install cookiecutter
-brew tap fishtown-analytics/dbt && brew install dbt
 
 echo "🚀 Installing Kubernetes... (well... not really...)"
 brew install kubectx                  # https://github.com/ahmetb/kubectx
