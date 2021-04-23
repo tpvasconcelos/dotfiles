@@ -43,7 +43,6 @@ mas install 1462114288  # Grammarly
 
 echo "🚀 Installing Productivity & Office apps..."
 brew install --cask microsoft-office  # mas install 462054704
-brew install --cask microsoft-excel   # mas install 462058435
 brew install --cask the-unarchiver    # mas install 425424353
 brew install --cask whatsapp          # mas install 1147396723
 brew install --cask slack             # mas install 803453959
