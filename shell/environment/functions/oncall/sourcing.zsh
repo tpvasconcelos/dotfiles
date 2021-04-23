@@ -1,5 +1,5 @@
 abspath() {
-  # This my replacement for `source`
+  # Converts any path to its absolute path
   # Arguments:
   #   * $@ : path-like string
   echo "$(cd "$(dirname "${@}")" && pwd)/$(basename "${@}")"
@@ -23,7 +23,7 @@ load() {
     source "${path_to_script}"
     loaded_scripts=("${path_to_script}" "${loaded_scripts[@]}")
   else
-    log_error "Could not source '${1}'. The file does not exist!"
+    log_error "Could not source '$path_to_script'. The file does not exist!"
     return 1
   fi
 }
