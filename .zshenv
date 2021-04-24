@@ -3,17 +3,16 @@
 # .zshenv: zsh environment settings
 ########################################
 
-# Fast path to the brew prefix ---> $(brew --prefix)
-# This variable is exported first because it's
-# used by several of the following scripts
-BREW_PREFIX="/usr/local"
-export BREW_PREFIX
-
 DOTFILES_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export DOTFILES_DIR
 
 export SHELL_DIR_ENVIRONMENT="${DOTFILES_DIR}/shell/environment"
 export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
+
+# Fast path to the brew prefix ---> $(brew --prefix)
+# This variable is exported first because it's
+# used by several of the following scripts
+export BREW_PREFIX="/usr/local"
 
 # Load core functions  ---
 # These have to be sourced first since I use some
