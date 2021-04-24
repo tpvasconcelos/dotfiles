@@ -9,12 +9,11 @@
 BREW_PREFIX="/usr/local"
 export BREW_PREFIX
 
-# The path to the ~/.dotfiles directory needs to be known
-# a priori since all other configs live under this path!
-export DOTFILES="${HOME}/.dotfiles"
+DOTFILES_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export DOTFILES_DIR
 
-export SHELL_DIR_ENVIRONMENT="${DOTFILES}/shell/environment"
-export SHELL_DIR_INTERACTIVE="${DOTFILES}/shell/interactive"
+export SHELL_DIR_ENVIRONMENT="${DOTFILES_DIR}/shell/environment"
+export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
 
 # Load core functions  ---
 # These have to be sourced first since I use some
