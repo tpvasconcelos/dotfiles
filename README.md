@@ -71,7 +71,7 @@ brew update && brew upgrade
 This script will install and configure more up-tp-date versions of the bash and zsh shells. Run this in 
 the terminal emulator installed in the previous step (e.g. Iterm2).
 ```shell script
-./setup_scripts/setup_shells.sh
+./setup_scripts/setup_shells.zsh
 ```
 Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a 
 [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme. You can consider other frameworks, such as:
@@ -149,7 +149,7 @@ This will update many of the default macos settings and system preferences. **Wa
 reboot your machine after updating many of these preferences.** For convenience, this script will prompt you 
 for an automatic reboot at the end 💪
 ```shell script
-./setup_scripts/macos.sh
+./setup_scripts/macos.zsh
 ```
 From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option 
 to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced 
@@ -223,7 +223,7 @@ docker image prune
 popularised the "bare repository and alias method" for managing dotfiles. This method is also references in
 [Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
 * [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) - inspiration for 
-most of the settings in [macos.sh](setup_scripts/macos.sh). Take everything in this repository with a pinch 
+most of the settings in [macos.zsh](setup_scripts/macos.zsh). Take everything in this repository with a pinch 
 of salt. macOS is a fast-moving environment that does not prioritise backwards compatibility for these 
 settings or preferences.
 * <https://github.com/grant/new-computer-checklist>
