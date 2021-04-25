@@ -88,9 +88,6 @@ echo " Installing iTerm2"
 # Other terminal emulators to consider:
 # - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
 brew install --cask iterm2
-# Create a symlink to iTerm's preferences plist. Note that this will overwrite
-# the existing plist under ~/Library/Preferences/com.googlecode.iterm2.plist
-ln -shfv "$(realpath preferences/com.googlecode.iterm2.plist)" ~/Library/Preferences
 # Download Shell Integration and iTerm2 utilities
 curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 
