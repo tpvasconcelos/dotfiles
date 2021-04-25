@@ -3,7 +3,7 @@
 # .zshenv: zsh environment settings
 ########################################
 
-DOTFILES_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$(dirname "$(readlink .zshenv)")"
 export DOTFILES_DIR
 
 export SHELL_DIR_ENVIRONMENT="${DOTFILES_DIR}/shell/environment"
