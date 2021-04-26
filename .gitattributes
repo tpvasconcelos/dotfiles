@@ -5,6 +5,6 @@ preferences/Mackup/** filter=git-crypt diff=git-crypt
 preferences/Mackup/.mackup/** !filter !diff
 preferences/Mackup/.ssh/config !filter !diff
 "preferences/Mackup/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings" !filter !diff
-preferences/Mackup/.Brewfile !filter !diff
+preferences/Mackup/Brewfile !filter !diff
 preferences/Mackup/.gitconfig !filter !diff
 preferences/Mackup/.gitignore_global !filter !diff
