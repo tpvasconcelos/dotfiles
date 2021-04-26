@@ -74,6 +74,7 @@ go get -u github.com/alecthomas/chroma/cmd/chroma
 echo "🚀 Upgrading git..."
 brew install git
 brew install git-crypt
+brew install gpg
 brew install git-lfs
 git lfs install
 
