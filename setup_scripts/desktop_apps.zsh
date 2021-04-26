@@ -23,7 +23,6 @@ brew install --cask logitech-options
 echo "🚀 Installing Text editors and IDEs..."
 brew install --cask qlmarkdown
 brew install --cask visual-studio-code
-brew install --cask texpad
 brew install --cask jetbrains-toolbox
 echo "🚀 Setting-up Sublime Text"
 brew install --cask sublime-text

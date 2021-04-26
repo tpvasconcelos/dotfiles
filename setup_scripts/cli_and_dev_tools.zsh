@@ -75,8 +75,6 @@ echo "🚀 Upgrading git..."
 brew install git
 brew install git-lfs
 git lfs install
-ln -shfv "$(realpath preferences/git/.gitconfig)" ~
-ln -shfv "$(realpath preferences/git/.gitignore_global)" ~
 
 echo "🚀 Installing compilers..."
 brew install cmake
