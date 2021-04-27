@@ -1,10 +1,13 @@
 get_stem() {
-  # Gets the stem of a given path. It does not check if the path
+  # Gets the stem of a given path. Note that this function does *not* check if
+  # the path actually exists!
   # Arguments:
   #   * $1 : path-like string
   # Examples:
   #   $ get_stem /path/to/script.sh
-  #   file
+  #   script
+  #   $ get_stem /path/to/script.min.js
+  #   script.min
   #   $ get_stem /path/to/file
   #   file
   #   $ get_stem /path/to/directory
