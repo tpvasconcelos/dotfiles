@@ -73,7 +73,7 @@ brew "ffmpeg"
 brew "thefuck"
 brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
-brew "pygments"             # https://pygments.org/
+brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "pre-commit"
 brew "cookiecutter"

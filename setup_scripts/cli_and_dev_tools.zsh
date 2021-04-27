@@ -69,7 +69,6 @@ brew install awscli
 brew install pre-commit
 brew install cookiecutter
 brew tap fishtown-analytics/dbt && brew install dbt
-go get -u github.com/alecthomas/chroma/cmd/chroma
 
 echo "🚀 Upgrading git..."
 brew install git
