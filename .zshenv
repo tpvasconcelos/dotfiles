@@ -20,7 +20,7 @@ export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
 # Misc ---
 export GOPATH="${HOME}/go"
 export LANG="en_US.UTF-8"
-export PYENV_TARGET_VERSIONS=("2.7" "3.7" "3.8" "3.9" "3.10")
+export PYENV_TARGET_VERSIONS=("2.7" "3.7" "3.8" "3.9")
 export GREP_COLOR='1;33'
 
 

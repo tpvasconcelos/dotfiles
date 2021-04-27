@@ -4,48 +4,61 @@ tau_install() {
   #   * $1 : Empty string or a valid Python version number,
   #          matching the regex (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
   # Examples:
-  #   $ python_upgrade
-  #   [INFO] - Installing Python 3.9.0
-  #   $ python_upgrade 2.7
+  #   $ tau_install
+  #   [INFO] - Installing Python 3.9.4
+  #   $ tau_install 2.7
   #   [WARNING] - Skipping: Python 2.7.18 is already installed.
-  #   $ python_upgrade 3.7.1
+  #   $ tau_install 3.7.1
   #   [INFO] - Installing Python 3.7.1
-  #   $ python_upgrade 3.10-dev
+  #   $ tau_install 3.10-dev
   #   [ERROR] - The input '3.10-dev' doesnt match the a valid version number.
+  local py_version_user_input="${1}"
   local py_version_patch
 
-  # Handy regex matches from version numbers
+  # Note to developer --> Handy regex matches from version numbers
   # * major ("3")     --> ^[0-9]+$
   # * minor ("3.8")   --> ^[0-9]+\.[0-9]+$
   # * patch ("3.8.5") --> ^[0-9]+\.[0-9]+\.[0-9]+$
   # * any             --> ^([0-9]+\.)?([0-9]+\.)?([0-9]+)$
   # * empty str ok    --> (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
 
-  if [[ ! "${1}" =~ (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$) ]]; then
+
+  if [[ ! "${py_version_user_input}" =~ (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$) ]]; then
     # The user input to this function should be a string representation of a
     # python version, matching the regular expression ^([0-9]+\.)?([0-9]+\.)?([0-9]+)$
     # Alternatively, you can pass an empty string, in which case, the latest available
     # stable version will be pulled and installed.
     # e.g. --> "2" or "3.6" or "3.8.5" or "" (empty string)
-    log_error "The input '${1}' doesnt match the a valid version number."
+    log_error "The input '${py_version_user_input}' doesnt match the a valid version number."
     return 1
-  elif [[ "${1}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    # If the input matches an exact patch version (e.g. "3.8.5")
-    # we'll try to get this exact version number from pyenv
-    py_version_patch="${1}"
+  elif [[ "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    # If the input matches an exact patch version (e.g. "3.8.5") we'll try to
+    # get this exact version number from pyenv and, therefore, won't need to
+    # infer the latest patch from the major or minor version (see below)
+    py_version_patch="${py_version_user_input}"
   else
-    # Grab the latest CPython patch available in pyenv (ignore dev)
-    # Some examples
-    #   * ""       --> 3.9.0  (an empty string as input will grab the latest stable patch)
-    #   * "2"      --> 2.7.18 (latest stable patch from major)
-    #   * "2.7"    --> 2.7.18 (latest stable patch from minor)
-    #   * "2.7.18" --> 2.7.18 (grab exact patch)
-    py_version_patch="$(pyenv install --list | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${1}" | tail -n 1 | xargs)"
-  fi
-
-  if [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    log_error "Something went wrong parsing the python version. '${py_version_patch}' doesnt match the right regex."
-    return 1
+    # If this condition is reached, it means the user either did not supply any
+    # version (empty $py_version_user_input) or the user supplied a major or
+    # minor version in $py_version_user_input. In either case, we will grab the
+    # latest stable patch that matches $py_version_user_input. We do this by
+    # matching the latest CPython patch available in pyenv, and ignoring dev
+    # versions. See some examples below...
+    # ""    --> 3.10.0 (an empty string will match the latest stable patch)
+    # "2"   --> 2.7.18 (latest stable patch from major)
+    # "3.9" --> 3.9.4  (latest stable patch from minor)
+    py_version_patch="$(pyenv install --list | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
+    if [[ -z "${py_version_patch}" ]]; then
+      # If $py_version_user_input is a valid Python version (regex-wise) but
+      # $py_version_patch is empty, this means no match was found for
+      # $py_version_user_input. Either this version does not exist
+      # (e.g. "4.2.0") or it isn't available in pyenv
+      log_error "Could not find a match for '${py_version_user_input}'. Are you sure this Python version exists?"
+      return 1
+    elif [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+      # Something else went wrong...
+      log_error "Something went wrong parsing the python version. '${py_version_patch}' doesnt match the right regex."
+      return 1
+    fi
   fi
 
   if contains "$(pyenv versions)" "$py_version_patch"; then
@@ -58,8 +71,8 @@ tau_install() {
     MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
     export SDKROOT
     export MACOSX_DEPLOYMENT_TARGET
-    log_info "Installing Python ${py_version_patch}"
-    #pyenv install "${py_version_patch}"
+    log_info "Installing Python '${py_version_patch}'"
+    pyenv install "${py_version_patch}"
   fi
 }
 
@@ -68,14 +81,14 @@ tau_install_all() {
   # Arguments:
   #   * <NONE>
   # Examples:
-  #   $ ./setup_scripts/python_dev_environment.zsh
+  #   $ tau_install_all
   #   [DEBUG] - Collected python versions: (2.7 3.7 3.8)
   #   [INFO] - Installing Python 2.7.18
-  #   [INFO] - Installing Python 3.7.9
+  #   [WARNING] - Skipping: Python 3.7.10 is already installed.
   #   [INFO] - Installing Python 3.8.6
-  #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" ./setup_scripts/python_dev_environment.zsh
+  #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau_install_all
   #   [DEBUG] - Collected python versions: (3.7 3.8.5)
-  #   [WARNING] - Skipping: Python 3.7.9 is already installed.
+  #   [WARNING] - Skipping: Python 3.7.10 is already installed.
   #   [INFO] - Installing Python 3.8.5
   local py_versions pyv
   if [[ -n ${PYENV_TARGET_VERSIONS_OVERWRITE+x} ]]; then
@@ -84,7 +97,7 @@ tau_install_all() {
     # For instance, "2.7 3.6 3.8.5" becomes ("2.7" "3.6" "3.8.5")
     IFS=" " read -rA py_versions <<<"${PYENV_TARGET_VERSIONS_OVERWRITE}"
   else
-    # Otherwise, simply fallback to the default versions in $PYENV_TARGET_VERSIONS
+    # else... simply fallback to the default versions in $PYENV_TARGET_VERSIONS
     py_versions=("${PYENV_TARGET_VERSIONS[@]}")
   fi
   log_debug "Collected python versions: (${py_versions[*]})"
