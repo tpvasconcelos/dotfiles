@@ -1,23 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -eu
 
 # Adapted from:
 # * https://mths.be/macos
 # * https://github.com/herrbischoff/awesome-macos-command-line
-
-
-# ============================================================================
-# --- Ask for root password upfront and keep updating the existing `sudo`
-# --- timestamp on a background process until the script finishes. Note that
-# --- you'll still need to use `sudo` where needed throughout the scripts.
-# ============================================================================
-log_info "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
-sudo -v
-while true; do
-  sudo -n true
-  sleep 30
-  kill -0 "$$" || exit
-done 2>/dev/null &
 
 
 # Close any open System Preferences panes, to prevent them from overriding
@@ -225,11 +211,12 @@ sudo systemsetup -setcomputersleep Off >/dev/null
 sudo pmset -a hibernatemode 3
 
 # Remove the sleep image file to save disk space
-yes | sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
+if yes | sudo rm /private/var/vm/sleepimage; then
+  # Create a zero-byte file instead…
+  sudo touch /private/var/vm/sleepimage
+  # …and make sure it can’t be rewritten
+  sudo chflags uchg /private/var/vm/sleepimage
+fi
 
 ###############################################################################
 # Screen                                                                      #
@@ -849,7 +836,11 @@ defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "
 
 # Security  ---
 # Enable the system's FileVault Service
-sudo fdesetup enable
+if [[ "$(fdesetup status)" =~ ^FileVault\ is\ On.$ ]]; then
+  log_debug "FileVault already on."
+else
+  sudo fdesetup enable
+fi
 # Enable the system's Firewall Service
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
