@@ -136,7 +136,6 @@ However, if you are just looking for a reminder, use the snipped bellow
 ```shell script
 yes | ssh-keygen -P "" -f ~/.ssh/id_rsa
 eval "$(ssh-agent)"
-ln -shfv "$(realpath preferences/ssh/config)" ~/.ssh
 /usr/bin/ssh-add -K ~/.ssh/id_rsa
 
 # Here, we are copying the public key to the clipboard.
