@@ -9,33 +9,30 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 ################################################################################
-load "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 
 ################################################################################
+# Oh-my-zsh!
+################################################################################
+
 # Path to your oh-my-zsh installation.
-################################################################################
 export ZSH="${HOME}/.oh-my-zsh"
 
-
-################################################################################
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-################################################################################
 #ZSH_THEME="random"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
-################################################################################
 # Load plugins
-################################################################################
-load "${SHELL_DIR_INTERACTIVE}/sources/oncall/plugins.zsh"
+source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
 
-
-################################################################################
 # Load om-my-zsh
+source "${ZSH}/oh-my-zsh.sh"
+
+
 ################################################################################
 # Shell History Configuration
 ################################################################################
@@ -130,21 +127,13 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
 
 
 ################################################################################
-# Load some custom functions
-################################################################################
-for dotscript in "${SHELL_DIR_INTERACTIVE}"/functions/*(.); do
-  load "$dotscript"
-done
-
-
-################################################################################
 # iTerm2 Shell Integration
 ################################################################################
-load "${HOME}/.iterm2_shell_integration.zsh"
+source "${HOME}/.iterm2_shell_integration.zsh"
 
 
 ################################################################################
 # Customize shell prompt
 # To customize prompt, run `p10k configure` or edit .p10k.zsh
 ################################################################################
-load "${SHELL_DIR_INTERACTIVE}/sources/oncall/.p10k.zsh"
+source "${SHELL_DIR_INTERACTIVE}/.p10k.zsh"

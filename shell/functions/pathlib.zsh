@@ -1,3 +1,10 @@
+abspath() {
+  # Converts any path to its absolute path
+  # Arguments:
+  #   * $@ : path-like string
+  echo "$(cd "$(dirname "${@}")" && pwd)/$(basename "${@}")"
+}
+
 get_stem() {
   # Gets the stem of a given path. Note that this function does *not* check if
   # the path actually exists!

@@ -14,7 +14,7 @@ export BREW_PREFIX="/usr/local"
 DOTFILES_DIR="$(dirname "$(readlink .zshenv)")"
 export DOTFILES_DIR
 
-export SHELL_DIR_ENVIRONMENT="${DOTFILES_DIR}/shell/environment"
+export SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
 export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
 
 # Misc ---
@@ -43,29 +43,12 @@ typeset -U PATH path
 # Path to search for auto-loadable functions
 ################################################################################
 fpath=(
+  "${SHELL_DIR_FUNCTIONS}"/**/
   "${BREW_PREFIX}/share/zsh/site-functions"
   "${fpath[@]}"
 )
 export fpath
 typeset -U fpath
 
-
-################################################################################
-# Load some custom functions
-################################################################################
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi.zsh"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging.zsh"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing.zsh"
-loaded_scripts=(
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi.zsh"
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging.zsh"
-  "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing.zsh"
-)
-export loaded_scripts
-typeset -U loaded_scripts
-
-
-# Load functions  ---
-#for dotscript in "${SHELL_DIR_ENVIRONMENT}"/functions/*(.); do
-#  source "$dotscript"
-#done
+# autoload all custom functions
+autoload -Uz "${SHELL_DIR_FUNCTIONS}"/**/*(.:t)

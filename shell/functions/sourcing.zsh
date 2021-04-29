@@ -1,10 +1,3 @@
-abspath() {
-  # Converts any path to its absolute path
-  # Arguments:
-  #   * $@ : path-like string
-  echo "$(cd "$(dirname "${@}")" && pwd)/$(basename "${@}")"
-}
-
 load() {
   # This my replacement for `source`
   # Arguments:
