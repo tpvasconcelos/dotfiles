@@ -94,18 +94,18 @@ path.**
 ln -shfv "$(realpath .zshenv)" ~
 ln -shfv "$(realpath .zshrc)" ~
 ```
-The rules that define whether a startup script gets sources (and in which order) differs depending on which
-UNIX shell, type of initialization, and even operating system... If you have been following these 
-installations steps, you are on a macOS machine and using the zsh Unix Shell. So here are some simple 
-examples.
-- When opening a new terminal shell (on iTerm2 or Terminal) the following files get sources
-  `.zshenv --> .zprofile --> .zshrc --> .zlogin`. You are now using an interactive login shell. Once you kill
-  the current shell the `.zlogout` script will be sourced before killing the process.
+The rules that define whether a startup script is sourced (and in which order) differ depending on the UNIX
+shell, initialization strategy, and even operating system. To keep things simple, we'll focus only on the zsh
+shell on a macOS system. So here are some simple examples.
+- When opening a new terminal shell on a terminal emulator such as iTerm2 or Terminal, the following files 
+  get sourced: `.zshenv --> .zprofile --> .zshrc --> .zlogin`. You are now using an _interactive login shell_.
+  Once you kill the current shell, the `.zlogout` script will be sourced before killing the process.
 - If you source a script (e.g. `source some_script` or `. ./some_script`), no startup files get sourced. 
-  This is because `source` reads and executes the contents of your script in the current shell environment.
-- If you run a script as an executable, the script will run in an **new shell**. By default, and in most 
-  cases, this will be a non-interactive non-login shell and, therefore, will only source `.zshenv` before 
-  executing the script. You can extend this logic _ad infinitum_... if script calls yet another script, 
+  This is because `source` reads and executes the contents of your script _within_ the **current shell** 
+  environment.
+- If you run a script as an executable (e.g. `./some_script`), the script will run in an **new shell**. By 
+  default, and in most cases, this will be a non-interactive non-login shell and, therefore, will only source
+  `.zshenv` before executing the script. You can extend this logic _ad infinitum_... if script calls yet another script, 
   which in turn calls yet again another script, etc, etc... each one will run in a new shell. Here I'm 
   assuming that the script will be executed within a zsh shell of course! If script contains a 
   `#!/usr/bin/env zsh` shebang line, it can be executed directly as `./some_script` or called as a regular 
@@ -223,9 +223,10 @@ docker image prune
 popularised the "bare repository and alias method" for managing dotfiles. This method is also references in
 [Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
 * [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) - inspiration for 
-most of the settings in [macos.zsh](setup_scripts/macos.zsh). Take everything in this repository with a pinch 
+most of the settings in [macos.zsh](macos.zsh). Take everything in this repository with a pinch 
 of salt. macOS is a fast-moving environment that does not prioritise backwards compatibility for these 
 settings or preferences.
+* [A User's Guide to the Z-Shell - What to put in your startup files](http://zsh.sourceforge.net/Guide/zshguide02.html)
 * <https://github.com/grant/new-computer-checklist>
 * <https://github.com/unixorn/awesome-zsh-plugins>
 * <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
