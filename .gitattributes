@@ -1,5 +1,7 @@
 .gitattributes !filter !diff
 
+clones.zsh filter=git-crypt diff=git-crypt
+
 preferences/Mackup/** filter=git-crypt diff=git-crypt
 
 preferences/Mackup/.docker/config.json !filter !diff
