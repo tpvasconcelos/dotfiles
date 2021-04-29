@@ -2,13 +2,6 @@
 set -eu
 
 
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/ansi.zsh"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/logging.zsh"
-source "${SHELL_DIR_ENVIRONMENT}/functions/oncall/sourcing.zsh"
-source "${SHELL_DIR_INTERACTIVE}/functions/string.zsh"
-source "${SHELL_DIR_INTERACTIVE}/functions/reboot.zsh"
-source "${SHELL_DIR_INTERACTIVE}/functions/tau.zsh"
-
 gsc() {
   # git shallow clone
   # Arguments:
@@ -164,6 +157,8 @@ log_info "Setting up macOS preferences..."
 # Cleanup...
 ################################################################################
 brew update
-#brew upgrade --greedy
+# Use the greedy flag (brew upgrade --greedy) to
+# "Also include casks with auto_updates true or version :latest."
+brew upgrade
 brew cleanup -s --prune=all
 brew bundle cleanup --global --force
