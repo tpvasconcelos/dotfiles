@@ -43,7 +43,7 @@ typeset -U PATH path
 # Path to search for auto-loadable functions
 ################################################################################
 fpath=(
-  "${SHELL_DIR_FUNCTIONS}"/**/
+  #"${SHELL_DIR_FUNCTIONS}"/**/
   "${BREW_PREFIX}/share/zsh/site-functions"
   "${fpath[@]}"
 )
@@ -51,4 +51,9 @@ export fpath
 typeset -U fpath
 
 # autoload all custom functions
-autoload -Uz "${SHELL_DIR_FUNCTIONS}"/**/*(.:t)
+#autoload -Uz "${SHELL_DIR_FUNCTIONS}"/**/*(.:t)
+
+# Source custom functions scripts  ---
+for function_script in "${SHELL_DIR_FUNCTIONS}"/*(.); do
+  source "$function_script"
+done
