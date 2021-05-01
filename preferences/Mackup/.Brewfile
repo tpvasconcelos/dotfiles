@@ -123,6 +123,8 @@ cask "visual-studio-code"
 cask "sublime-text"
 cask "qlmarkdown"
 cask "rstudio"
+# Other dev applications  ---
+cask "devbook"
 
 # Installing Browsers  ---
 cask "brave-browser"
