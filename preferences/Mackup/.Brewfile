@@ -140,13 +140,11 @@ cask "whatsapp"
 cask "slack"
 cask "alfred"
 cask "skitch"
-cask "skype"
 cask "the-unarchiver"
 cask "whatsapp"
 cask "slack"
 cask "google-drive"
 cask "notion"
-cask "keepingyouawake"
 cask "raindropio"
 cask "zoom"
 
@@ -166,4 +164,5 @@ cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
 cask "eul"                      # https://github.com/gao-sun/eul/
 #tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 #cask "popcorn-time"
+mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
