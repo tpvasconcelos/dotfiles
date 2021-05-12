@@ -8,6 +8,7 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  # Built-in  ---
   autojump
   aws
   celery
@@ -20,15 +21,26 @@ plugins=(
   flutter
   #gcloud
   gem
+  gitfast
+  #gpg-agent
+  golang
+  helm
+  heroku
+  httpie
+  #keychain
+  kubectl
+  microk8s
+  #minikube
+  npm
+  pip
+  pipenv
+  postgres
+  redis-cli
+  #ssh-agent
+  virtualenv
 
-
+  # Custom  ---
   zsh-autosuggestions
   zsh-syntax-highlighting
-  # poetry
-  iterm2
-  docker
-  man
-  osx
-  python
-  composer
+  poetry
 )
