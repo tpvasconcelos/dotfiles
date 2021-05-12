@@ -8,12 +8,23 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  autojump
+  aws
+  celery
+  colored-man-pages
+  command-not-found
+  django
+  docker
+  docker-compose
+  extract
+  flutter
+  #gcloud
+  gem
+
+
   zsh-autosuggestions
   zsh-syntax-highlighting
-  colored-man-pages
   # poetry
-  git
-  brew
   iterm2
   docker
   man

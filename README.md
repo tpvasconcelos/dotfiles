@@ -215,6 +215,14 @@ docker image prune
 ```
 
 
+## Todo
+
+[] Create Zsh functions
+  - [lukeojones - 1UP your Zsh abilities by autoloading your own functions](https://dev.to/lukeojones/1up-your-zsh-abilities-by-autoloading-your-own-functions-2ngp)
+  - [An Introduction to the Z Shell - Shell Functions](http://zsh.sourceforge.net/Intro/intro_4.html)
+  - [The Z Shell Manual - Functions](http://zsh.sourceforge.net/Doc/Release/Functions.html)
+  
+
 
 ## References
 

@@ -75,6 +75,8 @@ brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "pre-commit"
 brew "cookiecutter"
+brew "autojump"             # https://github.com/wting/autojump
+tap "homebrew/command-not-found"
 
 # Upgrading git  ---
 brew "git"
