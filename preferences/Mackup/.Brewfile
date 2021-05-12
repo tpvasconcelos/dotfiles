@@ -151,6 +151,7 @@ cask "raindropio"
 cask "zoom"
 
 # Installing Misc apps  ---
+cask "macs-fan-control"
 cask "vuze"
 cask "spotify"
 cask "vlc"
