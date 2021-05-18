@@ -11,7 +11,7 @@
 # Fast path to the brew prefix ---> $(brew --prefix)
 export BREW_PREFIX="/usr/local"
 
-DOTFILES_DIR="$(dirname "$(readlink .zshenv)")"
+DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
 export DOTFILES_DIR
 
 export SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
