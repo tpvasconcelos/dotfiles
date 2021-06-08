@@ -130,8 +130,8 @@ cask "devbook"
 
 # Installing Browsers  ---
 cask "brave-browser"
-cask "google-chrome"
-cask "tor-browser"
+#cask "google-chrome"
+#cask "tor-browser"
 cask "firefox"
 mas "Grammarly for Safari", id: 1462114288
 
@@ -148,15 +148,15 @@ cask "slack"
 cask "google-drive"
 cask "notion"
 cask "raindropio"
-cask "zoom"
+#cask "zoom"
 
 # Installing Misc apps  ---
 cask "macs-fan-control"
-cask "vuze"
+#cask "vuze"
 cask "spotify"
 cask "vlc"
-cask "adobe-creative-cloud"
-cask "blender"
+#cask "adobe-creative-cloud"
+#cask "blender"
 cask "appcleaner"
 cask "disk-inventory-x"
 cask "muzzle"
