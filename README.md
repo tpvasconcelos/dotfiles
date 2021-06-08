@@ -37,6 +37,9 @@ git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles && \
 ### Setup development environment
 
 #### Install Xcode and Command Line Developer Tools
+
+**[UPDATE] -** Since macOS Big Sur, the Command Line Developer Tools are installed once the `git` command is invoked (used above). Therefore, the next steps might be unnecessary.
+
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following shell 
 commands from the Terminal app.
 1. Here, we will install the Command Line Developer Tools. The first command ensures `xcode-select` is 
