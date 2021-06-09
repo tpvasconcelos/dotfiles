@@ -60,7 +60,7 @@ done 2>/dev/null &
 # Brewfile dependencies
 ################################################################################
 log_info "🚀 Installing Brewfile dependencies..."
-brew bundle --global
+brew bundle --file=Mackup/.Brewfile
 
 BREW_PREFIX="/usr/local"
 
