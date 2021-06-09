@@ -183,6 +183,19 @@ mkdir -p "$HOME"/go/bin "$HOME"/go/src
 log_info "Setting up macOS preferences..."
 ./macos.zsh
 
+log_info "Restoring other preferences (using Mackup)..."
+ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
+mackup restore
+
+log_info "Linking shell startup scripts..."
+ln -sTfv "$(realpath .zshenv)" "$HOME/.zshenv"
+ln -sTfv "$(realpath .zprofile)" "$HOME/.zprofile"
+ln -sTfv "$(realpath .zshrc)" "$HOME/.zshrc"
+
+log_info "🚀 Cloning git repos..."
+./clones.zsh
+
+
 ################################################################################
 # Cleanup...
 ################################################################################
