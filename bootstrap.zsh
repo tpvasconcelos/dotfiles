@@ -76,6 +76,13 @@ log_info "🚀 Installing stuff not specified in Brewfile..."
 # Shell tools
 ########################
 
+log_info "Changing the default shell to the brew-installed zsh shell..."
+PATH_TO_SHELL="${BREW_PREFIX}/bin/zsh"
+if ! grep -F -q "${PATH_TO_SHELL}" /etc/shells; then
+  echo "${PATH_TO_SHELL}" | sudo tee -a /etc/shells
+  chsh -s "${PATH_TO_SHELL}"
+fi
+
 if [[ -v ZSH ]]; then
   log_debug "oh-my-zsh is already installed..."
 else
@@ -161,13 +168,6 @@ brew unlink python
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src
-
-log_info "Changing the default shell to the brew-installed zsh shell..."
-PATH_TO_SHELL="${BREW_PREFIX}/bin/zsh"
-if ! grep -F -q "${PATH_TO_SHELL}" /etc/shells; then
-  echo "${PATH_TO_SHELL}" | sudo tee -a /etc/shells
-  chsh -s "${PATH_TO_SHELL}"
-fi
 
 log_info "Setting up macOS preferences..."
 ./macos.zsh
