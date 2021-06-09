@@ -2,6 +2,24 @@
 set -eu
 
 
+################################################################################
+# Import helper logging functions
+################################################################################
+echo "🚀 Importing helper logging functions..."
+
+DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
+SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
+
+source "${SHELL_DIR_FUNCTIONS}/ansi.zsh"
+source "${SHELL_DIR_FUNCTIONS}/logging.zsh"
+source "${SHELL_DIR_FUNCTIONS}/tau.zsh"
+
+
+################################################################################
+# Functions
+################################################################################
+log_info "🚀 Defining script functions..."
+
 gsc() {
   # git shallow clone
   # Arguments:
