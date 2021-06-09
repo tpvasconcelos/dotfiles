@@ -111,11 +111,7 @@ export GUILE_TLS_CERTIFICATE_DIRECTORY="${BREW_PREFIX}/etc/gnutls/"
 
 
 # pyenv  ---
-PYENV_ROOT=$(pyenv root)
-export PYENV_ROOT
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+eval "$(pyenv init -)"
 
 
 # Ruby  ---
