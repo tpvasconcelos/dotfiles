@@ -164,8 +164,8 @@ pod setup
 gsc https://github.com/flutter/flutter.git "$HOME/.flutter" stable
 
 log_info "Installing Sublime Text's 'One Dark' theme..."
-sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text*/Packages)"
-gsc https://github.com/andresmichel/one-dark-theme.git "${sublime_pkgs}/Theme - One Dark"
+sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text/Packages)"
+gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"
 
 
 ################################################################################
