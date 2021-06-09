@@ -26,11 +26,40 @@ are all automated (and reproducible) through shell scripts.
 ## Fresh macOS Install (a step-by-step guide)
 
 
+In order to follow the following guide, you will need to have admin access to your macOS machine and 
+you will also need to be logged in with your Apple ID (check both System Preferences and the App Store
+for this).
+
+
 ### Clone this repository
 Clone this repository under `~/.dotfiles`
 ```shell script
 git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles && \
   cd ~/.dotfiles
+```
+
+
+#### Unlock the repository
+
+Install dependencies for this step
+```shell script
+brew install git git-crypt gpg
+```
+
+Copy you GnuPG secret key to a temporaty `path/to/secret.key` file and load it onto this machine.
+```shell script
+gpg --allow-secret-key-import --import path/to/secret.key
+```
+
+Unlock the repo using the imported GnuPG key.
+```shell script
+git-crypt unlock
+```
+
+**Note:** here's how you can save an existing GnuPG key:
+```shell script
+gpg --export --armor $GPG_KEY_ID > path/to/public.key
+gpg --export-secret-keys --armor $GPG_KEY_ID > path/to/secret.key
 ```
 
 
