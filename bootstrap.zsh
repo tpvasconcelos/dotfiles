@@ -113,7 +113,11 @@ fi
 
 log_info "Installing all python versions from pyenv..."
 # FIXME: tau_install_all && tau_cleanup
-tau_install_all
+# FIXME: this fails when running the script a second time
+tau_install 2.7
+tau_install 3.7
+tau_install 3.8
+tau_install 3.9
 
 log_info "Installing poetry..."
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
