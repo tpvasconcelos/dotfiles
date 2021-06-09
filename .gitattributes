@@ -6,7 +6,8 @@ Mackup/** filter=git-crypt diff=git-crypt
 
 Mackup/.docker/config.json !filter !diff
 Mackup/.mackup/** !filter !diff
-preferences/Mackup/.ssh/config !filter !diff
+Mackup/.mackup.cfg !filter !diff
+Mackup/.ssh/config !filter !diff
 "Mackup/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings" !filter !diff
 Mackup/Library/Preferences/com.apple.Terminal.plist !filter !diff
 Mackup/Library/Preferences/com.googlecode.iterm2.plist !filter !diff
