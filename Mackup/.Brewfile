@@ -109,6 +109,7 @@ tap "ubuntu/microk8s"
 cask "multipass"                # https://multipass.run/
 brew "microk8s"                 # https://microk8s.io/
 brew "helm"                     # https://github.com/helm/helm
+brew "kustomize"                # https://github.com/kubernetes-sigs/kustomize
 
 
 ################################################################################
@@ -130,8 +131,8 @@ cask "devbook"
 
 # Installing Browsers  ---
 cask "brave-browser"
-#cask "google-chrome"
-#cask "tor-browser"
+cask "google-chrome"
+cask "tor-browser"
 cask "firefox"
 mas "Grammarly for Safari", id: 1462114288
 
@@ -144,19 +145,18 @@ cask "alfred"
 cask "skitch"
 cask "the-unarchiver"
 cask "whatsapp"
-cask "slack"
 cask "google-drive"
 cask "notion"
 cask "raindropio"
-#cask "zoom"
+cask "zoom"
 
 # Installing Misc apps  ---
 cask "macs-fan-control"
-#cask "vuze"
+cask "vuze"
 cask "spotify"
 cask "vlc"
-#cask "adobe-creative-cloud"
-#cask "blender"
+cask "adobe-creative-cloud"
+cask "blender"
 cask "appcleaner"
 cask "disk-inventory-x"
 cask "muzzle"
