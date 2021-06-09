@@ -119,11 +119,18 @@ tau_install 3.7
 tau_install 3.8
 tau_install 3.9
 
-log_info "Installing poetry..."
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-mkdir "$ZSH_CUSTOM/plugins/poetry"
-poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
+if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
+  log_info "poetry already installed!"
+else;
+  log_info "Installing poetry..."
+  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+  ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+  mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
+  poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
+fi
 
 ########################
 # Kubernetes tooling
