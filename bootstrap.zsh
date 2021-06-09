@@ -173,10 +173,6 @@ gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Applicatio
 ################################################################################
 log_info "🚀 Performing extra/final config steps..."
 
-# TODO: is this step necessary?
-log_info "Unlinking homebrew's python..."
-brew unlink python
-
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src
 
@@ -199,6 +195,8 @@ log_info "🚀 Cloning git repos..."
 ################################################################################
 # Cleanup...
 ################################################################################
+log_info "🚀 Cleaning up bootstrap.zsh..."
+
 brew update
 # Use the greedy flag (brew upgrade --greedy) to
 # "Also include casks with auto_updates true or version :latest."

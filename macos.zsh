@@ -839,6 +839,7 @@ defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "
 if [[ "$(fdesetup status)" =~ ^FileVault\ is\ On.$ ]]; then
   log_debug "FileVault already on."
 else
+  log_info "Please authenticate to enable FileVault!"
   sudo fdesetup enable
 fi
 # Enable the system's Firewall Service
