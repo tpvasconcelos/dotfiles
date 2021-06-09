@@ -163,3 +163,10 @@ brew update
 brew upgrade
 brew cleanup -s --prune=all
 brew bundle cleanup --global --force
+
+
+###############################################################################
+# Reboot
+###############################################################################
+log_warning "It's recommended to reboot your machine after running this script."
+reboot

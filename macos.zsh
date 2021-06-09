@@ -843,11 +843,3 @@ else
 fi
 # Enable the system's Firewall Service
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-
-
-###############################################################################
-# Reboot
-###############################################################################
-
-log_warning "It's recommended to reboot your machine after running this script."
-reboot
