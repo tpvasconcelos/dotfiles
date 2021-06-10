@@ -128,6 +128,7 @@ cask "qlmarkdown"
 cask "rstudio"
 # Other dev applications  ---
 cask "devbook"
+cask "gitify"
 
 # Installing Browsers  ---
 cask "brave-browser"
