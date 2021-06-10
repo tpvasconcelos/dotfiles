@@ -22,7 +22,6 @@ tau_install() {
   # * any             --> ^([0-9]+\.)?([0-9]+\.)?([0-9]+)$
   # * empty str ok    --> (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
 
-
   if [[ ! "${py_version_user_input}" =~ (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$) ]]; then
     # The user input to this function should be a string representation of a
     # python version, matching the regular expression ^([0-9]+\.)?([0-9]+\.)?([0-9]+)$

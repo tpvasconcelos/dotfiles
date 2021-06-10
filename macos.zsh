@@ -5,11 +5,9 @@ set -eu
 # * https://mths.be/macos
 # * https://github.com/herrbischoff/awesome-macos-command-line
 
-
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
 
 ###############################################################################
 # General UI/UX                                                               #

@@ -1,13 +1,12 @@
 app-exists() {
   local app="${*}"
-  if [[ "$(system_profiler -json SPApplicationsDataType | grep -i "\"${app}\"")" ]] ; then
+  if [[ "$(system_profiler -json SPApplicationsDataType | grep -i "\"${app}\"")" ]]; then
     true
   else
     log_warning "The app \"${app}\" does not exists!"
     false
   fi
 }
-
 
 restart() {
   # Restart a macOS app

@@ -7,7 +7,7 @@ reboot() {
     case $yn in
     [Yy]*)
       log_warning "Rebooting..."
-       sudo shutdown -r now
+      sudo shutdown -r now
       ;;
     [Nn]*)
       log_warning "Aborting..."
