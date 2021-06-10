@@ -1,12 +1,14 @@
 # Desktop Apps
 
 Browsers
+
 - Chrome
 - Firefox
 - Brave
 - Tor
 
 Social Networking
+
 - Skype
 - Slack
 - WhatsApp
@@ -14,6 +16,7 @@ Social Networking
 - Spark
 
 Notes (and document viewers)
+
 - DjView (alternative?)
 - PDFpenPro (needed?)
 - Notability
@@ -21,11 +24,13 @@ Notes (and document viewers)
 - LaTeX Editor (Texpad)
 
 Music
+
 - gAssistant (alternative?)
 - insTuner (alternative or make my own?)
 - Logic Pro X
 
 Photography
+
 - Affinity Photo
 - Adobe DNG Converter (needed?)
 - Adobe Photoshop
@@ -33,12 +38,14 @@ Photography
 - Adobe Lightroom CC
 
 Video
+
 - Subtitles
 - VLC
 - iMovie
 - DaVinci Resolve
 
 Graphics
+
 - Blender
 - Affinity Designer
 - Adobe XD CC
@@ -47,6 +54,7 @@ Graphics
 - Inkscape
 
 Utilities
+
 - Alfred
 - Vuze
 - Disk Inventory X
@@ -55,8 +63,8 @@ Utilities
 - Go2Shell
 - AppCleaner (alternative or make my own?)
 - Kaleidoscope
-   - p4merge
-   - DiffMerge
+    - p4merge
+    - DiffMerge
 - Skitch (alternative?)
 - smcFanControl (alternative?)
 - The Unarchiver (needed? alternative?)

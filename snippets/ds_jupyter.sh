@@ -15,7 +15,6 @@ pipenv run jupyter lab build
 
 
 # poetry  ---
-
 poetry add -D ipython ipykernel jupyter jupyterlab
 env_name="$(basename "$(poetry env info -p)")"
 poetry run python -m ipykernel install --user --name="${env_name}"

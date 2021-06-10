@@ -1,8 +1,9 @@
 # Shell Snippets
 
-
 #### Ask for `sudo` password only once
+
 Add this to the top of your shell script.
+
 ```shell script
 # ============================================================================
 # --- Ask for root password upfront and keep updating the existing `sudo`
@@ -18,14 +19,14 @@ while true; do
 done 2>/dev/null &
 ```
 
-
 #### `ffmpeg` - Video from images
+
 ```shell script
 ffmpeg -framerate 24.994862 -i img%06d.png -c:v libx264 -vf fps=24.994862 -pix_fmt yuv420p myMovie.mp4
 ```
 
-
 #### Remove local CloudDocs copies
+
 ```shell script
 # $ source ~/.zshrc
 
