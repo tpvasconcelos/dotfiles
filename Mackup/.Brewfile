@@ -32,6 +32,9 @@ brew "gmp"
 brew "pyenv"
 brew "pipenv"
 
+# Installing openjdk ()Java's development kit)  ---
+brew "openjdk@8"
+
 # Installing cool fonts  ---
 tap "bramstein/webfonttools"
 brew "sfnt2woff"
@@ -73,7 +76,6 @@ brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
-brew "pre-commit"
 brew "cookiecutter"
 brew "autojump"             # https://github.com/wting/autojump
 tap "homebrew/command-not-found"

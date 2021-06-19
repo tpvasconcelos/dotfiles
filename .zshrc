@@ -93,9 +93,11 @@ eval "$(thefuck --alias)"
 #export LDFLAGS="-L${BREW_PREFIX}/opt/ruby/lib"
 #export CPPFLAGS="-I${BREW_PREFIX}/opt/ruby/include"
 #export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
+## openjdk (Jjava)
+#export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@8/include"
 # Merged  ---
 export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib -L${BREW_PREFIX}/opt/readline/lib -L${BREW_PREFIX}/opt/sqlite/lib -L${BREW_PREFIX}/opt/llvm/lib -L${BREW_PREFIX}/opt/zlib/lib -L${BREW_PREFIX}/opt/ruby/lib"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include -I${BREW_PREFIX}/opt/openjdk@8/include"
 export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${BREW_PREFIX}/opt/readline/lib/pkgconfig:${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${BREW_PREFIX}/opt/zlib/lib/pkgconfig:${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
 
 
