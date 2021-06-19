@@ -57,8 +57,14 @@ done 2>/dev/null &
 
 
 ################################################################################
-# Brewfile dependencies
+# Homebrew and Brewfile dependencies
 ################################################################################
+if ! type brew &> /dev/null; then
+  log_info "🚀 Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+
 log_info "🚀 Installing Brewfile dependencies..."
 brew bundle --file=Mackup/.Brewfile
 
@@ -173,10 +179,14 @@ gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Applicatio
 ################################################################################
 log_info "🚀 Performing extra/final config steps..."
 
+log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
+sudo ln -sfn "${BREW_PREFIX}/opt/openjdk/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk.jdk
+
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src
 
 log_info "Setting up macOS preferences..."
+# This will update many of the default macos settings and system preferences.
 ./macos.zsh
 
 log_info "Restoring other preferences (using Mackup)..."
