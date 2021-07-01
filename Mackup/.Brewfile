@@ -78,6 +78,7 @@ brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "cookiecutter"
 brew "autojump"             # https://github.com/wting/autojump
+brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 tap "homebrew/command-not-found"
 
 # Upgrading git  ---
