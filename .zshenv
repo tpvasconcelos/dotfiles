@@ -28,6 +28,7 @@ export GREP_COLOR='1;33'
 path=(
   "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
   "${BREW_PREFIX}/opt/openjdk@8/bin"
+  "${BREW_PREFIX}/anaconda3/bin"
   "${BREW_PREFIX}/sbin"
   "${HOME}/.flutter/bin"
   "${HOME}/.poetry/bin"

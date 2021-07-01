@@ -131,6 +131,7 @@ cask "rstudio"
 # Other dev applications  ---
 cask "devbook"
 cask "gitify"
+cask "anaconda"
 
 # Installing Browsers  ---
 cask "brave-browser"
