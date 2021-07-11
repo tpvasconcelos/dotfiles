@@ -77,6 +77,7 @@ brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "cookiecutter"
+brew "gh"                   # https://github.com/cli/cli
 brew "autojump"             # https://github.com/wting/autojump
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 tap "homebrew/command-not-found"
@@ -92,6 +93,7 @@ brew "cmake"
 brew "llvm"
 brew "gcc"
 brew "libomp"
+brew "swig"
 
 # Installing iTerm2  ---
 # Other terminal emulators to consider:
@@ -154,6 +156,7 @@ cask "google-drive"
 cask "notion"
 cask "raindropio"
 cask "zoom"
+cask "rectangle"        # https://github.com/rxhanson/Rectangle
 
 # Installing Misc apps  ---
 cask "macs-fan-control"
@@ -165,6 +168,9 @@ cask "blender"
 cask "appcleaner"
 cask "disk-inventory-x"
 cask "muzzle"
+cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
+cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
+cask "image2icon"               # https://img2icnsapp.com/
 cask "p4v"
 cask "diffmerge"
 cask "postman"

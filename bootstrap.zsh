@@ -173,6 +173,9 @@ log_info "Installing Sublime Text's 'One Dark' theme..."
 sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text/Packages)"
 gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"
 
+log_info "Install deta..."
+curl -fsSL https://get.deta.dev/cli.sh | sh
+
 
 ################################################################################
 # Extra config steps

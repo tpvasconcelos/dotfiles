@@ -267,6 +267,7 @@ docker image prune
 
 ## References
 
+* [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles) - A curated list of dotfiles resources.
 * [The "Hacker News Comment" Method](https://news.ycombinator.com/item?id=11070797) - This Hacker
   News comment popularised the "bare repository and alias method" for managing dotfiles. This method
   is also references in

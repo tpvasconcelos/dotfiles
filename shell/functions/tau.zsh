@@ -135,6 +135,8 @@ clean_core_pips() {
     if ! command -v "$py_command" 1>/dev/null 2>&1; then
       echo "$py_command does not exist"
     else
+      echo "Updating pip for: $py_command"
+      $py_command -m pip install -U pip
       echo "Uninstalling all packages under $py_command"
       $py_command -m pip freeze | xargs $py_command -m pip uninstall -y
     fi

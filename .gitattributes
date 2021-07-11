@@ -5,7 +5,6 @@ Mackup/** filter=git-crypt diff=git-crypt
 
 # The following list defines the exceptions to the rule above
 # i.e. whitelisted files within `Mackup/`
-Mackup/.docker/config.json !filter !diff
 Mackup/.mackup/** !filter !diff
 Mackup/.mackup.cfg !filter !diff
 Mackup/.ssh/config !filter !diff

@@ -30,6 +30,7 @@ path=(
   "${BREW_PREFIX}/opt/openjdk@8/bin"
   "${BREW_PREFIX}/anaconda3/bin"
   "${BREW_PREFIX}/sbin"
+  "${HOME}/.deta/bin"
   "${HOME}/.flutter/bin"
   "${HOME}/.poetry/bin"
   "${GOPATH}/bin"
