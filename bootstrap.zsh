@@ -55,21 +55,18 @@ while true; do
 done 2>/dev/null &
 
 
-
 ################################################################################
 # Homebrew and Brewfile dependencies
 ################################################################################
-if ! type brew &> /dev/null; then
+if ! type brew &>/dev/null; then
   log_info "🚀 Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-
 
 log_info "🚀 Installing Brewfile dependencies..."
 brew bundle --file=Mackup/.Brewfile
 
 BREW_PREFIX="/usr/local"
-
 
 
 ################################################################################
@@ -124,18 +121,18 @@ tau_install 3.7
 tau_install 3.8
 tau_install 3.9
 
-
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
 if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
   log_info "poetry already installed!"
-else;
+else
   log_info "Installing poetry..."
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
-  poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
+  poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
+
 
 ########################
 # Kubernetes tooling
@@ -169,7 +166,6 @@ pod setup
 gsc https://github.com/flutter/flutter.git "$HOME/.flutter" stable
 
 log_info "Installing Sublime Text's 'One Dark' theme..."
-sublime_pkgs="$(echo ~/Library/Application\ Support/Sublime\ Text/Packages)"
 gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"
 
 log_info "Install deta..."
@@ -182,7 +178,7 @@ curl -fsSL https://get.deta.dev/cli.sh | sh
 log_info "🚀 Performing extra/final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo ln -sfn "${BREW_PREFIX}/opt/openjdk/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk.jdk
+sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@8/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src
