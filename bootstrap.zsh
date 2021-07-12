@@ -120,7 +120,6 @@ fi
 log_info "Installing all python versions from pyenv..."
 # FIXME: tau_install_all && tau_cleanup
 # FIXME: this fails when running the script a second time
-tau_install 2.7
 tau_install 3.7
 tau_install 3.8
 tau_install 3.9

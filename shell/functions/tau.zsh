@@ -130,14 +130,14 @@ tau_cleanup() {
 # FIXME: review, fix, and cleanup
 clean_core_pips() {
   local py_command pyv
-  for pyv in '' '2' '2.7' '3' '3.7' '3.8' '3.9'; do
+  for pyv in '' '3' '3.7' '3.8' '3.9'; do
     py_command="python$pyv"
     if ! command -v "$py_command" 1>/dev/null 2>&1; then
-      echo "$py_command does not exist"
+      log_error "$py_command does not exist"
     else
-      echo "Updating pip for: $py_command"
+      log_info "Updating pip for: $py_command"
       $py_command -m pip install -U pip
-      echo "Uninstalling all packages under $py_command"
+      log_info "Uninstalling all packages under $py_command"
       $py_command -m pip freeze | xargs $py_command -m pip uninstall -y
     fi
   done
