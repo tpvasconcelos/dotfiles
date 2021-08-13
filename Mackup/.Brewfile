@@ -78,6 +78,7 @@ brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "cookiecutter"
 brew "gh"                   # https://github.com/cli/cli
+brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 tap "homebrew/command-not-found"
@@ -132,8 +133,6 @@ cask "sublime-text"
 cask "qlmarkdown"
 cask "rstudio"
 # Other dev applications  ---
-cask "devbook"
-cask "gitify"
 cask "anaconda"
 
 # Installing Browsers  ---
