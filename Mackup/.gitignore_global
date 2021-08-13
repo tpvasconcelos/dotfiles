@@ -181,12 +181,6 @@ dmypy.json
 .pytype/
 # Cython debug symbols
 cython_debug/
-# Jupyter
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-# IPython
-profile_default/
-ipython_config.py
 
 # Archives  ---
 # ---> https://github.com/github/gitignore/blob/master/Global/Archives.gitignore
@@ -213,7 +207,6 @@ ipython_config.py
 *.dmg
 *.xpi
 *.gem
-*.egg
 *.deb
 *.rpm
 *.msi
