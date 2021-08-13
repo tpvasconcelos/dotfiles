@@ -21,26 +21,6 @@ Thumbs.db
 #  Templates from https://github.com/github/gitignore
 # ============================================================================
 
-# Unused templates  ---
-# https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
-# https://github.com/github/gitignore/blob/master/Swift.gitignore
-# https://github.com/github/gitignore/blob/master/Ruby.gitignore
-# https://github.com/github/gitignore/blob/master/Rails.gitignore
-# https://github.com/github/gitignore/blob/master/R.gitignore
-# https://github.com/github/gitignore/blob/master/Qt.gitignore
-# https://github.com/github/gitignore/blob/master/Node.gitignore
-# https://github.com/github/gitignore/blob/master/Julia.gitignore
-# https://github.com/github/gitignore/blob/master/Jekyll.gitignore
-# https://github.com/github/gitignore/blob/master/Go.gitignore
-# https://github.com/github/gitignore/blob/master/GitBook.gitignore
-# https://github.com/github/gitignore/blob/master/Fortran.gitignore
-# https://github.com/github/gitignore/blob/master/Dart.gitignore
-# https://github.com/github/gitignore/blob/master/CUDA.gitignore
-# https://github.com/github/gitignore/blob/master/CMake.gitignore
-# https://github.com/github/gitignore/blob/master/C.gitignore
-# https://github.com/github/gitignore/blob/master/C%2B%2B.gitignore
-# https://github.com/github/gitignore/blob/master/Terraform.gitignore
-
 # macOS  ---
 # ---> https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 # General
