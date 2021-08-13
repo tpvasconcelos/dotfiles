@@ -37,6 +37,7 @@ path=(
   "${HOME}/.flutter/bin"
   "${HOME}/.poetry/bin"
   "${GOPATH}/bin"
+  "${KREW_ROOT:-$HOME/.krew}/bin"
   "${path[@]}"
 )
 export PATH
