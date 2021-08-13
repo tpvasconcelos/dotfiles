@@ -2,6 +2,9 @@
     name = Tomas Pereira de Vasconcelos
     email = tomasvasconcelos1@gmail.com
 
+[init]
+	defaultBranch = master
+
 [core]
     excludesfile = ~/.gitignore_global
     autocrlf = input
@@ -34,7 +37,7 @@
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
     ls = log --oneline
     aa = add -A
-    cm = commit -m -s
+    cm = commit -s -m
     ca = !git add -A && git cm
     scm = "!f() { faketime \"$(date '+%Y-%m-%d') ${2:-18:17:42}\" git cm \"${1}\"; }; f"
     co = checkout
