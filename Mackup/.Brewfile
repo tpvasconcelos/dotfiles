@@ -66,9 +66,12 @@ brew "postgresql"
 brew "node"
 tap "dart-lang/dart"
 brew "dart"
+brew "kafkacat"             # https://github.com/edenhill/kafkacat
+brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "yarn"
 brew "redis"
 brew "mackup"
+brew "pipx"                 # https://github.com/pypa/pipx/
 brew "hugo"                 # https://gohugo.io/getting-started/installing/
 brew "ffmpeg"
 brew "thefuck"
