@@ -1,6 +1,7 @@
 [user]
     name = Tomas Pereira de Vasconcelos
     email = tomasvasconcelos1@gmail.com
+    signingkey = 7A00A0D0C929E374
 
 [init]
 	defaultBranch = master
@@ -9,8 +10,11 @@
     excludesfile = ~/.gitignore_global
     autocrlf = input
 
-[credential]
-    helper = osxkeychain
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = /usr/local/bin/gpg
 
 [push]
     default = upstream
@@ -37,7 +41,7 @@
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
     ls = log --oneline
     aa = add -A
-    cm = commit -s -m
+    cm = commit -m
     ca = !git add -A && git cm
     scm = "!f() { faketime \"$(date '+%Y-%m-%d') ${2:-18:17:42}\" git cm \"${1}\"; }; f"
     co = checkout

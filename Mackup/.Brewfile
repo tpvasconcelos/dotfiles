@@ -86,7 +86,8 @@ tap "homebrew/command-not-found"
 # Upgrading git  ---
 brew "git"
 brew "git-crypt"
-brew "gpg"
+brew "gnupg"
+brew "pinentry-mac"
 brew "git-lfs"
 
 # Installing compilers  ---
