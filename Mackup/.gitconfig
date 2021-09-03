@@ -39,7 +39,7 @@
 
 [alias]
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
-    ls = log --oneline
+    ls = log --pretty='format:%C(auto)%h [%ad] %s' --date=short
     aa = add -A
     cm = commit -m
     ca = !git add -A && git cm
