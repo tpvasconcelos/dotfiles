@@ -92,6 +92,7 @@ brew "git-crypt"
 brew "gnupg"
 brew "pinentry-mac"
 brew "git-lfs"
+brew "git-flow-avh"
 
 # Installing compilers  ---
 brew "cmake"
