@@ -9,12 +9,12 @@ fh() {
 }
 
 # autojump
-j() {
+fj() {
   local target
   if [[ "$#" -ne 0 ]]; then
-    target="$(autojump "$@")"
+    target="$(j "$@")"
   else
-    target="$(autojump -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)"
+    target="$(j -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)"
   fi
   cd "${target}" || return
 }
