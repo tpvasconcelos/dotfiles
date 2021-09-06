@@ -28,15 +28,16 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 # Add some bins to PATH
 ################################################################################
 path=(
+  # ${BREW_PREFIX}/anaconda3/bin"
   "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
   "${BREW_PREFIX}/opt/openjdk@8/bin"
-  "${JAVA_HOME}/bin"
-  #"${BREW_PREFIX}/anaconda3/bin"
   "${BREW_PREFIX}/sbin"
+  "${GOPATH}/bin"
   "${HOME}/.deta/bin"
   "${HOME}/.flutter/bin"
+  "${HOME}/.local/bin"
   "${HOME}/.poetry/bin"
-  "${GOPATH}/bin"
+  "${JAVA_HOME}/bin"
   "${KREW_ROOT:-$HOME/.krew}/bin"
   "${path[@]}"
 )
