@@ -14,7 +14,6 @@ plugins=(
   celery
   colored-man-pages
   command-not-found
-  django
   docker
   docker-compose
   extract

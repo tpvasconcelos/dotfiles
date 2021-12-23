@@ -178,7 +178,7 @@ curl -fsSL https://get.deta.dev/cli.sh | sh
 log_info "🚀 Performing extra/final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@8/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk.jdk
+sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@8/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-8.jdk
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src

@@ -252,9 +252,8 @@ brew cleanup -s
 # Clears caches (pipenv, pip, and pip-tools)
 pipenv --clear
 
-# Prune docker
-docker container prune
-docker image prune
+# Remove docker's unused data
+docker system prune --volumes
 ```
 
 ## Todo

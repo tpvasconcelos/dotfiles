@@ -60,7 +60,6 @@ brew "readline"
 brew "sqlite"
 brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
-cask "r"
 brew "graphviz"
 brew "postgresql"
 brew "node"
@@ -71,6 +70,9 @@ brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "yarn"
 brew "redis"
 brew "mackup"
+brew "jq"                   # https://stedolan.github.io/jq/
+brew "watch"                # https://gitlab.com/procps-ng/procps
+brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
 brew "pipx"                 # https://github.com/pypa/pipx/
 brew "hugo"                 # https://gohugo.io/getting-started/installing/
 brew "ffmpeg"
@@ -136,7 +138,7 @@ cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
 cask "qlmarkdown"
-cask "rstudio"
+cask "r"
 # Other dev applications  ---
 cask "anaconda"
 
@@ -145,7 +147,9 @@ cask "brave-browser"
 cask "google-chrome"
 cask "tor-browser"
 cask "firefox"
+# Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
+mas "Dashlane – Password Manager", id: 517914548
 
 # Installing Productivity & Office apps  ---
 cask "microsoft-office"
@@ -167,6 +171,7 @@ cask "macs-fan-control"
 cask "vuze"
 cask "spotify"
 cask "vlc"
+cask "iina"                     # https://iina.io/
 cask "adobe-creative-cloud"
 cask "blender"
 cask "appcleaner"
@@ -174,6 +179,7 @@ cask "disk-inventory-x"
 cask "muzzle"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
+cask "pdf-squeezer"             #
 cask "image2icon"               # https://img2icnsapp.com/
 cask "p4v"
 cask "diffmerge"
@@ -184,3 +190,4 @@ cask "eul"                      # https://github.com/gao-sun/eul/
 #cask "popcorn-time"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
+mas "Todoist", id: 585829637
