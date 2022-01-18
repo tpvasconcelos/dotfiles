@@ -30,7 +30,7 @@ brew "gmp"
 
 # Install python dev tools  ---
 brew "pyenv"
-brew "pipenv"
+brew "pipx"     # https://github.com/pypa/pipx/
 
 # Installing openjdk ()Java's development kit)  ---
 brew "openjdk@8"
@@ -73,7 +73,6 @@ brew "mackup"
 brew "jq"                   # https://stedolan.github.io/jq/
 brew "watch"                # https://gitlab.com/procps-ng/procps
 brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
-brew "pipx"                 # https://github.com/pypa/pipx/
 brew "hugo"                 # https://gohugo.io/getting-started/installing/
 brew "ffmpeg"
 brew "thefuck"

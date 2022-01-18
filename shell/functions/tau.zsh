@@ -130,7 +130,7 @@ tau_cleanup() {
 # FIXME: review, fix, and cleanup
 clean_core_pips() {
   local py_command pyv
-  for pyv in '' '3' '3.7' '3.8' '3.9'; do
+  for pyv in '' '3' '3.7' '3.8' '3.9' '3.10'; do
     py_command="python$pyv"
     if ! command -v "$py_command" 1>/dev/null 2>&1; then
       log_error "$py_command does not exist"

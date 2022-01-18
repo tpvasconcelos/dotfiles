@@ -32,7 +32,6 @@ plugins=(
   #minikube
   npm
   pip
-  pipenv
   postgres
   redis-cli
   #ssh-agent

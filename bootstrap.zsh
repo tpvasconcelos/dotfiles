@@ -120,6 +120,7 @@ log_info "Installing all python versions from pyenv..."
 tau_install 3.7
 tau_install 3.8
 tau_install 3.9
+tau_install 3.10
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
@@ -132,6 +133,16 @@ else
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
   poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
+
+# Install pipenv
+pipx install pipenv
+
+# Create playground venv
+PY_PLAYGROUND_VENV="${HOME}/.venv"
+if [[ ! -d "$PY_PLAYGROUND_VENV" ]]; then
+  mkdir "$PY_PLAYGROUND_VENV"
+fi
+python -m venv "$PY_PLAYGROUND_VENV"
 
 
 ########################
