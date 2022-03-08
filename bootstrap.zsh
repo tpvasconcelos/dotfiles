@@ -128,7 +128,7 @@ if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
   log_info "poetry already installed!"
 else
   log_info "Installing poetry..."
-  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+  curl -sSL https://install.python-poetry.org | python3 - --no-modify-path
   ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
   poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"

@@ -3,7 +3,7 @@ app-exists() {
   if [[ "$(system_profiler -json SPApplicationsDataType | grep -i "\"${app}\"")" ]]; then
     true
   else
-    log_warning "The app \"${app}\" does not exists!"
+    log_warning "The app \"${app}\" does not exist!"
     false
   fi
 }
@@ -13,7 +13,7 @@ restart() {
   # Arguments:
   #   * $* : The app's full name
   # Examples:
-  #   $ restart_app "Alfred 4"
+  #   $ restart "Alfred 4"
   #   [INFO] - Killing "Alfred 4"
   #   [INFO] - Opening "Alfred 4"
   local app="${*}"

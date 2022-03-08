@@ -41,7 +41,7 @@
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
     ls = log --pretty='format:%C(auto)%h [%ad] %s' --date=short
     aa = add -A
-    cm = commit -m
+    cm = commit -s -m
     ca = !git add -A && git cm
     scm = "!f() { faketime \"$(date '+%Y-%m-%d') ${2:-18:17:42}\" git cm \"${1}\"; }; f"
     co = checkout

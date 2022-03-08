@@ -51,10 +51,14 @@ cask "font-hack-nerd-font"
 # Installing useful more command line utils  ---
 brew "curl"
 brew "wget"
+brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
 brew "htop"
+brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
 brew "tree"
+brew "neovim"               # https://github.com/neovim/neovim
 brew "glow"                 # https://github.com/charmbracelet/glow
 brew "fzf"                  # https://github.com/junegunn/fzf
+brew "ciphey"               # https://github.com/Ciphey/Ciphey
 brew "openssl"
 brew "readline"
 brew "sqlite"
