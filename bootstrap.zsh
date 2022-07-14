@@ -128,7 +128,7 @@ if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
   log_info "poetry already installed!"
 else
   log_info "Installing poetry..."
-  curl -sSL https://install.python-poetry.org | python3 - --no-modify-path
+  curl -sSL https://install.python-poetry.org | python3 -
   ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
   poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
@@ -182,6 +182,10 @@ gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Applicatio
 log_info "Install deta..."
 curl -fsSL https://get.deta.dev/cli.sh | sh
 
+log_info "Install github-markdown-toc..."
+curl https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc -o gh-md-toc
+mv gh-md-toc /usr/local/bin
+chmod a+x /usr/local/bin/gh-md-toc
 
 ################################################################################
 # Extra config steps
@@ -189,7 +193,7 @@ curl -fsSL https://get.deta.dev/cli.sh | sh
 log_info "🚀 Performing extra/final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@8/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-8.jdk
+sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src

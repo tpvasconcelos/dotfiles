@@ -138,7 +138,7 @@ clean_core_pips() {
       log_info "Updating pip for: $py_command"
       $py_command -m pip install -U pip
       log_info "Uninstalling all packages under $py_command"
-      $py_command -m pip freeze | xargs $py_command -m pip uninstall -y
+      $py_command -m pip uninstall -y -r <($py_command -m pip freeze)
     fi
   done
 }

@@ -34,7 +34,7 @@ export PIPENV_VERBOSITY=-1
 path=(
   # ${BREW_PREFIX}/anaconda3/bin"
   "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-  "${BREW_PREFIX}/opt/openjdk@8/bin"
+  "${BREW_PREFIX}/opt/openjdk@11/bin"
   "${BREW_PREFIX}/sbin"
   "${GOPATH}/bin"
   "${HOME}/.deta/bin"

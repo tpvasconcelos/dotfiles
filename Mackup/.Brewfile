@@ -32,8 +32,8 @@ brew "gmp"
 brew "pyenv"
 brew "pipx"     # https://github.com/pypa/pipx/
 
-# Installing openjdk ()Java's development kit)  ---
-brew "openjdk@8"
+# Installing openjdk (Java's development kit)  ---
+brew "openjdk@11"
 
 # Installing cool fonts  ---
 tap "bramstein/webfonttools"
@@ -126,6 +126,7 @@ cask "multipass"                # https://multipass.run/
 brew "microk8s"                 # https://microk8s.io/
 brew "helm"                     # https://github.com/helm/helm
 brew "kustomize"                # https://github.com/kubernetes-sigs/kustomize
+brew "kind"                     # https://github.com/kubernetes-sigs/kind/
 
 
 ################################################################################
@@ -140,8 +141,15 @@ cask "logitech-options"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
-cask "qlmarkdown"
 cask "r"
+
+# Quick-look plugins  ---
+cask "syntax-highlight"
+cask "qlstephen"
+cask "qlmarkdown"
+cask "qlimagesize"
+cask "qlvideo"
+
 # Other dev applications  ---
 cask "anaconda"
 
