@@ -175,11 +175,11 @@ brew bundle --global --no-lock
 brew upgrade
 ```
 
-In order to _"Also include casks with auto_updates true or version :latest."_, use the `--greedy`
-flag. Note that this can be an expensive operation!
+In order to also update casks that only have a `:latest` version tag, pass the
+optional `--greedy-latest` flag. Note that this could be an expensive operation.
 
 ```shell script
-brew upgrade --greedy
+brew upgrade --greedy-latest
 ```
 
 ### Check for issues
