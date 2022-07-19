@@ -203,7 +203,7 @@ You can occasionally also clear your caches for tools like Homebrew and `pip`
 
 ```shell script
 # Uninstall all dependencies not listed in the Brewfile
-brew bundle cleanup
+brew bundle cleanup --global --force
 # clear homebrew's caches
 brew cleanup -s
 
