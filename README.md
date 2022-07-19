@@ -6,16 +6,25 @@ environment, configuration files, system preferences, and even all my desktop ap
 
 ## Table of Contents
 
-- [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-a-step-by-step-guide)
-    - [Clone this repository](#clone-this-repository)
-    - [Setup development environment](#setup-development-environment)
-    - [Update general macOS preferences](#update-general-macos-preferences)
-    - [Install desktop applications](#install-desktop-applications)
-    - [Update everything](#update-everything)
-    - [Check for issues](#check-for-issues)
-- [References](#references)
+* [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-step-by-step)
+    * [Cloning this repository](#cloning-this-repository)
+    * [Installing Homebrew (brew)](#installing-homebrew-brew)
+    * [Unlocking this repository](#unlocking-this-repository)
+    * [Bootstrap](#bootstrap)
+* [Appendix](#appendix)
+    * [Setup ssh for git](#setup-ssh-for-git)
+    * [Misc](#misc)
+    * [Update everything](#update-everything)
+        * [Install any pending software updates](#install-any-pending-software-updates)
+    * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+    * [Shell setup](#shell-setup)
+    * [Install Python Development Tools](#install-python-development-tools)
+    * [Check for issues](#check-for-issues)
+    * [Reclaim some disk space](#reclaim-some-disk-space)
+* [Todo](#todo)
+* [References](#references)
 
-## Fresh macOS Install (a step-by-step guide)
+## Fresh macOS Install (step-by-step)
 
 The following steps assume that you are starting from a fresh macOS installation. You should also
 have [admin access](https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac) to your macOS
@@ -31,12 +40,12 @@ Start by cloning this repository under `~/.dotfiles`
 git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles
 ```
 
-**[New in macOS Big Sur] -** At this point, you will be prompted to install macOS's
+**New in macOS Big Sur -** At this point, you will be prompted to install macOS's
 [Command Line Developer Tools](https://developer.apple.com/downloads/). Simply follow the steps in
 the user interface dialog. If this did not work for you, or you are on an older version of macOS,
-follow the
-["Install Xcode and Command Line Developer Tools"](#install-xcode-and-command-line-developer-tools)
-guide in the Appendix.
+follow the step in the
+[Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+section in the Appendix.
 
 Don't forget to change your working directory to the checked-out repository
 
@@ -46,8 +55,9 @@ cd ~/.dotfiles
 
 ### Installing Homebrew (brew)
 
-I use [Homebrew](https://brew.sh) (`brew`) as the go-to macOS package manager. Rare are the cases
-where Homebrew is not enough!
+I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases
+where Homebrew is not enough! Run the following command to install Homebrew or explore other
+[installation options](https://docs.brew.sh/Installation).
 
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -57,8 +67,8 @@ where Homebrew is not enough!
 
 Some of the files in this repository are encrypted using
 [`git-crypt`](https://github.com/AGWA/git-crypt). This allows me to pick and choose which dotfiles I
-want to publicly share and which ones I would like to keep private. You can see the full list in
-`.gitattributes`.
+want to publicly share and which ones I would like to keep private. You can see the full list in the
+`.gitattributes` file. You might want to do the same thing when maintaining your own fork.
 
 Starting from a fresh macOS installation, you will need to install the following dependencies using
 Homebrew:
@@ -67,37 +77,41 @@ Homebrew:
 brew install gpg git git-crypt
 ```
 
-Then, you will need to import your private GnuPG key (I keep mine safely stored in
-[Dashlane](https://www.dashlane.com/)). You can do this by saving your key in a local temporary text
-file (e.g. `path/to/secret.key`), and then running
+Then, you will need to import your private GnuPG key (I keep mine safely stored
+in [my password manager](https://www.dashlane.com/)). You can do this by saving your key in a local
+temporary text
+file (e.g. `/tmp/gpg-secret.key`), and then run
 
 ```shell script
-gpg  --import --allow-secret-key-import path/to/secret.key
+gpg  --import --allow-secret-key-import /tmp/gpg-secret.key
 ```
 
-Finally, you can unlock the repo using the imported GnuPG key with
+Finally, you can unlock the repository using the imported GnuPG key with
 
 ```shell script
 git-crypt unlock
 ```
 
-**Note:** here's how you can save your existing GnuPG keys
+**Note:** here's how you can print your current GnuPG keys to stdout
 
 ```shell script
-gpg --export --armor $GPG_KEY_ID > path/to/public.key
-gpg --export-secret-keys --armor $GPG_KEY_ID > path/to/secret.key
+gpg --export --armor $GPG_KEY_ID
+gpg --export-secret-keys --armor $GPG_KEY_ID
 ```
 
 ### Bootstrap
 
 The following shell script will run all necessary installation steps. Have a look inside this script
-to inspect all steps. **Warning: It is recommended to reboot your machine after updating many of
-these preferences.** For convenience, this script will prompt you for an automatic reboot at the end
-💪
+to inspect all steps. **Warning: It is recommended to reboot your machine after running this script
+for the first time.** For convenience, this script will prompt you for an automatic reboot at the
+end 💪
 
 ```shell script
 ./bootstrap.zsh
 ```
+
+There are no unwanted side effects from running this script multiple times. So, if you encounter any
+errors, feel free to just run it again.
 
 ## Appendix
 
@@ -119,9 +133,15 @@ eval "$(ssh-agent)"
 pbcopy < ~/.ssh/id_rsa.pub
 ```
 
-### Misc
+### Other useful macOS settings
 
-From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have
+Take a look at
+this [_awesome_ reference](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you
+will find a lot of cool ways to personalise your Mac. My default settings can be found in
+the `macos.zsh` file.
+
+I'll highlight one important example here... From
+the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have
 the option to add a message on the Mac login window. It can be used _"to provide contact information
 for a misplaced computer."_
 
@@ -131,28 +151,67 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 
 ### Update everything
 
-**Note that, if needed, the first command will automatically restart your machine!**
+#### Software Update
+
+It is generally a good idea to keep your machine up-to-date and install software updates and
+security patches as often as possible. You can configure your Mac to automatically install these in
+the background by making sure you have this configured in your System Preferences.
+
+![software-update.png](img/software-update.png)
+
+Alternatively you can invoke this via the command line. You should reboot your machine after
+running this command or, instead, just add an optional ` --restart` flag so that it restarts
+automatically.
 
 ```shell script
-sudo softwareupdate --install --all --verbose --force --restart
+sudo softwareupdate --install --all --verbose --force --agree-to-license
 ```
 
-Update any packages installed with brew
+#### Brew packages
 
 ```shell script
 brew update
+brew bundle --global --no-lock
 brew upgrade
-brew upgrade --cask --greedy
-brew cleanup
 ```
 
-#### Install any pending software updates
-
-It's a good idea install any pending software updates right away. **Note that, if needed, this
-command will automatically restart your machine!**
+In order to _"Also include casks with auto_updates true or version :latest."_, use the `--greedy`
+flag. Note that this can be an expensive operation!
 
 ```shell script
-sudo softwareupdate --install --all --verbose --force --agree-to-license --restart
+brew upgrade --greedy
+```
+
+### Check for issues
+
+Run `brew doctor` to check for any hanging issues
+
+```shell script
+brew doctor
+```
+
+### Reclaim some disk space
+
+Safely delete some `CoreSimulator` caches used by Xcode
+
+```shell script
+xcrun simctl delete all && xcrun simctl erase all
+rm -rf ~/Library/Developer/CoreSimulator/Caches/*
+```
+
+You can occasionally also clear your caches for tools like Homebrew and `pip`
+
+```shell script
+# Uninstall all dependencies not listed in the Brewfile
+brew bundle cleanup
+# clear homebrew's caches
+brew cleanup -s
+
+# Clears caches (pipenv, pip, and pip-tools)
+pipenv --clear
+
+# Remove docker's unused data
+docker system prune --volumes
 ```
 
 ### Install Xcode and Command Line Developer Tools
@@ -226,36 +285,6 @@ will be installed).
     PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" ./setup_scripts/python_dev_environment.zsh
     ```
 
-### Check for issues
-
-Run `brew doctor` to check for any hanging issues
-
-```shell script
-brew doctor
-```
-
-### Reclaim some disk space
-
-Safely delete some `CoreSimulator` caches used by Xcode
-
-```shell script
-xcrun simctl delete all && xcrun simctl erase all
-rm -rf ~/Library/Developer/CoreSimulator/Caches/*
-```
-
-You can occasionally also clear your caches for tools like Homebrew and `pip`
-
-```shell script
-# clear homebrew's caches
-brew cleanup -s
-
-# Clears caches (pipenv, pip, and pip-tools)
-pipenv --clear
-
-# Remove docker's unused data
-docker system prune --volumes
-```
-
 ## Todo
 
 [] Create Zsh functions
@@ -266,7 +295,8 @@ docker system prune --volumes
 
 ## References
 
-* [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles) - A curated list of dotfiles resources.
+* [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles) - A curated list of dotfiles
+  resources.
 * [The "Hacker News Comment" Method](https://news.ycombinator.com/item?id=11070797) - This Hacker
   News comment popularised the "bare repository and alias method" for managing dotfiles. This method
   is also references in

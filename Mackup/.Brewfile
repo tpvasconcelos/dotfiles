@@ -11,7 +11,7 @@ brew "mas"
 
 # Shells  ---
 brew "bash"
-brew "bash-completion2"
+brew "bash-completion@2"
 brew "zsh"
 
 # Installing GNU utils  ---
@@ -69,11 +69,11 @@ brew "postgresql"
 brew "node"
 tap "dart-lang/dart"
 brew "dart"
-brew "kafkacat"             # https://github.com/edenhill/kafkacat
+brew "kcat"                 # https://github.com/edenhill/kcat
 brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "yarn"
 brew "redis"
-brew "mackup"
+brew "mackup"               # https://github.com/lra/mackup
 brew "jq"                   # https://stedolan.github.io/jq/
 brew "watch"                # https://gitlab.com/procps-ng/procps
 brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
@@ -121,9 +121,6 @@ brew "kubectx"                  # https://github.com/ahmetb/kubectx
 brew "k9s"                      # https://github.com/derailed/k9s
 brew "kube-ps1"                 # https://github.com/jonmosco/kube-ps1
 brew "aws-iam-authenticator"    # https://github.com/kubernetes-sigs/aws-iam-authenticator
-tap "ubuntu/microk8s"
-cask "multipass"                # https://multipass.run/
-brew "microk8s"                 # https://microk8s.io/
 brew "helm"                     # https://github.com/helm/helm
 brew "kustomize"                # https://github.com/kubernetes-sigs/kustomize
 brew "kind"                     # https://github.com/kubernetes-sigs/kind/
@@ -160,7 +157,7 @@ cask "tor-browser"
 cask "firefox"
 # Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
-mas "Dashlane – Password Manager", id: 517914548
+# mas "Dashlane – Password Manager", id: 517914548
 
 # Installing Productivity & Office apps  ---
 cask "microsoft-office"
@@ -176,6 +173,9 @@ cask "notion"
 cask "raindropio"
 cask "zoom"
 cask "rectangle"        # https://github.com/rxhanson/Rectangle
+mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+mas "Keynote", id: 409183694
 
 # Installing Misc apps  ---
 cask "macs-fan-control"

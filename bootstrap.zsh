@@ -5,7 +5,7 @@ set -eu
 ################################################################################
 # Import helper logging functions
 ################################################################################
-echo "🚀 Importing helper logging functions..."
+echo "Importing helper logging functions..."
 
 DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
 SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
@@ -13,12 +13,13 @@ SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
 source "${SHELL_DIR_FUNCTIONS}/ansi.zsh"
 source "${SHELL_DIR_FUNCTIONS}/logging.zsh"
 source "${SHELL_DIR_FUNCTIONS}/tau.zsh"
+source "${SHELL_DIR_FUNCTIONS}/reboot.zsh"
 
 
 ################################################################################
 # Functions
 ################################################################################
-log_info "🚀 Defining script functions..."
+log_debug "Defining script functions..."
 
 gsc() {
   # git shallow clone
@@ -46,7 +47,7 @@ gsc() {
 # timestamp on a background process until the script finishes. Note that
 # you'll still need to use `sudo` where needed throughout the scripts.
 ################################################################################
-log_info "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
+log_warning "Some of the commands in this script require root access. Enter your password to unable root access when necessary..."
 sudo -v
 while true; do
   sudo -n true
@@ -115,8 +116,7 @@ fi
 ########################
 
 log_info "Installing all python versions from pyenv..."
-# FIXME: tau_install_all && tau_cleanup
-# FIXME: this fails when running the script a second time
+# TODO: use tau_install_all && tau_cleanup
 tau_install 3.7
 tau_install 3.8
 tau_install 3.9
@@ -125,7 +125,7 @@ tau_install 3.10
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
 if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
-  log_info "poetry already installed!"
+  log_debug "poetry already installed!"
 else
   log_info "Installing poetry..."
   curl -sSL https://install.python-poetry.org | python3 -
@@ -143,19 +143,6 @@ if [[ ! -d "$PY_PLAYGROUND_VENV" ]]; then
   mkdir "$PY_PLAYGROUND_VENV"
 fi
 python -m venv "$PY_PLAYGROUND_VENV"
-
-
-########################
-# Kubernetes tooling
-########################
-
-log_info "Installing microk8s..."
-microk8s install -y
-chronic microk8s status --wait-ready
-
-# FIXME: https://github.com/ubuntu/microk8s/issues/1763
-#log_info "Installing Kubeflow..."
-#microk8s enable kubeflow
 
 
 ########################
@@ -179,13 +166,11 @@ gsc https://github.com/flutter/flutter.git "$HOME/.flutter" stable
 log_info "Installing Sublime Text's 'One Dark' theme..."
 gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"
 
-log_info "Install deta..."
-curl -fsSL https://get.deta.dev/cli.sh | sh
-
 log_info "Install github-markdown-toc..."
 curl https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc -o gh-md-toc
 mv gh-md-toc /usr/local/bin
 chmod a+x /usr/local/bin/gh-md-toc
+
 
 ################################################################################
 # Extra config steps
@@ -198,13 +183,13 @@ sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/J
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME"/go/bin "$HOME"/go/src
 
-log_info "Setting up macOS preferences..."
+log_info "🚀 Setting up macOS preferences..."
 # This will update many of the default macos settings and system preferences.
 ./macos.zsh
 
 log_info "Restoring other preferences (using Mackup)..."
 ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
-mackup restore
+mackup restore --force
 
 log_info "Linking shell startup scripts..."
 ln -sTfv "$(realpath .zshenv)" "$HOME/.zshenv"
@@ -215,21 +200,8 @@ log_info "🚀 Cloning git repos..."
 ./clones.zsh
 
 
-################################################################################
-# Cleanup...
-################################################################################
-log_info "🚀 Cleaning up bootstrap.zsh..."
-
-brew update
-# Use the greedy flag (brew upgrade --greedy) to
-# "Also include casks with auto_updates true or version :latest."
-brew upgrade
-brew cleanup -s --prune=all
-brew bundle cleanup --global --force
-
-
 ###############################################################################
 # Reboot
 ###############################################################################
-log_warning "It's recommended to reboot your machine after running this script."
+log_warning "❗❗ It is recommended to reboot your machine after running this script. ❗❗"
 reboot
