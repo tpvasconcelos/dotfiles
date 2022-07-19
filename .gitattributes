@@ -17,3 +17,6 @@ Mackup/.gitignore_global !filter !diff
 
 # Any other files (outside `Mackup/`) that are also encrypted
 clones.zsh filter=git-crypt diff=git-crypt
+
+# ref: https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
+*.plist diff=plist
