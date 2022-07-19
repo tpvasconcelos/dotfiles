@@ -8,6 +8,7 @@
 
 [core]
     excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes
     autocrlf = input
 
 [commit]
@@ -30,6 +31,9 @@
 
 [color]
     ui = auto
+
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
 
 [filter "lfs"]
 	required = true
