@@ -37,7 +37,7 @@ both [System Preferences](https://support.apple.com/en-gb/guide/mac-help/mchla99
 Start by cloning this repository under `~/.dotfiles`
 
 ```shell script
-git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles
+git clone git@github.com:tpvasconcelos/dotfiles.git ~/.dotfiles
 ```
 
 **New in macOS Big Sur -** At this point, you will be prompted to install macOS's
