@@ -114,7 +114,7 @@ cask "iterm2"
 # Installing docker and virtualbox  ---
 cask "docker"
 cask "kitematic"
-cask "virtualbox"
+#cask "virtualbox"
 
 # Installing Kubernetes dev tools  ---
 brew "kubectx"                  # https://github.com/ahmetb/kubectx
@@ -153,11 +153,11 @@ cask "anaconda"
 # Installing Browsers  ---
 cask "brave-browser"
 cask "google-chrome"
-cask "tor-browser"
+#cask "tor-browser"
 cask "firefox"
 # Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
-# mas "Dashlane – Password Manager", id: 517914548
+mas "Dashlane – Password Manager", id: 517914548
 
 # Installing Productivity & Office apps  ---
 cask "microsoft-office"
@@ -179,11 +179,10 @@ mas "Keynote", id: 409183694
 
 # Installing Misc apps  ---
 cask "macs-fan-control"
-cask "vuze"
+#cask "vuze"
 cask "spotify"
 cask "vlc"
 cask "iina"                     # https://iina.io/
-cask "adobe-creative-cloud"
 cask "blender"
 cask "appcleaner"
 cask "disk-inventory-x"

@@ -12,8 +12,9 @@ SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
 
 source "${SHELL_DIR_FUNCTIONS}/ansi.zsh"
 source "${SHELL_DIR_FUNCTIONS}/logging.zsh"
-source "${SHELL_DIR_FUNCTIONS}/tau.zsh"
 source "${SHELL_DIR_FUNCTIONS}/reboot.zsh"
+source "${SHELL_DIR_FUNCTIONS}/string.zsh"
+source "${SHELL_DIR_FUNCTIONS}/tau.zsh"
 
 
 ################################################################################
@@ -62,12 +63,14 @@ done 2>/dev/null &
 if ! type brew &>/dev/null; then
   log_info "🚀 Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 log_info "🚀 Installing Brewfile dependencies..."
-brew bundle --file=Mackup/.Brewfile
+brew bundle --no-lock --file=Mackup/.Brewfile
 
-BREW_PREFIX="/usr/local"
+BREW_PREFIX="$(brew --prefix)"
+alias ln="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ln"
 
 
 ################################################################################
@@ -80,11 +83,13 @@ log_info "🚀 Installing stuff not specified in Brewfile..."
 # Shell tools
 ########################
 
-log_info "Changing the default shell to the brew-installed zsh shell..."
 PATH_TO_SHELL="${BREW_PREFIX}/bin/zsh"
 if ! grep -F -q "${PATH_TO_SHELL}" /etc/shells; then
+  log_info "Changing the default shell to the brew-installed zsh shell..."
   echo "${PATH_TO_SHELL}" | sudo tee -a /etc/shells
   chsh -s "${PATH_TO_SHELL}"
+else
+  log_debug "The default shell is already set to the brew-installed zsh shell."
 fi
 
 if [[ -v ZSH ]]; then
@@ -93,6 +98,7 @@ else
   log_info "Installing oh-my-zsh..."
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 log_info "Installing Powerlevel10k..."
 gsc https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -116,20 +122,19 @@ fi
 ########################
 
 log_info "Installing all python versions from pyenv..."
-# TODO: use tau_install_all && tau_cleanup
-tau_install 3.7
-tau_install 3.8
-tau_install 3.9
-tau_install 3.10
+# TODO: use tau-install-all && tau_cleanup
+tau-install 3.7
+tau-install 3.8
+tau-install 3.9
+tau-install 3.10 && tau-global 3.10
+eval "$(pyenv init --path)"
 
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
 if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
   log_debug "poetry already installed!"
 else
   log_info "Installing poetry..."
-  curl -sSL https://install.python-poetry.org | python3 -
-  ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+  pipx install poetry
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
   poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
@@ -168,14 +173,14 @@ gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Applicatio
 
 log_info "Install github-markdown-toc..."
 curl https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc -o gh-md-toc
-mv gh-md-toc /usr/local/bin
+sudo mv gh-md-toc /usr/local/bin
 chmod a+x /usr/local/bin/gh-md-toc
 
 
 ################################################################################
 # Extra config steps
 ################################################################################
-log_info "🚀 Performing extra/final config steps..."
+log_info "🚀 Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
 sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-11.jdk

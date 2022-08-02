@@ -1,16 +1,15 @@
-tau_install() {
-  # TODO:
+tau-install() {
   # Arguments:
   #   * $1 : Empty string or a valid Python version number,
   #          matching the regex (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
   # Examples:
-  #   $ tau_install
+  #   $ tau-install
   #   [INFO] - Installing Python 3.9.4
-  #   $ tau_install 2.7
+  #   $ tau-install 2.7
   #   [WARNING] - Skipping: Python 2.7.18 is already installed.
-  #   $ tau_install 3.7.1
+  #   $ tau-install 3.7.1
   #   [INFO] - Installing Python 3.7.1
-  #   $ tau_install 3.10-dev
+  #   $ tau-install 3.10-dev
   #   [ERROR] - The input '3.10-dev' doesnt match the a valid version number.
   local py_version_user_input="${1}"
   local py_version_patch
@@ -75,17 +74,51 @@ tau_install() {
   fi
 }
 
-tau_install_all() {
+tau-global() {
+  # Arguments:
+  #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
+  # Examples:
+  #   $ tau-global 3.9
+  #   [INFO] - Setting Python 3.9.13 as a global version
+  #   $ tau-global 1
+  #   [ERROR] - The input '1' doesnt match the a valid version number.
+  #   $ tau-global 4.2
+  #   [ERROR] - Could not find a match for '4.2'. Are you sure this Python version exists?
+  local py_version_user_input="${1}"
+  local py_version_patch
+
+  if [[ ! "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+$ ]]; then
+    log_error "The input '${py_version_user_input}' doesnt match the a valid version number."
+    return 1
+  fi
+  py_version_patch="$(pyenv versions | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
+  if [[ -z "${py_version_patch}" ]]; then
+    # If $py_version_user_input is a valid Python version (regex-wise) but
+    # $py_version_patch is empty, this means no match was found for
+    # $py_version_user_input. Either this version does not exist
+    # (e.g. "4.2.0") or it isn't available in pyenv
+    log_error "Could not find a match for '${py_version_user_input}'. Are you sure this Python version exists?"
+    return 1
+  elif [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    # Something else went wrong...
+    log_error "Something went wrong parsing the python version. '${py_version_patch}' doesnt match the right regex."
+    return 1
+  fi
+  log_info "Setting Python ${py_version_patch} as a global version"
+  pyenv global "${py_version_patch}"
+}
+
+tau-install-all() {
   # TODO:
   # Arguments:
   #   * <NONE>
   # Examples:
-  #   $ tau_install_all
+  #   $ tau-install-all
   #   [DEBUG] - Collected python versions: (2.7 3.7 3.8)
   #   [INFO] - Installing Python 2.7.18
   #   [WARNING] - Skipping: Python 3.7.10 is already installed.
   #   [INFO] - Installing Python 3.8.6
-  #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau_install_all
+  #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
   #   [DEBUG] - Collected python versions: (3.7 3.8.5)
   #   [WARNING] - Skipping: Python 3.7.10 is already installed.
   #   [INFO] - Installing Python 3.8.5
@@ -101,7 +134,7 @@ tau_install_all() {
   fi
   log_debug "Collected python versions: (${py_versions[*]})"
   for pyv in "${py_versions[@]}"; do
-    tau_install "${pyv}"
+    tau-install "${pyv}"
   done
 }
 

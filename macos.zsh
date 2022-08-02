@@ -15,6 +15,19 @@ set -eu
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
+
+###############################################################################
+# Import helper logging functions
+###############################################################################
+echo "Importing helper logging functions..."
+
+DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
+SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
+
+source "${SHELL_DIR_FUNCTIONS}/ansi.zsh"
+source "${SHELL_DIR_FUNCTIONS}/logging.zsh"
+
+
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################

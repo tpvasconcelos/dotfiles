@@ -113,14 +113,10 @@ export GUILE_LOAD_COMPILED_PATH="${BREW_PREFIX}/lib/guile/3.0/site-ccache"
 export GUILE_SYSTEM_EXTENSIONS_PATH="${BREW_PREFIX}/lib/guile/3.0/extensions"
 export GUILE_TLS_CERTIFICATE_DIRECTORY="${BREW_PREFIX}/etc/gnutls/"
 
-
 # pyenv  ---
 eval "$(pyenv init -)"
 
-
 # Ruby  ---
-export PATH="${BREW_PREFIX}/opt/ruby/bin:${PATH}"
-export PATH="/Users/tpvasconcelos/.gem/ruby/3.0.0/bin:${PATH}"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
 
 

@@ -80,10 +80,10 @@ brew install gpg git git-crypt
 Then, you will need to import your private GnuPG key (I keep mine safely stored
 in [my password manager](https://www.dashlane.com/)). You can do this by saving your key in a local
 temporary text
-file (e.g. `/tmp/gpg-secret.key`), and then run
+file (e.g. `/tmp/gpg-private.key`), and then run
 
 ```shell script
-gpg  --import --allow-secret-key-import /tmp/gpg-secret.key
+gpg  --import --allow-secret-key-import /tmp/gpg-private.key
 ```
 
 Finally, you can unlock the repository using the imported GnuPG key with

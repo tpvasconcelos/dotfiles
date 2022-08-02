@@ -8,7 +8,7 @@
 ################################################################################
 
 # Fast path to the brew prefix ---> $(brew --prefix)
-export BREW_PREFIX="/usr/local"
+export BREW_PREFIX="/opt/homebrew"
 
 DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
 export DOTFILES_DIR
@@ -32,15 +32,17 @@ export PIPENV_VERBOSITY=-1
 # Add some bins to PATH
 ################################################################################
 path=(
-  # ${BREW_PREFIX}/anaconda3/bin"
+  "${BREW_PREFIX}/sbin"
   "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
   "${BREW_PREFIX}/opt/openjdk@11/bin"
-  "${BREW_PREFIX}/sbin"
+  "${BREW_PREFIX}/opt/ruby/bin"
+  "${HOME}/.gem/ruby/3.0.0/bin"
   "${GOPATH}/bin"
   "${HOME}/.deta/bin"
   "${HOME}/.flutter/bin"
   "${HOME}/.local/bin"
   "${HOME}/.poetry/bin"
+  "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
   "${JAVA_HOME}/bin"
   "${KREW_ROOT:-$HOME/.krew}/bin"
   "${path[@]}"
