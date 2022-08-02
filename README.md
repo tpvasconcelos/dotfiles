@@ -6,22 +6,22 @@ environment, configuration files, system preferences, and even all my desktop ap
 
 ## Table of Contents
 
-* [Fresh macOS Install (a step-by-step guide)](#fresh-macos-install-step-by-step)
+* [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
     * [Cloning this repository](#cloning-this-repository)
     * [Installing Homebrew (brew)](#installing-homebrew-brew)
     * [Unlocking this repository](#unlocking-this-repository)
     * [Bootstrap](#bootstrap)
 * [Appendix](#appendix)
     * [Setup ssh for git](#setup-ssh-for-git)
-    * [Misc](#misc)
+    * [Other useful macOS settings](#other-useful-macos-settings)
     * [Update everything](#update-everything)
-        * [Install any pending software updates](#install-any-pending-software-updates)
+        * [Software Update](#software-update)
+        * [Brew packages](#brew-packages)
+    * [Check for issues](#check-for-issues)
+    * [Reclaim some disk space](#reclaim-some-disk-space)
     * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
     * [Shell setup](#shell-setup)
     * [Install Python Development Tools](#install-python-development-tools)
-    * [Check for issues](#check-for-issues)
-    * [Reclaim some disk space](#reclaim-some-disk-space)
-* [Todo](#todo)
 * [References](#references)
 
 ## Fresh macOS Install (step-by-step)
