@@ -120,17 +120,26 @@ errors, feel free to just run it again.
 For a more detailed guide, look at the official documentation from
 [GitHub](https://help.github.com/en/articles/connecting-to-github-with-ssh),
 [Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2)
-, and [GitLab](https://docs.gitlab.com/ee/ssh/). However, if you are just looking for a reminder,
-use the snipped bellow
+, or [GitLab](https://docs.gitlab.com/ee/ssh/). However, if you are just looking for a quick
+reminder, use the snipped bellow (remember to use your own email address!)
 
 ```shell script
-yes | ssh-keygen -P "" -f ~/.ssh/id_rsa
-eval "$(ssh-agent)"
-/usr/bin/ssh-add -K ~/.ssh/id_rsa
+yes | ssh-keygen -t ed25519 -P "" -C "your_email@example.com" -f ~/.ssh/id_ed25519
+```
 
-# Here, we are copying the public key to the clipboard.
-# After running this, add it to your GitHub/GitLab/Bitbucket known SSH keys!
-pbcopy < ~/.ssh/id_rsa.pub
+Use the snippet below to copy the generated public SSH key to your clipboard and add it to your
+GitHub/GitLab/Bitbucket list of known SSH keys (refer to the links above if you don't know how to do
+this).
+
+```shell script
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+Alternatively, you can also use the [gh](https://cli.github.com/) CLI utility to upload the SSH key
+directly to your GitHub account without using the web interface.
+
+```shell script
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "personal laptop"
 ```
 
 ### Other useful macOS settings
