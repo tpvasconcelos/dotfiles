@@ -34,6 +34,10 @@ export PIPENV_VERBOSITY=-1
 path=(
   "${BREW_PREFIX}/sbin"
   "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+  "${BREW_PREFIX}/opt/findutils/libexec/gnubin"
+  "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+  "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+  "${BREW_PREFIX}/opt/grep/libexec/gnubin"
   "${BREW_PREFIX}/opt/openjdk@11/bin"
   "${BREW_PREFIX}/opt/ruby/bin"
   "${HOME}/.gem/ruby/3.0.0/bin"
