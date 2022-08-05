@@ -2,13 +2,15 @@
 
 Welcome to my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles)! This repository
 helps me keep a reproducible workflow for setting-up and maintaining my macOS development
-environment, configuration files, system preferences, and even all my desktop applications.
+environment, configuration files, system preferences, and even all of my desktop applications.
+
+Feel free to steal, modify, or adapt! 🚀
 
 ## Table of Contents
 
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
     * [Cloning this repository](#cloning-this-repository)
-    * [Installing Homebrew (brew)](#installing-homebrew-brew)
+    * [Installing Homebrew](#installing-homebrew)
     * [Unlocking this repository](#unlocking-this-repository)
     * [Bootstrap](#bootstrap)
 * [Appendix](#appendix)
@@ -28,7 +30,7 @@ environment, configuration files, system preferences, and even all my desktop ap
 
 The following steps assume that you are starting from a fresh macOS installation. You should also
 have [admin access](https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac) to your macOS
-machine. In addition to this, you will also need to be logged-in with a valid Apple ID (check
+machine. Finally, make sure you are logged-in with a valid Apple ID (check
 both [System Preferences](https://support.apple.com/en-gb/guide/mac-help/mchla99dc8da/mac), and the
 [App Store](https://support.apple.com/en-gb/guide/app-store/fir6253293d/mac)).
 
@@ -47,17 +49,10 @@ follow the step in the
 [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
 section in the Appendix.
 
-Don't forget to change your working directory to the checked-out repository
-
-```shell script
-cd ~/.dotfiles
-```
-
-### Installing Homebrew (brew)
+### Installing Homebrew
 
 I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases
-where Homebrew is not enough! Run the following command to install Homebrew or explore other
-[installation options](https://docs.brew.sh/Installation).
+where Homebrew is not enough! Run the following command to install Homebrew on your machine.
 
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -101,13 +96,12 @@ gpg --export-secret-keys --armor $GPG_KEY_ID
 
 ### Bootstrap
 
-The following shell script will run all necessary installation steps. Have a look inside this script
-to inspect all steps. **Warning: It is recommended to reboot your machine after running this script
-for the first time.** For convenience, this script will prompt you for an automatic reboot at the
-end 💪
+The following shell script will run all necessary installation steps. Feel free to peak inside see
+what's going on. It is recommended to reboot your machine after running this script for the first
+time. For convenience, the script will prompt you for an automatic reboot at the end.
 
 ```shell script
-./bootstrap.zsh
+cd ~/.dotfiles && ./bootstrap.zsh
 ```
 
 There are no unwanted side effects from running this script multiple times. So, if you encounter any
@@ -147,7 +141,7 @@ gh ssh-key add ~/.ssh/id_ed25519.pub --title "personal laptop"
 Take a look at
 this [_awesome_ reference](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you
 will find a lot of cool ways to personalise your Mac. My default settings can be found in
-the `macos.zsh` file.
+the `scripts/macos.zsh` script.
 
 I'll highlight one important example here... From
 the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have
@@ -208,7 +202,7 @@ xcrun simctl delete all && xcrun simctl erase all
 rm -rf ~/Library/Developer/CoreSimulator/Caches/*
 ```
 
-You can occasionally also clear your caches for tools like Homebrew and `pip`
+You can occasionally also clear your caches for tools like brew, pip, or docker.
 
 ```shell script
 # Uninstall all dependencies not listed in the Brewfile
@@ -305,7 +299,8 @@ minor version (in which case the latest patch will be installed).
   is also references in
   [Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
 * [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) -
-  inspiration for most of the settings in [macos.zsh](scripts/macos.zsh). Take everything in this repository
+  inspiration for most of the settings in [macos.zsh](scripts/macos.zsh). Take everything in this
+  repository
   with a pinch of salt. macOS is a fast-moving environment that does not prioritise backwards
   compatibility for these settings or preferences.
 * [A User's Guide to the Z-Shell - What to put in your startup files](http://zsh.sourceforge.net/Guide/zshguide02.html)
