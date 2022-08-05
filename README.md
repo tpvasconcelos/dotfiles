@@ -166,7 +166,7 @@ It is generally a good idea to keep your machine up-to-date and install software
 security patches as often as possible. You can configure your Mac to automatically install these in
 the background by making sure you have this configured in your System Preferences.
 
-![software-update.png](img/software-update.png)
+![software-update.png](assets/img/software-update.png)
 
 Alternatively you can invoke this via the command line. You should reboot your machine after
 running this command or, instead, just add an optional ` --restart` flag so that it restarts
@@ -227,14 +227,14 @@ docker system prune --volumes
 
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following
    shell commands from the Terminal app.
-1. Here, we will install the Command Line Developer Tools. The first command ensures `xcode-select`
+2. Here, we will install the Command Line Developer Tools. The first command ensures `xcode-select`
    is pointing to the correct (active) developer directory. Follow the installation steps that will
    open in a user interface dialog and proceed to the next step.
     ```shell script
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
     xcode-select --install
     ```
-1. As a final step, you'll need to accept the Xcode and SDK license agreements. The second command
+3. As a final step, you'll need to accept the Xcode and SDK license agreements. The second command
    will also install any missing packages.
     ```shell script
     sudo xcodebuild -license accept
@@ -250,57 +250,51 @@ such as:
 - [prezto](https://github.com/sorin-ionescu/prezto) - The configuration framework for Zsh
 - [zinit](https://github.com/zdharma/zinit) - Ultra-flexible and fast Zsh plugin manager with clean
   fpath, reports, completion management, Turbo, annexes, services, packages.
-- [zplug](https://github.com/zplug/zplug) - 🌺 A next-generation plugin manager for zsh
+- [zplug](https://github.com/zplug/zplug) - A next-generation plugin manager for zsh
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
 
 The rules that define whether a startup script is sourced (and in which order) differ depending on
 the UNIX shell, initialization strategy, and even operating system. To keep things simple, we'll
-focus only on the zsh shell on a macOS system. So here are some simple examples.
+focus only on the zsh shell on a macOS system.
 
 - When opening a new terminal shell on a terminal emulator such as iTerm2 or Terminal, the following
-  files get sourced: `.zshenv --> .zprofile --> .zshrc --> .zlogin`. You are now using an _
-  interactive login shell_. Once you kill the current shell, the `.zlogout` script will be sourced
-  before killing the process.
+  files get sourced in the following order: `.zshenv --> .zprofile --> .zshrc --> .zlogin`. You are
+  now using an _interactive login shell_. Once you kill the current shell, the `.zlogout` script
+  will be sourced before killing the process.
 - If you source a script (e.g. `source some_script` or `. ./some_script`), no startup files get
-  sourced. This is because `source` reads and executes the contents of your script _within_ the **
-  current shell**
-  environment.
+  sourced. This is because `source` reads and executes the contents of your script _within_ the
+  **current** shell environment.
 - If you run a script as an executable (e.g. `./some_script`), the script will run in an **new
   shell**. By default, and in most cases, this will be a non-interactive non-login shell and,
-  therefore, will only source
-  `.zshenv` before executing the script. You can extend this logic _ad infinitum_... if script calls
-  yet another script, which in turn calls yet again another script, etc, etc... each one will run in
-  a new shell. Here I'm assuming that the script will be executed within a zsh shell of course! If
-  script contains a
-  `#!/usr/bin/env zsh` shebang line, it can be executed directly as `./some_script` or called as a
-  regular command if it exists under `$PATH`. Alternatively you can explicitly execute the script as
-  `zsh some_script`.
+  therefore, only `.zshenv` will be sourced before executing the script. You can extend this logic
+  _ad infinitum_... if script calls yet another script, which in turn calls yet again another
+  script, etc, etc... each one will run in a new shell. Here I'm assuming that the script will be
+  executed within a zsh shell of course! If the script contains a `#!/usr/bin/env zsh` shebang line,
+  it can be executed directly as `./some_script` or called as a regular command if it exists under
+  `$PATH`. Alternatively you can explicitly execute the script as `zsh some_script`.
 
 ### Install Python Development Tools
 
-I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. Then
-[pipenv](https://github.com/pypa/pipenv) and [poetry](https://github.com/python-poetry/poetry) to
-manage virtual environments. The following script will install your whole python development
-environment. To check which python versions will be installed run `echo "$PYENV_TARGET_VERSIONS`.
-You can pass either the exact patch version, or the minor version (in which case the latest patch
-will be installed).
+I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. The following utility
+will install your whole python development environment. To check which python versions will be
+installed run `echo "$PYENV_TARGET_VERSIONS`. You can pass either the exact patch version, or the
+minor version (in which case the latest patch will be installed).
 
 - Install with the default versions `"$PYENV_TARGET_VERSIONS`
     ```shell script
-    ./setup_scripts/python_dev_environment.zsh
+    tau-install-all
     ```
 - Pass your own versions
     ```shell script
-    PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" ./setup_scripts/python_dev_environment.zsh
+    PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
     ```
 
 ## Todo
 
-[] Create Zsh functions
-
-- [lukeojones - 1UP your Zsh abilities by autoloading your own functions](https://dev.to/lukeojones/1up-your-zsh-abilities-by-autoloading-your-own-functions-2ngp)
-- [An Introduction to the Z Shell - Shell Functions](http://zsh.sourceforge.net/Intro/intro_4.html)
-- [The Z Shell Manual - Functions](http://zsh.sourceforge.net/Doc/Release/Functions.html)
+- [] Create Zsh functions
+    - [lukeojones - 1UP your Zsh abilities by autoloading your own functions](https://dev.to/lukeojones/1up-your-zsh-abilities-by-autoloading-your-own-functions-2ngp)
+    - [An Introduction to the Z Shell - Shell Functions](http://zsh.sourceforge.net/Intro/intro_4.html)
+    - [The Z Shell Manual - Functions](http://zsh.sourceforge.net/Doc/Release/Functions.html)
 
 ## References
 
@@ -311,7 +305,7 @@ will be installed).
   is also references in
   [Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
 * [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) -
-  inspiration for most of the settings in [macos.zsh](macos.zsh). Take everything in this repository
+  inspiration for most of the settings in [macos.zsh](scripts/macos.zsh). Take everything in this repository
   with a pinch of salt. macOS is a fast-moving environment that does not prioritise backwards
   compatibility for these settings or preferences.
 * [A User's Guide to the Z-Shell - What to put in your startup files](http://zsh.sourceforge.net/Guide/zshguide02.html)

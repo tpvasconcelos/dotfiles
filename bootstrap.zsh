@@ -182,26 +182,31 @@ chmod a+x /usr/local/bin/gh-md-toc
 log_info "🚀 Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo ln -sfn "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+sudo ln -sfnh "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 log_info "Creating bin/ and src/ directories for Golang..."
-mkdir -p "$HOME"/go/bin "$HOME"/go/src
+mkdir -p "$HOME/go/bin" "$HOME/go/src"
 
-log_info "🚀 Setting up macOS preferences..."
-# This will update many of the default macos settings and system preferences.
-./macos.zsh
-
-log_info "Restoring other preferences (using Mackup)..."
+log_info "Restoring application settings (using Mackup)..."
 ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
 mackup restore --force
 
 log_info "Linking shell startup scripts..."
-ln -sTfv "$(realpath .zshenv)" "$HOME/.zshenv"
-ln -sTfv "$(realpath .zprofile)" "$HOME/.zprofile"
-ln -sTfv "$(realpath .zshrc)" "$HOME/.zshrc"
+ln -sTfv "$(realpath shell/startup_scripts/.zshenv)" "$HOME/.zshenv"
+ln -sTfv "$(realpath shell/startup_scripts/.zprofile)" "$HOME/.zprofile"
+ln -sTfv "$(realpath shell/startup_scripts/.zshrc)" "$HOME/.zshrc"
 
-log_info "🚀 Cloning git repos..."
-./clones.zsh
+log_info "🚀 Setting up macOS preferences..."
+log_warning "This will update many of the default settings and system preferences!"
+./scripts/macos.zsh
+
+
+################################################################################
+# If exists, run the extra local bootstrap script
+################################################################################
+if [[ -r ./scripts/extra.zsh ]]; then
+  source ./scripts/extra.zsh
+fi
 
 
 ###############################################################################

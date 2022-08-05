@@ -1,8 +1,7 @@
 # shellcheck disable=SC1090,SC2034
-########################################
+###############################################
 # .zshrc: interactive shell settings
-########################################
-
+###############################################
 
 ################################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -10,7 +9,6 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 ################################################################################
 source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
 
 ################################################################################
 # Oh-my-zsh!
@@ -23,7 +21,6 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="random"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Load plugins
@@ -32,12 +29,11 @@ source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
 # Load om-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
-
 ################################################################################
 # Shell History Configuration
 ################################################################################
 HISTFILE="$HOME/.zsh_history" # Where to save history to disk
-HISTSIZE=1200054                # How many lines of history to keep in memory
+HISTSIZE=10000                # How many lines of history to keep in memory
 SAVEHIST=10000                # Number of history entries to save to disk
 HISTDUP=erase                 # Erase duplicates in the history file
 setopt appendhistory          # Append history to the history file (no overwriting)
@@ -56,7 +52,6 @@ setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history.
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-
 ################################################################################
 # Define aliases
 ################################################################################
@@ -66,7 +61,6 @@ alias pag='ps aux | head -1; ps aux | grep -v grep | grep'
 alias wa='watch -c '
 alias p='pycharm .'
 eval "$(thefuck --alias)"
-
 
 ################################################################################
 # Add some CPP and LDF flags, and PKG_CONFIG_PATH paths
@@ -106,7 +100,6 @@ export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib -L${BREW_PREFIX}/opt/readli
 export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include -I${BREW_PREFIX}/opt/openjdk@11/include"
 export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${BREW_PREFIX}/opt/readline/lib/pkgconfig:${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${BREW_PREFIX}/opt/zlib/lib/pkgconfig:${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
 
-
 ################################################################################
 # Misc
 ################################################################################
@@ -123,12 +116,17 @@ eval "$(pyenv init -)"
 # Ruby  ---
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
 
+################################################################################
+# If exists, run the extra local startup script
+################################################################################
+if [[ -r "${SHELL_DIR_STARTUP_SCRIPTS}/.zshrc.extra" ]]; then
+  source "${SHELL_DIR_STARTUP_SCRIPTS}/.zshrc.extra"
+fi
 
 ################################################################################
 # iTerm2 Shell Integration
 ################################################################################
 source "${HOME}/.iterm2_shell_integration.zsh"
-
 
 ################################################################################
 # Customize shell prompt

@@ -1,0 +1,23 @@
+# shellcheck disable=SC1090,SC2034
+###############################################
+# .zprofile: interactive shell settings
+###############################################
+
+# Misc ---
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init --path)"
+
+# Re-add the extra _ZSHENV_PATH_EXTRAS paths in the correct order.
+# This is needed since the default /etc/zprofile startup script
+# messes up with the order set in my ~/.zshenv script.
+path=(
+  "${_ZSHENV_PATH_EXTRAS[@]}"
+  "${path[@]}"
+)
+
+################################################################################
+# If exists, run the extra local startup script
+################################################################################
+if [[ -r "${SHELL_DIR_STARTUP_SCRIPTS}/.zprofile.extra" ]]; then
+  source "${SHELL_DIR_STARTUP_SCRIPTS}/.zprofile.extra"
+fi
