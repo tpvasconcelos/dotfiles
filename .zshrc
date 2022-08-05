@@ -71,10 +71,14 @@ eval "$(thefuck --alias)"
 ################################################################################
 # Add some CPP and LDF flags, and PKG_CONFIG_PATH paths
 ################################################################################
-## openssl
+## openssl@3
 #export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@3/lib"
 #export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@3/include"
 #export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@3/lib/pkgconfig"
+## openssl@1.1
+# export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig"
 ## readline
 #export LDFLAGS="-L${BREW_PREFIX}/opt/readline/lib"
 #export CPPFLAGS="-I${BREW_PREFIX}/opt/readline/include"
@@ -98,9 +102,9 @@ eval "$(thefuck --alias)"
 ## openjdk (Jjava)
 #export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@11/include"
 # Merged  ---
-export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@3/lib -L${BREW_PREFIX}/opt/readline/lib -L${BREW_PREFIX}/opt/sqlite/lib -L${BREW_PREFIX}/opt/llvm/lib -L${BREW_PREFIX}/opt/zlib/lib -L${BREW_PREFIX}/opt/ruby/lib"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@3/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include -I${BREW_PREFIX}/opt/openjdk@11/include"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@3/lib/pkgconfig:${BREW_PREFIX}/opt/readline/lib/pkgconfig:${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${BREW_PREFIX}/opt/zlib/lib/pkgconfig:${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
+export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib -L${BREW_PREFIX}/opt/readline/lib -L${BREW_PREFIX}/opt/sqlite/lib -L${BREW_PREFIX}/opt/llvm/lib -L${BREW_PREFIX}/opt/zlib/lib -L${BREW_PREFIX}/opt/ruby/lib"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include -I${BREW_PREFIX}/opt/openjdk@11/include"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${BREW_PREFIX}/opt/readline/lib/pkgconfig:${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${BREW_PREFIX}/opt/zlib/lib/pkgconfig:${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
 
 
 ################################################################################

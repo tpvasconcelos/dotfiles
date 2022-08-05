@@ -195,7 +195,6 @@ cask "p4v"
 cask "diffmerge"
 cask "postman"
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
-cask "eul"                      # https://github.com/gao-sun/eul/
 #tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 #cask "popcorn-time"
 mas "Amphetamine", id: 937984704

@@ -122,11 +122,10 @@ fi
 ########################
 
 log_info "Installing all python versions from pyenv..."
-# TODO: use tau-install-all && tau_cleanup
-tau-install 3.7
-tau-install 3.8
-tau-install 3.9
-tau-install 3.10 && tau-global 3.10
+tau-install-all
+# TODO: tau-cleanup or something similar to automatically
+#       add all minor versions as global versions
+tau-global 3.10
 eval "$(pyenv init --path)"
 
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
