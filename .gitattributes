@@ -14,6 +14,9 @@ Mackup/Library/Preferences/com.googlecode.iterm2.plist !filter !diff
 Mackup/.Brewfile !filter !diff
 Mackup/.gitconfig !filter !diff
 Mackup/.gitignore_global !filter !diff
+Mackup/.zprofile !filter !diff
+Mackup/.zshenv !filter !diff
+Mackup/.zshrc !filter !diff
 
 # Any other files (outside `Mackup/`) that are also encrypted
 clones.zsh filter=git-crypt diff=git-crypt

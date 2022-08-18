@@ -213,11 +213,6 @@ log_info "Restoring application settings (using Mackup)..."
 ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
 mackup restore --force
 
-log_info "Linking shell startup scripts..."
-ln -sTfv "$(realpath shell/startup_scripts/.zshenv)" "$HOME/.zshenv"
-ln -sTfv "$(realpath shell/startup_scripts/.zprofile)" "$HOME/.zprofile"
-ln -sTfv "$(realpath shell/startup_scripts/.zshrc)" "$HOME/.zshrc"
-
 log_info "Setting up macOS preferences..."
 log_warning "This will update many of the default settings and system preferences!"
 ./scripts/macos.zsh

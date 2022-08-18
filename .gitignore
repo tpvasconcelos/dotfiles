@@ -1,4 +1,4 @@
-shell/startup_scripts/*.extra*
+shell/extra_startup_scripts/*.extra*
 scripts/extra.*
 
 .DS_Store
