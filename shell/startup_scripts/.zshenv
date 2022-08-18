@@ -42,6 +42,7 @@ _ZSHENV_PATH_EXTRAS=(
   "${BREW_PREFIX}/opt/openjdk@11/bin"
   "${BREW_PREFIX}/opt/openssl@1.1/bin"
   "${BREW_PREFIX}/opt/ruby/bin"
+  "${HOME}/.cargo/bin"
   "${HOME}/.deta/bin"
   "${HOME}/.flutter/bin"
   "${HOME}/.gem/ruby/3.0.0/bin"

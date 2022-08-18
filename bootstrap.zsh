@@ -166,6 +166,13 @@ fi
 log_info "Installing git's LFS..."
 git lfs install
 
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  log_success "Rust already installed!"
+else
+  log_info "Installing Rust..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --verbose -y
+fi
+
 log_info "Installing Jekyll..."
 # https://jekyllrb.com/docs/installation/macos/
 gem install --conservative --user-install bundler jekyll
