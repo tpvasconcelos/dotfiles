@@ -1,27 +1,92 @@
-app-exists() {
+cmd_exists() {
+  # Check if a command exists
+  #
+  # Returns 0 exit code if the command exists and 1 otherwise
+  #
+  # Usage
+  #   cmd_exists <command>
+  #
+  # Arguments
+  #   $1  command to check
+  #
+  # Examples
+  #   $ cmd_exists git; echo $?
+  #   0
+  #   $ cmd_exists foo; echo $?
+  #   1
+  local cmd="$1"
+  command -v "$cmd" >/dev/null 2>&1
+}
+
+app_exists() {
+  # Check if an app exists
+  #
+  # Returns 0 exit code if the app exists and 1 otherwise
+  #
+  # Usage
+  #   app_exists <app>
+  #
+  # Arguments
+  #   $1  app name
+  #
+  # Examples
+  #   $ app_exists Finder; echo $?
+  #   0
+  #   $ app_exists FooBar; echo $?
+  #   1
   local app="${*}"
-  if [[ "$(system_profiler -json SPApplicationsDataType | grep -i "\"${app}\"")" ]]; then
-    true
+  if system_profiler -json SPApplicationsDataType | grep -iq "\"$app\""; then
+    return 0
   else
-    log_warning "The app \"${app}\" does not exist!"
-    false
+    return 1
+  fi
+}
+
+need_cmd() {
+  # Check if a command exists.
+  #
+  # If the command does not exist, print an error message and exit
+  # with an exit code of 1.
+  #
+  # Usage
+  #   need_cmd <command>
+  #
+  # Arguments
+  #   $1  command to check
+  #
+  # Examples
+  #   $ need_cmd git; echo $?
+  #   0
+  #   $ need_cmd foo; echo $?
+  #   [✘] Command 'foo' not found!
+  #   1
+  local cmd="$1"
+  if ! cmd_exists "$cmd"; then
+    log_error "Command '$cmd' not found!"
+    return 1
   fi
 }
 
 restart() {
   # Restart a macOS app
-  # Arguments:
-  #   * $* : The app's full name
-  # Examples:
-  #   $ restart "Alfred 4"
-  #   [INFO] - Killing "Alfred 4"
-  #   [INFO] - Opening "Alfred 4"
+  #
+  # Arguments
+  #   $*  The app's full name
+  #
+  # Examples
+  #   $ restart Alfred 4
+  #   [ℹ] Killing "Alfred 4"
+  #   [ℹ] Opening "Alfred 4"
+  #   $ restart FooBar
+  #   [⚠] The app "FooBar" does not exist!
   local app="${*}"
-  app-exists "${app}" || return
-  log_info "Killing \"${app}\""
-  osascript -e "quit app \"${app}\"" &&
-    log_info "Opening \"${app}\"" &&
-    open -a "${app}"
+  if ! app_exists "$app"; then
+    log_warning "The app \"${app}\" does not exist!"
+  fi
+  log_info "Killing \"$app\""
+  osascript -e "quit app \"$app\"" &&
+    log_info "Opening \"$app\"" &&
+    open -a "$app"
 }
 
 manopt() {

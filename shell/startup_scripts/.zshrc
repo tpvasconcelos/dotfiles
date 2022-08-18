@@ -57,7 +57,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 ################################################################################
 alias ls='ls -G -la'
 alias pp='echo $PATH | tr -s ":" "\n"'
-alias pag='ps aux | head -1; ps aux | grep -v grep | grep'
+alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '
 alias p='pycharm .'
 eval "$(thefuck --alias)"

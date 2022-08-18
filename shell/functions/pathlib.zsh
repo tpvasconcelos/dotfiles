@@ -25,7 +25,7 @@ get_stem() {
   #   ✖ get_stem: No path provided!
   if [[ -z "${*}" ]]; then
     # shellcheck disable=SC2154
-    log_error "${funcstack[1]}: No path provided\!"
+    log_error "${funcstack[1]}: No path provided!"
     return 1
   else
     printf "%s" "${$(basename -- "${*}")%.*}"

@@ -4,13 +4,13 @@ tau-install() {
   #          matching the regex (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
   # Examples:
   #   $ tau-install
-  #   [INFO] - Installing Python 3.9.4
+  #   [ℹ] Installing Python 3.9.4
   #   $ tau-install 2.7
-  #   [WARNING] - Skipping: Python 2.7.18 is already installed.
+  #   [⚠] Skipping: Python 2.7.18 is already installed.
   #   $ tau-install 3.7.1
-  #   [INFO] - Installing Python 3.7.1
+  #   [ℹ] Installing Python 3.7.1
   #   $ tau-install 3.10-dev
-  #   [ERROR] - The input '3.10-dev' doesnt match the a valid version number.
+  #   [✘] The input '3.10-dev' doesnt match the a valid version number.
   local py_version_user_input="${1}"
   local py_version_patch
 
@@ -75,15 +75,16 @@ tau-install() {
 }
 
 tau-global() {
+  # FIXME: make this compatible with passing multiple minor versions as input
   # Arguments:
   #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
   # Examples:
   #   $ tau-global 3.9
-  #   [INFO] - Setting Python 3.9.13 as a global version
+  #   [ℹ] Setting Python 3.9.13 as a global version
   #   $ tau-global 1
-  #   [ERROR] - The input '1' doesnt match the a valid version number.
+  #   [✘] The input '1' doesnt match the a valid version number.
   #   $ tau-global 4.2
-  #   [ERROR] - Could not find a match for '4.2'. Are you sure this Python version exists?
+  #   [✘] Could not find a match for '4.2'. Are you sure this Python version exists?
   local py_version_user_input="${1}"
   local py_version_patch
 
@@ -114,14 +115,14 @@ tau-install-all() {
   #   * <NONE>
   # Examples:
   #   $ tau-install-all
-  #   [DEBUG] - Collected python versions: (2.7 3.7 3.8)
-  #   [INFO] - Installing Python 2.7.18
-  #   [WARNING] - Skipping: Python 3.7.10 is already installed.
-  #   [INFO] - Installing Python 3.8.6
+  #   [⋯] Collected python versions: (2.7 3.7 3.8)
+  #   [ℹ] Installing Python 2.7.18
+  #   [⚠] Skipping: Python 3.7.10 is already installed.
+  #   [ℹ] Installing Python 3.8.6
   #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
-  #   [DEBUG] - Collected python versions: (3.7 3.8.5)
-  #   [WARNING] - Skipping: Python 3.7.10 is already installed.
-  #   [INFO] - Installing Python 3.8.5
+  #   [⋯] Collected python versions: (3.7 3.8.5)
+  #   [⚠] Skipping: Python 3.7.10 is already installed.
+  #   [ℹ] Installing Python 3.8.5
   local py_versions pyv
   if [[ -n ${PYENV_TARGET_VERSIONS_OVERWRITE+x} ]]; then
     # If the $PYENV_TARGET_VERSIONS_OVERWRITE environment variable is set,

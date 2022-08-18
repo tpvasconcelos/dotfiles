@@ -11,12 +11,11 @@ load() {
   elif [[ ${loaded_scripts[(ie)$path_to_script]} -le ${#loaded_scripts} ]]; then
     log_error "The script '$path_to_script' has already been loaded!"
     return 1
-  elif [[ -r "${path_to_script}" ]]; then
-    # shellcheck disable=SC1090
-    source "${path_to_script}"
-    loaded_scripts=("${path_to_script}" "${loaded_scripts[@]}")
-  else
+  elif ! [[ -r "${path_to_script}" ]]; then
     log_error "Could not source '$path_to_script'. The file does not exist!"
     return 1
   fi
+  # shellcheck disable=SC1090
+  source "${path_to_script}"
+  loaded_scripts=("${path_to_script}" "${loaded_scripts[@]}")
 }
