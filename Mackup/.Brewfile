@@ -105,6 +105,7 @@ brew "llvm"
 brew "gcc"
 brew "libomp"
 brew "swig"
+brew "openblas"
 
 # Installing iTerm2  ---
 # Other terminal emulators to consider:
