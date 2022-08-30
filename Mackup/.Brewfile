@@ -84,7 +84,6 @@ brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
-brew "cookiecutter"
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
@@ -187,7 +186,6 @@ cask "iina"                     # https://iina.io/
 cask "blender"
 cask "appcleaner"
 cask "disk-inventory-x"
-cask "muzzle"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"             #

@@ -14,6 +14,9 @@ hc-update-everything() {
   brew bundle --global --no-lock
   brew upgrade
 
+  # Update pipx packages
+  pipx upgrade-all
+
   if [ "$1" = "--brew-greedy" ]; then
     # Also update brew casks that only have a `:latest` version tag
     brew upgrade --greedy-latest

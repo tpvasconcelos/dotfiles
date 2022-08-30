@@ -148,6 +148,13 @@ else
   pipx install pipenv
 fi
 
+if pipx list | grep -q cookiecutter; then
+  log_success "cookiecutter is already installed!"
+else
+  log_info "Installing cookiecutter..."
+  pipx install cookiecutter
+fi
+
 # Create playground venv
 PY_PLAYGROUND_VENV="${HOME}/.venv"
 if [[ -d "$PY_PLAYGROUND_VENV" ]]; then
