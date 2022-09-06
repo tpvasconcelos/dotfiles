@@ -4,7 +4,7 @@
     signingkey = 7A00A0D0C929E374
 
 [init]
-	defaultBranch = master
+	defaultBranch = main
 
 [core]
     excludesfile = ~/.gitignore_global
@@ -56,7 +56,7 @@
     dbo = push origin --delete
     nb = "!f() { git co -b $1 && git sus; }; f"
     pp = !git pull && git push
-    mm =  !git pull && git co master && git pull && git co - && git merge master && git push
+    mm =  !git pull && git co main && git pull && git co - && git merge main && git push
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     susf = !"git push --set-upstream fork $(git rev-parse --abbrev-ref HEAD)"
     obliterate = "!f() { git filter-branch --force --index-filter \"git rm -r --cached \\\"$1\\\" --ignore-unmatch\" --prune-empty --tag-name-filter cat -- --all; }; f"
