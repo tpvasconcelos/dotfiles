@@ -7,12 +7,14 @@
 # options, key bindings, etc.
 #
 
+
 ################################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 ################################################################################
 source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+
 
 ################################################################################
 # Oh-my-zsh!
@@ -32,6 +34,7 @@ source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
 
 # Load om-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
+
 
 ################################################################################
 # Shell History Configuration
@@ -56,6 +59,7 @@ setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history.
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+
 ################################################################################
 # Define aliases
 ################################################################################
@@ -66,46 +70,48 @@ alias wa='watch -c '
 alias p='pycharm .'
 eval "$(thefuck --alias)"
 
+
 ################################################################################
-# Add some CPP and LDF flags, and PKG_CONFIG_PATH paths
+# Set LDFLAGS, CPPFLAGS, and PKG_CONFIG_PATH
 ################################################################################
+
 ## openssl@3
-#export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@3/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@3/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@3/lib/pkgconfig"
-## openssl@1.1
-#export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig"
-## openblas
-#export LDFLAGS="-L${BREW_PREFIX}/opt/openblas/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/openblas/include"
-## readline
-#export LDFLAGS="-L${BREW_PREFIX}/opt/readline/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/readline/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/readline/lib/pkgconfig"
-## sqlite
-#export LDFLAGS="-L${BREW_PREFIX}/opt/sqlite/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/sqlite/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/sqlite/lib/pkgconfig"
-## llvm
-#export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include"
-## zlib
-#export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib -Wl,-rpath,${BREW_PREFIX}/opt/llvm/lib"
-#export LDFLAGS="-L${BREW_PREFIX}/opt/zlib/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/zlib/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/zlib/lib/pkgconfig"
-## ruby
-#export LDFLAGS="-L${BREW_PREFIX}/opt/ruby/lib"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/ruby/include"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
-## openjdk (Jjava)
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@11/include"
-# Merged  ---
-export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib -L${BREW_PREFIX}/opt/openblas/lib -L${BREW_PREFIX}/opt/readline/lib -L${BREW_PREFIX}/opt/sqlite/lib -L${BREW_PREFIX}/opt/llvm/lib -L${BREW_PREFIX}/opt/zlib/lib -L${BREW_PREFIX}/opt/ruby/lib"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include -I${BREW_PREFIX}/opt/openblas/include -I${BREW_PREFIX}/opt/readline/include -I${BREW_PREFIX}/opt/sqlite/include -I${BREW_PREFIX}/opt/llvm/include -I${BREW_PREFIX}/opt/zlib/include -I${BREW_PREFIX}/opt/ruby/include -I${BREW_PREFIX}/opt/openjdk@11/include"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${BREW_PREFIX}/opt/readline/lib/pkgconfig:${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${BREW_PREFIX}/opt/zlib/lib/pkgconfig:${BREW_PREFIX}/opt/ruby/lib/pkgconfig"
+#export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@3/lib ${LDFLAGS}"
+#export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@3/include ${CPPFLAGS}"
+#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@3/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# openssl@1.1
+export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# openblas
+export LDFLAGS="-L${BREW_PREFIX}/opt/openblas/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/openblas/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# readline
+export LDFLAGS="-L${BREW_PREFIX}/opt/readline/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/readline/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/readline/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# sqlite
+export LDFLAGS="-L${BREW_PREFIX}/opt/sqlite/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/sqlite/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# llvm
+export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include ${CPPFLAGS}"
+
+# ruby
+export LDFLAGS="-L${BREW_PREFIX}/opt/ruby/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/ruby/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/ruby/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# openjdk (Java)
+export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
+
 
 ################################################################################
 # Misc
@@ -123,6 +129,7 @@ eval "$(pyenv init -)"
 # Ruby  ---
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
 
+
 ################################################################################
 # If exists, run the extra local startup script
 ################################################################################
@@ -130,10 +137,12 @@ if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc.extra" ]]; then
   source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc.extra"
 fi
 
+
 ################################################################################
 # iTerm2 Shell Integration
 ################################################################################
 source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 ################################################################################
 # Customize shell prompt
