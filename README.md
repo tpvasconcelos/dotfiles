@@ -232,7 +232,6 @@ Options:
     --help                 Show this help message and exit
 ```
 
-
 ### Install Xcode and Command Line Developer Tools
 
 1. Start by downloading Xcode from the App Store. Once this download is complete, run the following
