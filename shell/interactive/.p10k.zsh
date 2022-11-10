@@ -377,25 +377,26 @@
 
     local res
 
+    # This indicated the maximum number of characters displayed for the
+    # branch/tag name. Branches and tags with names longer than this it
+    # be truncated and a "…" character will be added at the end.
+    local git_max_ref_len=40
+
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
-      # If local branch name is at most 32 characters long, show it in full.
-      # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
-      (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
+      (( $#branch > git_max_ref_len )) && branch[git_max_ref_len-1,-1]="…"
       res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
     fi
 
     if [[ -n $VCS_STATUS_TAG
           # Show tag only if not on a branch.
           # Tip: To always show tag, delete the next line.
-          && -z $VCS_STATUS_LOCAL_BRANCH  # <-- this line
+          && -z $VCS_STATUS_LOCAL_BRANCH
         ]]; then
       local tag=${(V)VCS_STATUS_TAG}
-      # If tag name is at most 32 characters long, show it in full.
-      # Otherwise show the first 12 … the last 12.
       # Tip: To always show tag name in full without truncation, delete the next line.
-      (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
+      (( $#tag > git_max_ref_len )) && tag[git_max_ref_len-1,-1]="…"
       res+="${meta}#${clean}${tag//\%/%%}"
     fi
 
