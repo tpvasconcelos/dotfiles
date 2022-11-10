@@ -161,6 +161,13 @@ If you want to update everything with a single command, you can run
 hc-update-everything --system --brew-greedy-latest
 ```
 
+For simple routine updates, you can simply call the `hc-update-everything` script without any
+arguments.
+
+```shell script
+hc-update-everything
+```
+
 For more details see the `hc-update-everything` function definition at
 [shell/functions/hc.zsh#L1](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh#L1).
 
