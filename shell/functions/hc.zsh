@@ -1,47 +1,46 @@
 hc-update-everything() {
-  if [ "$1" = "--help" ]; then
-    echo "Usage: hc-update-everything [option]"
+  if [[ "$*" == *--help* ]]; then
+    echo "Usage: hc-update-everything [OPTIONS]"
     echo ""
     echo "Options:"
-    echo "    --brew-greedy      Also update brew casks that only have a :latest version tag"
-    echo "    --system           Also run a system software update"
-    echo "    --help             Show this help message"
-    return
+    echo "    --system              Run a system software update first"
+    echo "    --brew-greedy-latest  Also update brew casks with a :latest version tag"
+    echo "    --help                Show this help message and exit"
+    return 0
+  fi
+
+  if [[ "$*" == *--system* ]]; then
+    # System software update
+    sudo softwareupdate --install --all --verbose --force --agree-to-license
   fi
 
   # Update brew packages
   brew update
   brew bundle --global --no-lock
   brew upgrade
+  if [[ "$*" == *--brew-greedy-latest* ]]; then
+    # Also update brew casks with a :latest version tag
+    brew upgrade --greedy-latest
+  fi
 
   # Update pipx packages
   pipx upgrade-all
 
-  if [ "$1" = "--brew-greedy" ]; then
-    # Also update brew casks that only have a `:latest` version tag
-    brew upgrade --greedy-latest
-  fi
-
   # Update rust
   rustup update
-
-  if [ "$1" = "--system" ]; then
-    # Also run a system software update
-    sudo softwareupdate --install --all --verbose --force --agree-to-license
-  fi
 }
 
 hc-clear-caches() {
-  if [ "$1" = "--help" ]; then
-    echo "Usage: hc-clear-caches [option]"
+  if [[ "$*" == *--help* ]]; then
+    echo "Usage: hc-clear-caches [OPTIONS]"
     echo ""
     echo "Options:"
     echo "    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile"
-    echo "    --help                 Show this help message"
+    echo "    --help                 Show this help message and exit"
     return
   fi
 
-  if [ "$1" = "--cleanup-brew-bundle" ]; then
+  if [[ "$*" == *--cleanup-brew-bundle* ]]; then
     # Uninstall all dependencies not listed in the Brewfile
     brew bundle cleanup --global --force
   fi

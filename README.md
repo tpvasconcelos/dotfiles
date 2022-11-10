@@ -45,14 +45,15 @@ git clone git@github.com:tpvasconcelos/dotfiles.git ~/.dotfiles
 **New in macOS Big Sur -** At this point, you will be prompted to install macOS's
 [Command Line Developer Tools](https://developer.apple.com/downloads/). Simply follow the steps in
 the user interface dialog. If this did not work for you, or you are on an older version of macOS,
-follow the step in the
+follow the steps in the
 [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
 section in the Appendix.
 
 ### Installing Homebrew
 
 I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases
-where Homebrew is not enough! Run the following command to install Homebrew on your machine.
+where Homebrew is not enough! Run the following command to
+[install Homebrew](https://brew.sh/#install) on your machine.
 
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -69,7 +70,7 @@ Starting from a fresh macOS installation, you will need to install the following
 Homebrew:
 
 ```shell script
-brew install gpg git git-crypt
+brew install gnupg git git-crypt
 ```
 
 Then, you will need to import your private GnuPG key (I keep mine safely stored
@@ -154,6 +155,25 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 
 ### Update everything
 
+If you want to update everything with a single command, you can run
+
+```shell script
+hc-update-everything --system --brew-greedy-latest
+```
+
+For more details see the `hc-update-everything` function definition at
+[shell/functions/hc.zsh#L1](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh#L1).
+
+```console
+$ hc-update-everything --help
+Usage: hc-update-everything [OPTIONS]
+
+Options:
+    --system              Run a system software update first
+    --brew-greedy-latest  Also update brew casks with a :latest version tag
+    --help                Show this help message and exit
+```
+
 #### Software Update
 
 It is generally a good idea to keep your machine up-to-date and install software updates and
@@ -168,21 +188,6 @@ automatically.
 
 ```shell script
 sudo softwareupdate --install --all --verbose --force --agree-to-license
-```
-
-#### Brew packages
-
-```shell script
-brew update
-brew bundle --global --no-lock
-brew upgrade
-```
-
-In order to also update casks that only have a `:latest` version tag, pass the
-optional `--greedy-latest` flag. Note that this could be an expensive operation.
-
-```shell script
-brew upgrade --greedy-latest
 ```
 
 ### Check for issues
@@ -202,20 +207,24 @@ xcrun simctl delete all && xcrun simctl erase all
 rm -rf ~/Library/Developer/CoreSimulator/Caches/*
 ```
 
-You can occasionally also clear your caches for tools like brew, pip, or docker.
+You can occasionally also clear your caches for tools like brew, pip, or docker by running
 
 ```shell script
-# Uninstall all dependencies not listed in the Brewfile
-brew bundle cleanup --global --force
-# clear homebrew's caches
-brew cleanup -s
-
-# Clears caches (pipenv, pip, and pip-tools)
-pipenv --clear
-
-# Remove docker's unused data
-docker system prune --volumes
+hc-clear-caches
 ```
+
+For more details see the `hc-clear-caches` function definition at
+[shell/functions/hc.zsh#L34](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh#L34).
+
+```console
+$ hc-clear-caches --help
+Usage: hc-clear-caches [OPTIONS]
+
+Options:
+    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile
+    --help                 Show this help message and exit
+```
+
 
 ### Install Xcode and Command Line Developer Tools
 
