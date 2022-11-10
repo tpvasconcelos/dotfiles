@@ -185,6 +185,7 @@ cask "vlc"
 cask "iina"                     # https://iina.io/
 cask "blender"
 cask "appcleaner"
+casl "betterdisplay"            # https://github.com/waydabber/BetterDisplay
 cask "disk-inventory-x"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
