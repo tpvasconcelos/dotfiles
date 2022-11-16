@@ -28,14 +28,14 @@ brew "openssh"
 brew "screen"
 brew "gmp"
 
-# Install python dev tools  ---
+# Python dev tools  ---
 brew "pyenv"
 brew "pipx"     # https://github.com/pypa/pipx/
 
-# Installing openjdk (Java's development kit)  ---
+# openjdk (Java's development kit)  ---
 brew "openjdk@11"
 
-# Installing cool fonts  ---
+# Fonts  ---
 tap "bramstein/webfonttools"
 brew "sfnt2woff"
 brew "sfnt2woff-zopfli"
@@ -48,7 +48,7 @@ cask "font-lora"
 cask "font-juliamono"
 cask "font-hack-nerd-font"
 
-# Installing useful more command line utils  ---
+# Command line utils  ---
 brew "curl"
 brew "wget"
 brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
@@ -90,7 +90,7 @@ brew "autojump"             # https://github.com/wting/autojump
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 tap "homebrew/command-not-found"
 
-# Upgrading git  ---
+# git  ---
 brew "git"
 brew "git-crypt"
 brew "gnupg"
@@ -98,7 +98,7 @@ brew "pinentry-mac"
 brew "git-lfs"
 brew "git-flow-avh"
 
-# Installing compilers  ---
+# Compilers  ---
 brew "cmake"
 brew "llvm"
 brew "gcc"
@@ -106,17 +106,17 @@ brew "libomp"
 brew "swig"
 brew "openblas"
 
-# Installing iTerm2  ---
+# iTerm2  ---
 # Other terminal emulators to consider:
 # - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
 cask "iterm2"
 
-# Installing docker and virtualbox  ---
+# Docker and virtualbox  ---
 cask "docker"
 cask "kitematic"
 #cask "virtualbox"
 
-# Installing Kubernetes dev tools  ---
+# Kubernetes dev tools  ---
 brew "kubectx"                  # https://github.com/ahmetb/kubectx
 brew "k9s"                      # https://github.com/derailed/k9s
 brew "kube-ps1"                 # https://github.com/jonmosco/kube-ps1
@@ -130,15 +130,21 @@ brew "kind"                     # https://github.com/kubernetes-sigs/kind/
 # Desktop Applications
 ################################################################################
 
-# Installing drivers  ---
+# Drivers  ---
 tap "homebrew/cask-drivers"
 cask "logitech-options"
 
-# Installing Text editors and IDEs  ---
+# Text editors and IDEs  ---
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
 cask "r"
+
+# Other desktop dev tools  ---
+cask "anaconda"
+cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
+cask "postman"
+cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 
 # Quick-look plugins  ---
 cask "syntax-highlight"
@@ -147,10 +153,7 @@ cask "qlmarkdown"
 cask "qlimagesize"
 cask "qlvideo"
 
-# Other dev applications  ---
-cask "anaconda"
-
-# Installing Browsers  ---
+# Web Browsers  ---
 cask "brave-browser"
 cask "google-chrome"
 #cask "tor-browser"
@@ -159,7 +162,7 @@ cask "firefox"
 mas "Grammarly for Safari", id: 1462114288
 mas "Dashlane – Password Manager", id: 517914548
 
-# Installing Productivity & Office apps  ---
+# Productivity & Office apps  ---
 cask "microsoft-office"
 cask "the-unarchiver"
 cask "whatsapp"
@@ -177,7 +180,7 @@ mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
 
-# Installing Misc apps  ---
+# Misc apps  ---
 cask "macs-fan-control"
 #cask "vuze"
 cask "spotify"
@@ -187,14 +190,12 @@ cask "blender"
 cask "appcleaner"
 cask "betterdisplay"            # https://github.com/waydabber/BetterDisplay
 cask "disk-inventory-x"
-cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"             #
 cask "image2icon"               # https://img2icnsapp.com/
 cask "p4v"
 cask "diffmerge"
-cask "postman"
-cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
+cask "zotero"
 #tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 #cask "popcorn-time"
 mas "Amphetamine", id: 937984704
