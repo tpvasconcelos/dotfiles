@@ -47,6 +47,7 @@ _ZSHENV_PATH_EXTRAS=(
   "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
   "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
   "${BREW_PREFIX}/opt/grep/libexec/gnubin"
+  "${BREW_PREFIX}/opt/llvm/bin"
   "${BREW_PREFIX}/opt/openjdk@11/bin"
   "${BREW_PREFIX}/opt/openssl@1.1/bin"
   "${BREW_PREFIX}/opt/ruby/bin"

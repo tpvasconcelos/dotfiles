@@ -103,6 +103,16 @@ export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${PKG_CONFIG_PAT
 # llvm
 export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib ${LDFLAGS}"
 export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include ${CPPFLAGS}"
+# libc++
+export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib/c++ -Wl,-rpath,${BREW_PREFIX}/opt/llvm/lib/c++ ${LDFLAGS}"
+
+# libomp
+export LDFLAGS="-L${BREW_PREFIX}/opt/libomp/lib ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/libomp/include ${CPPFLAGS}"
+
+# gcc
+export LDFLAGS="-L${BREW_PREFIX}/opt/gcc/lib/gcc/12 ${LDFLAGS}"
+export CPPFLAGS="-I${BREW_PREFIX}/opt/gcc/include/c++/12 ${CPPFLAGS}"
 
 # ruby
 export LDFLAGS="-L${BREW_PREFIX}/opt/ruby/lib ${LDFLAGS}"
