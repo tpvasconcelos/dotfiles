@@ -75,11 +75,6 @@ eval "$(thefuck --alias)"
 # Set LDFLAGS, CPPFLAGS, and PKG_CONFIG_PATH
 ################################################################################
 
-## openssl@3
-#export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@3/lib ${LDFLAGS}"
-#export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@3/include ${CPPFLAGS}"
-#export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@3/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
 # openssl@1.1
 export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib ${LDFLAGS}"
 export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include ${CPPFLAGS}"

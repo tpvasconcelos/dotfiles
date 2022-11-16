@@ -59,13 +59,13 @@ brew "neovim"               # https://github.com/neovim/neovim
 brew "glow"                 # https://github.com/charmbracelet/glow
 brew "fzf"                  # https://github.com/junegunn/fzf
 brew "ciphey"               # https://github.com/Ciphey/Ciphey
-brew "openssl"
+brew "openssl@1.1"          # https://www.openssl.org/
 brew "readline"
 brew "sqlite"
 brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
 brew "graphviz"
-brew "postgresql"
+brew "postgresql@14"        # https://www.postgresql.org/
 brew "node"
 tap "dart-lang/dart"
 brew "dart"
@@ -98,13 +98,14 @@ brew "pinentry-mac"
 brew "git-lfs"
 brew "git-flow-avh"
 
-# Compilers  ---
+# Compilers and relevant binaries  ---
 brew "cmake"
 brew "llvm"
 brew "gcc"
 brew "libomp"
 brew "swig"
 brew "openblas"
+brew "z3"           # https://github.com/Z3Prover/z3
 
 # iTerm2  ---
 # Other terminal emulators to consider:

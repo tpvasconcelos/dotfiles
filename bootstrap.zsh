@@ -73,7 +73,7 @@ log_info "Installing Brewfile dependencies..."
 brew bundle --no-lock --file=Mackup/.Brewfile
 
 BREW_PREFIX="$(brew --prefix)"
-alias ln="$BREW_PREFIX/opt/coreutils/libexec/gnubin/ln"
+alias ln="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ln"
 
 ################################################################################
 # Install stuff not specified in Brewfile
@@ -86,12 +86,12 @@ log_info "Installing stuff not specified in Brewfile..."
 ########################
 
 PATH_TO_SHELL="${BREW_PREFIX}/bin/zsh"
-if grep -F -q "${PATH_TO_SHELL}" /etc/shells; then
+if grep -F -q "$PATH_TO_SHELL" /etc/shells; then
   log_success "The default shell is already set to the brew-installed zsh shell."
 else
   log_info "Changing the default shell to the brew-installed zsh shell..."
-  echo "${PATH_TO_SHELL}" | sudo tee -a /etc/shells
-  chsh -s "${PATH_TO_SHELL}"
+  echo "$PATH_TO_SHELL" | sudo tee -a /etc/shells
+  chsh -s "$PATH_TO_SHELL"
 fi
 
 if [[ -v ZSH ]]; then
@@ -211,7 +211,10 @@ log_info "Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
 # FIXME: check ln vs gln and flag compatibility
-sudo ln -sfnh "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+sudo ln -sfnh "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+
+log_info "Symlinking the openssl@1.1 as default openssl"
+ln -sfnh "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"
