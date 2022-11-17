@@ -1,16 +1,24 @@
 tau-install() {
+  # TODO: document intro
+  #
   # Arguments:
   #   * $1 : Empty string or a valid Python version number,
   #          matching the regex (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
+  #
   # Examples:
+  #
   #   $ tau-install
   #   [ℹ] Installing Python 3.9.4
+  #
   #   $ tau-install 2.7
   #   [⚠] Skipping: Python 2.7.18 is already installed.
+  #
   #   $ tau-install 3.7.1
   #   [ℹ] Installing Python 3.7.1
+  #
   #   $ tau-install 3.10-dev
   #   [✘] The input '3.10-dev' doesnt match the a valid version number.
+  #
   local py_version_user_input="${1}"
   local py_version_patch
 
@@ -74,17 +82,24 @@ tau-install() {
   fi
 }
 
+# FIXME: make this compatible with passing multiple minor versions as input
 tau-global() {
-  # FIXME: make this compatible with passing multiple minor versions as input
+  # TODO: document intro
+  #
   # Arguments:
   #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
+  #
   # Examples:
+  #
   #   $ tau-global 3.9
   #   [ℹ] Setting Python 3.9.13 as a global version
+  #
   #   $ tau-global 1
   #   [✘] The input '1' doesnt match the a valid version number.
+  #
   #   $ tau-global 4.2
   #   [✘] Could not find a match for '4.2'. Are you sure this Python version exists?
+  #
   local py_version_user_input="${1}"
   local py_version_patch
 
@@ -110,19 +125,24 @@ tau-global() {
 }
 
 tau-install-all() {
-  # TODO:
+  # TODO: document intro
+  #
   # Arguments:
   #   * <NONE>
+  #
   # Examples:
+  #
   #   $ tau-install-all
   #   [⋯] Collected python versions: (2.7 3.7 3.8)
   #   [ℹ] Installing Python 2.7.18
   #   [⚠] Skipping: Python 3.7.10 is already installed.
   #   [ℹ] Installing Python 3.8.6
+  #
   #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
   #   [⋯] Collected python versions: (3.7 3.8.5)
   #   [⚠] Skipping: Python 3.7.10 is already installed.
   #   [ℹ] Installing Python 3.8.5
+  #
   local py_versions pyv
   if [[ -n ${PYENV_TARGET_VERSIONS_OVERWRITE+x} ]]; then
     # If the $PYENV_TARGET_VERSIONS_OVERWRITE environment variable is set,
@@ -161,18 +181,72 @@ tau_cleanup() {
   done < <(pyenv versions | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+" | grep "$(echo "${py_version_patch}" | grep -Eo "[0-9]+\.[0-9]+")" | grep -v "${py_version_patch}")
 }
 
-# FIXME: review, fix, and cleanup
-clean_core_pips() {
-  local py_command pyv
-  for pyv in '' '3' '3.7' '3.8' '3.9' '3.10'; do
-    py_command="python$pyv"
-    if ! command -v "$py_command" 1>/dev/null 2>&1; then
-      log_error "$py_command does not exist"
+tau-clean-pip() {
+  # Upgrade build tools and uninstall all other packages
+  #
+  # Arguments:
+  #   * $1 : A python executable (e.g. python, python3, python3.9, etc).
+  #          If not provided, it defaults to 'python'.
+  #
+  # Examples:
+  #
+  #   $ tau-clean-pip
+  #   [ℹ] [python] Upgrading build tools...
+  #   Requirement already satisfied: pip in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (22.3.1)
+  #   Requirement already satisfied: setuptools in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (65.5.1)
+  #   Requirement already satisfied: wheel in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (0.38.4)
+  #   [ℹ] [python] Uninstalling all packages...
+  #   Found existing installation: numpy 1.23.4
+  #   Uninstalling numpy-1.23.4:
+  #     Successfully uninstalled numpy-1.23.4
+  #
+  #   $ tau-clean-pip python3.7
+  #   [ℹ] [python3.7] Upgrading build tools...
+  #   Requirement already satisfied: pip in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (22.3.1)
+  #   Requirement already satisfied: setuptools in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (65.5.1)
+  #   Requirement already satisfied: wheel in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (0.38.4)
+  #   [⋯] [python3.7] No packages to uninstall.
+  #
+  local py_executable="${1:-python}"
+  log_info "[$py_executable] Upgrading build tools..."
+  $py_executable -m pip install --upgrade pip setuptools wheel || return 1
+  pkgs_to_uninstall="$($py_executable -m pip freeze | grep -v '^pip==' | grep -v '^setuptools==' | grep -v '^wheel==' | grep -v '^-e ')"
+  if [[ -n "${pkgs_to_uninstall}" ]]; then
+    log_info "[$py_executable] Uninstalling all packages..."
+    $py_executable -m pip uninstall -y -r <(echo "${pkgs_to_uninstall}") || return 1
+  else
+    log_debug "[$py_executable] No packages to uninstall."
+  fi
+}
+
+tau-clean-all-pips() {
+  # Cleanup all pips in scope
+  #
+  # Upgrade build tools and uninstall all other packages for all
+  # python versions. This function iterates over the following python
+  # executables: python, python3, python3.7, python3.8, python3.9, etc.
+  #
+  # Arguments:
+  #   * <NONE>
+  #
+  # Examples:
+  #
+  #   $ tau-clean-all-pips
+  #   [ℹ] [python] Upgrading build tools...
+  #   ...
+  #   [⋯] [python3.6] Not installed. Skipping...
+  #   ...
+  #   [ℹ] [python3.9] Uninstalling all packages...
+  #   ...
+  #   [⋯] [python3.13] Not installed. Skipping...
+  #
+  local py_executable pyv pkgs_to_uninstall
+  for pyv in '' '3' '3.6' '3.7' '3.8' '3.9' '3.10' '3.11' '3.12' '3.13'; do
+    py_executable="python$pyv"
+    if ! command -v "$py_executable" 1>/dev/null 2>&1; then
+      log_debug "[$py_executable] Not installed. Skipping..."
     else
-      log_info "Updating pip for: $py_command"
-      $py_command -m pip install -U pip
-      log_info "Uninstalling all packages under $py_command"
-      $py_command -m pip uninstall -y -r <($py_command -m pip freeze)
+      tau-clean-pip "$py_executable"
     fi
   done
 }
