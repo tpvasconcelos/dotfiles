@@ -3,3 +3,5 @@ scripts/extra.*
 
 .DS_Store
 .idea/
+.fleet/
+.venv/
