@@ -1,14 +1,28 @@
+# Utilities for managing multiple python versions on a single machine
+
 tau-install() {
-  # TODO: document intro
+  # Install a Python version using pyenv (python-build)
+  #
+  # This shell function is used to install a specific version of Python
+  # using the pyenv tool. The function takes in a single input, which
+  # should be a string representation of a Python version in the format
+  # of "major", "major.minor", or "major.minor.patch". Alternatively,
+  # an empty string can be passed as input, in which case the latest
+  # available stable version of Python will be installed.
+  #
+  # Usage:
+  #   tau-install <version>
   #
   # Arguments:
-  #   * $1 : Empty string or a valid Python version number,
-  #          matching the regex (^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$)
+  #   * $1 : Empty string or a valid Python version number (matching
+  #          the "^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$" regex). If an
+  #          empty string is provided, it defaults to the latest
+  #          stable Python version.
   #
   # Examples:
   #
   #   $ tau-install
-  #   [ℹ] Installing Python 3.9.4
+  #   [ℹ] Installing Python 3.12.0
   #
   #   $ tau-install 2.7
   #   [⚠] Skipping: Python 2.7.18 is already installed.
@@ -35,7 +49,7 @@ tau-install() {
     # Alternatively, you can pass an empty string, in which case, the latest available
     # stable version will be pulled and installed.
     # e.g. --> "2" or "3.6" or "3.8.5" or "" (empty string)
-    log_error "The input '${py_version_user_input}' doesnt match the a valid version number."
+    log_error "The input '${py_version_user_input}' doesnt match the a valid version number. Please pass a valid version number in the format of 'major', 'major.minor', or 'major.minor.patch', or leave the input empty to install the latest stable version."
     return 1
   elif [[ "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     # If the input matches an exact patch version (e.g. "3.8.5") we'll try to
@@ -71,7 +85,9 @@ tau-install() {
     # FIXME: This assumes that you only have stable CPython versions installed
     log_warning "Skipping: Python $py_version_patch is already installed."
   else
-    # FIXME: Check if it's still necessary to export SDKROOT and MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
+    # TODO: Check if it's still necessary to export SDKROOT and
+    #       MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
+    #       on the latest macOS versions
     local SDKROOT MACOSX_DEPLOYMENT_TARGET
     SDKROOT="$(xcrun --show-sdk-path)"
     MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
@@ -82,50 +98,12 @@ tau-install() {
   fi
 }
 
-# FIXME: make this compatible with passing multiple minor versions as input
-tau-global() {
-  # TODO: document intro
-  #
-  # Arguments:
-  #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
-  #
-  # Examples:
-  #
-  #   $ tau-global 3.9
-  #   [ℹ] Setting Python 3.9.13 as a global version
-  #
-  #   $ tau-global 1
-  #   [✘] The input '1' doesnt match the a valid version number.
-  #
-  #   $ tau-global 4.2
-  #   [✘] Could not find a match for '4.2'. Are you sure this Python version exists?
-  #
-  local py_version_user_input="${1}"
-  local py_version_patch
-
-  if [[ ! "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+$ ]]; then
-    log_error "The input '${py_version_user_input}' doesnt match the a valid version number."
-    return 1
-  fi
-  py_version_patch="$(pyenv versions | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
-  if [[ -z "${py_version_patch}" ]]; then
-    # If $py_version_user_input is a valid Python version (regex-wise) but
-    # $py_version_patch is empty, this means no match was found for
-    # $py_version_user_input. Either this version does not exist
-    # (e.g. "4.2.0") or it isn't available in pyenv
-    log_error "Could not find a match for '${py_version_user_input}'. Are you sure this Python version exists?"
-    return 1
-  elif [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    # Something else went wrong...
-    log_error "Something went wrong parsing the python version. '${py_version_patch}' doesnt match the right regex."
-    return 1
-  fi
-  log_info "Setting Python ${py_version_patch} as a global version"
-  pyenv global "${py_version_patch}"
-}
-
 tau-install-all() {
-  # TODO: document intro
+  # Run `tau-install` for all Python versions in the
+  # $PYENV_TARGET_VERSIONS array.
+  #
+  # If $$PYENV_TARGET_VERSIONS_OVERWRITE is set, it will take
+  # precedence over $PYENV_TARGET_VERSIONS.
   #
   # Arguments:
   #   * <NONE>
@@ -133,10 +111,10 @@ tau-install-all() {
   # Examples:
   #
   #   $ tau-install-all
-  #   [⋯] Collected python versions: (2.7 3.7 3.8)
-  #   [ℹ] Installing Python 2.7.18
+  #   [⋯] Collected python versions: (3.7 3.8 3.9 3.10 3.11 3.12)
   #   [⚠] Skipping: Python 3.7.10 is already installed.
-  #   [ℹ] Installing Python 3.8.6
+  #   ...
+  #   [ℹ] Installing Python 3.12.0
   #
   #   $ PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
   #   [⋯] Collected python versions: (3.7 3.8.5)
@@ -157,28 +135,6 @@ tau-install-all() {
   for pyv in "${py_versions[@]}"; do
     tau-install "${pyv}"
   done
-}
-
-# FIXME: This is not working!
-tau_cleanup() {
-  # The code bellow grabs and uninstalls all patches from the
-  # inferred minor version, that are not the installed patch
-  # FIXME: This assumes that you only have stable CPython versions installed
-
-  # TODO: 1. loop through minors
-  # TODO: 2. grab latest patch for minor
-  # TODO: 3. delete outdated minors
-  log_info "Uninstalling Python ${version_to_uninstall}"
-  pyenv uninstall --force "${version_to_uninstall}"
-  # TODO: 4. set latest version as global
-  log_info "Setting Python ${py_version_patch} as a global python..."
-  pyenv global "${py_version_patch}"
-
-  local version_to_uninstall
-  while read -r version_to_uninstall; do
-    log_info "Uninstalling Python ${version_to_uninstall}"
-    pyenv uninstall --force "${version_to_uninstall}"
-  done < <(pyenv versions | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+" | grep "$(echo "${py_version_patch}" | grep -Eo "[0-9]+\.[0-9]+")" | grep -v "${py_version_patch}")
 }
 
 tau-clean-pip() {
@@ -220,7 +176,7 @@ tau-clean-pip() {
 }
 
 tau-clean-all-pips() {
-  # Cleanup all pips in scope
+  # Run `tau-clean-pip` for all python versions installed on the system.
   #
   # Upgrade build tools and uninstall all other packages for all
   # python versions. This function iterates over the following python
@@ -238,10 +194,10 @@ tau-clean-all-pips() {
   #   ...
   #   [ℹ] [python3.9] Uninstalling all packages...
   #   ...
-  #   [⋯] [python3.13] Not installed. Skipping...
+  #   [⋯] [python3.14] Not installed. Skipping...
   #
   local py_executable pyv pkgs_to_uninstall
-  for pyv in '' '3' '3.6' '3.7' '3.8' '3.9' '3.10' '3.11' '3.12' '3.13'; do
+  for pyv in '' '3' '3.6' '3.7' '3.8' '3.9' '3.10' '3.11' '3.12' '3.13' '3.14'; do
     py_executable="python$pyv"
     if ! command -v "$py_executable" 1>/dev/null 2>&1; then
       log_debug "[$py_executable] Not installed. Skipping..."
@@ -249,4 +205,70 @@ tau-clean-all-pips() {
       tau-clean-pip "$py_executable"
     fi
   done
+}
+
+tau-global() {
+  # TODO: document intro
+  #
+  # Arguments:
+  #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
+  #
+  # Examples:
+  #
+  #   $ tau-global 3.9
+  #   [ℹ] Setting Python 3.9.13 as a global version
+  #
+  #   $ tau-global 1
+  #   [✘] The input '1' doesnt match the a valid version number.
+  #
+  #   $ tau-global 4.2
+  #   [✘] Could not find a match for '4.2'. Are you sure this Python version exists?
+  #
+  # TODO: make this compatible with passing multiple minor versions as input
+  local py_version_user_input="${1}"
+  local py_version_patch
+
+  if [[ ! "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+$ ]]; then
+    log_error "The input '${py_version_user_input}' doesnt match the a valid version number."
+    return 1
+  fi
+  py_version_patch="$(pyenv versions | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
+  if [[ -z "${py_version_patch}" ]]; then
+    # If $py_version_user_input is a valid Python version (regex-wise) but
+    # $py_version_patch is empty, this means no match was found for
+    # $py_version_user_input. Either this version does not exist
+    # (e.g. "4.2.0") or it isn't available in pyenv
+    log_error "Could not find a match for '${py_version_user_input}'. Are you sure this Python version exists?"
+    return 1
+  elif [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    # Something else went wrong...
+    log_error "Something went wrong parsing the python version. '${py_version_patch}' doesnt match the right regex."
+    return 1
+  fi
+  log_info "Setting Python ${py_version_patch} as a global version"
+  pyenv global "${py_version_patch}"
+}
+
+
+
+# FIXME: This is not working!
+tau_cleanup() {
+  # The code bellow grabs and uninstalls all patches from the
+  # inferred minor version, that are not the installed patch
+  # FIXME: This assumes that you only have stable CPython versions installed
+
+  # TODO: 1. loop through minors
+  # TODO: 2. grab latest patch for minor
+  # TODO: 3. delete outdated minors
+  log_info "Uninstalling Python ${version_to_uninstall}"
+  pyenv uninstall --force "${version_to_uninstall}"
+  # TODO: 4. set latest version as global
+  log_info "Setting Python ${py_version_patch} as a global python..."
+  pyenv global "${py_version_patch}"
+
+  local version_to_uninstall
+  while read -r version_to_uninstall; do
+    log_info "Uninstalling Python ${version_to_uninstall}"
+    pyenv uninstall --force "${version_to_uninstall}"
+  done < <(pyenv versions | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+" | grep "$(echo "${py_version_patch}" | grep -Eo "[0-9]+\.[0-9]+")" | grep -v "${py_version_patch}")
 }
