@@ -36,21 +36,26 @@ hc-clear-caches() {
     echo ""
     echo "Options:"
     echo "    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile"
+    echo "    --skip-docker          Don't remove docker's unused data. Useful when the docker daemon is not running."
     echo "    --help                 Show this help message and exit"
     return
   fi
 
   if [[ "$*" == *--cleanup-brew-bundle* ]]; then
-    # Uninstall all dependencies not listed in the Brewfile
+    log_info "Uninstalling all dependencies not listed in the Brewfile..."
     brew bundle cleanup --global --force
   fi
 
-  # clear homebrew's caches
+  log_info "Clearing homebrew's caches..."
   brew cleanup -s
 
-  # Clears caches (pipenv, pip, and pip-tools)
+  log_info "Clearing pipenv, pip, and pip-tools caches..."
   pipenv --clear
 
-  # Remove docker's unused data
-  docker system prune --volumes
+  if [[ "$*" != *--skip-docker* ]]; then
+    log_info "Removing docker's unused data..."
+    docker system prune --volumes
+  else
+    log_debug "Skipping docker's unused data removal, because --skip-docker was passed."
+  fi
 }
