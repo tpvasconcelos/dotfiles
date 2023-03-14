@@ -56,7 +56,7 @@
     dbo = push origin --delete
     nb = "!f() { git co -b $1 && git sus; }; f"
     pp = !git pull && git push
-    mm =  !git pull && git co main && git pull && git co - && git merge main
+    mm =  !git pull && git co main && git pull && git co - && git merge main --no-edit
     ss = !git stash save "$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"
     sp = !git stash pop stash@{"$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"}
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
