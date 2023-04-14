@@ -111,6 +111,9 @@ gsc https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my
 log_info "Installing zsh-syntax-highlighting..."
 gsc https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 
+log_info "Installing zsh-plugin-pipx..."
+gsc https://github.com/omBratteng/zsh-plugin-pipx.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-plugin-pipx"
+
 if [[ -r "${HOME}/.iterm2_shell_integration.zsh" ]]; then
   log_success "Shell Integration and iTerm2 utilities already installed!"
 else

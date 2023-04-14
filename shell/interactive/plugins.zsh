@@ -32,6 +32,7 @@ plugins=(
   #minikube
   npm
   pip
+  zsh-plugin-pipx
   postgres
   redis-cli
   #ssh-agent
