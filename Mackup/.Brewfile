@@ -97,6 +97,7 @@ brew "gnupg"
 brew "pinentry-mac"
 brew "git-lfs"
 brew "git-flow-avh"
+brew "git-filter-repo"      # https://github.com/newren/git-filter-repo
 
 # Compilers and relevant binaries  ---
 brew "cmake"
@@ -140,6 +141,7 @@ cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
 cask "r"
+mas "Xcode", id: 497799835
 
 # Other desktop dev tools  ---
 cask "anaconda"
