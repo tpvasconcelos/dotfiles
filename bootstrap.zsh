@@ -5,16 +5,17 @@ set -eu
 ################################################################################
 # Import helper logging functions
 ################################################################################
-SHELL_DIR_FUNCTIONS="${0:a:h}/shell/functions"
-echo "[⋯] Importing helper logging functions from: $SHELL_DIR_FUNCTIONS"
+DOTFILES_DIR="${0:a:h}"
+SHELL_FUNCTIONS_DIR="$DOTFILES_DIR/shell/functions"
+echo "[⋯] Importing helper logging functions from: $SHELL_FUNCTIONS_DIR"
 
 
-source "$SHELL_DIR_FUNCTIONS/ansi.zsh"
-source "$SHELL_DIR_FUNCTIONS/logging.zsh"
-source "$SHELL_DIR_FUNCTIONS/misc.zsh"
-source "$SHELL_DIR_FUNCTIONS/reboot.zsh"
-source "$SHELL_DIR_FUNCTIONS/string.zsh"
-source "$SHELL_DIR_FUNCTIONS/tau.zsh"
+source "$SHELL_FUNCTIONS_DIR/ansi.zsh"
+source "$SHELL_FUNCTIONS_DIR/logging.zsh"
+source "$SHELL_FUNCTIONS_DIR/misc.zsh"
+source "$SHELL_FUNCTIONS_DIR/reboot.zsh"
+source "$SHELL_FUNCTIONS_DIR/string.zsh"
+source "$SHELL_FUNCTIONS_DIR/tau.zsh"
 
 
 ################################################################################
