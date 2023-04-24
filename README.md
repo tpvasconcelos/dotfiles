@@ -113,10 +113,10 @@ errors, feel free to just run it again.
 ### Setup `ssh` for `git`
 
 For a more detailed guide, look at the official documentation from
-[GitHub](https://help.github.com/en/articles/connecting-to-github-with-ssh),
-[Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh2)
-, or [GitLab](https://docs.gitlab.com/ee/ssh/). However, if you are just looking for a quick
-reminder, use the snipped bellow (remember to use your own email address!)
+[GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh),
+[Bitbucket](https://support.atlassian.com/bitbucket-cloud/docs/configure-ssh-and-two-step-verification/#SetupanSSHkey-ssh2)
+, or [GitLab](https://docs.gitlab.com/ee/user/ssh.html). However, if you are just looking for a
+quick reminder, use the snipped bellow (remember to use your own email address!)
 
 ```shell script
 yes | ssh-keygen -t ed25519 -P "" -C "your_email@example.com" -f ~/.ssh/id_ed25519
