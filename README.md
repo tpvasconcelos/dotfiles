@@ -49,6 +49,16 @@ follow the steps in the
 [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
 section in the Appendix.
 
+### Running on an old Intel Mac?
+
+If you are running on an old Intel Mac (i.e. not one of the new M1 or M2 Apple Silicon Macs), you
+will need to switch to the [`intel` branch](https://github.com/tpvasconcelos/dotfiles/compare/intel)
+of this repository. You can do this by running the following command:
+
+```shell script
+cd ~/.dotfiles && git checkout intel
+```
+
 ### Installing Homebrew
 
 I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases
