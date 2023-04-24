@@ -67,7 +67,7 @@ else
   log_info "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"
 
 log_info "Installing Brewfile dependencies..."
 brew bundle --no-lock --file=Mackup/.Brewfile

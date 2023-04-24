@@ -22,7 +22,7 @@ export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
 export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="${DOTFILES_DIR}/shell/extra_startup_scripts"
 
 # Fast path to the brew prefix ---> $(brew --prefix)
-export BREW_PREFIX="/opt/homebrew"
+export BREW_PREFIX="/usr/local"
 
 # Python stuff ---
 export PYENV_TARGET_VERSIONS=("3.7" "3.8" "3.9" "3.10" "3.11" "3.12")
