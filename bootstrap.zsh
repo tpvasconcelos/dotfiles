@@ -153,7 +153,7 @@ else
   log_info "Installing poetry..."
   pipx install poetry
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
-  poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
+  $HOME/.local/bin/poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
 # Install pipenv
