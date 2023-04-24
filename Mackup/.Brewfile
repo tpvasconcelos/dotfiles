@@ -119,6 +119,7 @@ cask "kitematic"
 #cask "virtualbox"
 
 # Kubernetes dev tools  ---
+brew "kubectl"                  # https://kubernetes.io/docs/tasks/tools/#kubectl
 brew "kubectx"                  # https://github.com/ahmetb/kubectx
 brew "k9s"                      # https://github.com/derailed/k9s
 brew "kube-ps1"                 # https://github.com/jonmosco/kube-ps1
