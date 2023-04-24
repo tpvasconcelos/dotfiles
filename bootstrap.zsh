@@ -74,7 +74,8 @@ log_info "Installing Brewfile dependencies..."
 brew bundle --no-lock --file=Mackup/.Brewfile
 
 BREW_PREFIX="$(brew --prefix)"
-alias ln="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ln"
+alias ln="$BREW_PREFIX/opt/coreutils/libexec/gnubin/ln"
+alias sudo-alias='sudo '
 
 ################################################################################
 # Install stuff not specified in Brewfile
@@ -226,16 +227,16 @@ log_info "Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
 # FIXME: check ln vs gln and flag compatibility
-sudo ln -sfnh "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+sudo-alias ln -snfTv "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 
 log_info "Symlinking the openssl@1.1 as default openssl"
-ln -sfnh "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
+ln -snfTv "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"
 
 log_info "Restoring application settings (using Mackup)..."
-ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
+ln -snfTv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
 mackup restore --force
 
 log_info "Setting up macOS preferences..."
