@@ -9,21 +9,21 @@ Feel free to steal, modify, or adapt! 🚀
 ## Table of Contents
 
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
-    * [Cloning this repository](#cloning-this-repository)
-    * [Installing Homebrew](#installing-homebrew)
-    * [Unlocking this repository](#unlocking-this-repository)
-    * [Bootstrap](#bootstrap)
+   * [Cloning this repository](#cloning-this-repository)
+   * [Running on an old Intel Mac?](#running-on-an-old-intel-mac)
+   * [Installing Homebrew](#installing-homebrew)
+   * [Unlocking this repository](#unlocking-this-repository)
+   * [Bootstrap](#bootstrap)
 * [Appendix](#appendix)
-    * [Setup ssh for git](#setup-ssh-for-git)
-    * [Other useful macOS settings](#other-useful-macos-settings)
-    * [Update everything](#update-everything)
-        * [Software Update](#software-update)
-        * [Brew packages](#brew-packages)
-    * [Check for issues](#check-for-issues)
-    * [Reclaim some disk space](#reclaim-some-disk-space)
-    * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
-    * [Shell setup](#shell-setup)
-    * [Install Python Development Tools](#install-python-development-tools)
+   * [Setup ssh for git](#setup-ssh-for-git)
+   * [Other useful macOS settings](#other-useful-macos-settings)
+   * [Update everything](#update-everything)
+      * [Software Update](#software-update)
+   * [Check for issues](#check-for-issues)
+   * [Reclaim some disk space](#reclaim-some-disk-space)
+   * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+   * [Shell setup](#shell-setup)
+   * [Install Python Development Tools](#install-python-development-tools)
 * [References](#references)
 
 ## Fresh macOS Install (step-by-step)
@@ -310,7 +310,7 @@ minor version (in which case the latest patch will be installed).
 
 ## Todo
 
-- [] Create Zsh functions
+- [ ] Create Zsh functions
     - [lukeojones - 1UP your Zsh abilities by autoloading your own functions](https://dev.to/lukeojones/1up-your-zsh-abilities-by-autoloading-your-own-functions-2ngp)
     - [An Introduction to the Z Shell - Shell Functions](http://zsh.sourceforge.net/Intro/intro_4.html)
     - [The Z Shell Manual - Functions](http://zsh.sourceforge.net/Doc/Release/Functions.html)
