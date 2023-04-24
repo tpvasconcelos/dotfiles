@@ -21,11 +21,11 @@ osascript -e 'tell application "System Preferences" to quit'
 ###############################################################################
 echo "Importing helper logging functions..."
 
-DOTFILES_DIR="$(dirname "$(readlink "$HOME/.zshenv")")"
-SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
+DOTFILES_DIR="$(dirname "${0:a:h}")"
+SHELL_FUNCTIONS_DIR="$DOTFILES_DIR/shell/functions"
 
-source "${SHELL_DIR_FUNCTIONS}/ansi.zsh"
-source "${SHELL_DIR_FUNCTIONS}/logging.zsh"
+source "${SHELL_FUNCTIONS_DIR}/ansi.zsh"
+source "${SHELL_FUNCTIONS_DIR}/logging.zsh"
 
 
 ###############################################################################

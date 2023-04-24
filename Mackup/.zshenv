@@ -17,15 +17,15 @@
 
 DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${HOME}/.zshenv")")")"
 export DOTFILES_DIR
-export SHELL_DIR_FUNCTIONS="${DOTFILES_DIR}/shell/functions"
-export SHELL_DIR_INTERACTIVE="${DOTFILES_DIR}/shell/interactive"
-export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="${DOTFILES_DIR}/shell/extra_startup_scripts"
+export SHELL_DIR_FUNCTIONS="$DOTFILES_DIR/shell/functions"
+export SHELL_DIR_INTERACTIVE="$DOTFILES_DIR/shell/interactive"
+export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="$DOTFILES_DIR/shell/extra_startup_scripts"
 
 # Fast path to the brew prefix ---> $(brew --prefix)
 export BREW_PREFIX="/usr/local"
 
 # Python stuff ---
-export PY_PLAYGROUND_VENV="${HOME}/.venv"
+export PY_PLAYGROUND_VENV="$HOME/.venv"
 export PIPENV_VERBOSITY=-1
 # Creates .venv` in your project directory. Default is to
 # create  new virtual environments in a global location
@@ -34,31 +34,31 @@ export PIPENV_VENV_IN_PROJECT=1
 # Misc ---
 JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_HOME
-export GOPATH="${HOME}/go"
+export GOPATH="$HOME/go"
 
 ################################################################################
 # Add some bins to PATH
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
-  "${BREW_PREFIX}/sbin"
-  "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-  "${BREW_PREFIX}/opt/findutils/libexec/gnubin"
-  "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
-  "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
-  "${BREW_PREFIX}/opt/grep/libexec/gnubin"
-  "${BREW_PREFIX}/opt/llvm/bin"
-  "${BREW_PREFIX}/opt/openjdk@11/bin"
-  "${BREW_PREFIX}/opt/openssl@1.1/bin"
-  "${BREW_PREFIX}/opt/ruby/bin"
-  "${HOME}/.cargo/bin"
-  "${HOME}/.deta/bin"
-  "${HOME}/.flutter/bin"
-  "${HOME}/.gem/ruby/3.0.0/bin"
-  "${HOME}/.local/bin"
-  "${HOME}/.poetry/bin"
-  "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
-  "${GOPATH}/bin"
-  "${JAVA_HOME}/bin"
+  "$BREW_PREFIX/sbin"
+  "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
+  "$BREW_PREFIX/opt/findutils/libexec/gnubin"
+  "$BREW_PREFIX/opt/gnu-sed/libexec/gnubin"
+  "$BREW_PREFIX/opt/gnu-tar/libexec/gnubin"
+  "$BREW_PREFIX/opt/grep/libexec/gnubin"
+  "$BREW_PREFIX/opt/llvm/bin"
+  "$BREW_PREFIX/opt/openjdk@11/bin"
+  "$BREW_PREFIX/opt/openssl@1.1/bin"
+  "$BREW_PREFIX/opt/ruby/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.deta/bin"
+  "$HOME/.flutter/bin"
+  "$HOME/.gem/ruby/3.0.0/bin"
+  "$HOME/.local/bin"
+  "$HOME/.poetry/bin"
+  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+  "$GOPATH/bin"
+  "$JAVA_HOME/bin"
   "${KREW_ROOT:-$HOME/.krew}/bin"
 )
 path=(
@@ -73,7 +73,7 @@ typeset -U PATH path
 ################################################################################
 fpath=(
   #"${SHELL_DIR_FUNCTIONS}"/**/
-  "${BREW_PREFIX}/share/zsh/site-functions"
+  "$BREW_PREFIX/share/zsh/site-functions"
   "${fpath[@]}"
 )
 export fpath
@@ -83,13 +83,13 @@ typeset -U fpath
 #autoload -Uz "${SHELL_DIR_FUNCTIONS}"/**/*(.:t)
 
 # Source custom functions scripts  ---
-for function_script in "${SHELL_DIR_FUNCTIONS}"/*(.); do
+for function_script in "$SHELL_DIR_FUNCTIONS"/*(.); do
   source "$function_script"
 done
 
 ################################################################################
 # If exists, run the extra local startup script
 ################################################################################
-if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshenv.extra" ]]; then
-  source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshenv.extra"
+if [[ -r "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv.extra" ]]; then
+  source "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv.extra"
 fi

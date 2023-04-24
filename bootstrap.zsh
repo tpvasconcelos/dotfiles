@@ -5,16 +5,17 @@ set -eu
 ################################################################################
 # Import helper logging functions
 ################################################################################
-SHELL_DIR_FUNCTIONS="${0:a:h}/shell/functions"
-echo "[⋯] Importing helper logging functions from: $SHELL_DIR_FUNCTIONS"
+DOTFILES_DIR="${0:a:h}"
+SHELL_FUNCTIONS_DIR="$DOTFILES_DIR/shell/functions"
+echo "[⋯] Importing helper logging functions from: $SHELL_FUNCTIONS_DIR"
 
 
-source "$SHELL_DIR_FUNCTIONS/ansi.zsh"
-source "$SHELL_DIR_FUNCTIONS/logging.zsh"
-source "$SHELL_DIR_FUNCTIONS/misc.zsh"
-source "$SHELL_DIR_FUNCTIONS/reboot.zsh"
-source "$SHELL_DIR_FUNCTIONS/string.zsh"
-source "$SHELL_DIR_FUNCTIONS/tau.zsh"
+source "$SHELL_FUNCTIONS_DIR/ansi.zsh"
+source "$SHELL_FUNCTIONS_DIR/logging.zsh"
+source "$SHELL_FUNCTIONS_DIR/misc.zsh"
+source "$SHELL_FUNCTIONS_DIR/reboot.zsh"
+source "$SHELL_FUNCTIONS_DIR/string.zsh"
+source "$SHELL_FUNCTIONS_DIR/tau.zsh"
 
 
 ################################################################################
@@ -73,7 +74,8 @@ log_info "Installing Brewfile dependencies..."
 brew bundle --no-lock --file=Mackup/.Brewfile
 
 BREW_PREFIX="$(brew --prefix)"
-alias ln="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ln"
+alias ln="$BREW_PREFIX/opt/coreutils/libexec/gnubin/ln"
+alias sudo-alias='sudo '
 
 ################################################################################
 # Install stuff not specified in Brewfile
@@ -133,7 +135,7 @@ if [[ -n ${PYENV_VERSIONS+x} ]]; then
   IFS=" " read -rA py_versions <<<"${PYENV_VERSIONS}"
 else
   # else... default to the following versions
-  py_versions=("3.7" "3.8" "3.9" "3.10" "3.11" "3.12")
+  py_versions=("3.7" "3.8" "3.9" "3.10" "3.11")
 fi
 
 log_info "Installing the following python versions with pyenv: $py_versions"
@@ -151,7 +153,7 @@ else
   log_info "Installing poetry..."
   pipx install poetry
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
-  poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
+  $HOME/.local/bin/poetry completions zsh >"$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
 # Install pipenv
@@ -225,16 +227,16 @@ log_info "Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
 # FIXME: check ln vs gln and flag compatibility
-sudo ln -sfnh "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+sudo-alias ln -snfTv "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 
 log_info "Symlinking the openssl@1.1 as default openssl"
-ln -sfnh "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
+ln -snfTv "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"
 
 log_info "Restoring application settings (using Mackup)..."
-ln -sTfv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
+ln -snfTv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
 mackup restore --force
 
 log_info "Setting up macOS preferences..."
