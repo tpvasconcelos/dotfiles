@@ -25,7 +25,6 @@ export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="${DOTFILES_DIR}/shell/extra_startup_scri
 export BREW_PREFIX="/opt/homebrew"
 
 # Python stuff ---
-export PYENV_TARGET_VERSIONS=("3.7" "3.8" "3.9" "3.10" "3.11" "3.12")
 export PY_PLAYGROUND_VENV="${HOME}/.venv"
 export PIPENV_VERBOSITY=-1
 # Creates .venv` in your project directory. Default is to

@@ -111,12 +111,18 @@ The following shell script will run all necessary installation steps. Feel free 
 what's going on. It is recommended to reboot your machine after running this script for the first
 time. For convenience, the script will prompt you for an automatic reboot at the end.
 
+**Note:** By default, this script will install a bunch of Python versions (using `pyenv`). If you
+want to control which versions are installed, you can expose the `PYENV_VERSIONS` environment
+variable with a space-separated list of Python versions. For example, to only install Python 3.8 and
+Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh`
+script to see which versions are installed by default.
+
 ```shell script
 cd ~/.dotfiles && ./bootstrap.zsh
 ```
 
 There are no unwanted side effects from running this script multiple times. So, if you encounter any
-errors, feel free to just run it again.
+errors, feel free to just run it again (once you have fixed the underlying issue).
 
 ## Appendix
 
@@ -294,19 +300,9 @@ focus only on the zsh shell on a macOS system.
 
 ### Install Python Development Tools
 
-I use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions. The following utility
-will install your whole python development environment. To check which python versions will be
-installed run `echo "$PYENV_TARGET_VERSIONS`. You can pass either the exact patch version, or the
-minor version (in which case the latest patch will be installed).
-
-- Install with the default versions `"$PYENV_TARGET_VERSIONS`
-    ```shell script
-    tau-install-all
-    ```
-- Pass your own versions
-    ```shell script
-    PYENV_TARGET_VERSIONS_OVERWRITE="3.7 3.8.5" tau-install-all
-    ```
+I use [pyenv](https://github.com/pyenv/pyenv) to manage multiple Python versions. I have also
+defined some extra utilities under `shell/functions/tau.zsh` to make it easier to install and
+manage these multiple installations.
 
 ## Todo
 
