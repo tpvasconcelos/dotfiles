@@ -78,6 +78,8 @@ brew "jq"                   # https://stedolan.github.io/jq/
 brew "watch"                # https://gitlab.com/procps-ng/procps
 brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
 brew "hugo"                 # https://gohugo.io/getting-started/installing/
+brew "asciinema"            # https://asciinema.org
+brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
 brew "ffmpeg"
 brew "thefuck"
 brew "ncdu"                 # https://dev.yorhel.nl/ncdu
@@ -188,6 +190,7 @@ mas "Keynote", id: 409183694
 # Misc apps  ---
 cask "macs-fan-control"
 #cask "vuze"
+cask "transmission"             # https://transmissionbt.com/
 cask "spotify"
 cask "vlc"
 cask "iina"                     # https://iina.io/
