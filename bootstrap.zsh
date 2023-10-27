@@ -45,21 +45,6 @@ gsc() {
   fi
 }
 
-_tau_install_and_global() {
-  # Install a Python version with pyenv and set it as global version
-  #
-  # We define this very shallow function so that it can be called
-  # in parallel with in a simple for-loop.
-  #
-  # Arguments:
-  #   * $1 : Python version
-  #
-  local py_version
-  py_version="$1"
-  tau-install "$py_version"
-  tau-global "$py_version"
-}
-
 
 ################################################################################
 # Ask for root password upfront and keep updating the existing `sudo`
@@ -151,14 +136,19 @@ if [[ -n ${PYENV_VERSIONS+x} ]]; then
   IFS=" " read -rA py_versions <<<"${PYENV_VERSIONS}"
 else
   # else... default to the following versions
-  py_versions=("3.8" "3.9" "3.10" "3.11" "3.12")
+  py_versions=("3.8" "3.9" "3.10" "3.11")
 fi
 
 log_info "Installing the following Python versions (in parallel) w/ pyenv: $py_versions"
-for py_version in "${py_versions[@]}"; do
-  _tau_install_and_global "$py_version" &
-done
-wait
+(
+  for py_version in "${py_versions[@]}"; do
+    (
+      tau-install "$py_version"
+      tau-global "$py_version"
+    ) &
+  done
+  wait
+)
 
 eval "$(pyenv init --path)"
 
