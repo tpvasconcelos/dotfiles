@@ -24,7 +24,8 @@ source "$SHELL_FUNCTIONS_DIR/tau.zsh"
 log_debug "Defining script functions..."
 
 gsc() {
-  # git shallow clone
+  # Alias for a shallow git clone
+  #
   # Arguments:
   #   * $1 : repository
   #   * $2 : directory
@@ -42,6 +43,21 @@ gsc() {
   else
     git clone --depth=1 --single-branch --branch="$branch" "$repo" "$dir"
   fi
+}
+
+_tau_install_and_global() {
+  # Install a Python version with pyenv and set it as global version
+  #
+  # We define this very shallow function so that it can be called
+  # in parallel with in a simple for-loop.
+  #
+  # Arguments:
+  #   * $1 : Python version
+  #
+  local py_version
+  py_version="$1"
+  tau-install "$py_version"
+  tau-global "$py_version"
 }
 
 
@@ -138,11 +154,11 @@ else
   py_versions=("3.8" "3.9" "3.10" "3.11" "3.12")
 fi
 
-log_info "Installing the following python versions with pyenv: $py_versions"
+log_info "Installing the following Python versions (in parallel) w/ pyenv: $py_versions"
 for py_version in "${py_versions[@]}"; do
-  tau-install "$py_version"
-  tau-global "$py_version"
+  _tau_install_and_global "$py_version" &
 done
+wait
 
 eval "$(pyenv init --path)"
 
