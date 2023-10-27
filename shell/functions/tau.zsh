@@ -1,17 +1,16 @@
 # Utilities for managing multiple python versions on a single machine
 
-tau-install() {
-  # Install a Python version using pyenv (python-build)
+tau-latest-patch() {
+  # Infer the latest patch version from a major or minor version
   #
-  # This shell function is used to install a specific version of Python
-  # using the pyenv tool. The function takes in a single input, which
-  # should be a string representation of a Python version in the format
-  # of "major", "major.minor", or "major.minor.patch". Alternatively,
-  # an empty string can be passed as input, in which case the latest
-  # available stable version of Python will be installed.
+  # This shell function takes in a single input, which should be a
+  # string representation of a Python version in the format of "major",
+  # "major.minor", or "major.minor.patch". Alternatively, an empty
+  # string can be passed as input, in which case the latest available
+  # stable version of Python will be installed.
   #
   # Usage:
-  #   tau-install <version>
+  #   tau-latest-patch <version>
   #
   # Arguments:
   #   * $1 : Empty string or a valid Python version number (matching
@@ -21,17 +20,16 @@ tau-install() {
   #
   # Examples:
   #
-  #   $ tau-install
-  #   [ℹ] Installing Python 3.12.0
+  #   $ tau-latest-patch
+  #   3.12.0
   #
-  #   $ tau-install 2.7
-  #   [⚠] Skipping: Python 2.7.18 is already installed.
+  #   $ tau-latest-patch 2
+  #   2.7.18
   #
-  #   $ tau-install 3.7.1
-  #   [ℹ] Installing Python 3.7.1
-  #   ...
+  #   $ tau-latest-patch 3.7
+  #   3.7.15
   #
-  #   $ tau-install 3.10-dev
+  #   $ tau-latest-patch 3.10-dev
   #   [✘] The input '3.10-dev' does not match a valid version number...
   #
   local py_version_user_input="${1}"
@@ -81,6 +79,47 @@ tau-install() {
       return 1
     fi
   fi
+  echo "${py_version_patch}"
+}
+
+tau-install() {
+  # Install a Python version using pyenv (python-build)
+  #
+  # This shell function is used to install a specific version of Python
+  # using the pyenv tool. The function takes in a single input, which
+  # should be a string representation of a Python version in the format
+  # of "major", "major.minor", or "major.minor.patch". Alternatively,
+  # an empty string can be passed as input, in which case the latest
+  # available stable version of Python will be installed.
+  #
+  # Usage:
+  #   tau-install <version>
+  #
+  # Arguments:
+  #   * $1 : Empty string or a valid Python version number (matching
+  #          the "^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$" regex). If an
+  #          empty string is provided, it defaults to the latest
+  #          stable Python version.
+  #
+  # Examples:
+  #
+  #   $ tau-install
+  #   [ℹ] Installing Python 3.12.0
+  #
+  #   $ tau-install 2.7
+  #   [⚠] Skipping: Python 2.7.18 is already installed.
+  #
+  #   $ tau-install 3.7.1
+  #   [ℹ] Installing Python 3.7.1
+  #   ...
+  #
+  #   $ tau-install 3.10-dev
+  #   [✘] The input '3.10-dev' does not match a valid version number...
+  #
+  local py_version_user_input="${1}"
+  local py_version_patch
+
+  py_version_patch="$(tau-latest-patch "${py_version_user_input}")"
 
   if contains "$(pyenv versions)" "$py_version_patch"; then
     # FIXME: This assumes that you only have stable CPython versions installed
