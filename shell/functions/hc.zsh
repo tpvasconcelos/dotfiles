@@ -28,6 +28,9 @@ hc-update-everything() {
 
   # Update rust
   rustup update
+
+  # Update Flutter and Dart
+  flutter upgrade
 }
 
 hc-clear-caches() {

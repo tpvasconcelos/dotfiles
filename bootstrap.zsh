@@ -202,16 +202,15 @@ else
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --verbose -y
 fi
 
-log_info "Installing Jekyll..."
-# https://jekyllrb.com/docs/installation/macos/
-gem install --conservative --user-install bundler jekyll
-
-log_info "Installing Flutter..."
 # https://flutter.dev/docs/get-started/install/macos
-sudo gem install --conservative cocoapods
-gem install --conservative --user-install cocoapods
-pod setup
-gsc https://github.com/flutter/flutter.git "$HOME/.flutter" stable
+if [[ -d "$HOME/.flutter/bin" ]]; then
+  log_success "Flutter and Dart already installed!"
+else
+  log_info "Installing Flutter and Dart..."
+  softwareupdate --install-rosetta --agree-to-license
+  gsc https://github.com/flutter/flutter.git "$HOME/.flutter" stable
+  "$HOME/.flutter/bin/flutter" doctor
+fi
 
 log_info "Installing Sublime Text's 'One Dark' theme..."
 gsc https://github.com/andresmichel/one-dark-theme.git "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"

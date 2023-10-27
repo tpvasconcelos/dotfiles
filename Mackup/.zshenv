@@ -53,7 +53,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOME/.cargo/bin"
   "$HOME/.deta/bin"
   "$HOME/.flutter/bin"
-  "$HOME/.gem/ruby/3.0.0/bin"
+  "$HOME/.gem/ruby/3.2.0/bin"
   "$HOME/.local/bin"
   "$HOME/.poetry/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"

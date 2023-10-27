@@ -67,8 +67,6 @@ brew "ruby"
 brew "graphviz"
 brew "postgresql@14"        # https://www.postgresql.org/
 brew "node"
-tap "dart-lang/dart"
-brew "dart"
 brew "kcat"                 # https://github.com/edenhill/kcat
 brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "yarn"
