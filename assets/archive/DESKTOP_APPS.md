@@ -55,7 +55,6 @@ Graphics
 
 Utilities
 
-- Alfred
 - Vuze
 - Disk Inventory X
 - Divvy (alternative?)
