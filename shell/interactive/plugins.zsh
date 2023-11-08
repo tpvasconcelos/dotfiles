@@ -11,20 +11,15 @@ plugins=(
   # Built-in  ---
   autojump
   aws
-  celery
   colored-man-pages
   command-not-found
   docker
   docker-compose
   extract
   flutter
-  #gcloud
-  gem
   gitfast
   #gpg-agent
   golang
-  helm
-  heroku
   httpie
   #keychain
   kubectl

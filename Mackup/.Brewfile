@@ -1,7 +1,6 @@
 ################################################################################
 # Base dependencies
 ################################################################################
-tap "homebrew/cask"
 brew "mas"
 
 
@@ -109,10 +108,12 @@ brew "swig"
 brew "openblas"
 brew "z3"           # https://github.com/Z3Prover/z3
 
-# iTerm2  ---
+# Terminal emulators  ---
 # Other terminal emulators to consider:
 # - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
-cask "iterm2"
+# - [Tabby](https://github.com/Eugeny/tabby) - A terminal for a more modern age
+cask "iterm2"                   # https://iterm2.com/
+cask "go2shell"                 # https://zipzapmac.com/go2shell
 
 # Docker and virtualbox  ---
 cask "docker"
@@ -135,8 +136,7 @@ brew "kind"                     # https://github.com/kubernetes-sigs/kind/
 ################################################################################
 
 # Drivers  ---
-tap "homebrew/cask-drivers"
-cask "logitech-options"
+cask "logi-options-plus"
 
 # Text editors and IDEs  ---
 cask "jetbrains-toolbox"
@@ -172,7 +172,7 @@ cask "microsoft-office"
 cask "the-unarchiver"
 cask "whatsapp"
 cask "slack"
-cask "alfred"
+cask "raycast"                  # https://www.raycast.com/
 cask "skitch"
 cask "the-unarchiver"
 cask "whatsapp"
@@ -180,7 +180,7 @@ cask "google-drive"
 cask "notion"
 cask "raindropio"
 cask "zoom"
-cask "rectangle"        # https://github.com/rxhanson/Rectangle
+cask "rectangle"                # https://github.com/rxhanson/Rectangle
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
