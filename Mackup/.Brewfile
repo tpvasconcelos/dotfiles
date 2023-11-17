@@ -63,6 +63,7 @@ brew "readline"
 brew "sqlite"
 brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
+brew "pandoc"		    # https://github.com/jgm/pandoc
 brew "graphviz"
 brew "postgresql@14"        # https://www.postgresql.org/
 brew "node"
