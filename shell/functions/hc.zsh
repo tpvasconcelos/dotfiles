@@ -34,6 +34,9 @@ hc-update-everything() {
   if [[ "$*" == *--flutter* ]]; then
     flutter-update
   fi
+
+  # Upgrade all `gh` CLI extensions
+  gh extension upgrade --all
 }
 
 hc-clear-caches() {
