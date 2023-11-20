@@ -279,7 +279,7 @@ such as:
 - [antibody](https://github.com/getantibody/antibody) - The fastest shell plugin manager.
 
 The rules that define whether a startup script is sourced (and in which order) differ depending on
-the UNIX shell, initialization strategy, and even operating system. To keep things simple, we'll
+the UNIX shell, initialization strategy, and even operating system. To keep things simple, we’ll
 focus only on the zsh shell on a macOS system.
 
 - When opening a new terminal shell on a terminal emulator such as iTerm2 or Terminal, the following
@@ -289,12 +289,12 @@ focus only on the zsh shell on a macOS system.
 - If you source a script (e.g. `source some_script` or `. ./some_script`), no startup files get
   sourced. This is because `source` reads and executes the contents of your script _within_ the
   **current** shell environment.
-- If you run a script as an executable (e.g. `./some_script`), the script will run in an **new
+- If you run a script as an executable (e.g. `./some_script`), the script will run in a **new
   shell**. By default, and in most cases, this will be a non-interactive non-login shell and,
   therefore, only `.zshenv` will be sourced before executing the script. You can extend this logic
-  _ad infinitum_... if script calls yet another script, which in turn calls yet again another
-  script, etc, etc... each one will run in a new shell. Here I'm assuming that the script will be
-  executed within a zsh shell of course! If the script contains a `#!/usr/bin/env zsh` shebang line,
+  _ad infinitum_... if this script calls yet another script, which in turn calls yet again another
+  script, etc, etc... each one will run in a new shell. Here I’m assuming that the script will be
+  executed within a zsh shell, of course! If the script contains a `#!/usr/bin/env zsh` shebang line,
   it can be executed directly as `./some_script` or called as a regular command if it exists under
   `$PATH`. Alternatively you can explicitly execute the script as `zsh some_script`.
 
