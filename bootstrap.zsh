@@ -224,6 +224,11 @@ else
   chmod a+x /usr/local/bin/gh-md-toc
 fi
 
+log_info "Installing some gh cli extensions..."
+gh extension install github/gh-copilot
+gh extension install yusukebe/gh-markdown-preview
+gh extension install dlvhdr/gh-dash
+
 
 ################################################################################
 # Extra config steps
