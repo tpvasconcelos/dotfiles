@@ -65,7 +65,7 @@ tau-latest-patch() {
     # ""    --> 3.10.0 (an empty string will match the latest stable patch)
     # "2"   --> 2.7.18 (latest stable patch from major)
     # "3.9" --> 3.9.4  (latest stable patch from minor)
-    py_version_patch="$(pyenv install --list | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
+    py_version_patch="$(pyenv install --list | ggrep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
     if [[ -z "${py_version_patch}" ]]; then
       # If $py_version_user_input is a valid Python version (regex-wise) but
       # $py_version_patch is empty, this means no match was found for
@@ -128,11 +128,11 @@ tau-install() {
     # TODO: Check if it's still necessary to export SDKROOT and
     #       MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
     #       on the latest macOS versions
-    local SDKROOT MACOSX_DEPLOYMENT_TARGET
-    SDKROOT="$(xcrun --show-sdk-path)"
-    MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
-    export SDKROOT
-    export MACOSX_DEPLOYMENT_TARGET
+    # local SDKROOT MACOSX_DEPLOYMENT_TARGET
+    # SDKROOT="$(xcrun --show-sdk-path)"
+    # MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
+    # export SDKROOT
+    # export MACOSX_DEPLOYMENT_TARGET
     log_info "Installing Python '${py_version_patch}'"
     pyenv install "${py_version_patch}"
   fi
@@ -233,7 +233,7 @@ tau-global() {
     log_error "The input '${py_version_user_input}' does not match a valid version number."
     return 1
   fi
-  py_version_patch="$(pyenv versions | ggrep -Po "(?<= )[0-9]+\.[0-9]+\.[0-9]+" | grep "^${py_version_user_input}" | tail -n 1 | xargs)"
+  py_version_patch="$(pyenv versions | ggrep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
   if [[ -z "${py_version_patch}" ]]; then
     # If $py_version_user_input is a valid Python version (regex-wise) but
     # $py_version_patch is empty, this means no match was found for
