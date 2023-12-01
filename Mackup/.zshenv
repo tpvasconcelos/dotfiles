@@ -40,6 +40,7 @@ export GOPATH="$HOME/go"
 # Add some bins to PATH
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
+  "/usr/local/texlive/2023/bin/universal-darwin"
   "$BREW_PREFIX/sbin"
   "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
   "$BREW_PREFIX/opt/findutils/libexec/gnubin"

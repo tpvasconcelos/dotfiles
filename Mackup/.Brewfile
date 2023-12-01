@@ -109,6 +109,10 @@ brew "swig"
 brew "openblas"
 brew "z3"           # https://github.com/Z3Prover/z3
 
+# Extra requirements for building animations with the manim package
+# https://docs.manim.community/en/stable/installation/macos.html
+cask "mactex"
+
 # Terminal emulators  ---
 # Other terminal emulators to consider:
 # - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
