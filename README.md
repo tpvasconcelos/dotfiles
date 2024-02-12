@@ -1,59 +1,56 @@
 # My dotfiles
 
-Welcome to my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles)! This repository
-helps me keep a reproducible workflow for setting-up and maintaining my macOS development
-environment, configuration files, system preferences, and even all of my desktop applications.
+Welcome to my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles)!
 
-Feel free to steal, modify, or adapt! 🚀
+This repository contains instructions, configuration files, and bootstrapping scripts for setting up a new macOS machine. It helps me keep a reproducible workflow for setting up and maintaining my macOS development environment across multiple machines. It also serves as a backup for my configuration files, and a way to share my setup with others.
+
+Feel free to steal, modify, and/or adapt! 🚀
 
 ## Table of Contents
 
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
-   * [Cloning this repository](#cloning-this-repository)
-   * [Running on an old Intel Mac?](#running-on-an-old-intel-mac)
-   * [Installing Homebrew](#installing-homebrew)
-   * [Unlocking this repository](#unlocking-this-repository)
-   * [Bootstrap](#bootstrap)
+    * [First things first](#first-things-first)
+    * [Cloning this repository](#cloning-this-repository)
+    * [Installing Homebrew](#installing-homebrew)
+    * [Unlocking this repository](#unlocking-this-repository)
+    * [Bootstrap](#bootstrap)
 * [Appendix](#appendix)
-   * [Setup ssh for git](#setup-ssh-for-git)
-   * [Other useful macOS settings](#other-useful-macos-settings)
-   * [Update everything](#update-everything)
-      * [Software Update](#software-update)
-   * [Check for issues](#check-for-issues)
-   * [Reclaim some disk space](#reclaim-some-disk-space)
-   * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
-   * [Shell setup](#shell-setup)
-   * [Install Python Development Tools](#install-python-development-tools)
+    * [Setup ssh for git](#setup-ssh-for-git)
+    * [Other useful macOS settings](#other-useful-macos-settings)
+    * [Update everything](#update-everything)
+        * [Software Update](#software-update)
+    * [Check for issues](#check-for-issues)
+    * [Reclaim some disk space](#reclaim-some-disk-space)
+    * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
+    * [Shell setup](#shell-setup)
+    * [Install Python Development Tools](#install-python-development-tools)
 * [References](#references)
+
 
 ## Fresh macOS Install (step-by-step)
 
-The following steps assume that you are starting from a fresh macOS installation. You should also
-have [admin access](https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac) to your macOS
-machine. Finally, make sure you are logged-in with a valid Apple ID (check
-both [System Preferences](https://support.apple.com/en-gb/guide/mac-help/mchla99dc8da/mac), and the
-[App Store](https://support.apple.com/en-gb/guide/app-store/fir6253293d/mac)).
+The following steps assume that you are starting from a fresh macOS installation. If that’s not the case, feel free to skip some of the steps.
+
+### First things first
+
+- [ ] Make sure you have [admin access](https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac) to your macOS machine.
+- [ ] Make sure you are logged in with a valid Apple ID (check both [System Preferences](https://support.apple.com/en-gb/guide/mac-help/mchla99dc8da/mac) and the [App Store](https://support.apple.com/en-gb/guide/app-store/fir6253293d/mac)).
 
 ### Cloning this repository
 
-Start by cloning this repository under `~/.dotfiles`
+Cloning this repository (or your fork) under `~/.dotfiles`
 
 ```shell script
 git clone git@github.com:tpvasconcelos/dotfiles.git ~/.dotfiles
 ```
 
-**New in macOS Big Sur -** At this point, you will be prompted to install macOS's
-[Command Line Developer Tools](https://developer.apple.com/downloads/). Simply follow the steps in
-the user interface dialog. If this did not work for you, or you are on an older version of macOS,
-follow the steps in the
-[Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
-section in the Appendix.
+#### New in macOS Big Sur
 
-### Running on an old Intel Mac?
+At this point, you should be prompted to install macOS's [Command Line Developer Tools](https://developer.apple.com/downloads/). Simply follow the steps in the user interface dialog. If this did not work for you, or you are on an older version of macOS, follow the steps in the _["Install Xcode and Command Line Developer Tools"](#install-xcode-and-command-line-developer-tools)_ section in the Appendix.
 
-If you are running on an old Intel Mac (i.e. not one of the new M1 or M2 Apple Silicon Macs), you
-will need to switch to the [`intel` branch](https://github.com/tpvasconcelos/dotfiles/compare/intel)
-of this repository. You can do this by running the following command:
+#### Running on an old Intel Mac?
+
+If you are running on an old Intel Mac (_i.e.,_ not one of the new Apple Silicon Macs), you will need to switch to the [`intel` branch](https://github.com/tpvasconcelos/dotfiles/compare/intel) of this repository. You can do this by running the following command:
 
 ```shell script
 cd ~/.dotfiles && git checkout intel
@@ -61,9 +58,7 @@ cd ~/.dotfiles && git checkout intel
 
 ### Installing Homebrew
 
-I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases
-where Homebrew is not enough! Run the following command to
-[install Homebrew](https://brew.sh/#install) on your machine.
+I use [Homebrew](https://brew.sh) (`brew`) as my go-to macOS package manager. Rare are the cases where Homebrew is not enough! Run the following command to [install Homebrew](https://brew.sh/#install) on your machine.
 
 ```shell script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -71,22 +66,15 @@ where Homebrew is not enough! Run the following command to
 
 ### Unlocking this repository
 
-Some of the files in this repository are encrypted using
-[`git-crypt`](https://github.com/AGWA/git-crypt). This allows me to pick and choose which dotfiles I
-want to publicly share and which ones I would like to keep private. You can see the full list in the
-`.gitattributes` file. You might want to do the same thing when maintaining your own fork.
+Some files in this repository are encrypted using [`git-crypt`](https://github.com/AGWA/git-crypt). This allows me to pick and choose which dotfiles I want to publicly share and which ones I would like to keep private. You can see the full list in the `.gitattributes` file. You might want to do the same thing when maintaining your own fork.
 
-Starting from a fresh macOS installation, you will need to install the following dependencies using
-Homebrew:
+Starting from a fresh macOS installation, you will need to install the following dependencies using Homebrew:
 
 ```shell script
 brew install gnupg git git-crypt
 ```
 
-Then, you will need to import your private GnuPG key (I keep mine safely stored
-in [my password manager](https://www.dashlane.com/)). You can do this by saving your key in a local
-temporary text
-file (e.g. `/tmp/gpg-private.key`), and then run
+Then, you will need to import your private GnuPG key (I keep mine safely stored in [my password manager](https://www.dashlane.com/)). You can do this by saving your key in a local temporary text file (e.g. `/tmp/gpg-private.key`), and then run:
 
 ```shell script
 gpg  --import --allow-secret-key-import /tmp/gpg-private.key
@@ -107,15 +95,9 @@ gpg --export-secret-keys --armor $GPG_KEY_ID
 
 ### Bootstrap
 
-The following shell script will run all necessary installation steps. Feel free to peak inside see
-what's going on. It is recommended to reboot your machine after running this script for the first
-time. For convenience, the script will prompt you for an automatic reboot at the end.
+The following shell script will run all necessary installation steps. Feel free to peak inside see what’s going on. It is recommended to reboot your machine after running this script for the first time. For convenience, the script will prompt you for an automatic reboot at the end.
 
-**Note:** By default, this script will install a bunch of Python versions (using `pyenv`). If you
-want to control which versions are installed, you can expose the `PYENV_VERSIONS` environment
-variable with a space-separated list of Python versions. For example, to only install Python 3.8 and
-Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh`
-script to see which versions are installed by default.
+**Note:** By default, this script will install a bunch of Python versions (using `pyenv`). If you want to control which versions are installed, you can expose the `PYENV_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
 
 ```shell script
 cd ~/.dotfiles && ./bootstrap.zsh
@@ -194,6 +176,7 @@ Usage: hc-update-everything [OPTIONS]
 Options:
     --system              Run a system software update first
     --brew-greedy-latest  Also update brew casks with a :latest version tag
+    --flutter             Also update Flutter and Dart
     --help                Show this help message and exit
 ```
 
@@ -245,6 +228,7 @@ Usage: hc-clear-caches [OPTIONS]
 
 Options:
     --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile
+    --skip-docker          Don't remove docker's unused data. Useful when the docker daemon is not running.
     --help                 Show this help message and exit
 ```
 
@@ -320,10 +304,7 @@ manage these multiple installations.
   is also references in
   [Dotfiles (ArchWiki)](https://wiki.archlinux.org/index.php/Dotfiles).
 * [Awesome macOS Command Line](https://github.com/herrbischoff/awesome-macos-command-line) -
-  inspiration for most of the settings in [macos.zsh](scripts/macos.zsh). Take everything in this
-  repository
-  with a pinch of salt. macOS is a fast-moving environment that does not prioritise backwards
-  compatibility for these settings or preferences.
+  inspiration for most of the settings in [macos.zsh](scripts/macos.zsh).
 * [A User's Guide to the Z-Shell - What to put in your startup files](http://zsh.sourceforge.net/Guide/zshguide02.html)
 * <https://github.com/grant/new-computer-checklist>
 * <https://github.com/unixorn/awesome-zsh-plugins>

@@ -7,9 +7,18 @@ set -eu
 # $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' > dft2.plist
 # $ diffmerge dft1.plist dft2.plist
 
-# Adapted from:
+# How to check the id of an Application
+# $ osascript -e 'id of app "Safari"'
+# com.apple.Safari
+# $ osascript -e 'id of app "Pycharm"'
+# com.jetbrains.pycharm
+# etc...
+
+# Adapted and inspired by:
 # * https://mths.be/macos
+# * https://github.com/yannbertrand/macos-defaults
 # * https://github.com/herrbischoff/awesome-macos-command-line
+# * https://git.herrbischoff.com/awesome-macos-command-line/
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -29,10 +38,10 @@ source "${SHELL_FUNCTIONS_DIR}/logging.zsh"
 
 
 ###############################################################################
-# General UI/UX                                                               #
+log_debug "Configuring General UI/UX settings..."
 ###############################################################################
 
-# Disable the sound effects on boot
+# Disable the sound effects on boot (startup chime)
 sudo nvram StartupMute=%01
 
 # Set Finder's sidebar icon size to 'small'
@@ -77,59 +86,31 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
-# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
-# all wallpapers are in `/Library/Desktop Pictures/`.
-#sudo rm -rf /System/Library/CoreServices/DefaultBackground.jpg
-#sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultBackground.jpg
-# sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "update data set value = '$(realpath wallpaper.png)'" && killall Dock
 
 ###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+log_debug "Configuring Trackpad, mouse, keyboard, Bluetooth accessories, and input settings..."
 ###############################################################################
-
-# TODO: Review and add more!
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# TODO: Review!
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-
 # Scroll direction: “Natural”
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
-
-# TODO: Review!
-# Enable full keyboard access for all controls
-# (e.g. enable Tab in modal dialogs)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
-# # Use scroll gesture with the Ctrl (^) modifier key to zoom
-# defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-# defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-# # Follow the keyboard focus while zoomed in
-# defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
-
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # Set a blazing fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Set language and text formats
-# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
-# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en-GB" "pt"
 defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
@@ -138,17 +119,10 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 # Show language menu in the top right corner of the boot screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-#sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
-
-# Stop iTunes from responding to the keyboard media keys
-#launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 ###############################################################################
-# Energy saving                                                               #
+log_debug "Configuring Energy Savings settings..."
 ###############################################################################
-
-# TODO: Review these
 
 # Enable lid wakeup
 sudo pmset -a lidwake 1
@@ -156,13 +130,10 @@ sudo pmset -a lidwake 1
 # Restart automatically on power loss
 sudo pmset -a autorestart 1
 
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
-
 # Sleep the display after 5 minutes
 sudo pmset -a displaysleep 5
 
-# Set machine sleep to 60 minutes on battery
+# Set machine sleep to 60 minutes on charger (wall power)
 sudo pmset -c sleep 60
 sudo pmset -c disksleep 60
 
@@ -173,19 +144,9 @@ sudo pmset -b disksleep 10
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
-# Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off >/dev/null
-
-# Hibernation mode
-# https://www.lifewire.com/change-mac-sleep-settings-2260804
-# 0: Disable hibernation (speeds up entering sleep mode)
-# 3: Copy RAM to disk so the system state can still be restored in case of a
-#    power failure (safe sleep).
-sudo pmset -a hibernatemode 3
-
 
 ###############################################################################
-# Screen                                                                      #
+log_debug "Configuring Screen settings..."
 ###############################################################################
 
 # Require password immediately after sleep or screen saver begins
@@ -213,7 +174,7 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 ###############################################################################
-# Finder                                                                      #
+log_debug "Configuring 'Finder' settings..."
 ###############################################################################
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
@@ -315,10 +276,6 @@ chflags nohidden ~/Library
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
 
-# Remove Dropbox’s green checkmark icons in Finder
-# file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-# [ -e "${file}" ] && mv -f "${file}" "${file}.bak"
-
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -326,8 +283,9 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   OpenWith -bool true \
   Privileges -bool true
 
+
 ###############################################################################
-# Dock, Dashboard, and hot corners                                            #
+log_debug "Configuring 'Dock' settings..."
 ###############################################################################
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
@@ -347,11 +305,6 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
-
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-#defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
 defaults write com.apple.dock static-only -bool true
@@ -382,46 +335,9 @@ defaults write com.apple.dock showhidden -bool true
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-# Disable the Launchpad gesture (pinch with thumb and three fingers)
-#defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
-
-# Reset Launchpad, but keep the desktop wallpaper intact
-# find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
-
-# Add iOS & Watch Simulator to Launchpad
-# sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-# sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
-
-# Add a spacer to the left side of the Dock (where the applications are)
-#defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-# Add a spacer to the right side of the Dock (where the Trash is)
-#defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
-
-# # Hot corners
-# # Possible values:
-# #  0: no-op
-# #  2: Mission Control
-# #  3: Show application windows
-# #  4: Desktop
-# #  5: Start screen saver
-# #  6: Disable screen saver
-# #  7: Dashboard
-# # 10: Put display to sleep
-# # 11: Launchpad
-# # 12: Notification Center
-# # 13: Lock Screen
-# # Top left screen corner → Mission Control
-# defaults write com.apple.dock wvous-tl-corner -int 2
-# defaults write com.apple.dock wvous-tl-modifier -int 0
-# # Top right screen corner → Desktop
-# defaults write com.apple.dock wvous-tr-corner -int 4
-# defaults write com.apple.dock wvous-tr-modifier -int 0
-# # Bottom left screen corner → Start screen saver
-# defaults write com.apple.dock wvous-bl-corner -int 5
-# defaults write com.apple.dock wvous-bl-modifier -int 0
 
 ###############################################################################
-# Safari & WebKit                                                             #
+log_debug "Configuring Safari and WebKit settings..."
 ###############################################################################
 
 # Privacy: don’t send search queries to Apple
@@ -511,8 +427,9 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 # Update extensions automatically
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
+
 ###############################################################################
-# Mail                                                                        #
+log_debug "Configuring 'Mail' settings..."
 ###############################################################################
 
 # Disable send and reply animations in Mail.app
@@ -536,99 +453,10 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -stri
 # Disable automatic spell checking
 # defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
-###############################################################################
-# Spotlight                                                                   #
-###############################################################################
-
-# # Hide Spotlight tray-icon (and subsequent helper)
-# #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-# # Disable Spotlight indexing for any volume that gets mounted and has not yet
-# # been indexed before.
-# # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
-# # Change indexing order and disable some search results
-# # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
-# # 	MENU_DEFINITION
-# # 	MENU_CONVERSION
-# # 	MENU_EXPRESSION
-# # 	MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-# # 	MENU_WEBSEARCH             (send search queries to Apple)
-# # 	MENU_OTHER
-# defaults write com.apple.spotlight orderedItems -array \
-# 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
-# 	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-# 	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
-# 	'{"enabled" = 1;"name" = "PDF";}' \
-# 	'{"enabled" = 1;"name" = "FONTS";}' \
-# 	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
-# 	'{"enabled" = 0;"name" = "MESSAGES";}' \
-# 	'{"enabled" = 0;"name" = "CONTACT";}' \
-# 	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
-# 	'{"enabled" = 0;"name" = "IMAGES";}' \
-# 	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
-# 	'{"enabled" = 0;"name" = "MUSIC";}' \
-# 	'{"enabled" = 0;"name" = "MOVIES";}' \
-# 	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-# 	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-# 	'{"enabled" = 0;"name" = "SOURCE";}' \
-# 	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-# 	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
-# 	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-# 	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-# 	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-# 	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-# # Load new settings before rebuilding the index
-# killall mds > /dev/null 2>&1
-# # Make sure indexing is enabled for the main volume
-# sudo mdutil -i on / > /dev/null
-# # Rebuild the index from scratch
-# sudo mdutil -E / > /dev/null
 
 ###############################################################################
-# Terminal & iTerm 2                                                          #
+log_debug "Configuring 'Terminal' and 'iTerm2' settings..."
 ###############################################################################
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
-# Use a modified version of the Solarized Dark theme by default in Terminal.app
-#osascript <<EOD
-#tell application "Terminal"
-#	local allOpenedWindows
-#	local initialOpenedWindows
-#	local windowID
-#	set themeName to "Solarized Dark xterm-256color"
-#	(* Store the IDs of all the open terminal windows. *)
-#	set initialOpenedWindows to id of every window
-#	(* Open the custom theme so that it gets added to the list
-#	   of available terminal themes (note: this will open two
-#	   additional terminal windows). *)
-#	do shell script "open '$HOME/init/" & themeName & ".terminal'"
-#	(* Wait a little bit to ensure that the custom theme is added. *)
-#	delay 1
-#	(* Set the custom theme as the default terminal theme. *)
-#	set default settings to settings set themeName
-#	(* Get the IDs of all the currently opened terminal windows. *)
-#	set allOpenedWindows to id of every window
-#	repeat with windowID in allOpenedWindows
-#		(* Close the additional windows that were opened in order
-#		   to add the custom theme to the list of terminal themes. *)
-#		if initialOpenedWindows does not contain windowID then
-#			close (every window whose id is windowID)
-#		(* Change the theme for the initial opened terminal windows
-#		   to remove the need to close them in order for the custom
-#		   theme to be applied. *)
-#		else
-#			set current settings of tabs of (every window whose id is windowID) to settings set themeName
-#		end if
-#	end repeat
-#end tell
-#EOD
-
-# Enable “focus follows mouse” for Terminal.app and all X11 apps
-# i.e. hover over a window and start typing in it without clicking first
-#defaults write com.apple.terminal FocusFollowsMouse -bool true
-#defaults write org.x.X11 wm_ffm -bool true
 
 # Enable Secure Keyboard Entry in Terminal.app
 # See: https://security.stackexchange.com/a/47786/8918
@@ -637,25 +465,20 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
 
-# Install the Solarized Dark theme for iTerm
-# open "${HOME}/init/Solarized Dark.itermcolors"
-
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+
 ###############################################################################
-# Time Machine                                                                #
+log_debug "Configuring 'Time Machine' settings..."
 ###############################################################################
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable local Time Machine backups
-# FIXME: disablelocal: Unrecognized verb.
-# hash tmutil &>/dev/null && sudo tmutil disablelocal
 
 ###############################################################################
-# Activity Monitor                                                            #
+log_debug "Configuring 'Activity Monitor' settings..."
 ###############################################################################
 
 # Show the main window when launching Activity Monitor
@@ -671,8 +494,9 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
+
 ###############################################################################
-# Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
+log_debug "Configuring Address Book, Dashboard, iCal, TextEdit, and Disk Utility settings..."
 ###############################################################################
 
 # Enable the debug menu in Address Book
@@ -697,8 +521,9 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 # Auto-play videos when opened with QuickTime Player
 defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 
+
 ###############################################################################
-# Mac App Store                                                               #
+log_debug "Configuring 'Mac App Store' settings..."
 ###############################################################################
 
 # Enable Debug Menu in the Mac App Store
@@ -725,28 +550,17 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
+
 ###############################################################################
-# Photos                                                                      #
+log_debug "Configuring 'Photos' settings..."
 ###############################################################################
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
-###############################################################################
-# Messages                                                                    #
-###############################################################################
-
-# Disable automatic emoji substitution (i.e. use plain text smileys)
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
-
-# Disable smart quotes as it’s annoying for messages that contain code
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-
-# Disable continuous spell checking
-# defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
-# Google Chrome & Google Chrome Canary                                        #
+log_debug "Configuring Chrome & Google Chrome Canary settings..."
 ###############################################################################
 
 # Disable the all too sensitive backswipe on trackpads
@@ -765,8 +579,9 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
+
 ###############################################################################
-# My Custom Configs                                                           #
+log_debug "Configuring other custom settings..."
 ###############################################################################
 
 # Stop iTunes from opening when iPhone is connected

@@ -29,6 +29,9 @@
 [branch]
     autosetuprebase = always
 
+[rerere]
+	enabled = true
+
 [color]
     ui = auto
 

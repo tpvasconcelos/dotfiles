@@ -205,6 +205,7 @@ cask "pdf-squeezer"             #
 cask "image2icon"               # https://img2icnsapp.com/
 cask "p4v"
 cask "diffmerge"
+cask "thorium"                  # https://github.com/edrlab/thorium-reader
 cask "zotero"
 #tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
 #cask "popcorn-time"
