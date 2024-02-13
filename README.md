@@ -38,7 +38,7 @@ The following steps assume that you are starting from a fresh macOS installation
 
 ### Cloning this repository
 
-Cloning this repository (or your fork) under `~/.dotfiles`
+Clone this repository (or your fork) under `~/.dotfiles`
 
 ```shell script
 git clone git@github.com:tpvasconcelos/dotfiles.git ~/.dotfiles
