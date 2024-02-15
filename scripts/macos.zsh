@@ -2,9 +2,9 @@
 set -eu
 
 # How to check for changes in "defaults"
-# $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' > dft1.plist
+# $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' | sed -E 's/Age = "[0-9]+\.[0-9]+"/AGE_REDACTED/g' > dft1.plist
 # make your changes...
-# $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' > dft2.plist
+# $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' | sed -E 's/Age = "[0-9]+\.[0-9]+"/AGE_REDACTED/g' > dft2.plist
 # $ diffmerge dft1.plist dft2.plist
 
 # How to check the id of an Application
@@ -458,12 +458,14 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -stri
 log_debug "Configuring 'Terminal' and 'iTerm2' settings..."
 ###############################################################################
 
+# TODO: can't write to com.apple.Terminal...
+
 # Enable Secure Keyboard Entry in Terminal.app
 # See: https://security.stackexchange.com/a/47786/8918
-defaults write com.apple.terminal SecureKeyboardEntry -bool true
+# defaults write com.apple.Terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
-defaults write com.apple.Terminal ShowLineMarks -int 0
+# defaults write com.apple.Terminal ShowLineMarks -int 0
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
