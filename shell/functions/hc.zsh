@@ -37,6 +37,16 @@ hc-update-everything() {
 
   # Upgrade all `gh` CLI extensions
   gh extension upgrade --all
+
+  # Update npm
+  npm install npm --global
+  npm update --globalyarn global upgrade
+
+  # Update yarn
+  yarn global upgrade
+
+  # Update Ruby gems
+  sudo gem update --system
 }
 
 hc-clear-caches() {
