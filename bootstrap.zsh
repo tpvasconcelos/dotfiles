@@ -152,29 +152,25 @@ log_info "Installing the following Python versions (in parallel) w/ pyenv: $py_v
 
 eval "$(pyenv init --path)"
 
+# Install some global Python packages with pipx
+_pipx_packages_to_install=('poetry' 'pipenv' 'cookiecutter' 'argcomplete')
+for package in "${_pipx_packages_to_install[@]}"; do
+  if pipx list | grep -q "$package"; then
+    log_success "${package} is already installed!"
+  else
+    log_info "Installing $package..."
+    pipx install "$package"
+  fi
+done
+
+# Install poetry completions
 POETRY_OMZ_PLUGIN_PATH="$ZSH_CUSTOM/plugins/poetry"
 if [[ -d "$POETRY_OMZ_PLUGIN_PATH" ]]; then
-  log_success "poetry is already installed!"
+  log_success "poetry shell completions already installed!"
 else
-  log_info "Installing poetry..."
-  pipx install poetry
+  log_info "Installing poetry shell completions..."
   mkdir -p "$POETRY_OMZ_PLUGIN_PATH"
   $HOME/.local/bin/poetry completions zsh > "$POETRY_OMZ_PLUGIN_PATH/_poetry"
-fi
-
-# Install pipenv
-if pipx list | grep -q pipenv; then
-  log_success "pipenv is already installed!"
-else
-  log_info "Installing pipenv..."
-  pipx install pipenv
-fi
-
-if pipx list | grep -q cookiecutter; then
-  log_success "cookiecutter is already installed!"
-else
-  log_info "Installing cookiecutter..."
-  pipx install cookiecutter
 fi
 
 # Create playground venv
