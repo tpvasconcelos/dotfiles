@@ -100,6 +100,7 @@ brew "git-lfs"
 brew "git-flow-avh"
 brew "git-filter-repo"      # https://github.com/newren/git-filter-repo
 brew "multi-git-status"     # https://github.com/fboender/multi-git-status
+brew "git-delta"            # https://github.com/dandavison/delta
 
 # Compilers and relevant binaries  ---
 brew "cmake"

@@ -10,6 +10,7 @@
     excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes
     autocrlf = input
+    pager = delta
 
 [commit]
     gpgsign = true
@@ -29,11 +30,25 @@
 [branch]
     autosetuprebase = always
 
+# https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [rerere]
 	enabled = true
 
 [color]
     ui = auto
+
+[merge]
+    conflictstyle = diff3
+
+# https://github.com/dandavison/delta
+[delta]
+    navigate = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[diff]
+    colorMoved = default
 
 # ref: https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
@@ -69,3 +84,10 @@
 
 [includeIf "gitdir:~/git_tree/nike/"]
     path = ~/git_tree/nike/.gitconfig
+
+[maintenance]
+	repo = /Users/TPer31/.dotfiles
+	repo = /Users/TPer31/git_tree/personal_projects/ridgeplot
+	repo = /Users/TPer31/git_tree/nike/nike-eda-emea-apollo/nddc-mfp-forecast
+	repo = /Users/TPer31/git_tree/nike/nike-eda-emea-apollo/store-planning-forecast
+	repo = /Users/TPer31/git_tree/nike/nike-eda-emea-apollo/store-planning-foo
