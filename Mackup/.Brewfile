@@ -50,6 +50,7 @@ cask "font-hack-nerd-font"
 # Command line utils  ---
 brew "curl"
 brew "wget"
+brew "croc"                 # https://github.com/schollz/croc
 brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
 brew "htop"
 brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
@@ -63,7 +64,7 @@ brew "readline"
 brew "sqlite"
 brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
-brew "pandoc"		    # https://github.com/jgm/pandoc
+brew "pandoc"		        # https://github.com/jgm/pandoc
 brew "graphviz"
 brew "postgresql@14"        # https://www.postgresql.org/
 brew "node"
@@ -188,6 +189,7 @@ cask "notion"
 cask "raindropio"
 cask "zoom"
 cask "rectangle"                # https://github.com/rxhanson/Rectangle
+cask "zotero"                   # https://www.zotero.org/
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
