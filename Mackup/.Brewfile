@@ -36,11 +36,8 @@ brew "openjdk@11"
 
 # Fonts  ---
 tap "bramstein/webfonttools"
-brew "sfnt2woff"
-brew "sfnt2woff-zopfli"
 brew "woff2"
 brew "svn"
-tap "homebrew/cask-fonts"
 cask "font-oswald"
 cask "font-open-sans"
 cask "font-lora"
@@ -58,7 +55,6 @@ brew "tree"
 brew "neovim"               # https://github.com/neovim/neovim
 brew "glow"                 # https://github.com/charmbracelet/glow
 brew "fzf"                  # https://github.com/junegunn/fzf
-brew "ciphey"               # https://github.com/Ciphey/Ciphey
 brew "openssl@1.1"          # https://www.openssl.org/
 brew "readline"
 brew "sqlite"

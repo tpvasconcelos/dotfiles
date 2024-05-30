@@ -335,6 +335,8 @@ defaults write com.apple.dock showhidden -bool true
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
+# Disable "Click wallpaper to reveal Desktop" feature
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 ###############################################################################
 log_debug "Configuring Safari and WebKit settings..."
@@ -615,7 +617,7 @@ defaults write -g com.apple.trackpad.scaling 2.5
 defaults write -g com.apple.mouse.scaling 3
 
 # Disable spotlight keyboard shortcut
-defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "{ enabled = 0; value = { parameters = (32, 49, 524288); type = 'standard'; }; }"
+# defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "{ enabled = 0; value = { parameters = (32, 49, 524288); type = 'standard'; }; }"
 
 # Security  ---
 # Enable the system's FileVault Service

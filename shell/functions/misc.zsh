@@ -67,6 +67,38 @@ need_cmd() {
   fi
 }
 
+ask-yesno() {
+  # Ask a yes/no question
+  #
+  # Usage
+  #   ask-yesno <question>
+  #
+  # Arguments
+  #   $1  question to ask
+  #
+  # Examples
+  #   $ ask-yesno "Do you want to continue?"
+  #   Do you want to continue? [y/n]
+  #   $ echo $?
+  #   1
+  local question="${*}"
+  echo -n "$question [y/n] "
+  while true; do
+    read -r -k 1 yn
+    echo
+    case $yn in
+    [Yy]*)
+      return 0 ;;
+    [Nn]*)
+      return 1 ;;
+    *)
+      echo -n "$(fg_red "$(bold "Option not recognised!")") "
+      echo -n "Please type $(bold "y/Y") for yes or $(bold "n/N") for no... [y/n] "
+      ;;
+    esac
+  done
+}
+
 restart() {
   # Restart a macOS app
   #
