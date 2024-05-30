@@ -15,7 +15,6 @@ Feel free to steal, modify, and/or adapt! 🚀
     * [Unlocking this repository](#unlocking-this-repository)
     * [Bootstrap](#bootstrap)
 * [Appendix](#appendix)
-    * [Setup ssh for git](#setup-ssh-for-git)
     * [Other useful macOS settings](#other-useful-macos-settings)
     * [Update everything](#update-everything)
         * [Software Update](#software-update)
