@@ -47,6 +47,23 @@ hc-update-everything() {
 
   # Update Ruby gems
   sudo gem update --system
+
+  # Check for expired gpg keys
+  yellow-bold() {
+    fg_yellow "$(bold "$*")"
+  }
+  if gpg --list-keys | grep -q expired; then
+    log_warning "Found expired GPG keys!"
+    echo "Steps to update them:"
+    echo "1. Run $(yellow-bold 'gpg --list-keys') to check the fingerprints of the expired keys."
+    echo "2. Run $(yellow-bold 'gpg --quick-set-expire FINGERPRINT EXPIRE [SUBKEY-FPRS]') to update them."
+    echo "For instance, to update the 'ABCD1234' key and all its subkeys to expire in 1 year, run:"
+    yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' '*'"
+  else
+    log_success "No expired GPG keys found!"
+  fi
+
+  log_success "Done! 🚀"
 }
 
 hc-clear-caches() {
