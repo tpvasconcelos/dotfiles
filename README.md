@@ -10,7 +10,7 @@ Feel free to steal, modify, and/or adapt! 🚀
 
 * [Table of Contents](#table-of-contents)
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
-    * [First things first](#first-things-first)
+    * [Requirements](#requirements)
     * [Cloning this repository](#cloning-this-repository)
     * [Installing Homebrew](#installing-homebrew)
     * [Unlocking this repository](#unlocking-this-repository)
@@ -117,7 +117,7 @@ cd ~/.dotfiles && ./bootstrap.zsh
 
 ### Other useful macOS settings
 
-Take a look at this [_awesome_ reference](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you will find a lot of cool ways to personalise your Mac. My default settings can be found in the `scripts/macos.zsh` script.
+Take a look at this [_"awesome"_ list](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you will find a lot of cool ways to personalise your Mac. My default settings can be found in the `scripts/macos.zsh` script.
 
 I'll highlight one important example here... From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced computer."_
 
