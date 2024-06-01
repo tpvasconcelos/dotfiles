@@ -9,21 +9,20 @@ Feel free to steal, modify, and/or adapt! 🚀
 ## Table of Contents
 
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
-   * [Requirements](#requirements)
-   * [Cloning this repository](#cloning-this-repository)
-   * [Installing Homebrew](#installing-homebrew)
-   * [Unlocking this repository](#unlocking-this-repository)
-   * [Bootstrap](#bootstrap)
+    * [Requirements](#requirements)
+    * [Cloning this repository](#cloning-this-repository)
+    * [Installing Homebrew](#installing-homebrew)
+    * [Unlocking this repository](#unlocking-this-repository)
+    * [Bootstrap](#bootstrap)
 * [Housekeeping](#housekeeping)
-   * [Checking for issues](#checking-for-issues)
-   * [Update everything](#update-everything)
-   * [Reclaim some disk space](#reclaim-some-disk-space)
+    * [Checking for issues](#checking-for-issues)
+    * [Update everything](#update-everything)
+    * [Reclaim some disk space](#reclaim-some-disk-space)
 * [Appendix](#appendix)
-   * [Other useful macOS settings](#other-useful-macos-settings)
-   * [Shell setup](#shell-setup)
-   * [Install Python Development Tools](#install-python-development-tools)
+    * [Other useful macOS settings](#other-useful-macos-settings)
+    * [Shell setup](#shell-setup)
+    * [Install Python Development Tools](#install-python-development-tools)
 * [References](#references)
-
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 
