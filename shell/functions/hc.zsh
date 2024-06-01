@@ -55,10 +55,10 @@ hc-update-everything() {
   if gpg --list-keys | grep -q expired; then
     log_warning "Found expired GPG keys!"
     echo "Steps to update them:"
-    echo "1. Run $(yellow-bold 'gpg --list-keys') to check the fingerprints of the expired keys."
+    echo "1. Run $(yellow-bold 'gpg --list-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
     echo "2. Run $(yellow-bold 'gpg --quick-set-expire FINGERPRINT EXPIRE [SUBKEY-FPRS]') to update them."
-    echo "For instance, to update the 'ABCD1234' key and all its subkeys to expire in 1 year, run:"
-    yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' '*'"
+    echo "For instance, to update the 'ABC123' key and its DEF456 subkey to expire in 1 year, run:"
+    yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' 'DEF456'"
   else
     log_success "No expired GPG keys found!"
   fi

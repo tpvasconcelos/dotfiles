@@ -123,7 +123,7 @@ tau-install() {
 
   if contains "$(pyenv versions)" "$py_version_patch"; then
     # FIXME: This assumes that you only have stable CPython versions installed
-    log_warning "Skipping: Python $py_version_patch is already installed."
+    log_info "Skipping: Python $py_version_patch is already installed."
   else
     # TODO: Check if it's still necessary to export SDKROOT and
     #       MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
