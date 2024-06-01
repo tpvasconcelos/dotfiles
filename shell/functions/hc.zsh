@@ -35,8 +35,14 @@ __check_dotfiles() {
 }
 
 hc-doctor() {
-  log_info "Checking for available software updates..."
-  softwareupdate --list --all --verbose
+  log_info "Checking for system software updates..."
+  softwareupdate_output=$(softwareupdate --list --all)
+  if [[ "$softwareupdate_output" == *"found the following new or updated software"* ]]; then
+    log_warning "Found available software updates:"
+    fg_yellow "$softwareupdate_output"
+  else
+    log_success "System software is up-to-date!"
+  fi
 
   __check_dotfiles
   __check_expired_gpg_keys
@@ -50,7 +56,7 @@ hc-doctor() {
 
   if [[ -n $(brew outdated) ]]; then
     log_warning "Found outdated brew packages:"
-    brew outdated
+    fg_yellow "$(brew outdated --verbose)"
   else
     log_success "Brew packages are up-to-date!"
   fi
@@ -116,20 +122,6 @@ hc-update-everything() {
 }
 
 hc-reclaim-diskspace() {
-  if [[ "$*" == *--help* ]]; then
-    echo "Usage: hc-reclaim-diskspace [OPTIONS]"
-    echo ""
-    echo "Options:"
-    echo "    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile"
-    echo "    --help                 Show this help message and exit"
-    return
-  fi
-
-  if [[ "$*" == *--cleanup-brew-bundle* ]]; then
-    log_info "Uninstalling all dependencies not listed in the Brewfile..."
-    brew bundle cleanup --global --force
-  fi
-
   log_info "Clearing homebrew's caches..."
   brew cleanup -s
 

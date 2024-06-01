@@ -8,21 +8,22 @@ Feel free to steal, modify, and/or adapt! 🚀
 
 ## Table of Contents
 
-* [Table of Contents](#table-of-contents)
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
-    * [Requirements](#requirements)
-    * [Cloning this repository](#cloning-this-repository)
-    * [Installing Homebrew](#installing-homebrew)
-    * [Unlocking this repository](#unlocking-this-repository)
-    * [Bootstrap](#bootstrap)
+   * [Requirements](#requirements)
+   * [Cloning this repository](#cloning-this-repository)
+   * [Installing Homebrew](#installing-homebrew)
+   * [Unlocking this repository](#unlocking-this-repository)
+   * [Bootstrap](#bootstrap)
+* [Housekeeping](#housekeeping)
+   * [Checking for issues](#checking-for-issues)
+   * [Update everything](#update-everything)
+   * [Reclaim some disk space](#reclaim-some-disk-space)
 * [Appendix](#appendix)
-    * [Other useful macOS settings](#other-useful-macos-settings)
-    * [Update everything](#update-everything)
-    * [Check for issues](#check-for-issues)
-    * [Reclaim some disk space](#reclaim-some-disk-space)
-    * [Shell setup](#shell-setup)
-    * [Install Python Development Tools](#install-python-development-tools)
+   * [Other useful macOS settings](#other-useful-macos-settings)
+   * [Shell setup](#shell-setup)
+   * [Install Python Development Tools](#install-python-development-tools)
 * [References](#references)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 
@@ -113,33 +114,42 @@ cd ~/.dotfiles && ./bootstrap.zsh
 > [!TIP]
 > There are no unwanted side effects from running this script multiple times, and the steps that have already run successefully will simply be skipped. So, if you encounter any issues, feel free to just run the `./bootstrap.zsh` script again (once you've fixed the underlying error on your end).
 
-## Appendix
+## Housekeeping
 
-### Other useful macOS settings
+The following is a collection of useful _housekeeping_ commands that you can run to keep your system up to date and in good shape. The source code for these commands can be found in [shell/functions/hc.zsh](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh).
 
-Take a look at this [_"awesome"_ list](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you will find a lot of cool ways to personalise your Mac. My default settings can be found in the `scripts/macos.zsh` script.
+### Checking for issues
 
-I'll highlight one important example here... From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced computer."_
+Run `hc-doctor` to check for potential issues with your system's state or configuration:
 
 ```shell script
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact your_email_here@example.com"
+hc-doctor
 ```
+
+This script will run a series of checks, such as:
+
+- Check for outdated software.
+- Check for issues with this `.dotfiles/` repository.
+- Verify the status of your GnuPG keys.
+- Check for issues with your installed brew packages (brew doctor) or brew bundle (installed packages not listed in the global Brewfile).
+
+![hc-doctor.jpg](assets/img/hc-doctor.jpg)
 
 ### Update everything
 
-If you want to update everything with a single command, you can run
+If you want to update (almost) everything in your system with a single command, you can run
 
 ```shell script
 hc-update-everything --system --brew-greedy-latest --flutter
 ```
 
-For simple routine updates, you can just call the `hc-update-everything` script without any arguments.
+For simple routine updates, you can just call the `hc-update-everything` helper without any arguments.
 
 ```shell script
 hc-update-everything
 ```
 
-For more details see the `hc-update-everything` function definition at [shell/functions/hc.zsh](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh).
+You can also call `hc-update-everything --help` to see all available options:
 
 ```console
 $ hc-update-everything --help
@@ -152,41 +162,29 @@ Options:
     --help                Show this help message and exit
 ```
 
-### Check for issues
-
-Run `hc-doctor` to check for issues with your system's state or configuration. This script will run a series of checks such as:
-
-- Check for outdated software
-- Check for issues with this .dotfiles repository
-- Verify the status of your GnuPG keys
-- Check for issues with your installed brew packages (brew doctor) or brew bundle (installed packages not listed in the global Brewfile)
-
-```shell script
-hc-doctor
-```
-
 ### Reclaim some disk space
 
-In order to reclaim some disk space, you can occasionally clear caches from tools like brew and pip, or permanently clear unused data from tools like Docker by running the following helper:
+In order to reclaim some disk space, you can occasionally clear caches from tools like brew and pip, or permanently clear unused data from tools like Docker by running the `hc-reclaim-diskspace` helper:
 
 ```shell script
 hc-reclaim-diskspace
 ```
 
-For more details see the `hc-reclaim-diskspace` function definition at [shell/functions/hc.zsh](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh).
+## Appendix
 
-```console
-$ hc-reclaim-diskspace --help
-Usage: hc-reclaim-diskspace [OPTIONS]
+### Other useful macOS settings
 
-Options:
-    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile
-    --help                 Show this help message and exit
+Take a look at this [_"awesome"_ list](https://git.herrbischoff.com/awesome-macos-command-line/about/) where you will find a lot of cool ways to personalise your Mac. My default settings can be found in the `scripts/macos.zsh` script.
+
+I'll highlight one important example here... From the [macOS User Guide](https://support.apple.com/en-gb/guide/mac-help/mh35890/mac), you have the option to add a message on the Mac login window. It can be used _"to provide contact information for a misplaced computer."_
+
+```shell script
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If lost, please contact your_email_here@example.com"
 ```
 
 ### Shell setup
 
-Here I'm using a bare [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a
+Here I'm using a [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/) configuration with a
 [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme. You can consider other frameworks,
 such as:
 
