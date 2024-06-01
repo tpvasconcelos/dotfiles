@@ -2,12 +2,13 @@
 
 Welcome to my personal [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles)!
 
-This repository contains instructions, configuration files, and bootstrapping scripts for setting up a new macOS machine. It helps me keep a reproducible workflow for setting up and maintaining my macOS development environment across multiple machines. It also serves as a backup for my configuration files, and a way to share my setup with others.
+This repository contains instructions, configuration files, and bootstrapping scripts for setting up a new macOS machine from scratch. It helps me keep a reproducible workflow for setting up and maintaining my macOS development environment across multiple machines. It also serves as a backup for my configuration files, and a way to share my setup with others.
 
 Feel free to steal, modify, and/or adapt! 🚀
 
 ## Table of Contents
 
+* [Table of Contents](#table-of-contents)
 * [Fresh macOS Install (step-by-step)](#fresh-macos-install-step-by-step)
     * [First things first](#first-things-first)
     * [Cloning this repository](#cloning-this-repository)
@@ -17,43 +18,43 @@ Feel free to steal, modify, and/or adapt! 🚀
 * [Appendix](#appendix)
     * [Other useful macOS settings](#other-useful-macos-settings)
     * [Update everything](#update-everything)
-        * [Software Update](#software-update)
     * [Check for issues](#check-for-issues)
     * [Reclaim some disk space](#reclaim-some-disk-space)
-    * [Install Xcode and Command Line Developer Tools](#install-xcode-and-command-line-developer-tools)
     * [Shell setup](#shell-setup)
     * [Install Python Development Tools](#install-python-development-tools)
 * [References](#references)
 
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 
 ## Fresh macOS Install (step-by-step)
 
 The following steps assume that you are starting from a fresh macOS installation. If that’s not the case, feel free to skip some of the steps at your own discretion.
 
-> [!TIP]
-> Before you start, make sure you have a good internet connection and that you are not running on battery power. Some of the steps below might take a while to complete and could drain your battery.
+Before you start, make sure you have a good internet connection and that you are not running on battery power. Depending on your machine's hardware and internet connection, some of the steps below could take a while to complete, and you don't want to run out of battery in the middle of the process.
 
-### First things first
+### Requirements
 
 > [!IMPORTANT]
-> The following prerequisites are essential for successfully setting up your macOS machine. Without them, you might run into issues during the installation process.
+> The following prerequisites are essential for successfully setting up your macOS machine. Without them, you will almost certainly run into issues during the bootstrapping process.
 
 1. Make sure you have [admin access](https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac) to your macOS machine.
 2. Make sure you are logged in with a valid Apple ID (check both [System Preferences](https://support.apple.com/en-gb/guide/mac-help/mchla99dc8da/mac) and the [App Store](https://support.apple.com/en-gb/guide/app-store/fir6253293d/mac)).
 3. Make sure you've opened and quit both Safari and the Mail app at least once. This is necessary to make sure their respective system preferences files have been created.
-4. Some of the steps in this [bootstrapping script](#bootstrap) might require [full disk access](https://support.apple.com/en-gb/guide/mac-help/mchl211c911f/mac) from your terminal emulator. This is something that you probably want to enable anyways. For instance, iTerm2 will [ask you](https://gitlab.com/gnachman/iterm2/-/wikis/fulldiskaccess) to give it full disk access at first launch. Do to this, navigate to `System Preferences -> Privacy & Security -> Full Disk Access` and toggle the checkbox for your terminal emulators.
-  ![full-disk-access.png](assets/img/full-disk-access.png)
+4. Some of the steps in the bootstrapping script below might require [full disk access](https://support.apple.com/en-gb/guide/mac-help/mchl211c911f/mac) from your terminal emulator. This is something that you probably want to enable anyway. For instance, iTerm2 will [ask you](https://gitlab.com/gnachman/iterm2/-/wikis/fulldiskaccess) to give it full disk access at first launch. Do to this, navigate to `System Preferences -> Privacy & Security -> Full Disk Access` and toggle the checkbox for your terminal emulators.
+   ![full-disk-access.png](assets/img/full-disk-access.png)
 
 ### Cloning this repository
 
-Clone this repository (or your fork) under `~/.dotfiles`
+To clone this repository under `~/.dotfiles`, run the following command:
 
 ```shell script
 git clone https://github.com/tpvasconcelos/dotfiles.git ~/.dotfiles
 ```
 
+This directory will contain all the necessary scripts and configuration files to set up your macOS machine. Again, feel free to fork, modify, and adapt any of the files to suit your own needs and preferences.
+
 > [!NOTE]
-> At this point, you should be prompted to install macOS's [Command Line Developer Tools](https://developer.apple.com/downloads/). Simply follow the steps in the user interface. If you are not prompted, don't worry, we will install them later on in the [bootstrap script](#bootstrap).
+> At this point, you should be prompted to install macOS's [Command Line Developer Tools](https://developer.apple.com/downloads/). Please follow the steps in the user interface. If for some reason you are not prompted at this point, don't worry, as we will verify these requirements later on during the [bootstrapping](#bootstrap) process.
 
 ### Installing Homebrew
 
@@ -100,14 +101,14 @@ gpg --export-secret-keys --armor $GPG_KEY_ID
 
 ### Bootstrap
 
-The following shell script will run all necessary installation steps. Feel free to peak inside see what’s going on. It is recommended to reboot your machine after running this script for the first time. For convenience, the script will prompt you for an automatic reboot at the end.
-
-> [!NOTE]
-> By default, this script will install a bunch of Python versions (using `pyenv`). If you want to control which versions are installed, you can expose the `PYENV_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
+The following shell script will run all necessary installation and configuration steps. Feel free to peak inside to see what’s going on. It is recommended to reboot your machine after running this script for the first time. For convenience, the script will prompt you for an automatic reboot at the end.
 
 ```shell script
 cd ~/.dotfiles && ./bootstrap.zsh
 ```
+
+> [!NOTE]
+> By default, this script will install a bunch of Python versions (using `pyenv`). If you want to control which versions are installed, you can expose a `PYENV_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
 
 > [!TIP]
 > There are no unwanted side effects from running this script multiple times, and the steps that have already run successefully will simply be skipped. So, if you encounter any issues, feel free to just run the `./bootstrap.zsh` script again (once you've fixed the underlying error on your end).
@@ -129,16 +130,16 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 If you want to update everything with a single command, you can run
 
 ```shell script
-hc-update-everything --system --brew-greedy-latest
+hc-update-everything --system --brew-greedy-latest --flutter
 ```
 
-For simple routine updates, you can simply call the `hc-update-everything` script without any arguments.
+For simple routine updates, you can just call the `hc-update-everything` script without any arguments.
 
 ```shell script
 hc-update-everything
 ```
 
-For more details see the `hc-update-everything` function definition at [shell/functions/hc.zsh#L1](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh#L1).
+For more details see the `hc-update-everything` function definition at [shell/functions/hc.zsh](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh).
 
 ```console
 $ hc-update-everything --help
@@ -151,51 +152,35 @@ Options:
     --help                Show this help message and exit
 ```
 
-#### Software Update
-
-It is generally a good idea to keep your machine up-to-date and install software updates and security patches as often as possible. You can configure your Mac to automatically install these in the background by making sure you have this configured in your System Preferences.
-
-![software-update.png](assets/img/software-update.png)
-
-Alternatively you can invoke this via the command line. You should reboot your machine after
-running this command or, instead, just add an optional ` --restart` flag so that it restarts automatically.
-
-```shell script
-sudo softwareupdate --install --all --verbose --force --agree-to-license
-```
-
 ### Check for issues
 
-Run `brew doctor` to check for any hanging issues
+Run `hc-doctor` to check for issues with your system's state or configuration. This script will run a series of checks such as:
+
+- Check for outdated software
+- Check for issues with this .dotfiles repository
+- Verify the status of your GnuPG keys
+- Check for issues with your installed brew packages (brew doctor) or brew bundle (installed packages not listed in the global Brewfile)
 
 ```shell script
-brew doctor
+hc-doctor
 ```
 
 ### Reclaim some disk space
 
-Safely delete some `CoreSimulator` caches used by Xcode
+In order to reclaim some disk space, you can occasionally clear caches from tools like brew and pip, or permanently clear unused data from tools like Docker by running the following helper:
 
 ```shell script
-xcrun simctl delete all && xcrun simctl erase all
-rm -rf ~/Library/Developer/CoreSimulator/Caches/*
+hc-reclaim-diskspace
 ```
 
-You can occasionally also clear your caches for tools like brew, pip, or docker by running
-
-```shell script
-hc-clear-caches
-```
-
-For more details see the `hc-clear-caches` function definition at [shell/functions/hc.zsh#L34](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh#L34).
+For more details see the `hc-reclaim-diskspace` function definition at [shell/functions/hc.zsh](https://github.com/tpvasconcelos/dotfiles/blob/main/shell/functions/hc.zsh).
 
 ```console
-$ hc-clear-caches --help
-Usage: hc-clear-caches [OPTIONS]
+$ hc-reclaim-diskspace --help
+Usage: hc-reclaim-diskspace [OPTIONS]
 
 Options:
     --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile
-    --skip-docker          Don't remove docker's unused data. Useful when the docker daemon is not running.
     --help                 Show this help message and exit
 ```
 

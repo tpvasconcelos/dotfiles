@@ -1,3 +1,64 @@
+__check_expired_gpg_keys() {
+  # Check for expired gpg keys
+  yellow-bold() {
+    fg_yellow "$(bold "$*")"
+  }
+  if gpg --list-keys | grep -q expired; then
+    log_warning "Found expired GPG keys!"
+    echo "Steps to update them:"
+    echo "1. Run $(yellow-bold 'gpg --list-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
+    echo "2. Run $(yellow-bold 'gpg --quick-set-expire FINGERPRINT EXPIRE [SUBKEY-FPRS]') to update them."
+    echo "For instance, to update the 'ABC123' key and its DEF456 subkey to expire in 1 year, run:"
+    yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' 'DEF456'"
+  else
+    log_success "No expired GPG keys found!"
+  fi
+}
+
+__check_dotfiles() {
+  # Check DOTFILES_DIR is set
+  if [[ -z "$DOTFILES_DIR" ]]; then
+    log_error "The DOTFILES_DIR environment variable is not set!"
+    echo "The default location should be ~/.dotfiles."
+    echo "Please refer to https://github.com/tpvasconcelos/dotfiles for more information."
+    return 1
+  fi
+
+  # https://github.com/AGWA/git-crypt/issues/69#issuecomment-1129962604
+  if git -C "$DOTFILES_DIR" config --local --get filter.git-crypt.smudge | grep -q 'smudge'; then
+    log_success "The dotfiles repository is unlocked!"
+  else
+    log_error "The dotfiles repository is locked with git-crypt!"
+    echo "Please unlock it by running $(bold 'git-crypt unlock') or refer to"
+    echo "https://github.com/tpvasconcelos/dotfiles#unlocking-this-repository for more information."
+  fi
+}
+
+hc-doctor() {
+  log_info "Checking for available software updates..."
+  softwareupdate --list --all --verbose
+
+  __check_dotfiles
+  __check_expired_gpg_keys
+
+  if brew bundle cleanup --global | grep -q "Would uninstall"; then
+    log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
+    brew bundle cleanup --global
+  else
+    log_success "All installed packages are listed in the global Brewfile!"
+  fi
+
+  if brew outdated | grep -q "->"; then
+    log_warning "Found outdated brew packages:"
+    brew outdated --verbose
+  else
+    log_success "Brew packages are up-to-date!"
+  fi
+
+  log_info "Running brew doctor..."
+  brew doctor
+}
+
 hc-update-everything() {
   if [[ "$*" == *--help* ]]; then
     echo "Usage: hc-update-everything [OPTIONS]"
@@ -49,30 +110,17 @@ hc-update-everything() {
   sudo gem update --system
 
   # Check for expired gpg keys
-  yellow-bold() {
-    fg_yellow "$(bold "$*")"
-  }
-  if gpg --list-keys | grep -q expired; then
-    log_warning "Found expired GPG keys!"
-    echo "Steps to update them:"
-    echo "1. Run $(yellow-bold 'gpg --list-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
-    echo "2. Run $(yellow-bold 'gpg --quick-set-expire FINGERPRINT EXPIRE [SUBKEY-FPRS]') to update them."
-    echo "For instance, to update the 'ABC123' key and its DEF456 subkey to expire in 1 year, run:"
-    yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' 'DEF456'"
-  else
-    log_success "No expired GPG keys found!"
-  fi
+  __check_expired_gpg_keys
 
   log_success "Done! 🚀"
 }
 
-hc-clear-caches() {
+hc-reclaim-diskspace() {
   if [[ "$*" == *--help* ]]; then
-    echo "Usage: hc-clear-caches [OPTIONS]"
+    echo "Usage: hc-reclaim-diskspace [OPTIONS]"
     echo ""
     echo "Options:"
     echo "    --cleanup-brew-bundle  Uninstall all dependencies not listed in the Brewfile"
-    echo "    --skip-docker          Don't remove docker's unused data. Useful when the docker daemon is not running."
     echo "    --help                 Show this help message and exit"
     return
   fi
@@ -88,10 +136,10 @@ hc-clear-caches() {
   log_info "Clearing pipenv, pip, and pip-tools caches..."
   pipenv --clear
 
-  if [[ "$*" != *--skip-docker* ]]; then
+  if docker stats --no-stream &> /dev/null; then
     log_info "Removing docker's unused data..."
     docker system prune --volumes
   else
-    log_debug "Skipping docker's unused data removal, because --skip-docker was passed."
+    log_warning "Docker is not running. Skipping docker's unused data removal."
   fi
 }
