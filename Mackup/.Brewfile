@@ -55,7 +55,7 @@ brew "tree"
 brew "neovim"               # https://github.com/neovim/neovim
 brew "glow"                 # https://github.com/charmbracelet/glow
 brew "fzf"                  # https://github.com/junegunn/fzf
-brew "openssl@1.1"          # https://www.openssl.org/
+brew "openssl"              # https://www.openssl.org/
 brew "readline"
 brew "sqlite"
 brew "golang"               # old unavailable flag: --cross-compile-common
@@ -94,7 +94,6 @@ brew "git-crypt"
 brew "gnupg"
 brew "pinentry-mac"
 brew "git-lfs"
-brew "git-flow-avh"
 brew "git-filter-repo"      # https://github.com/newren/git-filter-repo
 brew "multi-git-status"     # https://github.com/fboender/multi-git-status
 brew "git-delta"            # https://github.com/dandavison/delta
@@ -121,7 +120,6 @@ cask "go2shell"                 # https://zipzapmac.com/go2shell
 
 # Docker and virtualbox  ---
 cask "docker"
-cask "kitematic"
 #cask "virtualbox"
 
 # Kubernetes dev tools  ---
@@ -173,6 +171,7 @@ mas "Dashlane – Password Manager", id: 517914548
 
 # Productivity & Office apps  ---
 cask "microsoft-office"
+cask "microsoft-auto-update"
 cask "the-unarchiver"
 cask "whatsapp"
 cask "slack"

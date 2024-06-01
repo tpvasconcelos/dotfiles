@@ -75,11 +75,6 @@ eval "$(thefuck --alias)"
 # Set LDFLAGS, CPPFLAGS, and PKG_CONFIG_PATH
 ################################################################################
 
-# openssl@1.1
-export LDFLAGS="-L${BREW_PREFIX}/opt/openssl@1.1/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openssl@1.1/include ${CPPFLAGS}"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
 # openblas
 export LDFLAGS="-L${BREW_PREFIX}/opt/openblas/lib ${LDFLAGS}"
 export CPPFLAGS="-I${BREW_PREFIX}/opt/openblas/include ${CPPFLAGS}"
@@ -130,9 +125,6 @@ export GUILE_TLS_CERTIFICATE_DIRECTORY="${BREW_PREFIX}/etc/gnutls/"
 
 # pyenv  ---
 eval "$(pyenv init -)"
-
-# Ruby  ---
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
 
 
 ################################################################################

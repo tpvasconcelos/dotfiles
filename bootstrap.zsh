@@ -334,9 +334,6 @@ log_info "Performing final config steps..."
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
 sudo-alias ln -snfTv "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 
-log_info "Symlinking the openssl@1.1 as default openssl"
-ln -snfTv "${BREW_PREFIX}/opt/openssl@1.1" "${BREW_PREFIX}/opt/openssl"
-
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"
 
