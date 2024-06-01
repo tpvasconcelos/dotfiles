@@ -41,16 +41,16 @@ hc-doctor() {
   __check_dotfiles
   __check_expired_gpg_keys
 
-  if brew bundle cleanup --global | grep -q "Would uninstall"; then
+  if [[ -n $(brew bundle cleanup --global) ]]; then
     log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
     brew bundle cleanup --global
   else
     log_success "All installed packages are listed in the global Brewfile!"
   fi
 
-  if brew outdated | grep -q "->"; then
+  if [[ -n $(brew outdated) ]]; then
     log_warning "Found outdated brew packages:"
-    brew outdated --verbose
+    brew outdated
   else
     log_success "Brew packages are up-to-date!"
   fi
@@ -141,5 +141,13 @@ hc-reclaim-diskspace() {
     docker system prune --volumes
   else
     log_warning "Docker is not running. Skipping docker's unused data removal."
+  fi
+
+  log_info "Clearing Simulator data..."
+  xcrun simctl delete unavailable
+  if [[ -n $(/bin/ls -A ~/Library/Developer/CoreSimulator/Caches) ]]; then
+    log_warning "Directory ~/Library/Developer/CoreSimulator/Caches is not empty! ($(du -sh ~/Library/Developer/CoreSimulator/Caches | awk '{print $1}'))"
+    echo "You can remove them manually if you want, or run the following command to permanently delete all files and subdirectories:"
+    echo "rm -rf ~/Library/Developer/CoreSimulator/Caches/*"
   fi
 }
