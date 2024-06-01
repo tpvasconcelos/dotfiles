@@ -165,9 +165,7 @@ tau-clean-pip() {
   #   [⋯] [python3.7] No packages to uninstall.
   #
   local py_executable="${1:-python}"
-  log_info "[$py_executable] Upgrading build tools..."
-  $py_executable -m pip install --upgrade pip setuptools wheel || return 1
-  pkgs_to_uninstall="$($py_executable -m pip freeze | grep -v '^pip==' | grep -v '^setuptools==' | grep -v '^wheel==' | grep -v '^-e ')"
+  pkgs_to_uninstall="$($py_executable -m pip freeze | grep -v '@ file' | grep -v '^pip==' | grep -v '^setuptools==' | grep -v '^wheel==' | grep -v '^-e ')"
   if [[ -n "${pkgs_to_uninstall}" ]]; then
     log_info "[$py_executable] Uninstalling all packages..."
     $py_executable -m pip uninstall -y -r <(echo "${pkgs_to_uninstall}") || return 1

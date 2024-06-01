@@ -201,7 +201,7 @@ if [[ -n ${PYENV_VERSIONS+x} ]]; then
   IFS=" " read -rA py_versions <<<"${PYENV_VERSIONS}"
 else
   # else... default to the following versions
-  py_versions=("3.8" "3.9" "3.10" "3.11")
+  py_versions=("3.8" "3.9" "3.10" "3.11" "3.12")
 fi
 
 log_info "Installing the following Python versions (in parallel) w/ pyenv: $py_versions"
