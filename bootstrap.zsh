@@ -167,19 +167,19 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 gsc 'Powerlevel10k' \
   https://github.com/romkatv/powerlevel10k.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  "$ZSH_CUSTOM/themes/powerlevel10k"
 
 gsc 'zsh-autosuggestions' \
   https://github.com/zsh-users/zsh-autosuggestions \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 
 gsc 'zsh-syntax-highlighting' \
   https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
 gsc 'thuandt/zsh-pipx' \
   https://github.com/thuandt/zsh-pipx.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-pipx"
+  "$ZSH_CUSTOM/plugins/zsh-pipx"
 
 
 if [[ -r "${HOME}/.iterm2_shell_integration.zsh" ]]; then
