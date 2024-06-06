@@ -27,7 +27,7 @@ export BREW_PREFIX="/opt/homebrew"
 # Python stuff ---
 export PY_PLAYGROUND_VENV="$HOME/.venv"
 export PIPENV_VERBOSITY=-1
-# Creates .venv` in your project directory. Default is to
+# Creates .venv in your project directory. Default is to
 # create  new virtual environments in a global location
 export PIPENV_VENV_IN_PROJECT=1
 
@@ -40,7 +40,7 @@ export GOPATH="$HOME/go"
 # Add some bins to PATH
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
-  "/usr/local/texlive/2023/bin/universal-darwin"
+  /usr/local/texlive/*/bin/universal-darwin
   "$BREW_PREFIX/sbin"
   "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
   "$BREW_PREFIX/opt/findutils/libexec/gnubin"
