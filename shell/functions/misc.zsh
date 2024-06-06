@@ -14,32 +14,13 @@ cmd_exists() {
   #   0
   #   $ cmd_exists foo; echo $?
   #   1
-  local cmd="$1"
-  command -v "$cmd" >/dev/null 2>&1
-}
-
-app_exists() {
-  # Check if an app exists
-  #
-  # Returns 0 exit code if the app exists and 1 otherwise
-  #
-  # Usage
-  #   app_exists <app>
-  #
-  # Arguments
-  #   $1  app name
-  #
-  # Examples
-  #   $ app_exists Finder; echo $?
-  #   0
-  #   $ app_exists FooBar; echo $?
-  #   1
-  local app="${*}"
-  if system_profiler -json SPApplicationsDataType | grep -iq "\"$app\""; then
-    return 0
-  else
+  # check if more than one argument is passed
+  if [[ "$#" -ne 1 ]]; then
+    log_error "Usage: cmd_exists <command>"
     return 1
   fi
+  local cmd="$1"
+  command -v "$cmd" > /dev/null 2>&1
 }
 
 need_cmd() {
@@ -62,7 +43,31 @@ need_cmd() {
   #   1
   local cmd="$1"
   if ! cmd_exists "$cmd"; then
-    log_error "Command '$cmd' not found!"
+    log_error "Required command '$cmd' not found!"
+    return 1
+  fi
+}
+
+app_exists() {
+  # Check if an app exists
+  #
+  # Returns 0 exit code if the app exists and 1 otherwise
+  #
+  # Usage
+  #   app_exists <app>
+  #
+  # Arguments
+  #   $1  app name
+  #
+  # Examples
+  #   $ app_exists Finder; echo $?
+  #   0
+  #   $ app_exists FooBar; echo $?
+  #   1
+  local app="${*}"
+  if system_profiler -json SPApplicationsDataType | jq -e ".SPApplicationsDataType[] | select(._name == \"${app}\")" > /dev/null; then
+    return 0
+  else
     return 1
   fi
 }
