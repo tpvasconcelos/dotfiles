@@ -21,7 +21,7 @@ export SHELL_DIR_FUNCTIONS="$DOTFILES_DIR/shell/functions"
 export SHELL_DIR_INTERACTIVE="$DOTFILES_DIR/shell/interactive"
 export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="$DOTFILES_DIR/shell/extra_startup_scripts"
 
-# Fast path to the brew prefix ---> $(brew --prefix)
+# Fast path to the brew prefix: "$(brew --prefix)"
 export BREW_PREFIX="/opt/homebrew"
 
 # Python stuff ---
