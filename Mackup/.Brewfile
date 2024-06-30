@@ -86,6 +86,7 @@ brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 brew "gource"               # https://github.com/acaudwell/Gource
+brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 tap "homebrew/command-not-found"
 
 # git  ---
