@@ -429,6 +429,11 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 # Update extensions automatically
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
+# Configure WebDriver such that sessions can run without explicit authentication
+safaridriver --enable
+
+# Include the Develop menu in Safari
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
 
 ###############################################################################
 log_debug "Configuring 'Mail' settings..."
