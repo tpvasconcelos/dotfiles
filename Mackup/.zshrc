@@ -137,6 +137,9 @@ export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
 # pyenv  ---
 eval "$(pyenv init -)"
 
+# .NET
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
+
 
 ################################################################################
 # If exists, run the extra local startup script
