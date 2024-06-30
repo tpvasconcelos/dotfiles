@@ -64,8 +64,17 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Load plugins
 source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
 
+# Enable zsh-completions
+# see:
+# * https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
+# * https://github.com/zsh-users/zsh-completions/issues/603
+fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
+
 # Load om-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
+
+# Load completions
+autoload -U compinit && compinit
 
 
 ################################################################################

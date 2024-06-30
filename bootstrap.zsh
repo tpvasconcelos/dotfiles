@@ -178,6 +178,10 @@ gsc 'zsh-syntax-highlighting' \
   https://github.com/zsh-users/zsh-syntax-highlighting.git \
   "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
+gsc 'zsh-completions' \
+  https://github.com/zsh-users/zsh-completions.git \
+  "$ZSH_CUSTOM/plugins/zsh-completions"
+
 gsc 'thuandt/zsh-pipx' \
   https://github.com/thuandt/zsh-pipx.git \
   "$ZSH_CUSTOM/plugins/zsh-pipx"
