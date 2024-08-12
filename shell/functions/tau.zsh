@@ -207,45 +207,42 @@ tau-clean-all-pips() {
 }
 
 tau-global() {
-  # TODO: document intro
+  # Sets the global Python version(s) for pyenv.
+  #
+  # This is a simple wrapper around `pyenv global` but that accepts
+  # minor version numbers as input instead of full version numbers.
   #
   # Arguments:
-  #   * $1 : A valid Python minor version number, matching the regex ^[0-9]+\.[0-9]+$
+  #   * $@ : A (list of) valid Python minor version number(s), matching
+  #          the regex following: ^[0-9]+\.[0-9]+$
   #
   # Examples:
   #
   #   $ tau-global 3.9
   #   [ℹ] Setting Python 3.9.13 as a global version
   #
+  #   $ tau-global '3.9 3.11'
+  #   [ℹ] Setting Python 3.9.13 as a global version
+  #   [ℹ] Setting Python 3.11.2 as a global version
+  #
   #   $ tau-global 1
   #   [✘] The input '1' does not match a valid version number.
   #
-  #   $ tau-global 4.2
+  #   $ tau-global '3.9 4.2'
+  #   [ℹ] Setting Python 3.9.13 as a global version
   #   [✘] Could not find a match for '4.2'. Are you sure this Python version exists?
   #
-  # TODO: make this compatible with passing multiple minor versions as input
-  local py_version_user_input="${1}"
-  local py_version_patch
+  local minor_versions_input patch_versions_parsed version_minor version_patch
+  IFS=" " read -rA minor_versions_input <<<"${*}"
 
-  if [[ ! "${py_version_user_input}" =~ ^[0-9]+\.[0-9]+$ ]]; then
-    log_error "The input '${py_version_user_input}' does not match a valid version number."
-    return 1
-  fi
-  py_version_patch="$(pyenv versions | ggrep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
-  if [[ -z "${py_version_patch}" ]]; then
-    # If $py_version_user_input is a valid Python version (regex-wise) but
-    # $py_version_patch is empty, this means no match was found for
-    # $py_version_user_input. Either this version does not exist
-    # (e.g. "4.2.0") or it isn't available in pyenv
-    log_error "Could not find a match for '${py_version_user_input}'. Are you sure this Python version exists?"
-    return 1
-  elif [[ ! "${py_version_patch}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    # Something else went wrong...
-    log_error "Something went wrong parsing the python version. '${py_version_patch}' does not match the right regex."
-    return 1
-  fi
-  log_info "Setting Python ${py_version_patch} as a global version"
-  pyenv global "${py_version_patch}"
+  patch_versions_parsed=()
+  for version_minor in "${minor_versions_input[@]}"; do
+    version_patch="$(tau-latest-patch "${version_minor}")"
+    patch_versions_parsed=("${patch_versions_parsed[@]}" "${version_patch}")
+  done
+
+  log_info "Setting the following Python version(s) as global: ${patch_versions_parsed[*]}"
+  pyenv global "${patch_versions_parsed[@]}"
 }
 
 
@@ -259,6 +256,7 @@ tau_cleanup() {
   # TODO: 1. loop through minors
   # TODO: 2. grab latest patch for minor
   # TODO: 3. delete outdated minors
+  # TODO: 4. detect and print out outdated virtualenvs (?)
   log_info "Uninstalling Python ${version_to_uninstall}"
   pyenv uninstall --force "${version_to_uninstall}"
   # TODO: 4. set latest version as global
