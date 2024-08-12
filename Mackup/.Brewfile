@@ -169,45 +169,54 @@ cask "firefox"
 # Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
 mas "Dashlane – Password Manager", id: 517914548
+mas "HotspotShield VPN - Wifi Proxy", id: 771076721
 
-# Productivity & Office apps  ---
+# Productivity apps  ---
+cask "the-unarchiver"
+cask "skitch"
+cask "shottr"            # https://shottr.cc/
+cask "raycast"           # https://www.raycast.com/
+cask "google-drive"
+cask "raindropio"
+cask "zotero"                   # https://www.zotero.org/
+
+# Office apps  ---
+cask "notion"
 cask "microsoft-office"
 cask "microsoft-auto-update"
-cask "the-unarchiver"
-cask "whatsapp"
-cask "slack"
-cask "raycast"                  # https://www.raycast.com/
-cask "skitch"
-cask "the-unarchiver"
-cask "whatsapp"
-cask "google-drive"
-cask "notion"
-cask "raindropio"
-cask "zoom"
-cask "rectangle"                # https://github.com/rxhanson/Rectangle
-cask "zotero"                   # https://www.zotero.org/
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
 
+# Social media, messaging, and communication apps  ---
+cask "whatsapp"
+cask "slack"
+cask "zoom"
+
+# Photo & video  ---
+cask "diffusionbee"     # https://www.diffusionbee.com/
+cask "upscayl"          # https://upscayl.org/
+
 # Misc apps  ---
+cask "appcleaner"
+cask "alienator88/homebrew-cask/pearcleaner"  # https://github.com/alienator88/Pearcleaner
 cask "macs-fan-control"
-#cask "vuze"
-cask "transmission"             # https://transmissionbt.com/
 cask "spotify"
 cask "vlc"
-cask "iina"                     # https://iina.io/
-cask "appcleaner"
-cask "betterdisplay"            # https://github.com/waydabber/BetterDisplay
+cask "iina"                                   # https://iina.io/
+cask "calibre"                                # https://calibre-ebook.com/
+cask "betterdisplay"                          # https://github.com/waydabber/BetterDisplay
 cask "disk-inventory-x"
-cask "imageoptim"               # https://github.com/ImageOptim/ImageOptim
-cask "pdf-squeezer"             #
-cask "image2icon"               # https://img2icnsapp.com/
+cask "imageoptim"                             # https://github.com/ImageOptim/ImageOptim
+cask "pdf-squeezer"
+cask "image2icon"                             # https://img2icnsapp.com/
 cask "p4v"
 cask "diffmerge"
-cask "thorium"                  # https://github.com/edrlab/thorium-reader
+cask "thorium"                                # https://github.com/edrlab/thorium-reader
+#cask "vuze"
+cask "transmission"                           # https://transmissionbt.com/
 cask "zotero"
-#tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
+#tap "popcorn-official/popcorn-desktop",      "https://github.com/popcorn-official/popcorn-desktop.git"
 #cask "popcorn-time"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
