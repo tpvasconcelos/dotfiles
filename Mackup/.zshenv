@@ -36,6 +36,10 @@ JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_HOME
 export GOPATH="$HOME/go"
 
+# locale settings
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+
 ################################################################################
 # Add some bins to PATH
 ################################################################################
