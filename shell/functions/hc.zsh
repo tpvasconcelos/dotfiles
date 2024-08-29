@@ -77,6 +77,9 @@ hc-update-everything() {
     return 0
   fi
 
+  # Update oh-my-zsh
+  omz update
+
   if [[ "$*" == *--system* ]]; then
     # System software update
     sudo softwareupdate --install --all --verbose --force --agree-to-license
