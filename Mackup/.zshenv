@@ -79,6 +79,7 @@ typeset -U PATH path
 ################################################################################
 fpath=(
   #"${SHELL_DIR_FUNCTIONS}"/**/
+  "$HOME/.zfunc"
   "$BREW_PREFIX/share/zsh/site-functions"
   "${fpath[@]}"
 )

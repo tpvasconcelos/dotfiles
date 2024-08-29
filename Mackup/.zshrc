@@ -17,6 +17,27 @@ source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 
 ################################################################################
+# Oh-my-zsh!
+################################################################################
+
+# Path to your oh-my-zsh installation.
+export ZSH="${HOME}/.oh-my-zsh"
+
+# Set name of the theme to load
+# ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Load plugins
+source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
+
+# Disable auto-update
+zstyle ':omz:update' mode disabled
+
+# Load om-my-zsh
+source "${ZSH}/oh-my-zsh.sh"
+
+
+################################################################################
 # Zsh shell options
 # https://zsh.sourceforge.io/Doc/Release/Options.html
 ################################################################################
@@ -39,42 +60,29 @@ setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history f
 setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
 HISTFILE="$HOME/.zsh_history"   # Where to save history to disk.
-HISTSIZE=10000                  # How many lines of history to keep in memory.
-SAVEHIST=10000                  # Number of history entries to save to disk.
+HISTSIZE=50000                  # How many lines of history to keep in memory.
+SAVEHIST=50000                  # Number of history entries to save to disk.
 HISTDUP=erase                   # Erase duplicates in the history file.
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Zle ---
 setopt NO_BEEP                  # Disable beep on error.
 
-
-################################################################################
-# Oh-my-zsh!
-################################################################################
-
-# Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Load plugins
-source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
-
+# Completion ---
+setopt AUTO_LIST                # Automatically list choices on ambiguous completion.
+setopt AUTO_MENU                # Automatically use menu completion after the second consecutive request.
+setopt MENU_COMPLETE            # Automatically complete the text of the line when possible.
+setopt NO_LIST_AMBIGUOUS        # Do not list all possible completions without regard to the current context.
 # Enable zsh-completions
 # see:
 # * https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
 # * https://github.com/zsh-users/zsh-completions/issues/603
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
-
-# Load om-my-zsh
-source "${ZSH}/oh-my-zsh.sh"
-
 # Load completions
-autoload -U compinit && compinit
+autoload -Uz compinit
+compinit
+# Configure completions style
+zstyle ':completion:*' menu yes select
 
 
 ################################################################################
