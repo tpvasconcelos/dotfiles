@@ -6,7 +6,7 @@
 # should contain commands to set up aliases, functions,
 # options, key bindings, etc.
 #
-
+_ZSHRC_LOADED=1
 
 ################################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

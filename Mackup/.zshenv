@@ -10,6 +10,7 @@
 # custom environment in such cases.  Note also that .zshenv should not contain
 # commands that produce output or assume the shell is attached to a tty.
 #
+_ZSHENV_LOADED=1
 
 ################################################################################
 # Export some environment (ENV) variables

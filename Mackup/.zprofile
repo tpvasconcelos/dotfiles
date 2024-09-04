@@ -2,6 +2,7 @@
 #
 # .zprofile startup script --> interactive shell settings
 #
+_ZPROFILE_LOADED=1
 
 # Misc ---
 eval "$(/opt/homebrew/bin/brew shellenv)"
