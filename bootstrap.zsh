@@ -249,8 +249,7 @@ if [[ -d "$PY_PLAYGROUND_VENV" ]]; then
   log_success "Playground Python venv already exists at: $PY_PLAYGROUND_VENV"
 else
   log_info "Creating playground Python venv at: $PY_PLAYGROUND_VENV"
-  mkdir "$PY_PLAYGROUND_VENV"
-  python -m venv "$PY_PLAYGROUND_VENV"
+  python3.12 -m venv "$PY_PLAYGROUND_VENV"
 fi
 
 
