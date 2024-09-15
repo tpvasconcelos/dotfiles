@@ -268,9 +268,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-# Enable AirDrop over Ethernet and on unsupported Macs running Lion
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
 # Show the ~/Library folder
 chflags nohidden ~/Library
 # Show the /Volumes folder
@@ -623,6 +620,9 @@ defaults write -g com.apple.mouse.scaling 3
 
 # Disable spotlight keyboard shortcut
 # defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "{ enabled = 0; value = { parameters = (32, 49, 524288); type = 'standard'; }; }"
+
+# Set custom public DNS servers (Cloudflare + Google)
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
 
 # Security  ---
 # Enable the system's FileVault Service
