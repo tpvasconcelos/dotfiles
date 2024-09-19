@@ -87,6 +87,8 @@ brew "autojump"             # https://github.com/wting/autojump
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 brew "gource"               # https://github.com/acaudwell/Gource
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
+brew "hcloud"               # https://github.com/hetznercloud/cli
+brew "ssh-audit"            # https://github.com/jtesta/ssh-audit
 tap "homebrew/command-not-found"
 
 # git  ---
@@ -184,6 +186,7 @@ cask "zotero"                   # https://www.zotero.org/
 cask "notion"
 cask "microsoft-office"
 cask "microsoft-auto-update"
+cask "libreoffice"
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
