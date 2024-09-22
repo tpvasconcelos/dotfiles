@@ -19,6 +19,6 @@ path=(
 ################################################################################
 # If exists, run the extra local startup script
 ################################################################################
-if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile.extra" ]]; then
-  source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile.extra"
+if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile" ]]; then
+  source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile"
 fi

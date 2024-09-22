@@ -1,6 +1,6 @@
-shell/extra_startup_scripts/*.extra*
-scripts/extra.*
+scripts/extra.zsh
 
+# Generic files
 .DS_Store
 .idea/
 .fleet/

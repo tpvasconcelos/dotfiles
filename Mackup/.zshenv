@@ -98,6 +98,6 @@ done
 ################################################################################
 # If exists, run the extra local startup script
 ################################################################################
-if [[ -r "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv.extra" ]]; then
-  source "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv.extra"
+if [[ -r "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv" ]]; then
+  source "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv"
 fi

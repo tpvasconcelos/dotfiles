@@ -111,7 +111,10 @@ cd ~/.dotfiles && ./bootstrap.zsh
 > By default, this script will install a bunch of Python versions (using `pyenv`). If you want to control which versions are installed, you can expose a `PYENV_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
 
 > [!TIP]
-> There are no unwanted side effects from running this script multiple times, and the steps that have already run successefully will simply be skipped. So, if you encounter any issues, feel free to just run the `./bootstrap.zsh` script again (once you've fixed the underlying error on your end).
+> There are no unwanted side effects from running this script multiple times, and the steps that have already run successfully will simply be skipped. So, if you encounter any issues, feel free to just run the `./bootstrap.zsh` script again (once you've fixed the underlying error on your end).
+
+> [!NOTE]
+> If you want to add any extra/custom steps to the bootstrapping process, you can do so by defining a `~/.dotfiles/scripts/extra.zsh` file. This file will be sourced at the end of the bootstrapping process (just before the reboot prompt). **Note that the guarantee of idempotency mentioned in the previous _tip_ does not apply to this script, unless you take the necessary precautions yourself...**
 
 ## Housekeeping
 

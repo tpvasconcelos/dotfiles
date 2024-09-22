@@ -151,8 +151,8 @@ export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
 ################################################################################
 # If exists, run the extra local startup script
 ################################################################################
-if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc.extra" ]]; then
-  source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc.extra"
+if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc" ]]; then
+  source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zshrc"
 fi
 
 
