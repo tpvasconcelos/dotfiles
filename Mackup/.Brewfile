@@ -76,7 +76,6 @@ brew "hugo"                 # https://gohugo.io/getting-started/installing/
 brew "asciinema"            # https://asciinema.org
 brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
 brew "ffmpeg"
-brew "thefuck"
 brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
