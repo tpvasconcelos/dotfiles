@@ -50,9 +50,12 @@ export LANG='en_US.UTF-8'
 # Add some bins to PATH
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
-  /usr/local/texlive/*/bin/universal-darwin
+  # Make sure the homebrew's bin and sbin directories are first in the PATH
+  "$HOMEBREW_PREFIX/bin"
   "$HOMEBREW_PREFIX/sbin"
+  # Then everything else...
   "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/dotnet@6/bin"
   "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
@@ -60,18 +63,19 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/llvm/bin"
   "$HOMEBREW_PREFIX/opt/openjdk@11/bin"
   "$HOMEBREW_PREFIX/opt/ruby/bin"
-  "$HOMEBREW_PREFIX/opt/dotnet@6/bin"
   "$HOME/.cargo/bin"
-  "$HOME/.deta/bin"
+  "$HOME/.dotnet/tools"
   "$HOME/.flutter/bin"
   "$HOME/.gem/ruby/3.2.0/bin"
   "$HOME/.local/bin"
   "$HOME/.poetry/bin"
-  "$HOME/.dotnet/tools"
+  "$HOME/.pyenv/shims"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$GOPATH/bin"
   "$JAVA_HOME/bin"
   "${KREW_ROOT:-$HOME/.krew}/bin"
+  # Do not quote the following path!! (note the globbing)
+  /usr/local/texlive/*/bin/universal-darwin
 )
 path=(
   "${_ZSHENV_PATH_EXTRAS[@]}"

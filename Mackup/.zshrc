@@ -142,7 +142,7 @@ export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
 ################################################################################
 
 # pyenv  ---
-eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash --no-push-path)"
 
 # .NET
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"

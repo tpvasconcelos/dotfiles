@@ -4,9 +4,6 @@
 #
 _ZPROFILE_LOADED=true
 
-# Misc ---
-eval "$(pyenv init --path)"
-
 # Re-add the extra _ZSHENV_PATH_EXTRAS paths in the correct order.
 # This is needed since the default /etc/zprofile startup script
 # messes up with the order set in my ~/.zshenv script.
