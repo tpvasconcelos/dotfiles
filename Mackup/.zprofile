@@ -2,10 +2,9 @@
 #
 # .zprofile startup script --> interactive shell settings
 #
-_ZPROFILE_LOADED=1
+_ZPROFILE_LOADED=true
 
 # Misc ---
-eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init --path)"
 
 # Re-add the extra _ZSHENV_PATH_EXTRAS paths in the correct order.

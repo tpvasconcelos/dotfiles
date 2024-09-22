@@ -10,7 +10,9 @@
 # custom environment in such cases.  Note also that .zshenv should not contain
 # commands that produce output or assume the shell is attached to a tty.
 #
-_ZSHENV_LOADED=1
+_ZSHENV_LOADED=true
+_ZPROFILE_LOADED=false
+_ZSHRC_LOADED=false
 
 ################################################################################
 # Export some environment (ENV) variables
@@ -22,8 +24,11 @@ export SHELL_DIR_FUNCTIONS="$DOTFILES_DIR/shell/functions"
 export SHELL_DIR_INTERACTIVE="$DOTFILES_DIR/shell/interactive"
 export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="$DOTFILES_DIR/shell/extra_startup_scripts"
 
-# Fast path to the brew prefix: "$(brew --prefix)"
-export BREW_PREFIX="/opt/homebrew"
+# This exports HOMEBREW_PREFIX, HOMEBREW_CELLAR,
+# HOMEBREW_REPOSITORY, MANPATH, INFOPATH, and
+# appends homebrew-managed bins to PATH,
+# and exports some other variables.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Python stuff ---
 export PY_PLAYGROUND_VENV="$HOME/.venv"
@@ -46,16 +51,16 @@ export LANG='en_US.UTF-8'
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
   /usr/local/texlive/*/bin/universal-darwin
-  "$BREW_PREFIX/sbin"
-  "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
-  "$BREW_PREFIX/opt/findutils/libexec/gnubin"
-  "$BREW_PREFIX/opt/gnu-sed/libexec/gnubin"
-  "$BREW_PREFIX/opt/gnu-tar/libexec/gnubin"
-  "$BREW_PREFIX/opt/grep/libexec/gnubin"
-  "$BREW_PREFIX/opt/llvm/bin"
-  "$BREW_PREFIX/opt/openjdk@11/bin"
-  "$BREW_PREFIX/opt/ruby/bin"
-  "$BREW_PREFIX/opt/dotnet@6/bin"
+  "$HOMEBREW_PREFIX/sbin"
+  "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
+  "$HOMEBREW_PREFIX/opt/llvm/bin"
+  "$HOMEBREW_PREFIX/opt/openjdk@11/bin"
+  "$HOMEBREW_PREFIX/opt/ruby/bin"
+  "$HOMEBREW_PREFIX/opt/dotnet@6/bin"
   "$HOME/.cargo/bin"
   "$HOME/.deta/bin"
   "$HOME/.flutter/bin"
@@ -81,7 +86,7 @@ typeset -U PATH path
 fpath=(
   #"${SHELL_DIR_FUNCTIONS}"/**/
   "$HOME/.zfunc"
-  "$BREW_PREFIX/share/zsh/site-functions"
+  "$HOMEBREW_PREFIX/share/zsh/site-functions"
   "${fpath[@]}"
 )
 export fpath

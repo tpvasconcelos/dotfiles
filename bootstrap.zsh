@@ -140,8 +140,7 @@ else
   brew bundle --no-lock --no-upgrade --file=Mackup/.Brewfile
 fi
 
-BREW_PREFIX="$(brew --prefix)"
-alias ln='$BREW_PREFIX/opt/coreutils/libexec/gnubin/ln'
+alias ln='$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin/ln'
 alias sudo-alias='sudo '
 
 
@@ -149,7 +148,7 @@ alias sudo-alias='sudo '
 # Shell tools
 ################################################################################
 
-PATH_TO_SHELL="${BREW_PREFIX}/bin/zsh"
+PATH_TO_SHELL="${HOMEBREW_PREFIX}/bin/zsh"
 if grep -F -q "$PATH_TO_SHELL" /etc/shells; then
   log_success "The default shell is already set to the brew-installed zsh shell."
 else
@@ -336,7 +335,7 @@ fi
 log_info "Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo-alias ln -snfTv "${BREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+sudo-alias ln -snfTv "${HOMEBREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"

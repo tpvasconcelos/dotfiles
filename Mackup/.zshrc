@@ -6,7 +6,7 @@
 # should contain commands to set up aliases, functions,
 # options, key bindings, etc.
 #
-_ZSHRC_LOADED=1
+_ZSHRC_LOADED=true
 
 ################################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -100,41 +100,41 @@ alias p='pycharm .'
 ################################################################################
 
 # openblas
-export LDFLAGS="-L${BREW_PREFIX}/opt/openblas/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openblas/include ${CPPFLAGS}"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/openblas/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openblas/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/openblas/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # readline
-export LDFLAGS="-L${BREW_PREFIX}/opt/readline/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/readline/include ${CPPFLAGS}"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/readline/lib/pkgconfig:${PKG_CONFIG_PATH}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/readline/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/readline/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/readline/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # sqlite
-export LDFLAGS="-L${BREW_PREFIX}/opt/sqlite/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/sqlite/include ${CPPFLAGS}"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/sqlite/lib/pkgconfig:${PKG_CONFIG_PATH}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/sqlite/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/sqlite/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/sqlite/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # llvm
-export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include ${CPPFLAGS}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/llvm/include ${CPPFLAGS}"
 # libc++
-export LDFLAGS="-L${BREW_PREFIX}/opt/llvm/lib/c++ -Wl,-rpath,${BREW_PREFIX}/opt/llvm/lib/c++ ${LDFLAGS}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib/c++ -Wl,-rpath,${HOMEBREW_PREFIX}/opt/llvm/lib/c++ ${LDFLAGS}"
 
 # libomp
-export LDFLAGS="-L${BREW_PREFIX}/opt/libomp/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/libomp/include ${CPPFLAGS}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/libomp/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/libomp/include ${CPPFLAGS}"
 
 # gcc
-export LDFLAGS="-L${BREW_PREFIX}/opt/gcc/lib/gcc/12 ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/gcc/include/c++/12 ${CPPFLAGS}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/gcc/lib/gcc/12 ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/gcc/include/c++/12 ${CPPFLAGS}"
 
 # ruby
-export LDFLAGS="-L${BREW_PREFIX}/opt/ruby/lib ${LDFLAGS}"
-export CPPFLAGS="-I${BREW_PREFIX}/opt/ruby/include ${CPPFLAGS}"
-export PKG_CONFIG_PATH="${BREW_PREFIX}/opt/ruby/lib/pkgconfig:${PKG_CONFIG_PATH}"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/ruby/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/ruby/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/ruby/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # openjdk (Java)
-export CPPFLAGS="-I${BREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
 
 
 ################################################################################

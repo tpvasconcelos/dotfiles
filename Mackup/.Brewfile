@@ -14,11 +14,11 @@ brew "bash-completion@2"
 brew "zsh"
 
 # Installing GNU utils  ---
-brew "coreutils"    # PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-brew "findutils"    # PATH="$BREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
-brew "gnu-sed"      # PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-brew "gnu-tar"      # PATH="$BREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
-brew "grep"         # PATH="$BREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
+brew "coreutils"    # PATH="HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+brew "findutils"    # PATH="HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+brew "gnu-sed"      # PATH="HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+brew "gnu-tar"      # PATH="HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
+brew "grep"         # PATH="HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
 brew "moreutils"
 
 # Installing more recent versions of some macOS tools  ---
