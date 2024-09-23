@@ -1,13 +1,38 @@
 # Utilities for managing multiple python versions on a single machine
 
+_patch_to_minor() {
+  # Extract the minor version from a patch version
+  # e.g. "3.8.5" --> "3.8"
+  # Example usage:
+  #   $ echo "3.8.5" | _patch_to_minor -
+  #   3.8
+  #   $ _patch_to_minor "3.8.5"
+  #   3.8
+  if [[ -p /dev/stdin ]]; then
+    # Read from stdin
+    while read -r patch_version; do
+      echo "${patch_version%.*}"
+    done
+  else
+    # Read from arguments
+    echo "${1%.*}"
+  fi
+}
+
+_get_patch_installed() {
+  # Get all installed patch versions of Python
+  # To transform the output into an array, use the following:
+  #   $ # shellcheck disable=SC2296
+  #   $ arr=("${(@s: :)"$(_get_patch_installed)"}")
+  pyenv versions --bare | tr '\n' ' '
+}
+
 _get_minor_installed() {
   # Get all installed minor versions of Python
   # To transform the output into an array, use the following:
   #   $ # shellcheck disable=SC2296
   #   $ arr=("${(@s: :)"$(_get_minor_installed)"}")
-  local minors
-  minors=("${(f)"$(pyenv versions --bare | grep -Eo "^[0-9]+\.[0-9]+")"}")
-  echo "${minors[@]}"
+  _get_patch_installed | tr ' ' '\n' | _patch_to_minor - | tr '\n' ' '
 }
 
 tau-latest-patch() {
