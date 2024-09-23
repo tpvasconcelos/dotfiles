@@ -83,6 +83,8 @@ autoload -Uz compinit
 compinit
 # Configure completions style
 zstyle ':completion:*' menu yes select
+# Load pyenv completions
+source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
 
 
 ################################################################################
@@ -135,17 +137,6 @@ export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/ruby/lib/pkgconfig:${PKG_CONFIG_P
 
 # openjdk (Java)
 export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
-
-
-################################################################################
-# Misc
-################################################################################
-
-# pyenv  ---
-eval "$(pyenv init - --no-rehash --no-push-path)"
-
-# .NET
-export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
 
 
 ################################################################################

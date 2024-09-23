@@ -41,6 +41,7 @@ export PIPENV_VENV_IN_PROJECT=1
 JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_HOME
 export GOPATH="$HOME/go"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
 
 # locale settings
 export LC_ALL='en_US.UTF-8'
@@ -50,7 +51,11 @@ export LANG='en_US.UTF-8'
 # Add some bins to PATH
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
-  # Make sure the homebrew's bin and sbin directories are first in the PATH
+  # Add our tau shims to the top of the PATH to make sure our
+  # Python executables are used instead of the system ones,
+  # brew-installed ones, pyenv shims, or any others...
+  "${TAU_ROOT:-${HOME}/.tau}/shims"
+  # The Homebrew-managed bins should come right at the top too
   "$HOMEBREW_PREFIX/bin"
   "$HOMEBREW_PREFIX/sbin"
   # Then everything else...
@@ -69,7 +74,6 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOME/.gem/ruby/3.2.0/bin"
   "$HOME/.local/bin"
   "$HOME/.poetry/bin"
-  "$HOME/.pyenv/shims"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$GOPATH/bin"
   "$JAVA_HOME/bin"
