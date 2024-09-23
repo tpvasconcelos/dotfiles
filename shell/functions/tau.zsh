@@ -383,7 +383,7 @@ tau-prefer() {
   echo "${tau_preferred}" >"${_TAU_PREFERRED}"
 }
 
-_build_shim_body() {
+_build_py_shim_body() {
   local pyv_patch="${1}"
   echo "#!/usr/bin/env bash"
   echo ""
@@ -391,16 +391,35 @@ _build_shim_body() {
   echo ""
 }
 
-_write_shim() {
-  local pyv_patch shim_suffix pyv_minor shim_name shim_dest
-  pyv_patch="${1}"  # e.g. "3.8.5"
-  shim_suffix="${2}"  # e.g. "3"
+_write_py_shim() {
+  local shim_suffix pyv_patch pyv_minor shim_name shim_dest
+  shim_suffix="${1}"  # e.g. "3"
+  pyv_patch="${2}"  # e.g. "3.8.5"
   pyv_minor="$(_patch_to_minor "${pyv_patch}")"
   shim_name="python${shim_suffix}"
   shim_dest="${TAU_ROOT}/shims/$shim_name"
   log_info "Writing shim for Python ${pyv_patch} as ${shim_name}"
-  # Remember to write as executable
-  _build_shim_body "${pyv_patch}" > "${shim_dest}"
+  _build_py_shim_body "${pyv_patch}" > "${shim_dest}"
+  chmod +x "${shim_dest}"
+}
+
+_build_pip_shim_body() {
+  echo "#!/usr/bin/env bash"
+  echo ""
+  # shellcheck disable=SC2028
+  echo "_red_bold() { echo -e \"\033[1;31m\$*\033[0m\"; }"
+  echo ""
+  echo "_red_bold \"[tau.error] It looks like you're trying to run 'pip' outside of a virtual environment.\""
+  echo "_red_bold \"[tau.error] Please activate a virtual environment and try again, or consider using pipx for global installations.\""
+  echo ""
+}
+
+_write_pip_shim() {
+  local shim_suffix shim_name shim_dest
+  shim_suffix="${1}"
+  shim_name="pip${shim_suffix}"
+  shim_dest="${TAU_ROOT}/shims/$shim_name"
+  _build_pip_shim_body > "${shim_dest}"
   chmod +x "${shim_dest}"
 }
 
@@ -418,10 +437,13 @@ tau-rehash() {
   py_installed_versions=("${(@s: :)"$(_get_patch_installed)"}")
   for pyv_patch in "${py_installed_versions[@]}"; do
     pyv_minor="$(_patch_to_minor "${pyv_patch}")"
-    _write_shim "${pyv_patch}" "${pyv_minor}"
+    _write_py_shim "${pyv_minor}" "${pyv_patch}"
+    _write_pip_shim "${pyv_minor}"
     if [[ "${pyv_minor}" == "${tau_preferred}" ]]; then
-      _write_shim "${pyv_patch}" ""
-      _write_shim "${pyv_patch}" "3"
+      _write_py_shim "" "${pyv_patch}"
+      _write_pip_shim ""
+      _write_py_shim "3" "${pyv_patch}"
+      _write_pip_shim "3"
     fi
   done
 }
