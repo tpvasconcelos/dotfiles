@@ -218,8 +218,6 @@ cask "thorium"                                # https://github.com/edrlab/thoriu
 #cask "vuze"
 cask "transmission"                           # https://transmissionbt.com/
 cask "zotero"
-#tap "popcorn-official/popcorn-desktop",      "https://github.com/popcorn-official/popcorn-desktop.git"
-#cask "popcorn-time"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
 mas "Todoist", id: 585829637

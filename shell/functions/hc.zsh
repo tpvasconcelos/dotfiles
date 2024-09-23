@@ -39,7 +39,8 @@ hc-doctor() {
   softwareupdate_output=$(softwareupdate --list --all)
   if [[ "$softwareupdate_output" == *"found the following new or updated software"* ]]; then
     log_warning "Found available software updates:"
-    fg_yellow "$softwareupdate_output"
+    softwareupdate_filtered="$(echo "$softwareupdate_output" | awk 'NR > 4')"
+    fg_yellow "$softwareupdate_filtered"
   else
     log_success "System software is up-to-date!"
   fi
@@ -47,16 +48,18 @@ hc-doctor() {
   __check_dotfiles
   __check_expired_gpg_keys
 
-  if [[ -n $(brew bundle cleanup --global) ]]; then
+  brew_bundle_cleanup_output=$(brew bundle cleanup --global)
+  if [[ -n "$brew_bundle_cleanup_output" ]]; then
     log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
-    brew bundle cleanup --global
+    echo "${brew_bundle_cleanup_output//brew bundle cleanup/brew bundle cleanup --global}"
   else
     log_success "All installed packages are listed in the global Brewfile!"
   fi
 
-  if [[ -n $(brew outdated) ]]; then
+  brew_outdated_output=$(brew outdated --verbose)
+  if [[ -n "$brew_outdated_output" ]]; then
     log_warning "Found outdated brew packages:"
-    fg_yellow "$(brew outdated --verbose)"
+    fg_yellow "$brew_outdated_output"
   else
     log_success "Brew packages are up-to-date!"
   fi
@@ -78,7 +81,7 @@ hc-update-everything() {
   fi
 
   # Update oh-my-zsh
-  omz update
+  omz update --unattended
 
   if [[ "$*" == *--system* ]]; then
     # System software update
@@ -122,6 +125,9 @@ hc-update-everything() {
   __check_expired_gpg_keys
 
   log_success "Done! 🚀"
+
+  # Restart the shell
+  exec zsh
 }
 
 hc-reclaim-diskspace() {

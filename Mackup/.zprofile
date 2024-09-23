@@ -1,6 +1,6 @@
 # shellcheck disable=SC1090,SC2034
 #
-# .zprofile startup script --> interactive shell settings
+# .zprofile startup script --> login shell settings
 #
 _ZPROFILE_LOADED=true
 

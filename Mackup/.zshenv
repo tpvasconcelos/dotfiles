@@ -41,7 +41,6 @@ export PIPENV_VENV_IN_PROJECT=1
 JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_HOME
 export GOPATH="$HOME/go"
-export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
 
 # locale settings
 export LC_ALL='en_US.UTF-8'
@@ -52,15 +51,14 @@ export LANG='en_US.UTF-8'
 ################################################################################
 _ZSHENV_PATH_EXTRAS=(
   # Add our tau shims to the top of the PATH to make sure our
-  # Python executables are used instead of the system ones,
-  # brew-installed ones, pyenv shims, or any others...
+  # Python executables are used instead of the system, brew
+  # pyenv, or any other Python/pip installations...
   "${TAU_ROOT:-${HOME}/.tau}/shims"
   # The Homebrew-managed bins should come right at the top too
   "$HOMEBREW_PREFIX/bin"
   "$HOMEBREW_PREFIX/sbin"
   # Then everything else...
   "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
-  "$HOMEBREW_PREFIX/opt/dotnet@6/bin"
   "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
@@ -69,7 +67,6 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/openjdk@11/bin"
   "$HOMEBREW_PREFIX/opt/ruby/bin"
   "$HOME/.cargo/bin"
-  "$HOME/.dotnet/tools"
   "$HOME/.flutter/bin"
   "$HOME/.gem/ruby/3.2.0/bin"
   "$HOME/.local/bin"
