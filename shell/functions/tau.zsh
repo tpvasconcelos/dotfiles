@@ -1,6 +1,10 @@
 # Utilities for managing multiple python versions on a single machine
 
 _get_minor_installed() {
+  # Get all installed minor versions of Python
+  # To transform the output into an array, use the following:
+  #   $ # shellcheck disable=SC2296
+  #   $ arr=("${(@s: :)"$(_get_minor_installed)"}")
   local minors
   minors=("${(f)"$(pyenv versions --bare | grep -Eo "^[0-9]+\.[0-9]+")"}")
   echo "${minors[@]}"
@@ -192,7 +196,8 @@ tau-clean-all-pips() {
   #   ...
   #
   local py_installed_versions py_to_uninstall pyv py_executable
-  py_installed_versions=(${(@s: :)"$(_get_minor_installed)"})
+  # shellcheck disable=SC2296
+  py_installed_versions=("${(@s: :)"$(_get_minor_installed)"}")
   py_to_uninstall=('' '3' "${py_installed_versions[@]}")
   for pyv in "${py_to_uninstall[@]}"; do
     py_executable="python$pyv"
