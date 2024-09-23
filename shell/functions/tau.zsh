@@ -164,7 +164,8 @@ tau-clean-pip() {
   #   Requirement already satisfied: wheel in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (0.38.4)
   #   [⋯] [python3.7] No packages to uninstall.
   #
-  local py_executable="${1:-python}"
+  local py_executable pkgs_to_uninstall
+  py_executable="${1:-python}"
   pkgs_to_uninstall="$($py_executable -m pip freeze | grep -v '@ file' | grep -v '^pip==' | grep -v '^setuptools==' | grep -v '^wheel==' | grep -v '^-e ')"
   if [[ -n "${pkgs_to_uninstall}" ]]; then
     log_info "[$py_executable] Uninstalling all packages..."
