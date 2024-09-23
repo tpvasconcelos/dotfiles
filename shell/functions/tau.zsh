@@ -4,17 +4,15 @@ _patch_to_minor() {
   # Extract the minor version from a patch version
   # e.g. "3.8.5" --> "3.8"
   # Example usage:
-  #   $ echo "3.8.5" | _patch_to_minor -
-  #   3.8
   #   $ _patch_to_minor "3.8.5"
   #   3.8
-  if [[ -p /dev/stdin ]]; then
-    # Read from stdin
-    while read -r patch_version; do
-      echo "${patch_version%.*}"
+  #   $ echo "3.8.5" | _patch_to_minor -
+  #   3.8
+  if [[ "${1}" == "-" ]]; then
+    while IFS= read -r line; do
+      echo "${line%.*}"
     done
   else
-    # Read from arguments
     echo "${1%.*}"
   fi
 }
@@ -24,7 +22,7 @@ _get_patch_installed() {
   # To transform the output into an array, use the following:
   #   $ # shellcheck disable=SC2296
   #   $ arr=("${(@s: :)"$(_get_patch_installed)"}")
-  pyenv versions --bare | tr '\n' ' '
+  str-replace "$(pyenv versions --bare)" $'\n' " "
 }
 
 _get_minor_installed() {
@@ -32,7 +30,15 @@ _get_minor_installed() {
   # To transform the output into an array, use the following:
   #   $ # shellcheck disable=SC2296
   #   $ arr=("${(@s: :)"$(_get_minor_installed)"}")
-  _get_patch_installed | tr ' ' '\n' | _patch_to_minor - | tr '\n' ' '
+  str-replace "$(pyenv versions --bare | _patch_to_minor -)" $'\n' " "
+}
+
+_get_latest_installed_patch() {
+  _get_patch_installed | sort -V | awk 'END {print $NF}'
+}
+
+_get_latest_installed_minor() {
+  _get_latest_installed_patch | _patch_to_minor -
 }
 
 tau-latest-patch() {
