@@ -1,5 +1,11 @@
 # Utilities for managing multiple python versions on a single machine
 
+_get_minor_installed() {
+  local minors
+  minors=("${(f)"$(pyenv versions --bare | grep -Eo "^[0-9]+\.[0-9]+")"}")
+  echo "${minors[@]}"
+}
+
 tau-latest-patch() {
   # Infer the latest patch version from a major or minor version
   #
@@ -148,20 +154,12 @@ tau-clean-pip() {
   # Examples:
   #
   #   $ tau-clean-pip
-  #   [ℹ] [python] Upgrading build tools...
-  #   Requirement already satisfied: pip in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (22.3.1)
-  #   Requirement already satisfied: setuptools in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (65.5.1)
-  #   Requirement already satisfied: wheel in ~/.pyenv/versions/3.10.6/lib/python3.10/site-packages (0.38.4)
   #   [ℹ] [python] Uninstalling all packages...
   #   Found existing installation: numpy 1.23.4
   #   Uninstalling numpy-1.23.4:
   #     Successfully uninstalled numpy-1.23.4
   #
   #   $ tau-clean-pip python3.7
-  #   [ℹ] [python3.7] Upgrading build tools...
-  #   Requirement already satisfied: pip in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (22.3.1)
-  #   Requirement already satisfied: setuptools in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (65.5.1)
-  #   Requirement already satisfied: wheel in ~/.pyenv/versions/3.7.13/lib/python3.7/site-packages (0.38.4)
   #   [⋯] [python3.7] No packages to uninstall.
   #
   local py_executable pkgs_to_uninstall
@@ -188,19 +186,20 @@ tau-clean-all-pips() {
   # Examples:
   #
   #   $ tau-clean-all-pips
-  #   [ℹ] [python] Upgrading build tools...
+  #   [ℹ] [python] Uninstalling all packages...
   #   ...
-  #   [⋯] [python3.6] Not installed. Skipping...
+  #   [ℹ] [python3.7] No packages to uninstall.
   #   ...
-  #   [ℹ] [python3.9] Uninstalling all packages...
-  #   ...
-  #   [⋯] [python3.14] Not installed. Skipping...
   #
-  local py_executable pyv pkgs_to_uninstall
-  for pyv in '' '3' '3.6' '3.7' '3.8' '3.9' '3.10' '3.11' '3.12' '3.13' '3.14'; do
+  local py_installed_versions py_to_uninstall pyv py_executable
+  py_installed_versions=(${(@s: :)"$(_get_minor_installed)"})
+  py_to_uninstall=('' '3' "${py_installed_versions[@]}")
+  for pyv in "${py_to_uninstall[@]}"; do
     py_executable="python$pyv"
     if ! command -v "$py_executable" 1>/dev/null 2>&1; then
-      log_debug "[$py_executable] Not installed. Skipping..."
+      # This should never happen!
+      log_error "Unexpected error: Could not find the executable '$py_executable'."
+      return 1
     else
       tau-clean-pip "$py_executable"
     fi
