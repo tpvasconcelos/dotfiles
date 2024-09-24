@@ -13,7 +13,7 @@ brew "bash"
 brew "bash-completion@2"
 brew "zsh"
 
-# Installing GNU utils  ---
+# GNU utils  ---
 brew "coreutils"    # PATH="HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 brew "findutils"    # PATH="HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
 brew "gnu-sed"      # PATH="HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
@@ -29,66 +29,32 @@ brew "gmp"
 
 # Python dev tools  ---
 brew "pyenv"
-brew "pipx"     # https://github.com/pypa/pipx/
+brew "pipx"                 # https://github.com/pypa/pipx/
 
 # openjdk (Java's development kit)  ---
 brew "openjdk@11"
 
-# Fonts  ---
-tap "bramstein/webfonttools"
-brew "woff2"
-brew "svn"
-cask "font-oswald"
-cask "font-open-sans"
-cask "font-lora"
-cask "font-juliamono"
-cask "font-hack-nerd-font"
-
-# Command line utils  ---
-brew "curl"
-brew "wget"
-brew "croc"                 # https://github.com/schollz/croc
-brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
-brew "htop"
-brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
-brew "tree"
-brew "neovim"               # https://github.com/neovim/neovim
-brew "glow"                 # https://github.com/charmbracelet/glow
-brew "fzf"                  # https://github.com/junegunn/fzf
-brew "openssl"              # https://www.openssl.org/
-brew "readline"
+# Databases  ---
 brew "sqlite"
+brew "postgresql@14"        # https://www.postgresql.org/
+brew "redis"
+
+# Kafka tools  ---
+brew "kcat"                 # https://github.com/edenhill/kcat
+
+# Programming languages  ---
 brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
-brew "pandoc"		        # https://github.com/jgm/pandoc
-brew "graphviz"
-brew "postgresql@14"        # https://www.postgresql.org/
+
+# Javascript dev tools  ---
 brew "node"
-brew "kcat"                 # https://github.com/edenhill/kcat
-brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "yarn"
-brew "redis"
-brew "mackup"               # https://github.com/lra/mackup
-brew "jq"                   # https://stedolan.github.io/jq/
-brew "watch"                # https://gitlab.com/procps-ng/procps
-brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
-brew "hugo"                 # https://gohugo.io/getting-started/installing/
-brew "asciinema"            # https://asciinema.org
-brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
-brew "ffmpeg"
-brew "ncdu"                 # https://dev.yorhel.nl/ncdu
-brew "shellcheck"           # https://github.com/koalaman/shellcheck
-brew "bat"                  # https://github.com/sharkdp/bat
-brew "awscli"
-brew "gh"                   # https://github.com/cli/cli
-brew "act"                  # https://github.com/nektos/act
-brew "autojump"             # https://github.com/wting/autojump
-brew "libfaketime"          # https://github.com/wolfcw/libfaketime
-brew "gource"               # https://github.com/acaudwell/Gource
-brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
-brew "hcloud"               # https://github.com/hetznercloud/cli
-brew "ssh-audit"            # https://github.com/jtesta/ssh-audit
-tap "homebrew/command-not-found"
+
+# Infra/DevOps tools  ---
+tap "hashicorp/tap"             # https://developer.hashicorp.com/terraform
+brew "hashicorp/tap/terraform"
+brew "hcloud"                   # https://github.com/hetznercloud/cli
+brew "ssh-audit"                # https://github.com/jtesta/ssh-audit
 
 # git  ---
 brew "git"
@@ -133,6 +99,54 @@ brew "aws-iam-authenticator"    # https://github.com/kubernetes-sigs/aws-iam-aut
 brew "helm"                     # https://github.com/helm/helm
 brew "kustomize"                # https://github.com/kubernetes-sigs/kustomize
 brew "kind"                     # https://github.com/kubernetes-sigs/kind/
+
+# Fun stuff  ---
+brew "asciinema"            # https://asciinema.org
+brew "libfaketime"          # https://github.com/wolfcw/libfaketime
+brew "gource"               # https://github.com/acaudwell/Gource
+
+# Fonts  ---
+tap "bramstein/webfonttools"
+brew "woff2"
+brew "svn"
+cask "font-oswald"
+cask "font-open-sans"
+cask "font-lora"
+cask "font-juliamono"
+cask "font-hack-nerd-font"
+
+# Command line utils  ---
+brew "curl"
+brew "wget"
+brew "croc"                 # https://github.com/schollz/croc
+brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
+brew "htop"
+brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
+brew "tree"
+brew "neovim"               # https://github.com/neovim/neovim
+brew "glow"                 # https://github.com/charmbracelet/glow
+brew "fzf"                  # https://github.com/junegunn/fzf
+brew "openssl"              # https://www.openssl.org/
+brew "readline"
+brew "pandoc"		        # https://github.com/jgm/pandoc
+brew "graphviz"
+brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
+brew "mackup"               # https://github.com/lra/mackup
+brew "jq"                   # https://stedolan.github.io/jq/
+brew "watch"                # https://gitlab.com/procps-ng/procps
+brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
+brew "hugo"                 # https://gohugo.io/getting-started/installing/
+brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
+brew "ffmpeg"
+brew "ncdu"                 # https://dev.yorhel.nl/ncdu
+brew "shellcheck"           # https://github.com/koalaman/shellcheck
+brew "bat"                  # https://github.com/sharkdp/bat
+brew "awscli"
+brew "gh"                   # https://github.com/cli/cli
+brew "act"                  # https://github.com/nektos/act
+brew "autojump"             # https://github.com/wting/autojump
+brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
+tap "homebrew/command-not-found"
 
 
 ################################################################################
