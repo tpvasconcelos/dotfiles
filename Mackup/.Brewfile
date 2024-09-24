@@ -140,7 +140,7 @@ brew "kind"                     # https://github.com/kubernetes-sigs/kind/
 ################################################################################
 
 # Drivers  ---
-cask "logi-options-plus"
+cask "logi-options+"
 
 # Text editors and IDEs  ---
 cask "jetbrains-toolbox"
@@ -201,7 +201,7 @@ cask "upscayl"          # https://upscayl.org/
 
 # Misc apps  ---
 cask "appcleaner"
-cask "alienator88/homebrew-cask/pearcleaner"  # https://github.com/alienator88/Pearcleaner
+cask "pearcleaner"                            # https://github.com/alienator88/Pearcleaner
 cask "macs-fan-control"
 cask "spotify"
 cask "vlc"
