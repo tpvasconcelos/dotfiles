@@ -79,8 +79,7 @@ setopt NO_LIST_AMBIGUOUS        # Do not list all possible completions without r
 # * https://github.com/zsh-users/zsh-completions/issues/603
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 # Load completions
-autoload -Uz compinit
-compinit
+autoload -Uz compinit; compinit
 # Configure completions style
 zstyle ':completion:*' menu yes select
 # Load pyenv completions
