@@ -81,7 +81,11 @@ hc-update-everything() {
   fi
 
   # Update oh-my-zsh
-  omz update --unattended
+  if command -v omz &> /dev/null; then
+    omz update --unattended
+  else
+    log_warning "omz is not available (you're probably not running in interactive mode). Skipping omz update."
+  fi
 
   if [[ "$*" == *--system* ]]; then
     # System software update
