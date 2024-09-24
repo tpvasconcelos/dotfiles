@@ -1,14 +1,9 @@
 # Utilities for managing multiple python versions on a single machine
 
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-clean.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-install.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-latest.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-preferred.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-rehash.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-uninstall.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-upgrade.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-utils.zsh"
-source "${SHELL_DIR_FUNCTIONS}/_tau/tau-versions.zsh"
+# shellcheck source=functions/_tau/tau-upgrade.zsh
+for tau_module in "$SHELL_DIR_FUNCTIONS/_tau"/*(.); do
+  source "$tau_module"
+done
 
 
 _tau::legacy_global() {
