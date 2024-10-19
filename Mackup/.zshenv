@@ -66,6 +66,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/llvm/bin"
   "$HOMEBREW_PREFIX/opt/openjdk@11/bin"
   "$HOMEBREW_PREFIX/opt/ruby/bin"
+  "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
   "$HOME/.cargo/bin"
   "$HOME/.flutter/bin"
   "$HOME/.gem/ruby/3.2.0/bin"
