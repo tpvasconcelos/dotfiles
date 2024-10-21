@@ -146,6 +146,7 @@ brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
+brew "fd"                   # https://github.com/sharkdp/fd
 tap "homebrew/command-not-found"
 
 
