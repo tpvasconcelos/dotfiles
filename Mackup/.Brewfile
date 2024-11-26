@@ -51,10 +51,14 @@ brew "node"
 brew "yarn"
 
 # Infra/DevOps tools  ---
-tap "hashicorp/tap"             # https://developer.hashicorp.com/terraform
-brew "hashicorp/tap/terraform"
-brew "hcloud"                   # https://github.com/hetznercloud/cli
-brew "ssh-audit"                # https://github.com/jtesta/ssh-audit
+brew "ansible"                      # https://www.ansible.com/
+brew "checkov"                      # https://www.checkov.io/
+brew "hashicorp/tap/terraform"      # https://developer.hashicorp.com/terraform
+brew "tflint"                       # https://github.com/terraform-linters/tflint
+brew "trivy"                        # https://trivy.dev/
+brew "minamijoyo/tfupdate/tfupdate" # https://github.com/minamijoyo/tfupdate
+brew "hcloud"                       # https://github.com/hetznercloud/cli
+brew "ssh-audit"                    # https://github.com/jtesta/ssh-audit
 
 # git  ---
 brew "git"
@@ -109,9 +113,10 @@ brew "gource"               # https://github.com/acaudwell/Gource
 tap "bramstein/webfonttools"
 brew "woff2"
 brew "svn"
-cask "font-oswald"
-cask "font-open-sans"
 cask "font-lora"
+cask "font-open-sans"
+cask "font-oswald"
+cask "font-rounded-mplus"
 cask "font-juliamono"
 cask "font-hack-nerd-font"
 
@@ -147,6 +152,7 @@ brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
+brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 tap "homebrew/command-not-found"
 
 
@@ -174,7 +180,6 @@ cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "syntax-highlight"
 cask "qlstephen"
 cask "qlmarkdown"
-cask "qlimagesize"
 cask "qlvideo"
 
 # Web Browsers  ---
@@ -189,7 +194,6 @@ mas "HotspotShield VPN - Wifi Proxy", id: 771076721
 
 # Productivity apps  ---
 cask "the-unarchiver"
-cask "skitch"
 cask "shottr"            # https://shottr.cc/
 cask "raycast"           # https://www.raycast.com/
 cask "google-drive"
@@ -197,6 +201,7 @@ cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
 
 # Office apps  ---
+cask "anytype"
 cask "notion"
 cask "microsoft-office"
 cask "microsoft-auto-update"
@@ -236,3 +241,4 @@ cask "zotero"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
 mas "Todoist", id: 585829637
+mas "Shareful", id: 1522267256
