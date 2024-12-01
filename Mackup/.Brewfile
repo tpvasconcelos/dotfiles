@@ -175,6 +175,7 @@ cask "anaconda"
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
 cask "postman"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
+brew "devutils"                 # https://devutils.com/
 
 # Quick-look plugins  ---
 cask "syntax-highlight"
