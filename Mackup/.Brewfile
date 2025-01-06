@@ -88,7 +88,8 @@ cask "mactex"
 # - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
 # - [Tabby](https://github.com/Eugeny/tabby) - A terminal for a more modern age
 cask "iterm2"                   # https://iterm2.com/
-cask "go2shell"                 # https://zipzapmac.com/go2shell
+cask "openinterminal-lite"      # https://github.com/Ji4n1ng/OpenInTerminal
+cask "openineditor-lite"        # https://github.com/Ji4n1ng/OpenInTerminal
 
 # Docker and virtualbox  ---
 cask "docker"
