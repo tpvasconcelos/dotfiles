@@ -218,8 +218,9 @@ cask "slack"
 cask "zoom"
 
 # Photo & video  ---
-cask "diffusionbee"     # https://www.diffusionbee.com/
-cask "upscayl"          # https://upscayl.org/
+cask "diffusionbee"             # https://www.diffusionbee.com/
+cask "upscayl"                  # https://upscayl.org/
+cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/software/x-raw-studio/
 
 # Misc apps  ---
 cask "appcleaner"
