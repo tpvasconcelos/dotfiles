@@ -201,6 +201,7 @@ cask "raycast"           # https://www.raycast.com/
 cask "google-drive"
 cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
+cask "adobe-acrobat-reader"     # https://www.adobe.com/acrobat/pdf-reader.html
 
 # Office apps  ---
 cask "anytype"
