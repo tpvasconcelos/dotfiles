@@ -236,6 +236,7 @@ cask "disk-inventory-x"
 cask "imageoptim"                             # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"
 cask "image2icon"                             # https://img2icnsapp.com/
+cask "gimp"                                   # https://www.gimp.org/
 cask "p4v"
 cask "diffmerge"
 cask "thorium"                                # https://github.com/edrlab/thorium-reader
