@@ -81,10 +81,10 @@ hc-update-everything() {
   fi
 
   # Update oh-my-zsh
-  if command -v omz &> /dev/null; then
-    omz update --unattended
+  if [[ -n "$ZSH" ]]; then
+    zsh "$ZSH/tools/upgrade.sh"
   else
-    log_warning "omz is not available (you're probably not running in interactive mode). Skipping omz update."
+    log_warning "Skipping omz update. ZSH is not available which means that you're probably running in non-interactive mode."
   fi
 
   if [[ "$*" == *--system* ]]; then
