@@ -82,7 +82,7 @@ hc-update-everything() {
 
   # Update oh-my-zsh
   if [[ -n "$ZSH" ]]; then
-    zsh "$ZSH/tools/upgrade.sh"
+    zsh "$ZSH/tools/upgrade.sh" -v minimal
   else
     log_warning "Skipping omz update. ZSH is not available which means that you're probably running in non-interactive mode."
   fi
