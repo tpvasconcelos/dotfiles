@@ -195,9 +195,10 @@ mas "Dashlane – Password Manager", id: 517914548
 mas "HotspotShield VPN - Wifi Proxy", id: 771076721
 
 # Productivity apps  ---
+cask "anki"                     # https://apps.ankiweb.net/
 cask "the-unarchiver"
-cask "shottr"            # https://shottr.cc/
-cask "raycast"           # https://www.raycast.com/
+cask "shottr"                   # https://shottr.cc/
+cask "raycast"                  # https://www.raycast.com/
 cask "google-drive"
 cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
