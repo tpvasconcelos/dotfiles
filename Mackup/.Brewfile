@@ -187,8 +187,9 @@ cask "qlvideo"
 # Web Browsers  ---
 cask "brave-browser"
 cask "google-chrome"
-#cask "tor-browser"
 cask "firefox"
+#cask "tor-browser"
+cask "zen-browser"
 # Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
 mas "Dashlane – Password Manager", id: 517914548
