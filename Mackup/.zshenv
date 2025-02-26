@@ -69,7 +69,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
   "$HOME/.cargo/bin"
   "$HOME/.flutter/bin"
-  "$HOME/.gem/ruby/3.2.0/bin"
+  "$HOME/.gem/bin"
   "$HOME/.local/bin"
   "$HOME/.poetry/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"

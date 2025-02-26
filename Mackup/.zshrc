@@ -125,6 +125,8 @@ export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib ${LDFLAGS}"
 export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/llvm/include ${CPPFLAGS}"
 # libc++
 export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib/c++ -Wl,-rpath,${HOMEBREW_PREFIX}/opt/llvm/lib/c++ ${LDFLAGS}"
+# unwind
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib/unwind -lunwind ${LDFLAGS}"
 
 # libomp
 export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/libomp/lib ${LDFLAGS}"
