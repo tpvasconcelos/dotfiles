@@ -111,7 +111,6 @@ brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 brew "gource"               # https://github.com/acaudwell/Gource
 
 # Fonts  ---
-tap "bramstein/webfonttools"
 brew "woff2"
 brew "svn"
 cask "font-lora"
