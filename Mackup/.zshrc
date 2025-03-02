@@ -86,9 +86,8 @@ zstyle ':completion:*' menu yes select
 source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
 # Load uv's completions
 eval "$(uv generate-shell-completion zsh)"
-# TODO: Migrate to uvx?
-## Load uvx's completions
-#eval "$(uvx --generate-shell-completion zsh)"
+# Load uvx's completions
+eval "$(uvx --generate-shell-completion zsh)"
 
 
 ################################################################################
