@@ -252,6 +252,7 @@ cask "gimp"                                   # https://www.gimp.org/
 cask "p4v"
 cask "diffmerge"
 cask "thorium"                                # https://github.com/edrlab/thorium-reader
+cask "istherenet"                             # https://lowtechguys.com/istherenet/
 #cask "vuze"
 cask "transmission"                           # https://transmissionbt.com/
 cask "zotero"
