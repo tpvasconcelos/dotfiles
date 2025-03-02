@@ -70,6 +70,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOME/.cargo/bin"
   "$HOME/.flutter/bin"
   "$HOME/.gem/bin"
+  "$HOME/.lmstudio/bin"
   "$HOME/.local/bin"
   "$HOME/.poetry/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"

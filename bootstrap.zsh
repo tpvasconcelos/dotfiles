@@ -306,6 +306,13 @@ else
   chmod a+x /usr/local/bin/gh-md-toc
 fi
 
+if [[ -r "$HOME/go/bin/gollama" ]]; then
+  log_success "gollama is already installed!"
+else
+  log_info "Installing gollama..."
+  go install github.com/sammcj/gollama@HEAD
+fi
+
 
 ################################################################################
 # Extra config steps

@@ -231,6 +231,10 @@ cask "diffusionbee"             # https://www.diffusionbee.com/
 cask "upscayl"                  # https://upscayl.org/
 cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/software/x-raw-studio/
 
+# AI apps  ---
+brew "ollama"               # https://ollama.com/
+cask "lm-studio"            # https://lmstudio.ai/
+
 # Misc apps  ---
 cask "appcleaner"
 cask "pearcleaner"                            # https://github.com/alienator88/Pearcleaner
