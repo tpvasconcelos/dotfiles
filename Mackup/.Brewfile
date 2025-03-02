@@ -254,6 +254,7 @@ cask "diffmerge"
 cask "thorium"                          # https://github.com/edrlab/thorium-reader
 cask "istherenet"                       # https://lowtechguys.com/istherenet/
 cask "alt-tab"                          # https://github.com/lwouis/alt-tab-macos
+cask "karabiner-elements"               # https://github.com/pqrs-org/Karabiner-Elements
 #cask "vuze"
 cask "transmission"                     # https://transmissionbt.com/
 cask "zotero"
