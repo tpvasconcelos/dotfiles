@@ -28,6 +28,7 @@ brew "screen"
 brew "gmp"
 
 # Python dev tools  ---
+brew "pyenv"                # TODO: Remove this once uv completely replaces pyenv in tau
 brew "uv"                   # https://github.com/astral-sh/uv
 
 # openjdk (Java's development kit)  ---
