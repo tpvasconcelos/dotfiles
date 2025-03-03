@@ -2,7 +2,7 @@ tau-install() {
   # Install a managed Python version using uv
   #
   # This shell function is used to install a specific version of Python
-  # using the pyenv tool. The function takes in a single input, which
+  # using the uv CLI tool. The function takes in a single input, which
   # should be a string representation of a Python version in the format
   # of "major", "major.minor", or "major.minor.patch". Alternatively,
   # an empty string can be passed as input, in which case the latest
