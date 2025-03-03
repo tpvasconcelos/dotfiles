@@ -50,7 +50,12 @@ tau-clean-all-pips() {
   py_installed_versions=("${(@s: :)"$(tau-versions --minor --squash)"}")
   py_to_uninstall=('' '3' "${py_installed_versions[@]}")
   for pyv in "${py_to_uninstall[@]}"; do
-    py_executable="python$pyv"
+    # check if pyv is empty
+    if [[ -z "${pyv}" ]]; then
+      py_executable="$(uv python find)"
+    else
+      py_executable="$(uv python find "${pyv}")"
+    fi
     if ! command -v "$py_executable" 1>/dev/null 2>&1; then
       # This should never happen!
       log_error "Unexpected error: Could not find the executable '$py_executable'."

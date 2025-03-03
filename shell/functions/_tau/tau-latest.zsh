@@ -26,7 +26,7 @@ tau-latest-available() {
   #   2.7.18
   #
   #   $ tau-latest-available 3.7
-  #   3.7.15
+  #   3.7.17
   #
   #   $ tau-latest-available 3.10-dev
   #   [✘] The input '3.10-dev' does not match a valid version number...
