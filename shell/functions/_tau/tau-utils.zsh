@@ -1,5 +1,4 @@
 TAU_ROOT="${TAU_ROOT:-${HOME}/.tau}"
-_TAU_PREFERRED="${TAU_ROOT}/preferred-version"
 
 _tau::mk_root_dir() {
   # Create the TAU_ROOT directory if it does not exist
@@ -20,6 +19,9 @@ _tau::patch_to_minor() {
   #   3.8
   #
   #   $ echo -e "3.8.5\n3.9.7\n3.10.0" | _tau::patch_to_minor
+  #   3.8
+  #   3.9
+  #   3.10
   #
   while IFS= read -r line; do
     if [[ ! "${line}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then

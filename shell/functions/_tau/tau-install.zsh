@@ -1,5 +1,5 @@
 tau-install() {
-  # Install a Python version using pyenv (python-build)
+  # Install a managed Python version using uv
   #
   # This shell function is used to install a specific version of Python
   # using the pyenv tool. The function takes in a single input, which

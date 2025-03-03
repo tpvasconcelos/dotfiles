@@ -48,7 +48,7 @@ tau-versions() {
   done
 
   local py_versions
-  py_versions="$(pyenv versions --bare | sort -V)"
+  py_versions="$(uv python list --only-installed --output-format=json | jq -r '.[].version' | sort -V)"
   if [[ "${minor}" == true ]]; then
     py_versions="$(echo "${py_versions}" | _tau::patch_to_minor)"
   fi

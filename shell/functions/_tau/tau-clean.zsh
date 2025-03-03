@@ -60,26 +60,3 @@ tau-clean-all-pips() {
     fi
   done
 }
-
-# FIXME: This is not working!
-_tau::cleanup() {
-  # The code bellow grabs and uninstalls all patches from the
-  # inferred minor version, that are not the installed patch
-  # FIXME: This assumes that you only have stable CPython versions installed
-
-  # TODO: 1. loop through minors
-  # TODO: 2. grab latest patch for minor
-  # TODO: 3. delete outdated minors
-  # TODO: 4. detect and print out outdated virtualenvs (?)
-  log_info "Uninstalling Python ${version_to_uninstall}"
-  pyenv uninstall --force "${version_to_uninstall}"
-  # TODO: 4. set latest version as global
-  log_info "Setting Python ${py_version_patch} as a global python..."
-  pyenv global "${py_version_patch}"
-
-  local version_to_uninstall
-  while read -r version_to_uninstall; do
-    log_info "Uninstalling Python ${version_to_uninstall}"
-    pyenv uninstall --force "${version_to_uninstall}"
-  done < <(pyenv versions | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+" | grep "$(echo "${py_version_patch}" | grep -Eo "[0-9]+\.[0-9]+")" | grep -v "${py_version_patch}")
-}
