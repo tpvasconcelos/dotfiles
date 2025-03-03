@@ -49,6 +49,10 @@ tau-latest-available() {
     return 1
   fi
 
+  # uv does not support searching for available versions yet so we'll
+  # have to use pyenv to infer the latest available patch version.
+  # This should be fine most of the time, but hopefully we'll
+  # just migrate to `uv python upgrade` when available...
   py_version_patch="$(pyenv install --list | ggrep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
   if [[ -z "${py_version_patch}" ]]; then
     # Either this version does not exist (e.g. "4.2.0")

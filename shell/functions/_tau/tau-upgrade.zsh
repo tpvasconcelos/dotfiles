@@ -59,7 +59,7 @@ tau-upgrade() {
   fi
   new_version_patch="$(tau-latest-available "${new_version}")"
   if [[ -z "${new_version_patch}" ]]; then
-    log_error "Looks like the new_version provided ('${new_version}') is not available in pyenv."
+    log_error "Looks like the new_version provided ('${new_version}') is not available with uv."
     return 1
   fi
 

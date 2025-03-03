@@ -37,20 +37,12 @@ tau-install() {
 
   py_version_patch="$(tau-latest-available "${py_version_user_input}")"
 
-  if contains "$(pyenv versions)" "$py_version_patch"; then
+  if contains "$(tau-versions --squash)" "$py_version_patch"; then
     # FIXME: This assumes that you only have stable CPython versions installed
     log_info "Skipping: Python $py_version_patch is already installed."
   else
-    # TODO: Check if it's still necessary to export SDKROOT and
-    #       MACOSX_DEPLOYMENT_TARGET to run `pyenv install ...`
-    #       on the latest macOS versions
-    # local SDKROOT MACOSX_DEPLOYMENT_TARGET
-    # SDKROOT="$(xcrun --show-sdk-path)"
-    # MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion | grep -Eo '[0-9]+\.[0-9]+')"
-    # export SDKROOT
-    # export MACOSX_DEPLOYMENT_TARGET
     log_info "Installing Python '${py_version_patch}'"
-    pyenv install "${py_version_patch}"
+    uv python install "${py_version_patch}"
   fi
 
   # Re-generate the shims
