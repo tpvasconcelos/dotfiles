@@ -82,8 +82,6 @@ fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 autoload -Uz compinit; compinit
 # Configure completions style
 zstyle ':completion:*' menu yes select
-# Load pyenv completions
-source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
 # Load uv's completions
 eval "$(uv generate-shell-completion zsh)"
 # Load uvx's completions

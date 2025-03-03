@@ -108,7 +108,7 @@ cd ~/.dotfiles && ./bootstrap.zsh
 ```
 
 > [!NOTE]
-> By default, this script will install a bunch of Python versions (using `pyenv`). If you want to control which versions are installed, you can expose a `PYENV_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `PYENV_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
+> By default, this script will install a bunch of Python versions (using `uv`). If you want to control which versions are installed, you can expose a `TAU_VERSIONS` environment variable with a space-separated list of Python versions. For example, to only install Python 3.8 and Python 3.9, run: `TAU_VERSIONS="3.8.9 3.9.3" ./bootstrap.zsh`. Check inside the `bootstrap.zsh` script to see which versions are installed by default.
 
 > [!TIP]
 > There are no unwanted side effects from running this script multiple times, and the steps that have already run successfully will simply be skipped. So, if you encounter any issues, feel free to just run the `./bootstrap.zsh` script again (once you've fixed the underlying error on your end).
@@ -218,7 +218,7 @@ focus only on the zsh shell on a macOS system.
 
 ### Install Python Development Tools
 
-I use [pyenv](https://github.com/pyenv/pyenv) to manage multiple Python versions. I have also
+I use [uv](https://github.com/astral-sh/uv) to manage multiple Python versions. I have also
 defined some extra utilities under `shell/functions/tau.zsh` to make it easier to install and
 manage these multiple installations.
 

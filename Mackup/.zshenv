@@ -52,7 +52,7 @@ export LANG='en_US.UTF-8'
 _ZSHENV_PATH_EXTRAS=(
   # Add our tau shims to the top of the PATH to make sure our
   # Python executables are used instead of the system, brew
-  # pyenv, or any other Python/pip installations...
+  # pyenv, uv, or any other Python/pip installations...
   "${TAU_ROOT:-${HOME}/.tau}/shims"
   # The Homebrew-managed bins should come right at the top too
   "$HOMEBREW_PREFIX/bin"
