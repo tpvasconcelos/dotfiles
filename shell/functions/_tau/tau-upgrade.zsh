@@ -1,7 +1,7 @@
 tau-upgrade() {
   # Upgrade a Python minor version to a new patch version
   #
-  # Usage: tau-upgrade [--dry-run, -y|--yes] <base_version> [<new_version>]
+  # Usage: tau-upgrade [--dry-run] <base_version> [<new_version>]
   #
   # Arguments:
   #   * $1 : A valid Python version number (minor or patch) pointing to
@@ -12,15 +12,10 @@ tau-upgrade() {
   #          version will be installed.
   #
   local dry_run=false
-  local yes_flag=""
   while true; do
       case "$1" in
           --dry-run)
               dry_run=true
-              shift
-              ;;
-          -y | --yes)
-              yes_flag="-y"
               shift
               ;;
           *)
@@ -80,7 +75,7 @@ tau-upgrade() {
   fi
 
   log_info "Uninstalling Python ${base_version_patch}"
-  tau-uninstall "${base_version_patch}" "${yes_flag}"
+  uv python uninstall "${base_version_patch}"
 
   log_info "Installing Python ${new_version_patch}"
   tau-install "${new_version_patch}"
