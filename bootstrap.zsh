@@ -181,10 +181,6 @@ gsc 'zsh-completions' \
   https://github.com/zsh-users/zsh-completions.git \
   "$ZSH_CUSTOM/plugins/zsh-completions"
 
-gsc 'thuandt/zsh-pipx' \
-  https://github.com/thuandt/zsh-pipx.git \
-  "$ZSH_CUSTOM/plugins/zsh-pipx"
-
 
 if [[ -r "${HOME}/.iterm2_shell_integration.zsh" ]]; then
   log_success "Shell Integration and iTerm2 utilities already installed!"
@@ -199,14 +195,14 @@ fi
 ########################
 tau-install-multi "${PYENV_VERSIONS:-3.8 3.9 3.10 3.11 3.12 3.13}"
 
-# Install some global Python packages with pipx
-_pipx_packages_to_install=('poetry' 'pipenv' 'cookiecutter' 'argcomplete')
-for package in "${_pipx_packages_to_install[@]}"; do
-  if pipx list | grep -q "$package"; then
+# Install some global Python packages with 'uv tool' (uvx)
+_uvx_packages_to_install=('poetry' 'pipenv' 'cookiecutter' 'argcomplete' 'ssh-audit')
+for package in "${_uvx_packages_to_install[@]}"; do
+  if uv tool list | grep -q "$package"; then
     log_success "${package} is already installed!"
   else
     log_info "Installing $package..."
-    pipx install "$package"
+    uv tool install "$package"
   fi
 done
 
@@ -226,7 +222,7 @@ if [[ -d "$PY_PLAYGROUND_VENV" ]]; then
   log_success "Playground Python venv already exists at: $PY_PLAYGROUND_VENV"
 else
   log_info "Creating playground Python venv at: $PY_PLAYGROUND_VENV"
-  python3.12 -m venv "$PY_PLAYGROUND_VENV"
+  uv venv --python=3.13 "$PY_PLAYGROUND_VENV"
 fi
 
 

@@ -35,6 +35,4 @@ plugins=(
   # Custom  ---
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-pipx
-  # poetry
 )

@@ -28,8 +28,7 @@ brew "screen"
 brew "gmp"
 
 # Python dev tools  ---
-brew "pyenv"
-brew "pipx"                 # https://github.com/pypa/pipx/
+brew "uv"                   # https://github.com/astral-sh/uv
 
 # openjdk (Java's development kit)  ---
 brew "openjdk@11"

@@ -101,8 +101,8 @@ hc-update-everything() {
     brew upgrade --greedy-latest
   fi
 
-  # Update pipx packages
-  pipx upgrade-all
+  # Update all uv tools
+  uv tool upgrade --all
 
   # Update rust
   rustup update
