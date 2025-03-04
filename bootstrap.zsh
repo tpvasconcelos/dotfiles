@@ -133,11 +133,11 @@ fi
 ################################################################################
 # Brewfile dependencies
 ################################################################################
-if brew bundle check --no-upgrade --no-lock --file=Mackup/.Brewfile &>/dev/null; then
+if brew bundle check --no-upgrade --file=Mackup/.Brewfile &>/dev/null; then
   log_success "The Brewfile's dependencies are satisfied!"
 else
   log_info "Installing Brewfile dependencies..."
-  brew bundle --no-lock --no-upgrade --file=Mackup/.Brewfile
+  brew bundle --no-upgrade --file=Mackup/.Brewfile
 fi
 
 alias ln='$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin/ln'
