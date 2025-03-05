@@ -1,7 +1,12 @@
 ################################################################################
 # Base dependencies
 ################################################################################
+
+# mas is a CLI for the Mac App Store
 brew "mas"
+
+# homebrew/services is an add-on to manage background services
+tap "homebrew/services"
 
 
 ################################################################################
