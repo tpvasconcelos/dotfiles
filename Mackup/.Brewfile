@@ -215,6 +215,7 @@ cask "google-drive"
 cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
 cask "adobe-acrobat-reader"     # https://www.adobe.com/acrobat/pdf-reader.html
+brew "viz"                      # https://github.com/alienator88/Viz
 
 # Office apps  ---
 cask "anytype"
