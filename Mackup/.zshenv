@@ -18,7 +18,9 @@ _ZSHRC_LOADED=false
 # Export some environment (ENV) variables
 ################################################################################
 
-DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${HOME}/.zshenv")")")"
+# FIXME: This doesn't work anymore because we stopped using Mackup's symlinks...
+# DOTFILES_DIR="$(dirname "$(dirname "$(readlink "${HOME}/.zshenv")")")"
+DOTFILES_DIR="$HOME/.dotfiles"
 export DOTFILES_DIR
 export SHELL_DIR_FUNCTIONS="$DOTFILES_DIR/shell/functions"
 export SHELL_DIR_INTERACTIVE="$DOTFILES_DIR/shell/interactive"
