@@ -97,7 +97,7 @@ hc-update-everything() {
 
   # Update brew packages
   brew update
-  brew bundle --global --no-lock
+  brew bundle --global
   brew upgrade
   if [[ "$*" == *--brew-greedy-latest* ]]; then
     # Also update brew casks with a :latest version tag
