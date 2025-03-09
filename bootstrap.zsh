@@ -324,6 +324,8 @@ mkdir -p "$HOME/go/bin" "$HOME/go/src"
 log_info "Restoring application settings (using Mackup)..."
 ln -snfTv "$(realpath .mackup.cfg)" "$HOME/.mackup.cfg"
 mackup restore --force
+# https://github.com/lra/mackup/issues/1924
+mackup uninstall --force
 
 log_info "Setting up macOS preferences..."
 log_warning "This will update many of the default settings and system preferences!"

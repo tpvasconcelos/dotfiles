@@ -35,6 +35,9 @@ __check_dotfiles() {
 }
 
 hc-doctor() {
+  # Backup dotfiles
+  backdot
+
   log_info "Checking for system software updates..."
   softwareupdate_output=$(softwareupdate --list --all)
   if [[ "$softwareupdate_output" == *"found the following new or updated software"* ]]; then
@@ -127,6 +130,9 @@ hc-update-everything() {
 
   # Check for expired gpg keys
   __check_expired_gpg_keys
+
+  # Backup dotfiles
+  backdot
 
   log_success "Done! 🚀"
 
