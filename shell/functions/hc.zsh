@@ -36,7 +36,7 @@ __check_dotfiles() {
 
 hc-doctor() {
   # Backup dotfiles
-  backdot
+  dot-backup
 
   log_info "Checking for system software updates..."
   softwareupdate_output=$(softwareupdate --list --all)
@@ -132,7 +132,7 @@ hc-update-everything() {
   __check_expired_gpg_keys
 
   # Backup dotfiles
-  backdot
+  dot-backup
 
   log_success "Done! 🚀"
 
