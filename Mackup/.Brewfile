@@ -216,6 +216,7 @@ cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
 cask "adobe-acrobat-reader"     # https://www.adobe.com/acrobat/pdf-reader.html
 cask "viz"                      # https://github.com/alienator88/Viz
+mas "TickTick:To-Do List, Calendar", id: 966085870
 
 # Office apps  ---
 cask "anytype"
