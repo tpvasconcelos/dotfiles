@@ -153,7 +153,6 @@ brew "jq"                   # https://stedolan.github.io/jq/
 brew "watch"                # https://gitlab.com/procps-ng/procps
 brew "pv"                   # https://www.ivarch.com/programs/pv.shtml
 brew "hugo"                 # https://gohugo.io/getting-started/installing/
-brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
 brew "ffmpeg"
 brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
