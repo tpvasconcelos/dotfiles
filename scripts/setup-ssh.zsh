@@ -1,5 +1,5 @@
-#!/usr/bin/env zsh
-set -eu
+# Description: This script manages SSH key generation, adds the key to 
+# the macOS keychain and ssh-agent, and optionally uploads it to GitHub
 
 _generate_ssh_key() {
   local email

@@ -1,5 +1,5 @@
-#!/usr/bin/env zsh
-set -eu
+# Description: This script configures macOS system and application
+# settings for enhanced usability, performance, security, etc.
 
 # How to check for changes in "defaults"
 # $ defaults read | sed -e 's/[0-9]\{4\}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]/DATE_REMOVED/g' | sed -E 's/Age = "[0-9]+\.[0-9]+"/AGE_REDACTED/g' > dft1.plist
@@ -23,18 +23,6 @@ set -eu
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
-
-###############################################################################
-# Import helper logging functions
-###############################################################################
-echo "Importing helper logging functions..."
-
-DOTFILES_DIR="$(dirname "${0:a:h}")"
-SHELL_FUNCTIONS_DIR="$DOTFILES_DIR/shell/functions"
-
-source "${SHELL_FUNCTIONS_DIR}/ansi.zsh"
-source "${SHELL_FUNCTIONS_DIR}/logging.zsh"
 
 
 ###############################################################################
@@ -504,9 +492,6 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###############################################################################
 log_debug "Configuring Address Book, Dashboard, iCal, TextEdit, and Disk Utility settings..."
 ###############################################################################
-
-# Enable the debug menu in Address Book
-defaults write com.apple.addressbook ABShowDebugMenu -bool true
 
 # Enable Dashboard dev mode (allows keeping widgets on the desktop)
 defaults write com.apple.dashboard devmode -bool true

@@ -1,19 +1,21 @@
 #!/usr/bin/env zsh
-set -eu
+set -o errexit   # Exit on error
+set -o pipefail  # Use last non-zero exit code in a pipeline
+set -o nounset   # Error on unset variables
 
 
 ################################################################################
 # Import some helper functions
 ################################################################################
 DOTFILES_DIR="${0:a:h}"
-SHELL_FUNCTIONS_DIR="$DOTFILES_DIR/shell/functions"
+export SHELL_DIR_FUNCTIONS="$DOTFILES_DIR/shell/functions"
 
-echo "[⋯] Importing helper functions from: $SHELL_FUNCTIONS_DIR"
-source "$SHELL_FUNCTIONS_DIR/ansi.zsh"
-source "$SHELL_FUNCTIONS_DIR/logging.zsh"
-source "$SHELL_FUNCTIONS_DIR/misc.zsh"
-source "$SHELL_FUNCTIONS_DIR/string.zsh"
-source "$SHELL_FUNCTIONS_DIR/tau.zsh"
+echo "[⋯] Importing helper functions from: $SHELL_DIR_FUNCTIONS"
+source "$SHELL_DIR_FUNCTIONS/ansi.zsh"
+source "$SHELL_DIR_FUNCTIONS/logging.zsh"
+source "$SHELL_DIR_FUNCTIONS/misc.zsh"
+source "$SHELL_DIR_FUNCTIONS/string.zsh"
+source "$SHELL_DIR_FUNCTIONS/tau.zsh"
 
 
 ################################################################################
@@ -68,22 +70,6 @@ while true; do
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-
-################################################################################
-# Use Touch ID for sudo
-################################################################################
-./scripts/setup-touchid-for-sudo.zsh
-
-################################################################################
-# Command line developer tools
-################################################################################
-if xcode-select -p &>/dev/null; then
-  log_success "Command Line Tools are already installed!"
-else
-  log_info "To install Command Line Tools, follow the instructions in the dialog box that will appear..."
-  xcode-select --install
-fi
-
 ################################################################################
 # Homebrew
 ################################################################################
@@ -99,6 +85,21 @@ else
 fi
 
 ################################################################################
+# Use Touch ID for sudo
+################################################################################
+source ./scripts/setup-touchid-for-sudo.zsh
+
+################################################################################
+# Command line developer tools
+################################################################################
+if xcode-select -p &>/dev/null; then
+  log_success "Command Line Tools are already installed!"
+else
+  log_info "To install Command Line Tools, follow the instructions in the dialog box that will appear..."
+  xcode-select --install
+fi
+
+################################################################################
 # Xcode (install and accept the license agreement)
 ################################################################################
 # Accepting the Xcode license agreement is a requirement for installing
@@ -109,11 +110,11 @@ fi
 if ! cmd_exists mas; then
   brew install mas
 fi
-if mas list | grep -q "497799835"; then
-  log_success "Xcode is already installed!"
+if [[ -r "/Applications/Xcode.app" ]]; then
+ log_success "Xcode is already installed!"
 else
-  log_info "Installing Xcode from the App Store..."
-  mas install 497799835
+ log_info "Installing Xcode from the App Store..."
+ mas install 497799835
 fi
 
 if ! sudo xcodebuild -license status; then
@@ -229,7 +230,7 @@ fi
 ########################
 # Setup ssh
 ########################
-./scripts/setup-ssh.zsh
+source ./scripts/setup-ssh.zsh
 
 
 ########################
@@ -329,7 +330,7 @@ mackup uninstall --force
 
 log_info "Setting up macOS preferences..."
 log_warning "This will update many of the default settings and system preferences!"
-./scripts/macos.zsh
+source ./scripts/macos.zsh
 
 
 ################################################################################
