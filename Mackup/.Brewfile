@@ -5,9 +5,6 @@
 # mas is a CLI for the Mac App Store
 brew "mas"
 
-# homebrew/services is an add-on to manage background services
-tap "homebrew/services"
-
 
 ################################################################################
 # CLI and Dev Tools
@@ -182,7 +179,6 @@ cask "r"
 mas "Xcode", id: 497799835
 
 # Other desktop dev tools  ---
-cask "anaconda"
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
 cask "postman"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
@@ -195,7 +191,7 @@ cask "qlmarkdown"
 cask "qlvideo"
 
 # Web Browsers  ---
-cask "brave-browser"
+cask "arc"
 cask "google-chrome"
 cask "firefox"
 #cask "tor-browser"
@@ -215,7 +211,8 @@ cask "raindropio"
 cask "zotero"                   # https://www.zotero.org/
 cask "adobe-acrobat-reader"     # https://www.adobe.com/acrobat/pdf-reader.html
 cask "viz"                      # https://github.com/alienator88/Viz
-mas "TickTick:To-Do List, Calendar", id: 966085870
+cask "ticktick"                 # https://www.ticktick.com/home
+cask "todoist"                  # https://www.todoist.com/home
 
 # Office apps  ---
 cask "anytype"
@@ -265,5 +262,4 @@ cask "transmission"                     # https://transmissionbt.com/
 cask "zotero"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
-mas "Todoist", id: 585829637
 mas "Shareful", id: 1522267256
