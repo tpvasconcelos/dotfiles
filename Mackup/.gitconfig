@@ -82,9 +82,11 @@
     obliterate = "!f() { git filter-branch --force --index-filter \"git rm -r --cached \\\"$1\\\" --ignore-unmatch\" --prune-empty --tag-name-filter cat -- --all; }; f"
     hub = !gh repo view --web
 
-[includeIf "gitdir:~/git_tree/nike/"]
-    path = ~/git_tree/nike/.gitconfig
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
 
 [maintenance]
-	repo = /Users/TPer31/.dotfiles
-	repo = /Users/TPer31/git_tree/personal_projects/ridgeplot
+	repo = /Users/tpvasconcelos/.dotfiles
+	repo = /Users/tpvasconcelos/git_tree/personal_projects/ridgeplot
+	repo = /Users/tomasv/.dotfiles
+	repo = /Users/tomasv/git_tree/personal_projects/ridgeplot
