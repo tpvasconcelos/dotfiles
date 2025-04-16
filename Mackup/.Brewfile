@@ -162,6 +162,7 @@ brew "autojump"             # https://github.com/wting/autojump
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
+brew "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 tap "homebrew/command-not-found"
 
 
