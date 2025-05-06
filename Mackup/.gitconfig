@@ -2,6 +2,7 @@
     name = Tomas Pereira de Vasconcelos
     email = tomasvasconcelos1@gmail.com
     signingkey = 7A00A0D0C929E374
+	useconfigonly = true
 
 [init]
 	defaultBranch = main
@@ -11,6 +12,8 @@
 	attributesfile = ~/.gitattributes
     autocrlf = input
     pager = delta
+	fsmonitor = true
+	untrackedCache = true
 
 [commit]
     gpgsign = true
@@ -23,6 +26,7 @@
 
 [pull]
     rebase = true
+	twohead = ort
 
 [help]
     autocorrect = 1
@@ -86,7 +90,5 @@
     path = ~/work/.gitconfig
 
 [maintenance]
-	repo = /Users/tpvasconcelos/.dotfiles
-	repo = /Users/tpvasconcelos/git_tree/personal_projects/ridgeplot
-	repo = /Users/tomasv/.dotfiles
-	repo = /Users/tomasv/git_tree/personal_projects/ridgeplot
+	repo = ~/.dotfiles
+	repo = ~/git_tree/personal_projects/ridgeplot
