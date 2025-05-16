@@ -604,7 +604,14 @@ defaults write -g com.apple.trackpad.scaling 2.5
 defaults write -g com.apple.mouse.scaling 3
 
 # Disable spotlight keyboard shortcut
-# defaults write "com.apple.symbolichotkeys" "AppleSymbolicHotKeys" -dict-add 64 "{ enabled = 0; value = { parameters = (32, 49, 524288); type = 'standard'; }; }"
+#/usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist \
+#  -c 'Set :AppleSymbolicHotKeys:64:enabled false' \
+#  -c 'Delete :AppleSymbolicHotKeys:64:value:parameters' \
+#  -c 'Add :AppleSymbolicHotKeys:64:value:parameters array' \
+#  -c 'Add :AppleSymbolicHotKeys:64:value:parameters: integer 32' \
+#  -c 'Add :AppleSymbolicHotKeys:64:value:parameters: integer 49' \
+#  -c 'Add :AppleSymbolicHotKeys:64:value:parameters: integer 1048576' \
+#  -c 'Save'
 
 # Set custom public DNS servers (Cloudflare + Google)
 sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4

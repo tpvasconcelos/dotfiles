@@ -218,7 +218,7 @@ else
 fi
 
 # Create playground venv
-PY_PLAYGROUND_VENV="${HOME}/.venv"
+PY_PLAYGROUND_VENV="$HOME/.venvs/.venv"
 if [[ -d "$PY_PLAYGROUND_VENV" ]]; then
   log_success "Playground Python venv already exists at: $PY_PLAYGROUND_VENV"
 else

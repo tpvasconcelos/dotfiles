@@ -33,7 +33,7 @@ export SHELL_DIR_EXTRA_STARTUP_SCRIPTS="$DOTFILES_DIR/shell/extra_startup_script
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Python stuff ---
-export PY_PLAYGROUND_VENV="$HOME/.venv"
+export PY_PLAYGROUND_VENV="$HOME/.venvs/.venv"
 export PIPENV_VERBOSITY=-1
 # Creates .venv in your project directory. Default is to
 # create  new virtual environments in a global location
@@ -105,9 +105,12 @@ typeset -U fpath
 #autoload -Uz "${SHELL_DIR_FUNCTIONS}"/**/*(.:t)
 
 # Source custom functions scripts  ---
-for function_script in "$SHELL_DIR_FUNCTIONS"/*(.); do
-  source "$function_script"
-done
+_zshenv::source_custom_functions() {
+  for function_script in "$SHELL_DIR_FUNCTIONS"/*(.); do
+    source "$function_script"
+  done
+}
+_zshenv::source_custom_functions
 
 ################################################################################
 # If exists, run the extra local startup script
