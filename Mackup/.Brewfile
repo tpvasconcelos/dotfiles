@@ -156,6 +156,7 @@ brew "ncdu"                 # https://dev.yorhel.nl/ncdu
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
+brew "with-readline"        # https://www.greenend.org.uk/rjk/sw/withreadline.html
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
 brew "autojump"             # https://github.com/wting/autojump
@@ -163,7 +164,11 @@ brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 brew "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
+brew "git-town"             # https://git-town.com/
 tap "homebrew/command-not-found"
+
+# Work  ---
+brew "fluent-bit"
 
 
 ################################################################################
@@ -219,6 +224,7 @@ cask "todoist"                  # https://www.todoist.com/home
 # Office apps  ---
 cask "anytype"
 cask "notion"
+cask "notion-calendar"
 cask "microsoft-office"
 cask "microsoft-auto-update"
 cask "libreoffice"
