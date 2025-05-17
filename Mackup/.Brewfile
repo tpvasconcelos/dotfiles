@@ -55,6 +55,7 @@ brew "yarn"
 # Infra/DevOps tools  ---
 brew "ansible"                      # https://www.ansible.com/
 brew "checkov"                      # https://www.checkov.io/
+tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"      # https://developer.hashicorp.com/terraform
 brew "tflint"                       # https://github.com/terraform-linters/tflint
 brew "trivy"                        # https://trivy.dev/
