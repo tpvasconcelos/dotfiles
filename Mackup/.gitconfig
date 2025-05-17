@@ -8,8 +8,6 @@
 	defaultBranch = main
 
 [core]
-    excludesfile = ~/.gitignore_global
-	attributesfile = ~/.gitattributes
     autocrlf = input
     pager = delta
 	fsmonitor = true
