@@ -119,8 +119,8 @@ hc-update-everything() {
   gh extension upgrade --all
 
   # Update npm
-  npm install npm --global
-  npm update --globalyarn global upgrade
+  npm install npm --global --no-fund
+  npm update --global --no-fund
 
   # Update yarn
   yarn global upgrade
