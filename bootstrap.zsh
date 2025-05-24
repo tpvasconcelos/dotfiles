@@ -141,7 +141,7 @@ else
   brew bundle --no-upgrade --file=Mackup/.Brewfile
 fi
 
-alias ln='$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin/ln'
+alias ln='$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin/ln'
 alias sudo-alias='sudo '
 
 

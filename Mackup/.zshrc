@@ -91,7 +91,7 @@ eval "$(uvx --generate-shell-completion zsh)"
 ################################################################################
 # Define aliases
 ################################################################################
-alias ls='gls --color=auto -la'
+alias ls='uls --color=auto -la'
 alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '

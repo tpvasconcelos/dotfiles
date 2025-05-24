@@ -16,11 +16,12 @@ brew "bash-completion@2"
 brew "zsh"
 
 # GNU utils  ---
-brew "coreutils"    # PATH="HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-brew "findutils"    # PATH="HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
-brew "gnu-sed"      # PATH="HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-brew "gnu-tar"      # PATH="HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
-brew "grep"         # PATH="HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
+brew "uutils-coreutils"     # PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
+brew "uutils-findutils"     # PATH="/opt/homebrew/opt/uutils-findutils/libexec/uubin:$PATH"
+brew "uutils-diffutils"     # PATH="/opt/homebrew/opt/uutils-diffutils/libexec/uubin:$PATH"
+brew "gnu-sed"              # PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+brew "gnu-tar"              # PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+brew "grep"                 # PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 brew "moreutils"
 
 # Installing more recent versions of some macOS tools  ---
