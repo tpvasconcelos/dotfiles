@@ -15,13 +15,14 @@ brew "bash"
 brew "bash-completion@2"
 brew "zsh"
 
-# GNU utils  ---
+# Basic utils  ---
 brew "uutils-coreutils"     # PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
 brew "uutils-findutils"     # PATH="/opt/homebrew/opt/uutils-findutils/libexec/uubin:$PATH"
 brew "uutils-diffutils"     # PATH="/opt/homebrew/opt/uutils-diffutils/libexec/uubin:$PATH"
 brew "gnu-sed"              # PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 brew "gnu-tar"              # PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 brew "grep"                 # PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+brew "eza"                  #
 brew "moreutils"
 
 # Installing more recent versions of some macOS tools  ---
@@ -161,7 +162,7 @@ brew "awscli"
 brew "with-readline"        # https://www.greenend.org.uk/rjk/sw/withreadline.html
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
-brew "autojump"             # https://github.com/wting/autojump
+brew "zoxide"             # https://github.com/wting/autojump
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine

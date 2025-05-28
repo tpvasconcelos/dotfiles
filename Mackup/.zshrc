@@ -87,11 +87,14 @@ eval "$(uv generate-shell-completion zsh)"
 # Load uvx's completions
 eval "$(uvx --generate-shell-completion zsh)"
 
+# zoxide (z) - alternative to `cd` and `autojump`
+eval "$(zoxide init zsh)"
+
 
 ################################################################################
 # Define aliases
 ################################################################################
-alias ls='uls --color=auto -la'
+alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --header --git --git-repos --show-symlinks --time-style=relative --no-user'
 alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '

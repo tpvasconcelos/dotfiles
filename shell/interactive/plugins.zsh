@@ -9,7 +9,6 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   # Built-in  ---
-  autojump
   aws
   colored-man-pages
   command-not-found
@@ -22,7 +21,7 @@ plugins=(
   golang
   httpie
   #keychain
-  kubectl
+  #kubectl
   microk8s
   #minikube
   npm
