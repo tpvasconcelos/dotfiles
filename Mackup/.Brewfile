@@ -89,10 +89,11 @@ brew "z3"           # https://github.com/Z3Prover/z3
 cask "mactex"
 
 # Terminal emulators  ---
-# Other terminal emulators to consider:
-# - [alacritty](https://github.com/alacritty/alacritty) - A cross-platform, GPU-accelerated terminal emulator
-# - [Tabby](https://github.com/Eugeny/tabby) - A terminal for a more modern age
 cask "iterm2"                   # https://iterm2.com/
+cask "kitty"                    # https://githb.com/kovidgoyal/kitty
+cask "alacritty"                # https://github.com/alacritty/alacritty
+cask "ghostty"                  # https://github.com/ghostty-org/ghostty
+# OpenInTerminal
 cask "openinterminal-lite"      # https://github.com/Ji4n1ng/OpenInTerminal
 cask "openineditor-lite"        # https://github.com/Ji4n1ng/OpenInTerminal
 
@@ -248,6 +249,8 @@ cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/softwar
 # AI apps  ---
 brew "ollama"                   # https://ollama.com/
 cask "lm-studio"                # https://lmstudio.ai/
+cask "chatgpt"                  # https://chatgpt.com/
+cask "claude"                   # https://claude.ai/download
 
 # Misc apps  ---
 cask "appcleaner"
