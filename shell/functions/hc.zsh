@@ -35,28 +35,48 @@ __check_dotfiles() {
 }
 
 hc-doctor() {
-  # Backup dotfiles
-  dot-backup
+  if [[ "$*" == *--help* ]]; then
+    echo "Usage: hc-doctor [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "    --skip-dot-backup     Skip backing up dotfiles"
+    echo "    --skip-system         Skip checking for system software updates"
+    echo "    --skip-brewfile       Skip Brewfile checks"
+    echo "    --skip-brew-doctor    Skip running brew doctor"
+    echo "    --help                Show this help message and exit"
+    return 0
+  fi
 
-  log_info "Checking for system software updates..."
-  softwareupdate_output=$(softwareupdate --list --all)
-  if [[ "$softwareupdate_output" == *"found the following new or updated software"* ]]; then
-    log_warning "Found available software updates:"
-    softwareupdate_filtered="$(echo "$softwareupdate_output" | awk 'NR > 4')"
-    fg_yellow "$softwareupdate_filtered"
-  else
-    log_success "System software is up-to-date!"
+  if [[ "$*" != *--skip-dot-backup* ]]; then
+    dot-backup
+  fi
+
+  if [[ "$*" != *--skip-system* ]]; then
+    log_info "Checking for system software updates..."
+    softwareupdate_output=$(softwareupdate --list --all)
+    if [[ "$softwareupdate_output" == *"found the following new or updated software"* ]]; then
+      log_warning "Found available software updates:"
+      softwareupdate_filtered="$(echo "$softwareupdate_output" | awk 'NR > 4')"
+      fg_yellow "$softwareupdate_filtered"
+    else
+      log_success "System software is up-to-date!"
+    fi
   fi
 
   __check_dotfiles
   __check_expired_gpg_keys
 
-  brew_bundle_cleanup_output=$(brew bundle cleanup --global)
-  if [[ -n "$brew_bundle_cleanup_output" ]]; then
-    log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
-    echo "${brew_bundle_cleanup_output//brew bundle cleanup/brew bundle cleanup --global}"
-  else
-    log_success "All installed packages are listed in the global Brewfile!"
+  if [[ "$*" != *--skip-brewfile* ]]; then
+    brew_bundle_cleanup_output=$(brew bundle cleanup --global 2>&1)
+    if [[ $? -ne 0 ]]; then
+      log_error "Error running brew bundle cleanup:"
+      echo "$brew_bundle_cleanup_output"
+    elif [[ -n "$brew_bundle_cleanup_output" ]]; then
+      log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
+      echo "${brew_bundle_cleanup_output//brew bundle cleanup/brew bundle cleanup --global}"
+    else
+      log_success "All installed packages are listed in the global Brewfile!"
+    fi
   fi
 
   brew_outdated_output=$(brew outdated --verbose)
@@ -67,8 +87,10 @@ hc-doctor() {
     log_success "Brew packages are up-to-date!"
   fi
 
-  log_info "Running brew doctor..."
-  brew doctor
+  if [[ "$*" != *--skip-brew-doctor* ]]; then
+    log_info "Running brew doctor..."
+    brew doctor
+  fi
 }
 
 hc-update-everything() {
