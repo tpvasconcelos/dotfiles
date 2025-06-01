@@ -73,7 +73,9 @@ brew "pinentry-mac"
 brew "git-lfs"
 brew "git-filter-repo"      # https://github.com/newren/git-filter-repo
 brew "multi-git-status"     # https://github.com/fboender/multi-git-status
+brew "git-town"             # https://git-town.com/
 brew "git-delta"            # https://github.com/dandavison/delta
+brew "git-extras"           # https://github.com/tj/git-extras
 
 # Compilers and relevant binaries  ---
 brew "cmake"
@@ -157,18 +159,19 @@ brew "hugo"                 # https://gohugo.io/getting-started/installing/
 brew "gimme-aws-creds"      # https://github.com/Nike-Inc/gimme-aws-creds
 brew "ffmpeg"
 brew "ncdu"                 # https://dev.yorhel.nl/ncdu
+brew "dust"                 # https://github.com/bootandy/dust
+brew "dua-cli"              # https://github.com/Byron/dua-cli
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"
 brew "with-readline"        # https://www.greenend.org.uk/rjk/sw/withreadline.html
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
-brew "zoxide"             # https://github.com/wting/autojump
+brew "zoxide"               # https://github.com/ajeetdsouza/zoxide
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
-brew "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
-brew "git-town"             # https://git-town.com/
+cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 tap "homebrew/command-not-found"
 
 # Work  ---
@@ -206,7 +209,7 @@ cask "arc"
 cask "google-chrome"
 cask "firefox"
 #cask "tor-browser"
-cask "zen-browser"
+cask "zen"
 # Safari extensions:
 mas "Grammarly for Safari", id: 1462114288
 mas "Dashlane – Password Manager", id: 517914548
