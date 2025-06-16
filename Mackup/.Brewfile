@@ -208,6 +208,7 @@ cask "qlvideo"
 cask "arc"
 cask "google-chrome"
 cask "firefox"
+cask "orion"
 #cask "tor-browser"
 cask "zen"
 # Safari extensions:
