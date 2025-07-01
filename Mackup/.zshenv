@@ -38,6 +38,9 @@ export PIPENV_VERBOSITY=-1
 # Creates .venv in your project directory. Default is to
 # create  new virtual environments in a global location
 export PIPENV_VENV_IN_PROJECT=1
+# By default, gcloud uses the system/global Python installation.
+# We could set a custom env just for gcloud here if we wanted to.
+export CLOUDSDK_PYTHON="$PY_PLAYGROUND_VENV/bin/python"
 
 # Misc ---
 JAVA_HOME="$(/usr/libexec/java_home)"
