@@ -5,3 +5,4 @@ scripts/extra.zsh
 .idea/
 .fleet/
 .venv/
+.aider*

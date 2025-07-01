@@ -163,7 +163,8 @@ brew "dust"                 # https://github.com/bootandy/dust
 brew "dua-cli"              # https://github.com/Byron/dua-cli
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
-brew "awscli"
+brew "awscli"               # https://aws.amazon.com/cli/
+cask "google-cloud-sdk"     # https://cloud.google.com/sdk/
 brew "with-readline"        # https://www.greenend.org.uk/rjk/sw/withreadline.html
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
