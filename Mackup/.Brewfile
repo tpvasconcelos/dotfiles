@@ -137,6 +137,7 @@ cask "font-ubuntu-sans-nerd-font"
 
 # Command line utils  ---
 brew "curl"
+brew "hammerspoon"          # https://www.hammerspoon.org/
 brew "wget"
 brew "croc"                 # https://github.com/schollz/croc
 brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
@@ -255,6 +256,7 @@ brew "ollama"                   # https://ollama.com/
 cask "lm-studio"                # https://lmstudio.ai/
 cask "chatgpt"                  # https://chatgpt.com/
 cask "claude"                   # https://claude.ai/download
+brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 
 # Misc apps  ---
 cask "appcleaner"
