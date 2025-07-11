@@ -76,6 +76,7 @@ brew "multi-git-status"     # https://github.com/fboender/multi-git-status
 brew "git-town"             # https://git-town.com/
 brew "git-delta"            # https://github.com/dandavison/delta
 brew "git-extras"           # https://github.com/tj/git-extras
+brew "diff-so-fancy"        # https://github.com/so-fancy/diff-so-fancy
 
 # Compilers and relevant binaries  ---
 brew "cmake"
