@@ -49,11 +49,21 @@ tau-latest-available() {
     return 1
   fi
 
+  # Determine the appropriate grep command with Perl regex support (-P)
+  if grep --version 2>&1 | grep -q "GNU grep"; then
+    _gnu_grep='grep'
+  elif command -v ggrep &>/dev/null && ggrep --version 2>&1 | grep -q "GNU grep"; then
+    _gnu_grep='ggrep'
+  else
+    log_error "Neither 'grep' nor 'ggrep' with Perl regex (-P) support is available. Please install GNU grep."
+    return 1
+  fi
+
   # uv does not support searching for available versions yet so we'll
   # have to use pyenv to infer the latest available patch version.
   # This should be fine most of the time, but hopefully we'll
   # just migrate to `uv python upgrade` when available...
-  py_version_patch="$(pyenv install --list | ggrep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
+  py_version_patch="$(pyenv install --list | $_gnu_grep -Po '(?<= )[0-9]+\.[0-9]+\.[0-9]+' | grep "^${py_version_user_input}" | tail -n 1 | tr -d '[:space:]')"
   if [[ -z "${py_version_patch}" ]]; then
     # Either this version does not exist (e.g. "4.2.0")
     # or it isn't available in pyenv yet (e.g. "3.14t-dev")
