@@ -149,20 +149,20 @@ alias sudo-alias='sudo '
 # Shell tools
 ################################################################################
 
-PATH_TO_SHELL="${HOMEBREW_PREFIX}/bin/zsh"
-if grep -F -q "$PATH_TO_SHELL" /etc/shells; then
-  log_success "The default shell is already set to the brew-installed zsh shell."
+PATH_TO_ZSHELL="${HOMEBREW_PREFIX}/bin/zsh"
+if grep -F -q "$PATH_TO_ZSHELL" /etc/shells; then
+  log_success "The default shell is already set to the nix-installed Z shell."
 else
-  log_info "Changing the default shell to the brew-installed zsh shell..."
-  echo "$PATH_TO_SHELL" | sudo tee -a /etc/shells
-  chsh -s "$PATH_TO_SHELL"
+  log_info "Changing the default shell to the nix-installed Z shell..."
+  echo "$PATH_TO_ZSHELL" | sudo tee -a /etc/shells
+  chsh -s "$PATH_TO_ZSHELL"
 fi
 
 if [[ -v ZSH ]]; then
-  log_success "oh-my-zsh is already installed!"
+  log_success "Oh My Zsh is already installed!"
 else
-  log_info "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  log_info "Installing Oh My Zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 fi
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
