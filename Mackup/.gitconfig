@@ -2,16 +2,16 @@
     name = Tomas Pereira de Vasconcelos
     email = tomasvasconcelos1@gmail.com
     signingkey = 7A00A0D0C929E374
-	useconfigonly = true
+    useconfigonly = true
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [core]
     autocrlf = input
     pager = diff-so-fancy | less --tabs=4 -RF
-	fsmonitor = true
-	untrackedCache = true
+    fsmonitor = true
+    untrackedCache = true
 
 [commit]
     gpgsign = true
@@ -24,7 +24,7 @@
 
 [pull]
     rebase = true
-	twohead = ort
+    twohead = ort
 
 [help]
     autocorrect = 1
@@ -34,7 +34,7 @@
 
 # https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [rerere]
-	enabled = true
+    enabled = true
 
 [color]
     ui = auto
@@ -54,13 +54,13 @@
 
 # ref: https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
-	textconv = plutil -convert xml1 -o -
+    textconv = plutil -convert xml1 -o -
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [alias]
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
@@ -88,5 +88,5 @@
     path = ~/work/.gitconfig
 
 [maintenance]
-	repo = ~/.dotfiles
-	repo = ~/git_tree/personal_projects/ridgeplot
+    repo = ~/.dotfiles
+    repo = ~/git_tree/personal_projects/ridgeplot
