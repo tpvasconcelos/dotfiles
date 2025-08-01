@@ -19,8 +19,7 @@ cmd_exists() {
     log_error "Usage: cmd_exists <command>"
     return 1
   fi
-  local cmd="$1"
-  command -v "$cmd" > /dev/null 2>&1
+  command -v "$1" > /dev/null 2>&1
 }
 
 need_cmd() {
