@@ -163,11 +163,47 @@ hc-update-everything() {
 }
 
 hc-reclaim-diskspace() {
+  if [[ "$*" == *--help* ]]; then
+    echo "Usage: hc-update-everything [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "    --skip-uv         Skip clearing uv caches"
+    echo "    --skip-nix-store  Skip clearing Nix store"
+    echo "    --help            Show this help message and exit"
+    return 0
+  fi
+
   log_info "Clearing homebrew's caches..."
   brew cleanup -s
 
   log_info "Clearing pipenv, pip, and pip-tools caches..."
   pipenv --clear
+
+  log_info "Clearing npm caches..."
+  npm cache clean --force
+
+  log_info "Clearing yarn caches..."
+  yarn cache clean
+
+  log_info "Clearing pnpm caches..."
+  pnpm store prune
+
+  log_info "Clearing Ruby gems caches..."
+  sudo gem cleanup
+
+  if [[ "$*" == *--skip-uv* ]]; then
+    log_info "Skipping uv caches clearing..."
+  else
+    log_info "Clearing uv caches..."
+    uv cache prune
+  fi
+
+  if [[ "$*" == *--skip-nix-store* ]]; then
+    log_info "Skipping Nix store clearing..."
+  else
+    log_info "Clearing Nix store..."
+    nix-store --gc
+  fi
 
   if docker stats --no-stream &> /dev/null; then
     log_info "Removing docker's unused data..."
