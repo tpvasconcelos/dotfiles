@@ -134,15 +134,15 @@ hc-update-everything() {
 
   # Update Flutter and Dart
   if [[ "$*" == *--flutter* ]]; then
-    flutter-update
+    flutter upgrade
   fi
 
   # Upgrade all `gh` CLI extensions
   gh extension upgrade --all
 
   # Update npm
-  npm install npm --global --no-fund
-  npm update --global --no-fund
+  sudo npm install npm --global --no-fund
+  sudo npm update --global --no-fund
 
   # Update yarn
   yarn global upgrade
