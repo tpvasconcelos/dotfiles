@@ -112,11 +112,6 @@ hc-update-everything() {
     log_warning "Skipping omz update. ZSH is not available which means that you're probably running in non-interactive mode."
   fi
 
-  if [[ "$*" == *--system* ]]; then
-    # System software update
-    sudo softwareupdate --install --all --verbose --force --agree-to-license
-  fi
-
   # Update brew packages
   brew update
   brew bundle --global
@@ -155,6 +150,11 @@ hc-update-everything() {
 
   # Backup dotfiles
   dot-backup
+
+  # System software update
+  if [[ "$*" == *--system* ]]; then
+    sudo softwareupdate --install --all --verbose --force --agree-to-license
+  fi
 
   log_success "Done! 🚀"
 
