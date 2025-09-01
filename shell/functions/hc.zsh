@@ -174,7 +174,7 @@ hc-reclaim-diskspace() {
   fi
 
   log_info "Clearing homebrew's caches..."
-  brew cleanup -s
+  brew cleanup --scrub
 
   log_info "Clearing pipenv, pip, and pip-tools caches..."
   pipenv --clear
