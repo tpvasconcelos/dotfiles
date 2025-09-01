@@ -68,12 +68,13 @@ hc-doctor() {
 
   if [[ "$*" != *--skip-brewfile* ]]; then
     brew_bundle_cleanup_output=$(brew bundle cleanup --global 2>&1)
+    brew_bundle_cleanup_output="${brew_bundle_cleanup_output//brew bundle cleanup/brew bundle cleanup --global}"
     if [[ $? -ne 0 ]]; then
       log_error "Error running brew bundle cleanup:"
       echo "$brew_bundle_cleanup_output"
     elif [[ -n "$brew_bundle_cleanup_output" ]]; then
       log_warning "Found installed packages not listed in the global Brewfile! You may want to update it."
-      echo "${brew_bundle_cleanup_output//brew bundle cleanup/brew bundle cleanup --global}"
+      echo "$brew_bundle_cleanup_output"
     else
       log_success "All installed packages are listed in the global Brewfile!"
     fi
