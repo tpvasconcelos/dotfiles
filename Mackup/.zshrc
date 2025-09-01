@@ -101,6 +101,7 @@ alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '
 alias p='pycharm .'
+alias j='z'  # I keep using j (autojump) instead of z (zoxide) because of muscle memory...
 
 
 ################################################################################
