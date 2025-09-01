@@ -261,25 +261,25 @@ brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 
 # Misc apps  ---
 cask "appcleaner"
-cask "pearcleaner"                      # https://github.com/alienator88/Pearcleaner
+cask "pearcleaner"                      	# https://github.com/alienator88/Pearcleaner
 cask "macs-fan-control"
 cask "spotify"
 cask "vlc"
-cask "iina"                             # https://iina.io/
-cask "calibre"                          # https://calibre-ebook.com/
-cask "betterdisplay"                    # https://github.com/waydabber/BetterDisplay
-cask "disk-inventory-x"
-cask "imageoptim"                       # https://github.com/ImageOptim/ImageOptim
+cask "iina"                                 # https://iina.io/
+cask "calibre"                              # https://calibre-ebook.com/
+cask "betterdisplay"                        # https://github.com/waydabber/BetterDisplay
+cask "tpvasconcelos/tap/disk-inventory-x"   # https://www.derlien.com/
+cask "imageoptim"                           # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"
-cask "image2icon"                       # https://img2icnsapp.com/
-cask "gimp"                             # https://www.gimp.org/
+cask "image2icon"                           # https://img2icnsapp.com/
+cask "gimp"                                 # https://www.gimp.org/
 cask "p4v"
-cask "diffmerge"
-cask "thorium"                          # https://github.com/edrlab/thorium-reader
-cask "istherenet"                       # https://lowtechguys.com/istherenet/
-cask "alt-tab"                          # https://github.com/lwouis/alt-tab-macos
+cask "tpvasconcelos/tap/diffmerge"          # https://www.sourcegear.com/diffmerge/
+cask "thorium"                              # https://github.com/edrlab/thorium-reader
+cask "istherenet"                           # https://lowtechguys.com/istherenet/
+cask "alt-tab"                              # https://github.com/lwouis/alt-tab-macos
 #cask "vuze"
-cask "transmission"                     # https://transmissionbt.com/
+cask "transmission"                         # https://transmissionbt.com/
 cask "zotero"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984
