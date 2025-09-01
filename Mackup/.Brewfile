@@ -16,13 +16,16 @@ brew "bash-completion@2"
 brew "zsh"
 
 # Basic utils  ---
-brew "uutils-coreutils"     # PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
+# There are a lot of formulas that depend on coreutils which makes it hard
+# to migrate to uutils-coreutils for now (needs more investigation...)
+brew "coreutils"            # PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+# brew "uutils-coreutils"   # PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
 brew "uutils-findutils"     # PATH="/opt/homebrew/opt/uutils-findutils/libexec/uubin:$PATH"
 brew "uutils-diffutils"     # PATH="/opt/homebrew/opt/uutils-diffutils/libexec/uubin:$PATH"
 brew "gnu-sed"              # PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 brew "gnu-tar"              # PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 brew "grep"                 # PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
-brew "eza"                  #
+brew "eza"                  # https://github.com/eza-community/eza
 brew "moreutils"
 
 # Installing more recent versions of some macOS tools  ---
@@ -261,25 +264,25 @@ brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 
 # Misc apps  ---
 cask "appcleaner"
-cask "pearcleaner"                      	# https://github.com/alienator88/Pearcleaner
+cask "pearcleaner"                      # https://github.com/alienator88/Pearcleaner
 cask "macs-fan-control"
 cask "spotify"
 cask "vlc"
-cask "iina"                                 # https://iina.io/
-cask "calibre"                              # https://calibre-ebook.com/
-cask "betterdisplay"                        # https://github.com/waydabber/BetterDisplay
-cask "tpvasconcelos/tap/disk-inventory-x"   # https://www.derlien.com/
-cask "imageoptim"                           # https://github.com/ImageOptim/ImageOptim
+cask "iina"                             # https://iina.io/
+cask "calibre"                          # https://calibre-ebook.com/
+cask "betterdisplay"                    # https://github.com/waydabber/BetterDisplay
+cask "disk-inventory-x"
+cask "imageoptim"                       # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"
-cask "image2icon"                           # https://img2icnsapp.com/
-cask "gimp"                                 # https://www.gimp.org/
+cask "image2icon"                       # https://img2icnsapp.com/
+cask "gimp"                             # https://www.gimp.org/
 cask "p4v"
-cask "tpvasconcelos/tap/diffmerge"          # https://www.sourcegear.com/diffmerge/
-cask "thorium"                              # https://github.com/edrlab/thorium-reader
-cask "istherenet"                           # https://lowtechguys.com/istherenet/
-cask "alt-tab"                              # https://github.com/lwouis/alt-tab-macos
+cask "diffmerge"
+cask "thorium"                          # https://github.com/edrlab/thorium-reader
+cask "istherenet"                       # https://lowtechguys.com/istherenet/
+cask "alt-tab"                          # https://github.com/lwouis/alt-tab-macos
 #cask "vuze"
-cask "transmission"                         # https://transmissionbt.com/
+cask "transmission"                     # https://transmissionbt.com/
 cask "zotero"
 mas "Amphetamine", id: 937984704
 mas "GIPHY CAPTURE", id: 668208984

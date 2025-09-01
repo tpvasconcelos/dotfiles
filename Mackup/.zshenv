@@ -63,7 +63,8 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/bin"
   "$HOMEBREW_PREFIX/sbin"
   # Then everything else...
-  "$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin"
+  "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+  # "$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin"
   "$HOMEBREW_PREFIX/opt/uutils-findutils/libexec/uubin"
   "$HOMEBREW_PREFIX/opt/uutils-diffutils/libexec/uubin"
   "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin"
