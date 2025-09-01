@@ -86,6 +86,8 @@ zstyle ':completion:*' menu yes select
 eval "$(uv generate-shell-completion zsh)"
 # Load uvx's completions
 eval "$(uvx --generate-shell-completion zsh)"
+# Enables gcloud completions
+source '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'
 
 # zoxide (z) - alternative to `cd` and `autojump`
 eval "$(zoxide init zsh)"
