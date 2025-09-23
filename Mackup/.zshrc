@@ -86,8 +86,6 @@ zstyle ':completion:*' menu yes select
 eval "$(uv generate-shell-completion zsh)"
 # Load uvx's completions
 eval "$(uvx --generate-shell-completion zsh)"
-# Enables gcloud completions
-source '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'
 
 # zoxide (z) - alternative to `cd` and `autojump`
 eval "$(zoxide init zsh)"
@@ -101,7 +99,15 @@ alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '
 alias p='pycharm .'
-alias j='z'  # I keep using j (autojump) instead of z (zoxide) because of muscle memory...
+alias j='z'  # muscle memory from using `j` (autojump) for years
+
+
+################################################################################
+# Misc stuff
+################################################################################
+
+# https://docs.brew.sh/Command-Not-Found
+source "${HOMEBREW_REPOSITORY}/Library/Homebrew/command-not-found/handler.sh"
 
 
 ################################################################################

@@ -177,7 +177,6 @@ brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
-tap "homebrew/command-not-found"
 
 # Work  ---
 brew "fluent-bit"
