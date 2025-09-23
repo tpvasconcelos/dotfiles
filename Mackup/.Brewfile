@@ -201,7 +201,6 @@ cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
 cask "postman"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "devutils"                 # https://devutils.com/
-cask "hammerspoon"              # https://www.hammerspoon.org/
 
 # Quick-look plugins  ---
 cask "syntax-highlight"
