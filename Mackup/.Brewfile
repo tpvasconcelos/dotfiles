@@ -231,12 +231,13 @@ cask "adobe-acrobat-reader"     # https://www.adobe.com/acrobat/pdf-reader.html
 cask "viz"                      # https://github.com/alienator88/Viz
 cask "ticktick"                 # https://www.ticktick.com/home
 cask "todoist"                  # https://www.todoist.com/home
-cask "hammerspoon"          # https://www.hammerspoon.org/
+cask "hammerspoon"              # https://www.hammerspoon.org/
 
 # Office apps  ---
 cask "anytype"
 cask "notion"
 cask "notion-calendar"
+cask "linear-linear"            # https://linear.app/
 cask "microsoft-office"
 cask "microsoft-auto-update"
 cask "libreoffice"
