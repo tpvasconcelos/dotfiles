@@ -82,7 +82,7 @@
     sp = !git stash pop stash@{"$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"}
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     susf = !"git push --set-upstream fork $(git rev-parse --abbrev-ref HEAD)"
-    update = "!f() { git sb ${1} && git mm ${2:-main}; }; f"
+    update = "!f() { git sb ${1} && git pull && git mm ${2-main}; }; f"
     obliterate = "!f() { git filter-branch --force --index-filter \"git rm -r --cached \\\"$1\\\" --ignore-unmatch\" --prune-empty --tag-name-filter cat -- --all; }; f"
     hub = !gh repo view --web
 
