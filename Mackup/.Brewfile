@@ -194,9 +194,8 @@ cask "logi-options+"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
-cask "r"
-mas "Xcode", id: 497799835
 cask "r-app"
+#mas "Xcode", id: 497799835
 
 # Other desktop dev tools  ---
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
