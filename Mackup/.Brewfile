@@ -33,6 +33,7 @@ brew "vim"
 brew "openssh"
 brew "screen"
 brew "gmp"
+brew "rsync"                # https://rsync.samba.org/
 
 # Python dev tools  ---
 brew "pyenv"                # TODO: Remove this once uv completely replaces pyenv in tau
@@ -178,6 +179,7 @@ brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 brew "just"                 # https://github.com/casey/just
+brew "unison"               # https://www.cis.upenn.edu/~bcpierce/unison/
 
 # Work  ---
 brew "fluent-bit"
@@ -236,8 +238,9 @@ cask "hammerspoon"                                      # https://www.hammerspoo
 
 # Office apps  ---
 cask "anytype"
-cask "notion"
+cask "notion"                   # https://www.notion.so/
 cask "notion-calendar"
+cask "obsidian"                 # https://obsidian.md/
 cask "linear-linear"            # https://linear.app/
 cask "microsoft-office"
 cask "microsoft-auto-update"
@@ -262,6 +265,7 @@ cask "lm-studio"                # https://lmstudio.ai/
 cask "chatgpt"                  # https://chatgpt.com/
 cask "claude"                   # https://claude.ai/download
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
+cask "codex"                    # https://github.com/openai/codex
 
 # Misc apps  ---
 cask "appcleaner"
