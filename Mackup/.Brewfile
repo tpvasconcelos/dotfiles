@@ -44,7 +44,7 @@ brew "openjdk@11"
 
 # Databases  ---
 brew "sqlite"
-brew "postgresql@14"        # https://www.postgresql.org/
+brew "postgresql"           # https://www.postgresql.org/
 brew "redis"
 
 # Kafka tools  ---
@@ -206,10 +206,9 @@ cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "devutils"                 # https://devutils.com/
 
 # Quick-look plugins  ---
-cask "syntax-highlight"
-cask "qlstephen"
-cask "qlmarkdown"
-cask "qlvideo"
+brew "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
+brew "qlvideo"                  # https://github.com/Marginal/QLVideo
+brew "glance-chamburr"          # https://github.com/chamburr/glance
 
 # Web Browsers  ---
 cask "arc"
