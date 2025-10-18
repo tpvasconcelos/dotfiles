@@ -2,7 +2,7 @@ dot-backup() {
   # Copy files from the local machine to Mackup's backup directory
   # https://github.com/lra/mackup/issues/1924
   log_info "Backing up Mackup-managed files..."
-  mackup backup --force && mackup install --force
+  mackup backup --force && mackup uninstall --force
 }
 
 dot-update-system() {
