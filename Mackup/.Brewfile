@@ -196,6 +196,7 @@ cask "visual-studio-code"
 cask "sublime-text"
 cask "r"
 mas "Xcode", id: 497799835
+cask "r-app"
 
 # Other desktop dev tools  ---
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
