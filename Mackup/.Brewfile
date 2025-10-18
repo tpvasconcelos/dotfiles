@@ -104,7 +104,7 @@ cask "openinterminal-lite"      # https://github.com/Ji4n1ng/OpenInTerminal
 cask "openineditor-lite"        # https://github.com/Ji4n1ng/OpenInTerminal
 
 # Docker and virtualbox  ---
-cask "docker"
+cask "docker-desktop"
 #cask "virtualbox"
 
 # Kubernetes dev tools  ---
@@ -168,7 +168,7 @@ brew "dua-cli"              # https://github.com/Byron/dua-cli
 brew "shellcheck"           # https://github.com/koalaman/shellcheck
 brew "bat"                  # https://github.com/sharkdp/bat
 brew "awscli"               # https://aws.amazon.com/cli/
-cask "google-cloud-sdk"     # https://cloud.google.com/sdk/
+cask "gcloud-cli"           # https://cloud.google.com/sdk/
 brew "with-readline"        # https://www.greenend.org.uk/rjk/sw/withreadline.html
 brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
@@ -232,7 +232,7 @@ cask "zotero"                                           # https://www.zotero.org
 cask "adobe-acrobat-reader"                             # https://www.adobe.com/acrobat/pdf-reader.html
 cask "viz"                                              # https://github.com/alienator88/Viz
 mas "TickTick:To-Do List, Calendar", id: 966085870      # https://www.ticktick.com/home
-cask "todoist"                                          # https://www.todoist.com/home
+cask "todoist-app"                                      # https://www.todoist.com/home
 cask "hammerspoon"                                      # https://www.hammerspoon.org/
 
 # Office apps  ---
