@@ -62,6 +62,9 @@
     process = git-lfs filter-process
     required = true
 
+[feature]
+	manyFiles = true
+
 [alias]
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
     ls = log --pretty='format:%C(auto)%h [%ad] %s' --date=short
