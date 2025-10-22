@@ -1,4 +1,4 @@
-__check_expired_gpg_keys() {
+_hc::check_expired_gpg_keys() {
   # Check for expired gpg keys
   yellow-bold() {
     fg_yellow "$(bold "$*")"
@@ -15,7 +15,7 @@ __check_expired_gpg_keys() {
   fi
 }
 
-__check_dotfiles() {
+_hc::check_dotfiles() {
   # Check DOTFILES_DIR is set
   if [[ -z "$DOTFILES_DIR" ]]; then
     log_error "The DOTFILES_DIR environment variable is not set!"
@@ -63,8 +63,8 @@ hc-doctor() {
     fi
   fi
 
-  __check_dotfiles
-  __check_expired_gpg_keys
+  _hc::check_dotfiles
+  _hc::check_expired_gpg_keys
 
   if [[ "$*" != *--skip-brewfile* ]]; then
     brew_bundle_cleanup_output=$(brew bundle cleanup --global 2>&1)
@@ -147,7 +147,7 @@ hc-update-everything() {
   sudo gem update --system
 
   # Check for expired gpg keys
-  __check_expired_gpg_keys
+  _hc::check_expired_gpg_keys
 
   # Backup dotfiles
   dot-backup
