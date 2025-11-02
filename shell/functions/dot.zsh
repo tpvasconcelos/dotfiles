@@ -13,7 +13,7 @@ dot-backup() {
     return 0
   fi
   log_info "Backing up Mackup-managed files..."
-  mackup backup --force && mackup uninstall --force
+  mackup backup --force
 }
 
 dot-update-system() {
@@ -28,7 +28,7 @@ dot-update-system() {
     return 0
   fi
   log_info "Restoring Mackup-managed files..."
-  mackup restore --force && mackup uninstall --force
+  mackup restore --force
   if [[ "$*" == *--restart-shell* ]]; then
     log_warning "Restarting the shell to apply dotfiles changes..."
     exec zsh
