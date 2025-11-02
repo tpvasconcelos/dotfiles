@@ -206,9 +206,9 @@ cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "devutils"                 # https://devutils.com/
 
 # Quick-look plugins  ---
-brew "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
-brew "qlvideo"                  # https://github.com/Marginal/QLVideo
-brew "glance-chamburr"          # https://github.com/chamburr/glance
+cask "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
+cask "qlvideo"                  # https://github.com/Marginal/QLVideo
+cask "glance-chamburr"          # https://github.com/chamburr/glance
 
 # Web Browsers  ---
 cask "arc"
