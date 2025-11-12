@@ -63,7 +63,7 @@ green-bold() {
 ################################################################################
 log_warning "Some of the steps in this script require admin privileges.
 Please enter your password now to avoid being prompted multiple times throughout the script."
-sudo -v
+sudo --validate
 while true; do
   sudo -n true
   sleep 30
