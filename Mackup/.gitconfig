@@ -67,25 +67,26 @@
 
 [alias]
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'    # list all aliases
+    st = status
     ls = log --pretty='format:%C(auto)%h [%ad] %s' --date=short
     aa = add -A
     cm = commit -s -m
     ca = !git aa && git cm
     scm = "!f() { faketime \"$(date '+%Y-%m-%d') ${2:-18:17:42}\" git cm \"${1}\"; }; f"
-    sb = switch --guess
-    co = checkout
-    st = status
     undo = !git reset HEAD~
-    db = branch -D
-    dbo = push origin --delete
+    pl = !git pull origin "$(git rev-parse --abbrev-ref HEAD)"
+    pp = !git pl && git push
+    co = checkout
+    sb = switch --guess
     nb = "!f() { git sb --create $1 && git sus; }; f"
-    pp = !git pull && git push
     mm = "!f() { git pull && git sb ${1:-main} && git pull && git sb - && git merge ${1:-main} --no-edit; }; f"
-    ss = !git stash save "$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"
-    sp = !git stash pop stash@{"$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"}
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     susf = !"git push --set-upstream fork $(git rev-parse --abbrev-ref HEAD)"
     update = "!f() { git sb ${1} && git pull && git mm ${2-main}; }; f"
+    db = branch -D
+    dbo = push origin --delete
+    ss = !git stash save "$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"
+    sp = !git stash pop stash@{"$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"}
     obliterate = "!f() { git filter-branch --force --index-filter \"git rm -r --cached \\\"$1\\\" --ignore-unmatch\" --prune-empty --tag-name-filter cat -- --all; }; f"
     hub = !gh repo view --web
 
