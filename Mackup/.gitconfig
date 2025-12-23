@@ -85,6 +85,7 @@
     update = "!f() { git sb ${1} && git pull && git mm ${2-main}; }; f"
     db = branch -D
     dbo = push origin --delete
+    track-branch = "!f() { git remote set-branches --add origin $1 && git fetch origin $1; }; f"
     ss = !git stash save "$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"
     sp = !git stash pop stash@{"$(git rev-parse --abbrev-ref HEAD)/$(git rev-parse --short HEAD)"}
     obliterate = "!f() { git filter-branch --force --index-filter \"git rm -r --cached \\\"$1\\\" --ignore-unmatch\" --prune-empty --tag-name-filter cat -- --all; }; f"
