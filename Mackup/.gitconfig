@@ -79,10 +79,10 @@
     co = checkout
     sb = switch --guess
     nb = "!f() { git sb --create $1 && git sus; }; f"
-    mm = "!f() { git pull && git sb ${1:-main} && git pull && git sb - && git merge ${1:-main} --no-edit; }; f"
+    mm = "!f() { git pl && git sb ${1:-main} && git pl && git sb - && git merge ${1:-main} --no-edit; }; f"
     sus = !"git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     susf = !"git push --set-upstream fork $(git rev-parse --abbrev-ref HEAD)"
-    update = "!f() { git sb ${1} && git pull && git mm ${2-main}; }; f"
+    update = "!f() { git sb ${1} && git pl && git mm ${2-main}; }; f"
     db = branch -D
     dbo = push origin --delete
     track-branch = "!f() { git remote set-branches --add origin $1 && git fetch origin $1; }; f"
