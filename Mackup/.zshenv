@@ -75,7 +75,6 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/ruby/bin"
   "$HOMEBREW_PREFIX/share/google-cloud-sdk/bin"
   "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
-  "$HOME/.amp/bin"
   "$HOME/.cargo/bin"
   "$HOME/.flutter/bin"
   "$HOME/.gem/bin"
