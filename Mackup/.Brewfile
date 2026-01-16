@@ -135,7 +135,7 @@ cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
-cask "font-opendyslexic-nerd-font"
+cask "font-open-dyslexic-nerd-font"
 cask "font-roboto-mono-nerd-font"
 cask "font-ubuntu-nerd-font"
 cask "font-ubuntu-sans-nerd-font"
@@ -263,6 +263,7 @@ brew "ollama"                   # https://ollama.com/
 cask "lm-studio"                # https://lmstudio.ai/
 cask "chatgpt"                  # https://chatgpt.com/
 cask "claude"                   # https://claude.ai/download
+#cask "claude-code"              # https://claude.com/product/claude-code
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 cask "codex"                    # https://github.com/openai/codex
 

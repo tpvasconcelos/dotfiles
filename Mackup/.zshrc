@@ -68,6 +68,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # Zle ---
 setopt NO_BEEP                  # Disable beep on error.
 
+# Misc ---
+export COLORTERM='truecolor'
+
 # Completion ---
 setopt AUTO_LIST                # Automatically list choices on ambiguous completion.
 setopt AUTO_MENU                # Automatically use menu completion after the second consecutive request.
