@@ -160,3 +160,27 @@ helpopt() {
   [[ $opt == -* ]] || { ((${#opt} == 1)) && opt="-$opt" || opt="--$opt"; }
   run-help "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
 }
+
+web2md() {
+  # Fetch a webpage and convert it to markdown
+  #
+  # Usage:
+  #   web2md <url>
+  #
+  # Arguments:
+  #   $1  URL of the webpage to convert
+  #
+  # Examples:
+  #   $ web2md "https://example.com"
+  #   # Outputs the markdown content of the webpage
+  #
+  # This works by leveraging jina.ai's feature that works by
+  # calling "https://r.jina.ai/${url}" which converts
+  # the webpage at <url> to markdown.
+  local url="$1"
+  if [[ -z "$url" ]]; then
+    log_error "Usage: web2md <url>"
+    return 1
+  fi
+  curl -s "https://r.jina.ai/${url}"
+}
