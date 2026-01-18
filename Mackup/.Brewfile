@@ -68,6 +68,7 @@ brew "trivy"                        # https://trivy.dev/
 brew "minamijoyo/tfupdate/tfupdate" # https://github.com/minamijoyo/tfupdate
 brew "hcloud"                       # https://github.com/hetznercloud/cli
 brew "ssh-audit"                    # https://github.com/jtesta/ssh-audit
+brew "direnv"                       # https://direnv.net/
 
 # git  ---
 brew "git"

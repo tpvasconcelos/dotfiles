@@ -8,12 +8,35 @@
 #
 _ZSHRC_LOADED=true
 
+
+################################################################################
+# direnv
+# general instructions:
+#   https://direnv.net/docs/hook.html
+# powerlevel10k instant prompt integration:
+#   https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-initialize-direnv-when-using-instant-prompt
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+################################################################################
+
+
 ################################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#instant-prompt
+# https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-configure-instant-prompt
 ################################################################################
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+_P10K_INSTANT_PROMPT_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${_P10K_INSTANT_PROMPT_FILE}" ]]; then
+  source "${_P10K_INSTANT_PROMPT_FILE}"
+fi
+
+
+################################################################################
+# direnv (continued)
+# See direnv integration instructions above
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+################################################################################
 
 
 ################################################################################
