@@ -194,7 +194,7 @@ fi
 ########################
 # Python
 ########################
-tau-install-multi "${TAU_VERSIONS:-3.8 3.9 3.10 3.11 3.12 3.13}"
+tau-install-multi "${TAU_VERSIONS:-3.9 3.10 3.11 3.12 3.13 3.14}"
 
 # Install some global Python packages with 'uv tool' (uvx)
 _uvx_packages_to_install=('poetry' 'pipenv' 'cookiecutter' 'argcomplete' 'ssh-audit')
@@ -223,7 +223,7 @@ if [[ -d "$PY_PLAYGROUND_VENV" ]]; then
   log_success "Playground Python venv already exists at: $PY_PLAYGROUND_VENV"
 else
   log_info "Creating playground Python venv at: $PY_PLAYGROUND_VENV"
-  uv venv --python=3.13 "$PY_PLAYGROUND_VENV"
+  uv venv --python=3.14 "$PY_PLAYGROUND_VENV"
 fi
 
 
