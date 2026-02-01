@@ -13,7 +13,7 @@ _tau::mk_root_dir() {
 _tau::patch_to_minor() {
   # Extract the minor version from a patch version
   #
-  # Example usage:
+  # Examples:
   #
   #   $ echo "3.8.5" | _tau::patch_to_minor
   #   3.8

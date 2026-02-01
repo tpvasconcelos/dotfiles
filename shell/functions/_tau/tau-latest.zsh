@@ -1,21 +1,13 @@
 tau-latest-available() {
-  # Infer the latest available Python patch version from a major or
-  # minor version
+  # Usage: tau latest-available [version]
   #
-  # This shell function takes in a single input, which should be a
-  # string representation of a Python version in the format of "major",
-  # "major.minor", or "major.minor.patch". Alternatively, an empty
-  # string can be passed as input, in which case the latest available
-  # stable version of Python will be installed.
-  #
-  # Usage:
-  #   tau latest-available [<version>]
+  # Print the latest available Python patch version from a major or
+  # minor version. If no version is provided, the latest stable Python
+  # version will be printed.
   #
   # Arguments:
-  #   * $1 : Empty string or a valid Python version number (matching
-  #          the "^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$" regex). If an
-  #          empty string is provided, it defaults to the latest
-  #          stable Python version.
+  #   [version]   Optional Python version (major, major.minor, or major.minor.patch).
+  #               Defaults to the latest stable version when omitted.
   #
   # Examples:
   #

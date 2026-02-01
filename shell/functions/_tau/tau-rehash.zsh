@@ -43,6 +43,10 @@ _tau::write_pip_shim() {
 }
 
 tau-rehash() {
+  # Usage: tau rehash
+  #
+  # Regenerate python and pip shims for all installed Python versions
+  #
   local py_installed_versions py_versions pyv_minor
   _tau::mk_root_dir
   # shellcheck disable=SC2296
@@ -52,6 +56,7 @@ tau-rehash() {
     _tau::write_py_shim "${pyv_minor}"
     _tau::write_pip_shim "${pyv_minor}"
   done
+  # Also create shims for 'python', 'python3', 'pip', and 'pip3'
   _tau::write_pip_shim ""
   _tau::write_pip_shim "3"
   _tau::write_py_shim ""

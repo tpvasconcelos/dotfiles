@@ -1,13 +1,12 @@
 tau-versions() {
-  # Print the currently installed Python versions
+  # Usage: tau versions [--minor] [--latest] [--squash]
   #
-  # Usage:
-  #   tau versions [--minor] [--latest] [--squash]
+  # Print Python versions installed in this system (via tau or uv).
   #
   # Options:
-  #   * --minor : Use minor versions instead of patch version numbers
-  #   * --latest : Print the latest version only
-  #   * --squash : Print the versions on a single line
+  #   --minor     Output minor versions instead of patch versions.
+  #   --latest    Print only the latest version.
+  #   --squash    Print versions on a single line.
   #
   # Examples:
   #

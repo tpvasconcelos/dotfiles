@@ -1,5 +1,7 @@
 tau-install() {
-  # Install a managed Python version using uv
+  # Usage: tau install [version]
+  #
+  # Install a managed Python version using uv.
   #
   # This shell function is used to install a specific version of Python
   # using the uv CLI tool. The function takes in a single input, which
@@ -8,14 +10,10 @@ tau-install() {
   # an empty string can be passed as input, in which case the latest
   # available stable version of Python will be installed.
   #
-  # Usage:
-  #   tau install <version>
-  #
   # Arguments:
-  #   * $1 : Empty string or a valid Python version number (matching
-  #          the "^$|^([0-9]+\.)?([0-9]+\.)?([0-9]+)$" regex). If an
-  #          empty string is provided, it defaults to the latest
-  #          stable Python version.
+  #   [version]   Optional valid Python version number (major, major.minor, or
+  #               major.minor.patch). Defaults to the latest stable version when
+  #               omitted.
   #
   # Examples:
   #
@@ -50,9 +48,17 @@ tau-install() {
 }
 
 tau-install-multi(){
-  # Install multiple Python versions (see `tau install`)
+  # Usage: tau install-multi [--dry-run] <version> [version ...]
   #
-  # Usage: tau install-multi [--dry-run] <version> [<version> ...]
+  # Install multiple Python versions in parallel.
+  # See `tau install` for more details on version specification.
+  #
+  # Options:
+  #   --dry-run     Print what would be installed without making changes.
+  #
+  # Arguments:
+  #   <version>     One or more Python version numbers (major, major.minor,
+  #                 or major.minor.patch). If no versions are provided, the
   #
   dry_run=false
   if [[ "$1" == "--dry-run" ]]; then

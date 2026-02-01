@@ -30,7 +30,7 @@ _tau::print_help() {
     echo "  ${cmd}"
   done < <(_tau::list_commands)
   echo ""
-  echo "Run 'tau <command> --help' for command-specific usage."
+  echo "Run 'tau <command> -h/--help' for command-specific usage."
 }
 
 tau() {

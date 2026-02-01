@@ -1,9 +1,14 @@
 tau-clean-pip() {
-  # Upgrade build tools and uninstall all other packages
+  # Usage: tau clean-pip [py-exec]
+  #
+  # Uninstall all non-core packages for a Python executable.
+  # Note that this function also keeps and upgrades pip, setuptools,
+  # and wheel to the latest versions.
   #
   # Arguments:
-  #   * $1 : A python executable (e.g. python, python3, python3.9, etc).
-  #          If not provided, it defaults to 'python'.
+  #   [py-exec]     Optional python executable to 'clean' (e.g. python,
+  #                 python3, python3.9, etc). If not provided, it
+  #                 defaults to 'python'.
   #
   # Examples:
   #
@@ -28,14 +33,13 @@ tau-clean-pip() {
 }
 
 tau-clean-all-pips() {
-  # Run `tau clean-pip` for all python versions installed on the system.
+  # Usage: tau clean-all-pips
+  #
+  # Runs `tau clean-pip` for all python versions installed on the system.
   #
   # Upgrade build tools and uninstall all other packages for all
   # python versions. This function iterates over the following python
   # executables: python, python3, python3.7, python3.8, python3.9, etc.
-  #
-  # Arguments:
-  #   * <NONE>
   #
   # Examples:
   #
