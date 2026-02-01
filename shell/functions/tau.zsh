@@ -33,7 +33,33 @@ _tau::print_help() {
   echo "Run 'tau <command> -h/--help' for command-specific usage."
 }
 
+tau-list-cmds() {
+  # Usage: tau list-cmds
+  #
+  # List all available tau commands.
+  #
+  # Examples:
+  #
+  #   $ tau list-cmds
+  #   tau autoupgrade
+  #   tau clean-all-pips
+  #   ...
+  #
+  _tau::list_commands | sed 's/^/tau /'
+}
+
 tau() {
+  # Usage: tau [-h/--help] <command> [args]
+  #
+  # Main entry point for the tau command-line tool.
+  #
+  # Arguments:
+  #   <command>    The tau sub-command to execute.
+  #   [args]       Additional arguments to pass to the sub-command.
+  #
+  # Options:
+  #   -h, --help   Show this help message and exit.
+  #
   local cmd fn_name
   cmd="${1:-}"
   if [[ -z "${cmd}" || "${cmd}" == "help" || "${cmd}" == "-h" || "${cmd}" == "--help" ]]; then
