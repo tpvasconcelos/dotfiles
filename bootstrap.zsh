@@ -194,7 +194,7 @@ fi
 ########################
 # Python
 ########################
-tau-install-multi "${TAU_VERSIONS:-3.9 3.10 3.11 3.12 3.13 3.14}"
+tau install-multi "${TAU_VERSIONS:-3.9 3.10 3.11 3.12 3.13 3.14}"
 
 # Install some global Python packages with 'uv tool' (uvx)
 _uvx_packages_to_install=('poetry' 'pipenv' 'cookiecutter' 'argcomplete' 'ssh-audit')
