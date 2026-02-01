@@ -7,13 +7,13 @@ tau-clean-pip() {
   #
   # Examples:
   #
-  #   $ tau-clean-pip
+  #   $ tau clean-pip
   #   [ℹ] [python] Uninstalling all packages...
   #   Found existing installation: numpy 1.23.4
   #   Uninstalling numpy-1.23.4:
   #     Successfully uninstalled numpy-1.23.4
   #
-  #   $ tau-clean-pip python3.7
+  #   $ tau clean-pip python3.7
   #   [⋯] [python3.7] No packages to uninstall.
   #
   local py_executable pkgs_to_uninstall
@@ -28,7 +28,7 @@ tau-clean-pip() {
 }
 
 tau-clean-all-pips() {
-  # Run `tau-clean-pip` for all python versions installed on the system.
+  # Run `tau clean-pip` for all python versions installed on the system.
   #
   # Upgrade build tools and uninstall all other packages for all
   # python versions. This function iterates over the following python
@@ -39,7 +39,7 @@ tau-clean-all-pips() {
   #
   # Examples:
   #
-  #   $ tau-clean-all-pips
+  #   $ tau clean-all-pips
   #   [ℹ] [python] Uninstalling all packages...
   #   ...
   #   [ℹ] [python3.7] No packages to uninstall.

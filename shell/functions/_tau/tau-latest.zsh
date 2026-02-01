@@ -9,7 +9,7 @@ tau-latest-available() {
   # stable version of Python will be installed.
   #
   # Usage:
-  #   tau-latest-available [<version>]
+  #   tau latest-available [<version>]
   #
   # Arguments:
   #   * $1 : Empty string or a valid Python version number (matching
@@ -19,19 +19,19 @@ tau-latest-available() {
   #
   # Examples:
   #
-  #   $ tau-latest-available
+  #   $ tau latest-available
   #   3.12.0
   #
-  #   $ tau-latest-available 2
+  #   $ tau latest-available 2
   #   2.7.18
   #
-  #   $ tau-latest-available 3.7
+  #   $ tau latest-available 3.7
   #   3.7.17
   #
-  #   $ tau-latest-available 3.10-dev
+  #   $ tau latest-available 3.10-dev
   #   [✘] The input '3.10-dev' does not match a valid version number...
   #
-  #   $ tau-latest-available 4.2.0
+  #   $ tau latest-available 4.2.0
   #   [✘] Could not find a match for '4.2.0'. Are you sure this Python version exists?
   #
   local py_version_user_input="${1}"

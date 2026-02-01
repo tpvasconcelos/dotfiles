@@ -9,7 +9,7 @@ tau-install() {
   # available stable version of Python will be installed.
   #
   # Usage:
-  #   tau-install <version>
+  #   tau install <version>
   #
   # Arguments:
   #   * $1 : Empty string or a valid Python version number (matching
@@ -19,17 +19,17 @@ tau-install() {
   #
   # Examples:
   #
-  #   $ tau-install
+  #   $ tau install
   #   [ℹ] Installing Python 3.12.0
   #
-  #   $ tau-install 2.7
+  #   $ tau install 2.7
   #   [⚠] Skipping: Python 2.7.18 is already installed.
   #
-  #   $ tau-install 3.7.1
+  #   $ tau install 3.7.1
   #   [ℹ] Installing Python 3.7.1
   #   ...
   #
-  #   $ tau-install 3.10-dev
+  #   $ tau install 3.10-dev
   #   [✘] The input '3.10-dev' does not match a valid version number...
   #
   local py_version_user_input="${1}"
@@ -50,9 +50,9 @@ tau-install() {
 }
 
 tau-install-multi(){
-  # Install multiple Python versions (see `tau-install`)
+  # Install multiple Python versions (see `tau install`)
   #
-  # Usage: tau-install-multi [--dry-run] <version> [<version> ...]
+  # Usage: tau install-multi [--dry-run] <version> [<version> ...]
   #
   dry_run=false
   if [[ "$1" == "--dry-run" ]]; then

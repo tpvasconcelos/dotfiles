@@ -1,7 +1,7 @@
 tau-upgrade() {
   # Upgrade a Python minor version to a new patch version
   #
-  # Usage: tau-upgrade [--dry-run] <base_version> [<new_version>]
+  # Usage: tau upgrade [--dry-run] <base_version> [<new_version>]
   #
   # Arguments:
   #   * $1 : A valid Python version number (minor or patch) pointing to
@@ -84,7 +84,7 @@ tau-upgrade() {
 tau-autoupgrade() {
   # Upgrade all installed Python versions to the latest patch version
   #
-  # Usage: tau-autoupgrade [--dry-run] [-y|--yes]
+  # Usage: tau autoupgrade [--dry-run] [-y|--yes]
   #
   local pyv_installed pyv_patch
   pyv_installed=("${(@s: :)"$(tau-versions --squash)"}")

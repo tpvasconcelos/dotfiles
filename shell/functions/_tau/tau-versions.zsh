@@ -2,7 +2,7 @@ tau-versions() {
   # Print the currently installed Python versions
   #
   # Usage:
-  #   tau-versions [--minor] [--latest] [--squash]
+  #   tau versions [--minor] [--latest] [--squash]
   #
   # Options:
   #   * --minor : Use minor versions instead of patch version numbers
@@ -11,18 +11,18 @@ tau-versions() {
   #
   # Examples:
   #
-  #   $ tau-versions
+  #   $ tau versions
   #   3.8.5
   #   3.9.7
   #   3.10.0
   #
-  #   $ tau-versions --minor --squash
+  #   $ tau versions --minor --squash
   #   3.8 3.9 3.10
   #
-  #   $ tau-versions --latest
+  #   $ tau versions --latest
   #   3.10.0
   #
-  #   $ tau-versions --minor --latest
+  #   $ tau versions --minor --latest
   #   3.10
   #
   local minor=false
