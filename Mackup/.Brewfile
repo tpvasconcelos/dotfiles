@@ -181,7 +181,7 @@ brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 brew "just"                 # https://github.com/casey/just
 brew "unison"               # https://www.cis.upenn.edu/~bcpierce/unison/
-brew "markdownlint-cli"     # https://github.com/DavidAnson/markdownlint
+brew "markdownlint-cli"     # https://github.com/igorshubovych/markdownlint-cli
 
 # Work  ---
 brew "fluent-bit"
