@@ -462,6 +462,12 @@ log_debug "Configuring 'Terminal' and 'iTerm2' settings..."
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# Boost paste performance immediately
+# Higher byte values (e.g., 4096) handle larger chunks at once,
+# while low delays speed up delivery
+defaults write com.googlecode.iterm2 QuickPasteBytesPerCall -int 4096
+defaults write com.googlecode.iterm2 QuickPasteDelayBetweenCalls -float 0.01
+
 
 ###############################################################################
 log_debug "Configuring 'Time Machine' settings..."

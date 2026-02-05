@@ -97,3 +97,23 @@ git-multi-summary() {
     fi
   done
 }
+
+git-apply-clipboard() {
+  local patch
+  patch="$(pbpaste)"
+
+  if [[ -z "$patch" ]]; then
+    echo "Error: clipboard is empty" >&2
+    return 1
+  fi
+
+  (
+    cd "$(git rev-parse --show-toplevel)" || return 1
+    git apply --3way <<< "$patch"
+  )
+}
+
+gacp() {
+  # Alias for git-apply-clipboard
+  git-apply-clipboard
+}
