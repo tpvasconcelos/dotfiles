@@ -181,7 +181,7 @@ brew "hyperfine"            # https://github.com/sharkdp/hyperfine
 cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 brew "just"                 # https://github.com/casey/just
 brew "unison"               # https://www.cis.upenn.edu/~bcpierce/unison/
-brew "markdownlint-cli"     # https://formulae.brew.sh/formula/markdownlint-cli
+brew "markdownlint-cli"     # https://github.com/DavidAnson/markdownlint
 
 # Work  ---
 brew "fluent-bit"
@@ -198,6 +198,7 @@ cask "logi-options+"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
+cask "miaoyan"              # https://github.com/tw93/MiaoYan
 cask "r-app"
 #mas "Xcode", id: 497799835
 
