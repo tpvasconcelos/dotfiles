@@ -272,6 +272,7 @@ cask "codex"                    # https://github.com/openai/codex
 
 # Misc apps  ---
 cask "appcleaner"
+cask "anydesk"                          # https://anydesk.com/en
 cask "pearcleaner"                      # https://github.com/alienator88/Pearcleaner
 cask "macs-fan-control"
 cask "spotify"
