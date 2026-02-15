@@ -82,6 +82,7 @@ brew "git-town"             # https://git-town.com/
 brew "git-delta"            # https://github.com/dandavison/delta
 brew "git-extras"           # https://github.com/tj/git-extras
 brew "diff-so-fancy"        # https://github.com/so-fancy/diff-so-fancy
+brew "lazygit"              # https://github.com/jesseduffield/lazygit
 
 # Compilers and relevant binaries  ---
 brew "cmake"
