@@ -26,6 +26,9 @@
     rebase = true
     twohead = ort
 
+[rebase]
+    updateRefs = true
+
 [help]
     autocorrect = 1
 
