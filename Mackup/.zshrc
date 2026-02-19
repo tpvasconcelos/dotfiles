@@ -112,6 +112,8 @@ zstyle ':completion:*' menu yes select
 eval "$(uv generate-shell-completion zsh)"
 # Load uvx's completions
 eval "$(uvx --generate-shell-completion zsh)"
+# Load codex completions
+eval "$(codex completion zsh)"
 
 # zoxide (z) - alternative to `cd` and `autojump`
 eval "$(zoxide init zsh)"
