@@ -53,6 +53,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Load plugins
 source "${SHELL_DIR_INTERACTIVE}/plugins.zsh"
 
+# Enable zsh-completions before OMZ runs compinit.
+# see:
+# * https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
+# * https://github.com/zsh-users/zsh-completions/issues/603
+fpath+=("${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src")
+
 # Disable auto-update
 zstyle ':omz:update' mode disabled
 
@@ -99,21 +105,35 @@ setopt AUTO_LIST                # Automatically list choices on ambiguous comple
 setopt AUTO_MENU                # Automatically use menu completion after the second consecutive request.
 setopt MENU_COMPLETE            # Automatically complete the text of the line when possible.
 setopt NO_LIST_AMBIGUOUS        # Do not list all possible completions without regard to the current context.
-# Enable zsh-completions
-# see:
-# * https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
-# * https://github.com/zsh-users/zsh-completions/issues/603
-fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
-# Load completions
-autoload -Uz compinit; compinit
 # Configure completions style
 zstyle ':completion:*' menu yes select
-# Load uv's completions
-eval "$(uv generate-shell-completion zsh)"
-# Load uvx's completions
-eval "$(uvx --generate-shell-completion zsh)"
-# Load codex completions
-eval "$(codex completion zsh)"
+
+# OMZ already runs compinit. Only generate command completions when they are
+# not already available via fpath, and cache generated scripts on disk.
+_zshrc::load_completion_if_missing() {
+  local completion_function="$1"
+  local command_name="$2"
+  local generation_command="$3"
+
+  (( ${+commands[$command_name]} )) || return 0
+  (( ${+functions[$completion_function]} )) && return 0
+
+  local cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
+  local cache_file="${cache_dir}/${command_name}.zsh"
+  local command_path="${commands[$command_name]}"
+
+  # if cache file doesn't exist or is older than the command, regenerate it
+  if [[ ! -s "$cache_file" || "$cache_file" -ot "$command_path" ]]; then
+    mkdir -p "$cache_dir" || return 0
+    eval "$generation_command" >| "$cache_file" 2>/dev/null || return 0
+  fi
+
+  source "$cache_file"
+}
+
+_zshrc::load_completion_if_missing _uv uv 'uv generate-shell-completion zsh'
+_zshrc::load_completion_if_missing _uvx uvx 'uvx --generate-shell-completion zsh'
+_zshrc::load_completion_if_missing _codex codex 'codex completion zsh'
 
 # zoxide (z) - alternative to `cd` and `autojump`
 eval "$(zoxide init zsh)"
