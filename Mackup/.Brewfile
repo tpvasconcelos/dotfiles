@@ -268,6 +268,7 @@ cask "lm-studio"                # https://lmstudio.ai/
 cask "chatgpt"                  # https://chatgpt.com/
 cask "claude"                   # https://claude.ai/download
 #cask "claude-code"              # https://claude.com/product/claude-code
+brew "anomalyco/tap/opencode"   # https://github.com/anomalyco/opencode
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 cask "codex"                    # https://github.com/openai/codex
 
