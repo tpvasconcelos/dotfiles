@@ -93,9 +93,6 @@ brew "swig"
 brew "openblas"
 brew "z3"           # https://github.com/Z3Prover/z3
 
-# Extra requirements for building animations with the manim package
-# https://docs.manim.community/en/stable/installation/macos.html
-cask "mactex"
 
 # Terminal emulators  ---
 cask "iterm2"                   # https://iterm2.com/
@@ -125,6 +122,10 @@ brew "asciinema"            # https://asciinema.org
 brew "libfaketime"          # https://github.com/wolfcw/libfaketime
 brew "gource"               # https://github.com/acaudwell/Gource
 
+# Extra requirements for building animations with the manim package
+# https://docs.manim.community/en/stable/installation/macos.html
+cask "mactex"
+
 # Fonts  ---
 brew "woff2"
 brew "svn"
@@ -142,6 +143,10 @@ cask "font-roboto-mono-nerd-font"
 cask "font-ubuntu-nerd-font"
 cask "font-ubuntu-sans-nerd-font"
 
+# Terminal Productivity  ---
+brew "neovim"               # https://github.com/neovim/neovim
+brew "tree-sitter-cli"      # https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md
+
 # Command line utils  ---
 brew "curl"
 brew "wget"
@@ -150,7 +155,6 @@ brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/comma
 brew "htop"
 brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
 brew "tree"
-brew "neovim"               # https://github.com/neovim/neovim
 brew "glow"                 # https://github.com/charmbracelet/glow
 brew "fzf"                  # https://github.com/junegunn/fzf
 brew "openssl"              # https://www.openssl.org/
