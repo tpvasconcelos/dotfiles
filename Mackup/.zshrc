@@ -142,7 +142,8 @@ eval "$(zoxide init zsh)"
 ################################################################################
 # Define aliases
 ################################################################################
-alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --header --git-repos-no-status --show-symlinks --time-style=relative --no-user'
+alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --git-repos-no-status --show-symlinks --time-style=relative --no-user --hyperlink'
+alias tree='ls --tree --no-permissions --no-filesize --no-time --no-git'
 alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '
