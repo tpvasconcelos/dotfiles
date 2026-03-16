@@ -138,6 +138,8 @@ _zshrc::load_completion_if_missing _codex codex 'codex completion zsh'
 # zoxide (z) - alternative to `cd` and `autojump`
 eval "$(zoxide init zsh)"
 
+# mise - manage multiple versions of tools/languages
+eval "$(mise activate zsh)"
 
 ################################################################################
 # Define aliases
