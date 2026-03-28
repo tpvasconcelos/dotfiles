@@ -141,7 +141,18 @@ else
   brew bundle --no-upgrade --file=Mackup/.Brewfile
 fi
 
-alias ln='$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin/ln'
+LN_BIN_UUTILS="$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin/ln"
+LN_BIN_GNU="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin/ln"
+
+if [[ -x "$LN_BIN_UUTILS" ]]; then
+  alias ln="$LN_BIN_UUTILS"
+elif [[ -x "$LN_BIN_GNU" ]]; then
+  alias ln="$LN_BIN_GNU"
+else
+  log_error "Could not find a Homebrew-managed ln binary. Checked: $LN_BIN_UUTILS and $LN_BIN_GNU"
+  exit 1
+fi
+
 alias sudo-alias='sudo '
 
 
