@@ -248,7 +248,7 @@ source ./scripts/setup-ssh.zsh
 # GitHub CLI
 ########################
 
-_gh_extensions_to_install=('github/gh-copilot' 'yusukebe/gh-markdown-preview' 'dlvhdr/gh-dash')
+_gh_extensions_to_install=('yusukebe/gh-markdown-preview' 'dlvhdr/gh-dash')
 _install_gh_extensions() {
   for extension in "${_gh_extensions_to_install[@]}"; do
     if gh extension list | grep -q "$extension"; then
