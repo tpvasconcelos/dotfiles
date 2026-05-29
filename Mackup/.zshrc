@@ -152,6 +152,8 @@ alias wa='watch -c '
 alias p='pycharm .'
 alias j='z'  # muscle memory from using `j` (autojump) for years
 
+# patch the Codex Desktop app
+alias patch-codex-desktop="~/codex-spellcheck-patch/enable-spellcheck.sh -y && open ~/Applications/Codex-spellcheck.app"
 
 ################################################################################
 # Misc stuff
