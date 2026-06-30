@@ -43,9 +43,22 @@ export PIPENV_VENV_IN_PROJECT=1
 export CLOUDSDK_PYTHON="$PY_PLAYGROUND_VENV/bin/python"
 
 # Misc ---
-JAVA_HOME="$(/usr/libexec/java_home)"
-export JAVA_HOME
 export GOPATH="$HOME/go"
+
+# Set JAVA_HOME from the macOS java framework. `/usr/libexec/java_home`
+# enumerates installed JVMs via macOS system services (cfprefsd/LaunchServices),
+# which are blocked inside sandboxes such as the Cursor agent's seatbelt sandbox.
+# When blocked it prints "Unable to locate a Java Runtime" to stderr and exits 1
+# (even though JDKs are installed), so:
+#   - 2>/dev/null suppresses that spurious banner from leaking to the terminal
+#     (.zshenv is sourced by every shell, incl. non-interactive `#!/usr/bin/env
+#     zsh` script wrappers, so the noise would otherwise repeat per nested shell).
+#   - the `[[ -z $JAVA_HOME ]]` guard + `&& export` avoids recomputing on every
+#     nested shell and leaves JAVA_HOME untouched (not blanked) when it fails.
+if [[ -z "$JAVA_HOME" ]]; then
+  JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)" && export JAVA_HOME
+fi
+
 
 # locale settings
 export LC_ALL='en_US.UTF-8'
