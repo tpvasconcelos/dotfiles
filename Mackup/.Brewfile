@@ -59,16 +59,16 @@ brew "ruby"
 brew "yarn"
 
 # Infra/DevOps tools  ---
-brew "ansible"                                  # https://www.ansible.com/
-brew "checkov"                                  # https://www.checkov.io/
+brew "ansible"                                      # https://www.ansible.com/
+brew "checkov"                                      # https://www.checkov.io/
 tap "hashicorp/tap"
-brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
-brew "tflint"                                   # https://github.com/terraform-linters/tflint
-brew "trivy"                                    # https://trivy.dev/
-brew "minamijoyo/tfupdate/tfupdate"             # https://github.com/minamijoyo/tfupdate
-brew "hcloud"                                   # https://github.com/hetznercloud/cli
-brew "ssh-audit"                                # https://github.com/jtesta/ssh-audit
-brew "direnv"                                   # https://direnv.net/
+brew "hashicorp/tap/terraform", trusted: true       # https://developer.hashicorp.com/terraform
+brew "tflint"                                       # https://github.com/terraform-linters/tflint
+brew "trivy"                                        # https://trivy.dev/
+brew "minamijoyo/tfupdate/tfupdate", trusted: true  # https://github.com/minamijoyo/tfupdate
+brew "hcloud"                                       # https://github.com/hetznercloud/cli
+brew "ssh-audit"                                    # https://github.com/jtesta/ssh-audit
+brew "direnv"                                       # https://direnv.net/
 
 # git  ---
 brew "git"
