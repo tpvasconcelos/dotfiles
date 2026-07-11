@@ -59,8 +59,8 @@ brew "node"
 brew "yarn"
 
 # Infra/DevOps tools  ---
-brew "ansible"                      # https://www.ansible.com/
-brew "checkov"                      # https://www.checkov.io/
+brew "ansible"                                  # https://www.ansible.com/
+brew "checkov"                                  # https://www.checkov.io/
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform", trusted: true # https://developer.hashicorp.com/terraform
 brew "tflint"                       # https://github.com/terraform-linters/tflint
@@ -69,6 +69,12 @@ brew "minamijoyo/tfupdate/tfupdate" # https://github.com/minamijoyo/tfupdate
 brew "hcloud"                       # https://github.com/hetznercloud/cli
 brew "ssh-audit"                    # https://github.com/jtesta/ssh-audit
 brew "direnv"                       # https://direnv.net/
+brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
+brew "tflint"                                   # https://github.com/terraform-linters/tflint
+brew "trivy"                                    # https://trivy.dev/
+brew "hcloud"                                   # https://github.com/hetznercloud/cli
+brew "ssh-audit"                                # https://github.com/jtesta/ssh-audit
+brew "direnv"                                   # https://direnv.net/
 
 # git  ---
 brew "git"
@@ -203,7 +209,7 @@ cask "logi-options+"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 cask "sublime-text"
-cask "miaoyan"              # https://github.com/tw93/MiaoYan
+cask "miaoyan"                  # https://github.com/tw93/MiaoYan
 cask "r-app"
 #mas "Xcode", id: 497799835
 
@@ -259,7 +265,7 @@ mas "Keynote", id: 409183694
 # Social media, messaging, and communication apps  ---
 cask "whatsapp"
 cask "slack"
-cask "zoom"
+#cask "zoom"
 
 # Photo & video  ---
 cask "diffusionbee"             # https://www.diffusionbee.com/
@@ -275,6 +281,13 @@ cask "claude"                   # https://claude.ai/download
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 cask "codex"                    # https://github.com/openai/codex
 brew "anomalyco/tap/opencode", trusted: true # https://github.com/anomalyco/opencode
+brew "ollama"                                   # https://ollama.com/
+cask "lm-studio"                                # https://lmstudio.ai/
+cask "chatgpt"                                  # https://chatgpt.com/
+cask "claude"                                   # https://claude.ai/download
+brew "gemini-cli"                               # https://github.com/google-gemini/gemini-cli
+cask "codex"                                    # https://github.com/openai/codex
+brew "anomalyco/tap/opencode", trusted: true    # https://github.com/anomalyco/opencode
 # LSPs for opencode
 brew "gopls"
 brew "typescript-language-server"
