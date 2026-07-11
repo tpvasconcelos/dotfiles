@@ -62,7 +62,7 @@ brew "yarn"
 brew "ansible"                      # https://www.ansible.com/
 brew "checkov"                      # https://www.checkov.io/
 tap "hashicorp/tap"
-brew "hashicorp/tap/terraform"      # https://developer.hashicorp.com/terraform
+brew "hashicorp/tap/terraform", trusted: true # https://developer.hashicorp.com/terraform
 brew "tflint"                       # https://github.com/terraform-linters/tflint
 brew "trivy"                        # https://trivy.dev/
 brew "minamijoyo/tfupdate/tfupdate" # https://github.com/minamijoyo/tfupdate
@@ -215,7 +215,7 @@ cask "devutils"                 # https://devutils.com/
 
 # Quick-look plugins  ---
 cask "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
-cask "qlvideo"                  # https://github.com/Marginal/QLVideo
+cask "quicklook-video"          # https://github.com/Marginal/QuickLookVideo
 cask "glance-chamburr"          # https://github.com/chamburr/glance
 
 # Web Browsers  ---
@@ -248,7 +248,7 @@ cask "anytype"
 cask "notion"                   # https://www.notion.so/
 cask "notion-calendar"
 cask "obsidian"                 # https://obsidian.md/
-cask "linear-linear"            # https://linear.app/
+cask "linear"                   # https://linear.app/
 cask "microsoft-office"
 cask "microsoft-auto-update"
 cask "libreoffice"
@@ -274,12 +274,12 @@ cask "claude"                   # https://claude.ai/download
 #cask "claude-code"              # https://claude.com/product/claude-code
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 cask "codex"                    # https://github.com/openai/codex
-brew "anomalyco/tap/opencode"   # https://github.com/anomalyco/opencode
+brew "anomalyco/tap/opencode", trusted: true # https://github.com/anomalyco/opencode
 # LSPs for opencode
 brew "gopls"
 brew "typescript-language-server"
 brew "basedpyright"
-brew "hashicorp/tap/terraform-ls"
+brew "hashicorp/tap/terraform-ls", trusted: true
 
 # Misc apps  ---
 cask "appcleaner"
