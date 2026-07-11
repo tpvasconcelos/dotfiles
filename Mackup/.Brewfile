@@ -55,7 +55,7 @@ brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
 
 # Javascript dev tools  ---
-brew "node"
+#brew "node"
 brew "yarn"
 
 # Infra/DevOps tools  ---
@@ -65,7 +65,7 @@ tap "hashicorp/tap"
 brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
 brew "tflint"                                   # https://github.com/terraform-linters/tflint
 brew "trivy"                                    # https://trivy.dev/
-brew "minamijoyo/tfupdate/tfupdate"            # https://github.com/minamijoyo/tfupdate
+brew "minamijoyo/tfupdate/tfupdate"             # https://github.com/minamijoyo/tfupdate
 brew "hcloud"                                   # https://github.com/hetznercloud/cli
 brew "ssh-audit"                                # https://github.com/jtesta/ssh-audit
 brew "direnv"                                   # https://direnv.net/
@@ -259,7 +259,7 @@ mas "Keynote", id: 409183694
 # Social media, messaging, and communication apps  ---
 cask "whatsapp"
 cask "slack"
-cask "zoom"
+#cask "zoom"
 
 # Photo & video  ---
 cask "diffusionbee"             # https://www.diffusionbee.com/
