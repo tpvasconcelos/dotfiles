@@ -55,29 +55,17 @@ brew "golang"               # old unavailable flag: --cross-compile-common
 brew "ruby"
 
 # Javascript dev tools  ---
-brew "node"
+#brew "node"
 brew "yarn"
 
 # Infra/DevOps tools  ---
 brew "ansible"                                  # https://www.ansible.com/
 brew "checkov"                                  # https://www.checkov.io/
 tap "hashicorp/tap"
-brew "hashicorp/tap/terraform", trusted: true # https://developer.hashicorp.com/terraform
-brew "tflint"                       # https://github.com/terraform-linters/tflint
-brew "trivy"                        # https://trivy.dev/
-brew "minamijoyo/tfupdate/tfupdate" # https://github.com/minamijoyo/tfupdate
-brew "hcloud"                       # https://github.com/hetznercloud/cli
-brew "ssh-audit"                    # https://github.com/jtesta/ssh-audit
-brew "direnv"                       # https://direnv.net/
 brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
 brew "tflint"                                   # https://github.com/terraform-linters/tflint
 brew "trivy"                                    # https://trivy.dev/
-brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
-brew "tflint"                                   # https://github.com/terraform-linters/tflint
-brew "trivy"                                    # https://trivy.dev/
-brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
-brew "tflint"                                   # https://github.com/terraform-linters/tflint
-brew "trivy"                                    # https://trivy.dev/
+#brew "minamijoyo/tfupdate/tfupdate"            # https://github.com/minamijoyo/tfupdate
 brew "hcloud"                                   # https://github.com/hetznercloud/cli
 brew "ssh-audit"                                # https://github.com/jtesta/ssh-audit
 brew "direnv"                                   # https://direnv.net/
@@ -279,26 +267,11 @@ cask "upscayl"                  # https://upscayl.org/
 cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/software/x-raw-studio/
 
 # AI apps  ---
-brew "ollama"                   # https://ollama.com/
-cask "lm-studio"                # https://lmstudio.ai/
-cask "chatgpt"                  # https://chatgpt.com/
-cask "claude"                   # https://claude.ai/download
-#cask "claude-code"              # https://claude.com/product/claude-code
-brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
-cask "codex"                    # https://github.com/openai/codex
-brew "anomalyco/tap/opencode", trusted: true # https://github.com/anomalyco/opencode
 brew "ollama"                                   # https://ollama.com/
 cask "lm-studio"                                # https://lmstudio.ai/
 cask "chatgpt"                                  # https://chatgpt.com/
 cask "claude"                                   # https://claude.ai/download
-brew "ollama"                                   # https://ollama.com/
-cask "lm-studio"                                # https://lmstudio.ai/
-cask "chatgpt"                                  # https://chatgpt.com/
-cask "claude"                                   # https://claude.ai/download
-brew "ollama"                                   # https://ollama.com/
-cask "lm-studio"                                # https://lmstudio.ai/
-cask "chatgpt"                                  # https://chatgpt.com/
-cask "claude"                                   # https://claude.ai/download
+#cask "claude-code"                             # https://claude.com/product/claude-code
 brew "gemini-cli"                               # https://github.com/google-gemini/gemini-cli
 cask "codex"                                    # https://github.com/openai/codex
 brew "anomalyco/tap/opencode", trusted: true    # https://github.com/anomalyco/opencode
