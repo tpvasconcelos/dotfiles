@@ -75,6 +75,9 @@ brew "trivy"                                    # https://trivy.dev/
 brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
 brew "tflint"                                   # https://github.com/terraform-linters/tflint
 brew "trivy"                                    # https://trivy.dev/
+brew "hashicorp/tap/terraform", trusted: true   # https://developer.hashicorp.com/terraform
+brew "tflint"                                   # https://github.com/terraform-linters/tflint
+brew "trivy"                                    # https://trivy.dev/
 brew "hcloud"                                   # https://github.com/hetznercloud/cli
 brew "ssh-audit"                                # https://github.com/jtesta/ssh-audit
 brew "direnv"                                   # https://direnv.net/
@@ -284,6 +287,10 @@ cask "claude"                   # https://claude.ai/download
 brew "gemini-cli"               # https://github.com/google-gemini/gemini-cli
 cask "codex"                    # https://github.com/openai/codex
 brew "anomalyco/tap/opencode", trusted: true # https://github.com/anomalyco/opencode
+brew "ollama"                                   # https://ollama.com/
+cask "lm-studio"                                # https://lmstudio.ai/
+cask "chatgpt"                                  # https://chatgpt.com/
+cask "claude"                                   # https://claude.ai/download
 brew "ollama"                                   # https://ollama.com/
 cask "lm-studio"                                # https://lmstudio.ai/
 cask "chatgpt"                                  # https://chatgpt.com/
