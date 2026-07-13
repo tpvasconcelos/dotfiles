@@ -144,7 +144,7 @@ eval "$(mise activate zsh)"
 ################################################################################
 # Define aliases
 ################################################################################
-alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --git-repos-no-status --show-symlinks --time-style=relative --no-user --hyperlink'
+alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --git-repos-no-status --show-symlinks --time-style=relative --no-user --hyperlink=always'
 alias tree='ls --tree --no-permissions --no-filesize --no-time --no-git'
 alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
