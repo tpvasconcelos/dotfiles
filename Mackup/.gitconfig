@@ -23,7 +23,6 @@
     default = upstream
 
 [pull]
-    rebase = true
     twohead = ort
 
 [rebase]
@@ -31,9 +30,6 @@
 
 [help]
     autocorrect = 1
-
-[branch]
-    autosetuprebase = always
 
 # https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [rerere]
