@@ -137,8 +137,10 @@ hc-update-everything() {
   gh extension upgrade --all
 
   # Update npm
-  sudo npm install npm --global --no-fund
-  sudo npm update --global --no-fund
+  # NOTE: no sudo here - Homebrew's global prefix is user-owned, and running
+  # npm as root plants root-owned files in ~/.npm that break `npm cache clean`
+  npm install npm --global --no-fund
+  npm update --global --no-fund
 
   # Update yarn
   yarn global upgrade
@@ -165,10 +167,24 @@ hc-update-everything() {
 
 hc-reclaim-diskspace() {
   if [[ "$*" == *--help* ]]; then
-    echo "Usage: hc-update-everything [OPTIONS]"
+    echo "Usage: hc-reclaim-diskspace [OPTIONS]"
+    echo ""
+    echo "Reclaim disk space from developer caches. By default, this:"
+    echo "  - clears the homebrew, pipenv/pip, npm, yarn, Ruby gem, and pre-commit caches"
+    echo "  - prunes the pnpm store and uv cache"
+    echo "  - garbage-collects the Nix store"
+    echo "  - clears the DotSlash binary cache (tools re-download on first use)"
+    echo "  - removes leaked Codex marketplace staging dirs (>2 days old)"
+    echo "  - removes Bazel output bases whose workspace no longer exists"
+    echo "  - prunes docker's unused data incl. volumes (if docker is running)"
+    echo "  - deletes unavailable iOS Simulators"
     echo ""
     echo "Options:"
-    echo "    --skip-uv         Skip clearing uv caches"
+    echo "    --bazel           Also wipe Bazel build caches"
+    echo "    --canva-git       Also cruft-repack the canva monorepo's .git, expiring"
+    echo "                      unreachable objects older than 30 days (takes ~30 min)"
+    echo "    --uv-clean        Fully wipe the uv cache instead of pruning it"
+    echo "    --skip-uv         Skip clearing/pruning uv caches"
     echo "    --skip-nix-store  Skip clearing Nix store"
     echo "    --help            Show this help message and exit"
     return 0
@@ -192,18 +208,79 @@ hc-reclaim-diskspace() {
   log_info "Clearing Ruby gems caches..."
   sudo gem cleanup
 
+  # NOTE: long-lived `uv run`/`uvx` processes (MCP servers, background apps) hold a
+  # shared lock on the cache for their entire lifetime, so on this machine the lock is
+  # effectively never free and an un-forced clean/prune would wait forever. --force
+  # skips the in-use check. Project venvs are unaffected (hardlinks outside the cache),
+  # but ephemeral `uvx` tool environments live *inside* the cache, so a full wipe can
+  # break running uvx tools (e.g. MCP servers) - restart them if they misbehave.
+  local uv_live_procs
   if [[ "$*" == *--skip-uv* ]]; then
     log_info "Skipping uv caches clearing..."
+  elif [[ "$*" == *--uv-clean* ]]; then
+    log_info "Fully wiping uv cache..."
+    # Only `uvx` tools are at risk from a wipe (their ephemeral envs live inside the
+    # cache); `uv run` project venvs live outside it and are unaffected.
+    uv_live_procs=$(ps -axo command | grep -E '^[^ ]*/uvx |^[^ ]*/uv tool uvx ' | awk '{print $NF}' | sort -u | tr '\n' ' ')
+    if [[ -n "$uv_live_procs" ]]; then
+      log_warning "Live uvx tools have their environments inside this cache - restart them if they misbehave: $uv_live_procs"
+    fi
+    uv cache clean --force
   else
-    log_info "Clearing uv caches..."
-    uv cache prune
+    log_info "Pruning uv cache (pass --uv-clean for a full wipe)..."
+    uv cache prune --force
   fi
+
+  # pre-commit is not installed globally (only per-repo), so remove its cache
+  # directly; environments are transparently rebuilt on the next pre-commit run
+  log_info "Clearing pre-commit caches..."
+  rm -rf ~/.cache/pre-commit
 
   if [[ "$*" == *--skip-nix-store* ]]; then
     log_info "Skipping Nix store clearing..."
   else
     log_info "Clearing Nix store..."
     nix-store --gc
+  fi
+
+  log_info "Clearing DotSlash cache..."
+  # DotSlash write-protects its extracted artifacts - restore write perms so rm can unlink
+  chmod -R u+w ~/Library/Caches/dotslash 2> /dev/null
+  rm -rf ~/Library/Caches/dotslash
+
+  log_info "Removing leaked Codex marketplace staging dirs..."
+  find ~/.codex/.tmp/bundled-marketplaces -maxdepth 1 -type d -name 'openai-bundled.staging-*' -mtime +2 -exec rm -rf {} + 2> /dev/null
+
+  log_info "Removing Bazel output bases of deleted workspaces..."
+  local bazel_output_base bazel_workspace
+  for bazel_output_base in ~/Library/Caches/bazel/_bazel_"$USER"/*(N/); do
+    [[ -f "$bazel_output_base/DO_NOT_BUILD_HERE" ]] || continue
+    bazel_workspace=$(<"$bazel_output_base/DO_NOT_BUILD_HERE")
+    if [[ ! -d "$bazel_workspace" ]]; then
+      log_debug "Workspace $bazel_workspace no longer exists. Removing its output base ($(du -sh "$bazel_output_base" | awk '{print $1}'))..."
+      # Bazel write-protects its output tree (dirs included), and rm needs parent-dir
+      # write permission to unlink - restore owner write perms first
+      chmod -R u+w "$bazel_output_base" 2> /dev/null
+      rm -rf "$bazel_output_base"
+    fi
+  done
+
+  if [[ "$*" == *--bazel* ]]; then
+    log_info "Wiping Bazel build caches (next builds will run cold)..."
+    # Same story: parts of these caches are write-protected
+    chmod -R u+w ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache 2> /dev/null
+    rm -rf ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache
+  else
+    log_info "Skipping Bazel build caches (pass --bazel to also wipe them)..."
+  fi
+
+  if [[ "$*" == *--canva-git* ]]; then
+    # Consolidates all reachable objects into one pack and drops unreachable objects
+    # (e.g. orphaned AI-agent snapshot blobs) older than 30 days. Keeps a cruft pack
+    # as a 30-day safety net for recent unreachables. See the 2026-08-06 cleanup that
+    # took .git from 87GB to 23GB. Safe to run while working in the repo.
+    log_info "Cruft-repacking the canva monorepo (takes ~30 min)..."
+    git -C ~/work/canva repack -d --cruft --cruft-expiration=30.days.ago --write-midx
   fi
 
   if docker stats --no-stream &> /dev/null; then
