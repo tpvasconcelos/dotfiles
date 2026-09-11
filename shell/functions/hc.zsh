@@ -176,11 +176,18 @@ hc-reclaim-diskspace() {
     echo "  - clears the DotSlash binary cache (tools re-download on first use)"
     echo "  - removes leaked Codex marketplace staging dirs (>2 days old)"
     echo "  - removes Bazel output bases whose workspace no longer exists"
+    echo "  - prunes Bazel repository-cache downloads unused for 90+ days (skipped while"
+    echo "    a Bazel server is running)"
     echo "  - prunes docker's unused data incl. volumes (if docker is running)"
     echo "  - deletes unavailable iOS Simulators"
     echo ""
     echo "Options:"
-    echo "    --bazel           Also wipe Bazel build caches"
+    echo "    --bazel           Also wipe Bazel build caches (skipped while a Bazel server"
+    echo "                      is running; 'bazel shutdown' in each workspace first)"
+    echo "    --bazel-clean-canva"
+    echo "                      Also 'bazel clean' the canva monorepo checkout, dropping its"
+    echo "                      build outputs (~18GB) but keeping fetched external repos;"
+    echo "                      fails fast if another Bazel command is running there"
     echo "    --canva-git       Also cruft-repack the canva monorepo's .git, expiring"
     echo "                      unreachable objects older than 30 days (takes ~30 min)"
     echo "    --uv-clean        Fully wipe the uv cache instead of pruning it"
@@ -265,13 +272,59 @@ hc-reclaim-diskspace() {
     fi
   done
 
-  if [[ "$*" == *--bazel* ]]; then
-    log_info "Wiping Bazel build caches (next builds will run cold)..."
-    # Same story: parts of these caches are write-protected
-    chmod -R u+w ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache 2> /dev/null
-    rm -rf ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache
+  # A running Bazel server (one per workspace; they linger ~3h after the last command)
+  # may be mid-fetch in the shared caches below, so never delete under it. The server
+  # command line names its workspace, which makes for an actionable warning.
+  local bazel_servers
+  # Servers are named `bazel(<workspace>)`; anchoring on that keeps this grep from
+  # matching its own command line
+  bazel_servers=$(ps -axo command | grep -E '^bazel\([^)]*\) .*A-server\.jar' | sed -n 's/.*--workspace_directory=\([^ ]*\).*/\1/p' | sort -u | tr '\n' ' ')
+
+  # Bazel 9 keeps two things under cache/repos/v1: `contents/` (extracted repos, which
+  # Bazel itself garbage-collects after 14 idle days - --repo_contents_cache_gc_max_age)
+  # and `content_addressable/` (raw downloads, never GC'd). Bazel touches an entry's
+  # `file` on every cache hit, so its mtime is the last use; a pruned entry simply
+  # re-downloads the next time a build needs it.
+  local bazel_download bazel_download_count=0
+  if [[ -n "$bazel_servers" ]]; then
+    log_warning "Bazel servers are running for: $bazel_servers"
+    log_warning "Skipping the Bazel repository-cache prune (run 'bazel shutdown' in those workspaces first)."
+  else
+    log_info "Pruning Bazel repository-cache downloads unused for 90+ days..."
+    for bazel_download in ~/Library/Caches/bazel/_bazel_"$USER"/cache/repos/v1/content_addressable/sha256/*/file(N.m+90); do
+      rm -rf "${bazel_download:h}"
+      (( bazel_download_count += 1 ))
+    done
+    log_debug "Pruned $bazel_download_count stale download(s)."
+  fi
+
+  # Exact match: `--bazel-clean-canva` must not trigger the wipe
+  if (( ${@[(Ie)--bazel]} )); then
+    if [[ -n "$bazel_servers" ]]; then
+      log_warning "Bazel servers are running for: $bazel_servers"
+      log_warning "Skipping the Bazel build-cache wipe (run 'bazel shutdown' in those workspaces and re-run with --bazel)."
+    else
+      # Rarely needed: Canva's generated bazelrc caps the disk cache
+      # (--experimental_disk_cache_gc_max_size=250G) and Bazel GCs both repo-contents
+      # caches after 14 idle days (the main checkout uses the default cache/repos/v1/contents;
+      # older worktree rcs still point at ~/.cache/canva_bazel_repo_contents_cache).
+      log_info "Wiping Bazel build caches (next builds will run cold)..."
+      # Same story: parts of these caches are write-protected
+      chmod -R u+w ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache 2> /dev/null
+      rm -rf ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache
+    fi
   else
     log_info "Skipping Bazel build caches (pass --bazel to also wipe them)..."
+  fi
+
+  if [[ "$*" == *--bazel-clean-canva* ]]; then
+    # `clean` drops the checkout's build outputs (execroot/bazel-out, ~18GB) and keeps its
+    # fetched external repos (another ~18GB; `clean --expunge` would take both plus the
+    # server state). The next build recompiles, mostly from the disk/remote cache.
+    # --noblock_for_lock fails fast instead of queueing behind - and then wiping the
+    # outputs of - a build another session is running in this checkout.
+    log_info "Cleaning the canva monorepo's Bazel build outputs (next build runs cold)..."
+    (cd ~/work/canva && bazel --noblock_for_lock clean) || log_warning "bazel clean did not run - is another Bazel command active in ~/work/canva?"
   fi
 
   if [[ "$*" == *--canva-git* ]]; then
@@ -281,6 +334,11 @@ hc-reclaim-diskspace() {
     # took .git from 87GB to 23GB. Safe to run while working in the repo.
     log_info "Cruft-repacking the canva monorepo (takes ~30 min)..."
     git -C ~/work/canva repack -d --cruft --cruft-expiration=30.days.ago --write-midx
+    # The hourly `git maintenance` split commit-graph still lists the commits the repack
+    # just expired, which makes `git fsck` / `commit-graph verify` complain ("Could not
+    # read <sha>") until the chain is rebuilt from reachable commits (2026-09-11)
+    log_info "Rebuilding the canva monorepo's commit-graph..."
+    git -C ~/work/canva commit-graph write --reachable --split=replace
   fi
 
   if docker stats --no-stream &> /dev/null; then
