@@ -100,6 +100,9 @@
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
 
-[maintenance]
-    repo = ~/.dotfiles
-    repo = ~/git_tree/personal_projects/ridgeplot
+[include]
+	path = ~/.gitconfig.local
+
+[cg "telemetry"]
+	enabled = true
+	environment = canva-macos

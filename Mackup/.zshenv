@@ -72,6 +72,9 @@ _ZSHENV_PATH_EXTRAS=(
   # Python executables are used instead of the system, brew
   # pyenv, uv, or any other Python/pip installations...
   "${TAU_ROOT:-${HOME}/.tau}/shims"
+  # Canva stuff
+  "$HOME/.local/share/canva-git/bin"
+  "$HOME/.local/share/taz/tools/bin"
   # The Homebrew-managed bins should come right at the top too
   "$HOMEBREW_PREFIX/bin"
   "$HOMEBREW_PREFIX/sbin"
@@ -89,6 +92,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/share/google-cloud-sdk/bin"
   "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
   "$HOME/.cargo/bin"
+  "$HOME/.docker/bin"
   "$HOME/.flutter/bin"
   "$HOME/.gem/bin"
   "$HOME/.lmstudio/bin"
