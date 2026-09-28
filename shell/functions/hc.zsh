@@ -170,15 +170,18 @@ hc-reclaim-diskspace() {
     echo "Usage: hc-reclaim-diskspace [OPTIONS]"
     echo ""
     echo "Reclaim disk space from developer caches. By default, this:"
-    echo "  - clears the homebrew, pipenv/pip, npm, yarn, Ruby gem, and pre-commit caches"
+    echo "  - clears the homebrew (every cached download), pipenv/pip, npm, yarn, Ruby gem,"
+    echo "    and pre-commit caches"
     echo "  - prunes the pnpm store and uv cache"
-    echo "  - garbage-collects the Nix store"
+    echo "  - caps the W&B artifact cache at 5GB (least recently used files go first)"
+    echo "  - deletes Nix profile generations older than 30 days, then garbage-collects"
+    echo "    the Nix store"
     echo "  - clears the DotSlash binary cache (tools re-download on first use)"
     echo "  - removes leaked Codex marketplace staging dirs (>2 days old)"
     echo "  - removes Bazel output bases whose workspace no longer exists"
     echo "  - prunes Bazel repository-cache downloads unused for 90+ days (skipped while"
     echo "    a Bazel server is running)"
-    echo "  - prunes docker's unused data incl. volumes (if docker is running)"
+    echo "  - prunes docker's unused data incl. volumes (if docker answers within 5s)"
     echo "  - deletes unavailable iOS Simulators"
     echo ""
     echo "Options:"
@@ -186,19 +189,29 @@ hc-reclaim-diskspace() {
     echo "                      is running; 'bazel shutdown' in each workspace first)"
     echo "    --bazel-clean-canva"
     echo "                      Also 'bazel clean' the canva monorepo checkout, dropping its"
-    echo "                      build outputs (~18GB) but keeping fetched external repos;"
-    echo "                      fails fast if another Bazel command is running there"
+    echo "                      build outputs (7-18GB, depending on what was built) but keeping"
+    echo "                      fetched external repos; fails fast if another Bazel command"
+    echo "                      is running there"
     echo "    --canva-git       Also cruft-repack the canva monorepo's .git, expiring"
-    echo "                      unreachable objects older than 30 days (takes ~30 min)"
+    echo "                      unreachable objects older than 30 days (takes ~30 min);"
+    echo "                      skipped if the last full repack is under 14 days old or"
+    echo "                      free space is under 1.5x the pack size"
+    echo "    --go-modcache     Also wipe Go's module cache (it keeps every module version"
+    echo "                      ever downloaded; modules re-download on first use)"
     echo "    --uv-clean        Fully wipe the uv cache instead of pruning it"
     echo "    --skip-uv         Skip clearing/pruning uv caches"
-    echo "    --skip-nix-store  Skip clearing Nix store"
+    echo "    --skip-nix-store  Skip deleting old Nix generations and collecting garbage"
     echo "    --help            Show this help message and exit"
     return 0
   fi
 
+  # --scrub alone keeps the downloads of every installed formula and cask (~6.4GB on
+  # 2026-09-28) and never matches cask symlinks named by the old URL-basename scheme
+  # (another ~5.5GB, left to the 120-day HOMEBREW_CLEANUP_MAX_AGE_DAYS sweep).
+  # --prune=all drops every cached download, log and API resource file, all regenerable;
+  # `brew reinstall` fetches a download again.
   log_info "Clearing homebrew's caches..."
-  brew cleanup --scrub
+  brew cleanup --scrub --prune=all
 
   log_info "Clearing pipenv, pip, and pip-tools caches..."
   pipenv --clear
@@ -218,7 +231,7 @@ hc-reclaim-diskspace() {
   # NOTE: long-lived `uv run`/`uvx` processes (MCP servers, background apps) hold a
   # shared lock on the cache for their entire lifetime, so on this machine the lock is
   # effectively never free and an un-forced clean/prune would wait forever. --force
-  # skips the in-use check. Project venvs are unaffected (hardlinks outside the cache),
+  # skips the in-use check. Project venvs are unaffected (APFS clones outside the cache),
   # but ephemeral `uvx` tool environments live *inside* the cache, so a full wipe can
   # break running uvx tools (e.g. MCP servers) - restart them if they misbehave.
   local uv_live_procs
@@ -236,6 +249,14 @@ hc-reclaim-diskspace() {
   else
     log_info "Pruning uv cache (pass --uv-clean for a full wipe)..."
     uv cache prune --force
+    # prune only drops unused entries, so it never caps the cache (75GB on 2026-09-11)
+    local uv_cache_kib
+    uv_cache_kib=$(du -sk "$(uv cache dir)" 2> /dev/null | awk '{print $1}')
+    if (( ${uv_cache_kib:-0} > 30 * 1048576 )); then
+      # du also counts blocks the cache shares with project venvs (APFS clones), so a wipe
+      # can free less than this
+      log_warning "The uv cache is still ~$(( uv_cache_kib / 1048576 ))GiB on disk after pruning (some of it may be shared with project venvs); re-run with --uv-clean to wipe it."
+    fi
   fi
 
   # pre-commit is not installed globally (only per-repo), so remove its cache
@@ -243,11 +264,31 @@ hc-reclaim-diskspace() {
   log_info "Clearing pre-commit caches..."
   rm -rf ~/.cache/pre-commit
 
+  # W&B evicts from its artifact cache only when the disk is too full for the next write,
+  # and every artifact.download() lands there as well as in the caller's directory (it
+  # reached 59GB in 2026-08). wandb is not on PATH, hence uvx. Temp files of in-flight
+  # downloads are kept (--remove-temp would delete them).
+  if [[ -d ~/Library/Caches/wandb/artifacts ]]; then
+    log_info "Capping the W&B artifact cache at 5GB..."
+    uvx wandb artifact cache cleanup 5GB
+  fi
+
+  if [[ "$*" == *--go-modcache* ]]; then
+    # All or nothing: `go clean -modcache` has no age or size filter
+    log_info "Wiping Go's module cache (modules re-download on first use)..."
+    go clean -modcache
+  fi
+
   if [[ "$*" == *--skip-nix-store* ]]; then
-    log_info "Skipping Nix store clearing..."
+    log_info "Skipping Nix generations and store clearing..."
   else
-    log_info "Clearing Nix store..."
-    nix-store --gc
+    # `nix-store --gc` alone frees nothing that an old profile generation still references
+    # (51 stale nix-env generations held ~50GB until 2026-09-28). This deletes this user's
+    # generations older than 30 days, keeping the current one and the one active 30 days
+    # ago, then runs the same GC. Root's profiles need sudo and are skipped; direnv
+    # `use_nix` roots (e.g. ~/work/k8s/.direnv/env-*) stay live until their dir is removed.
+    log_info "Deleting Nix generations older than 30 days and collecting garbage..."
+    nix-collect-garbage --delete-older-than 30d
   fi
 
   log_info "Clearing DotSlash cache..."
@@ -318,9 +359,10 @@ hc-reclaim-diskspace() {
   fi
 
   if [[ "$*" == *--bazel-clean-canva* ]]; then
-    # `clean` drops the checkout's build outputs (execroot/bazel-out, ~18GB) and keeps its
-    # fetched external repos (another ~18GB; `clean --expunge` would take both plus the
-    # server state). The next build recompiles, mostly from the disk/remote cache.
+    # `clean` drops the checkout's build outputs (execroot/bazel-out, 7-18GB depending on
+    # what was built) and keeps its fetched external repos (~16GB on 2026-09-28;
+    # `clean --expunge` would take both plus the server state). The next build
+    # recompiles, mostly from the disk/remote cache.
     # --noblock_for_lock fails fast instead of queueing behind - and then wiping the
     # outputs of - a build another session is running in this checkout.
     log_info "Cleaning the canva monorepo's Bazel build outputs (next build runs cold)..."
@@ -332,18 +374,68 @@ hc-reclaim-diskspace() {
     # (e.g. orphaned AI-agent snapshot blobs) older than 30 days. Keeps a cruft pack
     # as a 30-day safety net for recent unreachables. See the 2026-08-06 cleanup that
     # took .git from 87GB to 23GB. Safe to run while working in the repo.
-    log_info "Cruft-repacking the canva monorepo (takes ~30 min)..."
-    git -C ~/work/canva repack -d --cruft --cruft-expiration=30.days.ago --write-midx
-    # The hourly `git maintenance` split commit-graph still lists the commits the repack
-    # just expired, which makes `git fsck` / `commit-graph verify` complain ("Could not
-    # read <sha>") until the chain is rebuilt from reachable commits (2026-09-11)
-    log_info "Rebuilding the canva monorepo's commit-graph..."
-    git -C ~/work/canva commit-graph write --reachable --split=replace
+    local canva_pack_dir=~/work/canva/.git/objects/pack canva_pack_kib canva_free_kib canva_tmp
+    local -a canva_main_pack canva_recent_idx canva_tmp_before
+    # The biggest pack is the last full repack's output. Date its .idx: git re-touches the
+    # .pack whenever it reuses one of its objects, but writes the .idx once
+    canva_main_pack=( $canva_pack_dir/pack-*.pack(NOL[1]) )
+    canva_recent_idx=( ${canva_main_pack[1]:r}.idx(N.md-14) )
+    canva_pack_kib=$(git -C ~/work/canva count-objects -v | awk '/^size-pack:/ {print $2}')
+    canva_free_kib=$(df -Pk ~/work/canva | awk 'NR == 2 {print $4}')
+    # Nothing here removes the temp packs an interrupted git command leaves behind
+    # (gc.auto=0, and ^C during the repack below aborts this function before its cleanup
+    # runs), so report them instead of guessing whether a running git command needs them
+    canva_tmp_before=( $canva_pack_dir/{tmp_,.tmp-}*(N) )
+    if (( $#canva_tmp_before )); then
+      log_warning "Found $#canva_tmp_before leftover temp pack file(s) ($(du -shc $canva_tmp_before | tail -1 | awk '{print $1}')) in the canva repo. If no git command is running there, remove them with:"
+      print -r -- "rm -f -- ${(j: :)${(q)canva_tmp_before}}"
+    fi
+    if [[ "$canva_pack_kib" != <-> || "$canva_free_kib" != <-> ]]; then
+      # Fail closed: an empty measurement would otherwise pass the free-space check below
+      log_error "Skipping the cruft repack: could not measure the pack size ('$canva_pack_kib') or free space ('$canva_free_kib')."
+    elif (( $#canva_recent_idx )); then
+      log_warning "Skipping the cruft repack: the last full repack ran on $(date -r "$canva_recent_idx[1]" +%F), under 14 days ago."
+      echo "Too few unreachable objects have passed the 30-day expiry since. To run it anyway:"
+      echo "git -C ~/work/canva repack -d --cruft --cruft-expiration=30.days.ago --write-midx"
+    elif (( canva_free_kib < canva_pack_kib * 3 / 2 )); then
+      # The repack writes a complete new pack and cruft pack (plus .rev, .mtimes and a new
+      # multi-pack-index, which size-pack leaves out) before it drops the old ones, while
+      # other jobs keep writing; with 16GB free it died on ENOSPC 17.3GB in (2026-09-28)
+      log_error "Skipping the cruft repack: it needs ~$(( canva_pack_kib * 3 / 2 / 1048576 ))GiB free and only $(( canva_free_kib / 1048576 ))GiB is."
+    else
+      log_info "Cruft-repacking the canva monorepo (takes ~30 min)..."
+      if git -C ~/work/canva repack -d --cruft --cruft-expiration=30.days.ago --write-midx; then
+        # The hourly `git maintenance` split commit-graph still lists the commits the repack
+        # just expired, which makes `git fsck` / `commit-graph verify` complain ("Could not
+        # read <sha>") until the chain is rebuilt from reachable commits (2026-09-11)
+        log_info "Rebuilding the canva monorepo's commit-graph..."
+        git -C ~/work/canva commit-graph write --reachable --split=replace
+      else
+        # pack-objects leaves its temp files behind when it dies. Remove the ones that
+        # appeared during this run, unless a process still has one open. A concurrent git
+        # command's closed temp file could still match; that command then fails before it
+        # drops any old pack, so nothing is lost
+        log_error "The cruft repack failed; removing the temp packs it left behind..."
+        for canva_tmp in $canva_pack_dir/{tmp_,.tmp-}*(N); do
+          (( ${canva_tmp_before[(Ie)$canva_tmp]} )) && continue
+          lsof -- "$canva_tmp" &> /dev/null && continue
+          log_debug "Removing ${canva_tmp:t} ($(du -sh "$canva_tmp" | awk '{print $1}'))..."
+          rm -f -- "$canva_tmp"
+        done
+      fi
+    fi
   fi
 
-  if docker stats --no-stream &> /dev/null; then
+  # `docker stats --no-stream` hung for 10+ minutes on 2026-09-28. `docker version` only
+  # pings the daemon, and `timeout` (GNU coreutils, in the Brewfile) bounds a wedged one
+  local docker_status
+  timeout 5 docker version --format '{{.Server.Version}}' &> /dev/null
+  docker_status=$?
+  if (( docker_status == 0 )); then
     log_info "Removing docker's unused data..."
     docker system prune --volumes
+  elif (( docker_status == 124 )); then
+    log_warning "Docker did not answer within 5s (restart Docker Desktop?). Skipping docker's unused data removal."
   else
     log_warning "Docker is not running. Skipping docker's unused data removal."
   fi
