@@ -82,7 +82,8 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
   # "$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin"
   "$HOMEBREW_PREFIX/opt/uutils-findutils/libexec/uubin"
-  "$HOMEBREW_PREFIX/opt/uutils-diffutils/libexec/uubin"
+  # Off: uutils diff rejects --color, which oh-my-zsh's diff() always adds
+  # "$HOMEBREW_PREFIX/opt/uutils-diffutils/libexec/uubin"
   "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
