@@ -141,3 +141,20 @@ _zshenv::source_custom_functions
 if [[ -r "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv" ]]; then
   source "$SHELL_DIR_EXTRA_STARTUP_SCRIPTS/.zshenv"
 fi
+
+################################################################################
+# Agent shells only: Claude Code sets CLAUDECODE, Codex sets CODEX_THREAD_ID
+################################################################################
+# - Put tomasv-docs's guard for in-place sed/perl edits first on PATH, and make
+#   sed/perl functions call it too, for Claude sessions whose shell snapshot
+#   predates it (the snapshot re-exports PATH after this file runs).
+# - Glob like bash: pass an unmatched pattern through instead of aborting the
+#   whole command.
+if [[ -n "${CLAUDECODE-}${CODEX_THREAD_ID-}" ]]; then
+  if [[ -x "$HOME/work/tomasv-docs/.agents/shims/inplace-guard" ]]; then
+    _ZSHENV_PATH_EXTRAS=("$HOME/work/tomasv-docs/.agents/shims" "${_ZSHENV_PATH_EXTRAS[@]}")
+    path=("$HOME/work/tomasv-docs/.agents/shims" "${path[@]}")
+    function sed perl { "$HOME/work/tomasv-docs/.agents/shims/$0" "$@"; }
+  fi
+  unsetopt NOMATCH
+fi

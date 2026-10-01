@@ -144,8 +144,12 @@ eval "$(mise activate zsh)"
 ################################################################################
 # Define aliases
 ################################################################################
-alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --git-repos-no-status --show-symlinks --time-style=relative --no-user --hyperlink=always'
-alias tree='ls --tree --no-permissions --no-filesize --no-time --no-git'
+# Agent shells (CLAUDECODE, CODEX_THREAD_ID) keep plain `ls` and the real `tree`:
+# eza's long, coloured output breaks `ls -t` and file lists built from `$(ls ...)`.
+if [[ -z "${CLAUDECODE-}${CODEX_THREAD_ID-}" ]]; then
+  alias ls='eza --all --long --header --group-directories-first --color=always --classify=always --icons=always --git-repos-no-status --show-symlinks --time-style=relative --no-user --hyperlink=always'
+  alias tree='ls --tree --no-permissions --no-filesize --no-time --no-git'
+fi
 alias pp='echo $PATH | tr -s ":" "\n"'
 alias pag='ps aux | head -1; ps aux | grep -v grep | grep -i'
 alias wa='watch -c '
