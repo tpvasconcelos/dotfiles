@@ -183,6 +183,7 @@ hc-reclaim-diskspace() {
     echo "    a Bazel server is running)"
     echo "  - prunes docker's unused data incl. volumes (if docker answers within 5s)"
     echo "  - deletes unavailable iOS Simulators"
+    echo "  - reports the change in free space at the end"
     echo ""
     echo "Options:"
     echo "    --bazel           Also wipe Bazel build caches (skipped while a Bazel server"
@@ -204,6 +205,9 @@ hc-reclaim-diskspace() {
     echo "    --help            Show this help message and exit"
     return 0
   fi
+
+  local free_kib_before
+  free_kib_before=$(df -Pk / | awk 'NR == 2 {print $4}')
 
   # --scrub alone keeps the downloads of every installed formula and cask (~6.4GB on
   # 2026-09-28) and never matches cask symlinks named by the old URL-basename scheme
@@ -299,9 +303,18 @@ hc-reclaim-diskspace() {
   log_info "Removing leaked Codex marketplace staging dirs..."
   find ~/.codex/.tmp/bundled-marketplaces -maxdepth 1 -type d -name 'openai-bundled.staging-*' -mtime +2 -exec rm -rf {} + 2> /dev/null
 
+  # Bazel 9 moved the output user root from /var/tmp to ~/Library/Caches on macOS. Canva's
+  # clean_caches.sh asks `bazel info` for it, but that starts a server, and a running server
+  # makes the cache steps below skip. If the root moves again, every glob below silently
+  # matches nothing, so say so instead.
+  local bazel_root=~/Library/Caches/bazel/_bazel_"$USER"
+  if [[ ! -d "$bazel_root" ]]; then
+    log_warning "No Bazel output user root at $bazel_root, so the Bazel steps below do nothing. Find the real one (two levels above 'bazel info install_base' in a workspace) and update this function."
+  fi
+
   log_info "Removing Bazel output bases of deleted workspaces..."
   local bazel_output_base bazel_workspace
-  for bazel_output_base in ~/Library/Caches/bazel/_bazel_"$USER"/*(N/); do
+  for bazel_output_base in "$bazel_root"/*(N/); do
     [[ -f "$bazel_output_base/DO_NOT_BUILD_HERE" ]] || continue
     bazel_workspace=$(<"$bazel_output_base/DO_NOT_BUILD_HERE")
     if [[ ! -d "$bazel_workspace" ]]; then
@@ -332,7 +345,7 @@ hc-reclaim-diskspace() {
     log_warning "Skipping the Bazel repository-cache prune (run 'bazel shutdown' in those workspaces first)."
   else
     log_info "Pruning Bazel repository-cache downloads unused for 90+ days..."
-    for bazel_download in ~/Library/Caches/bazel/_bazel_"$USER"/cache/repos/v1/content_addressable/sha256/*/file(N.m+90); do
+    for bazel_download in "$bazel_root"/cache/repos/v1/content_addressable/sha256/*/file(N.m+90); do
       rm -rf "${bazel_download:h}"
       (( bazel_download_count += 1 ))
     done
@@ -351,8 +364,8 @@ hc-reclaim-diskspace() {
       # older worktree rcs still point at ~/.cache/canva_bazel_repo_contents_cache).
       log_info "Wiping Bazel build caches (next builds will run cold)..."
       # Same story: parts of these caches are write-protected
-      chmod -R u+w ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache 2> /dev/null
-      rm -rf ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache ~/Library/Caches/bazel/_bazel_"$USER"/cache
+      chmod -R u+w ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache "${bazel_root:?}"/cache 2> /dev/null
+      rm -rf ~/.cache/canva_bazel_disk_cache ~/.cache/canva_bazel_repo_contents_cache "${bazel_root:?}"/cache
     fi
   else
     log_info "Skipping Bazel build caches (pass --bazel to also wipe them)..."
@@ -447,4 +460,9 @@ hc-reclaim-diskspace() {
     echo "You can remove them manually if you want, or run the following command to permanently delete all files and subdirectories:"
     echo "rm -rf ~/Library/Developer/CoreSimulator/Caches/*"
   fi
+
+  # Other processes keep writing during the run, so the net change is approximate
+  local free_kib_after
+  free_kib_after=$(df -Pk / | awk 'NR == 2 {print $4}')
+  log_success "$(printf 'Free space: %.1f GiB -> %.1f GiB (%+.1f GiB).' $(( free_kib_before / 1048576.0 )) $(( free_kib_after / 1048576.0 )) $(( (free_kib_after - free_kib_before) / 1048576.0 )))"
 }
