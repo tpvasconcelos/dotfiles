@@ -184,7 +184,6 @@ hc-reclaim-diskspace() {
     echo "    them)"
     echo "  - prunes Bazel repository-cache downloads unused for 90+ days (skipped while"
     echo "    a Bazel server is running)"
-    echo "  - prunes docker's unused data incl. volumes (if docker answers within 5s)"
     echo "  - deletes unavailable iOS Simulators"
     echo "  - reports the change in free space at the end"
     echo ""
@@ -474,20 +473,6 @@ hc-reclaim-diskspace() {
         done
       fi
     fi
-  fi
-
-  # `docker stats --no-stream` hung for 10+ minutes on 2026-09-28. `docker version` only
-  # pings the daemon, and `timeout` (GNU coreutils, in the Brewfile) bounds a wedged one
-  local docker_status
-  timeout 5 docker version --format '{{.Server.Version}}' &> /dev/null
-  docker_status=$?
-  if (( docker_status == 0 )); then
-    log_info "Removing docker's unused data..."
-    docker system prune --volumes
-  elif (( docker_status == 124 )); then
-    log_warning "Docker did not answer within 5s (restart Docker Desktop?). Skipping docker's unused data removal."
-  else
-    log_warning "Docker is not running. Skipping docker's unused data removal."
   fi
 
   log_info "Clearing Simulator data..."
