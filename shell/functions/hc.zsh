@@ -174,11 +174,14 @@ hc-reclaim-diskspace() {
     echo "    and pre-commit caches"
     echo "  - prunes the pnpm store and uv cache"
     echo "  - caps the W&B artifact cache at 5GB (least recently used files go first)"
+    echo "  - lists Hugging Face hub models not loaded for 30+ days (removes nothing)"
     echo "  - deletes Nix profile generations older than 30 days, then garbage-collects"
     echo "    the Nix store"
     echo "  - clears the DotSlash binary cache (tools re-download on first use)"
     echo "  - removes leaked Codex marketplace staging dirs (>2 days old)"
-    echo "  - removes Bazel output bases whose workspace no longer exists"
+    echo "  - lists Bazel output bases whose workspace no longer exists (removes nothing;"
+    echo "    'bin/canva-slot gc --remove-orphan-output-bases' in tomasv-docs removes"
+    echo "    them)"
     echo "  - prunes Bazel repository-cache downloads unused for 90+ days (skipped while"
     echo "    a Bazel server is running)"
     echo "  - prunes docker's unused data incl. volumes (if docker answers within 5s)"
@@ -277,6 +280,36 @@ hc-reclaim-diskspace() {
     uvx wandb artifact cache cleanup 5GB
   fi
 
+  # Hugging Face hub models are only listed, never removed here: some callers load a SHA-pinned
+  # revision with local_files_only, others the cached main with HF_HUB_OFFLINE, and neither
+  # re-downloads it. The listing shows the revision refs/main points at, so it is on record
+  # before a removal: restore a SHA pin with `hf download <repo> --revision <sha>`, a main load
+  # with plain `hf download <repo>` (it writes refs/main). `hf cache prune` deletes every
+  # revision no ref points at, including one downloaded by SHA.
+  # A model counts as unused when none of its blobs was read for 30 days. On APFS a memory-mapped
+  # load (safetensors) refreshes atime every time, but a plain read() (torch.load without mmap,
+  # as timm's .pth/.bin loaders do) only once after the download, so such a model can look
+  # unused while in use. Never remove the huggingface directory itself: it holds the login token.
+  local hf_hub=${HF_HUB_CACHE:-${HUGGINGFACE_HUB_CACHE:-${HF_HOME:-${XDG_CACHE_HOME:-$HOME/.cache}/huggingface}/hub}}
+  hf_hub=${hf_hub/#\~/$HOME}
+  [[ -d "$hf_hub" ]] || log_debug "No Hugging Face hub cache at $hf_hub, so no models are listed."
+  local hf_repo hf_ref
+  local -a hf_blobs hf_recent hf_unused
+  for hf_repo in "$hf_hub"/*--*(N/); do
+    # A refs-only stub (a resolve that never downloaded) holds nothing to reclaim
+    hf_blobs=( "$hf_repo"/blobs/*(N.) )
+    (( $#hf_blobs )) || continue
+    hf_recent=( "$hf_repo"/blobs/*(N.a-30) )
+    (( $#hf_recent )) && continue
+    hf_ref=""
+    [[ -f "$hf_repo/refs/main" ]] && hf_ref="  (main $(<"$hf_repo/refs/main"))"
+    hf_unused+=("$(du -sh "$hf_repo" | awk '{print $1}')  $hf_repo$hf_ref")
+  done
+  if (( $#hf_unused )); then
+    log_info "Hugging Face models not loaded for 30+ days (find who loads one before removing its directory):"
+    print -rl -- "  "${^hf_unused}
+  fi
+
   if [[ "$*" == *--go-modcache* ]]; then
     # All or nothing: `go clean -modcache` has no age or size filter
     log_info "Wiping Go's module cache (modules re-download on first use)..."
@@ -312,19 +345,23 @@ hc-reclaim-diskspace() {
     log_warning "No Bazel output user root at $bazel_root, so the Bazel steps below do nothing. Find the real one (two levels above 'bazel info install_base' in a workspace) and update this function."
   fi
 
-  log_info "Removing Bazel output bases of deleted workspaces..."
+  # Output bases of deleted workspaces are only listed here. `bin/canva-slot gc` in tomasv-docs
+  # owns their removal: it re-checks that no running process names a base right before removing
+  # it, and wiki/canva/CANVA_MONOREPO.md removes one only once Tomás or the worktree's session
+  # agrees (a worktree can be missing for a while and come back).
   local bazel_output_base bazel_workspace
+  local -a bazel_orphans
   for bazel_output_base in "$bazel_root"/*(N/); do
     [[ -f "$bazel_output_base/DO_NOT_BUILD_HERE" ]] || continue
     bazel_workspace=$(<"$bazel_output_base/DO_NOT_BUILD_HERE")
-    if [[ ! -d "$bazel_workspace" ]]; then
-      log_debug "Workspace $bazel_workspace no longer exists. Removing its output base ($(du -sh "$bazel_output_base" | awk '{print $1}'))..."
-      # Bazel write-protects its output tree (dirs included), and rm needs parent-dir
-      # write permission to unlink - restore owner write perms first
-      chmod -R u+w "$bazel_output_base" 2> /dev/null
-      rm -rf "$bazel_output_base"
-    fi
+    [[ -n "$bazel_workspace" && ! -d "$bazel_workspace" ]] || continue
+    bazel_orphans+=("$(du -sh "$bazel_output_base" | awk '{print $1}')  ${bazel_output_base:t}  (workspace $bazel_workspace)")
   done
+  if (( $#bazel_orphans )); then
+    log_warning "Bazel output bases whose workspace no longer exists:"
+    print -rl -- "  "${^bazel_orphans}
+    echo "Once you or the worktree's session agree, remove them from ~/work/tomasv-docs with: bin/canva-slot gc --remove-orphan-output-bases"
+  fi
 
   # A running Bazel server (one per workspace; they linger ~3h after the last command)
   # may be mid-fetch in the shared caches below, so never delete under it. The server
