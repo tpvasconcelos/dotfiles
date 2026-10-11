@@ -44,6 +44,7 @@ export CLOUDSDK_PYTHON="$PY_PLAYGROUND_VENV/bin/python"
 
 # Misc ---
 export GOPATH="$HOME/go"
+export LOG_CHROME_PROFILE=0
 
 # Set JAVA_HOME from the macOS java framework. `/usr/libexec/java_home`
 # enumerates installed JVMs via macOS system services (cfprefsd/LaunchServices),
