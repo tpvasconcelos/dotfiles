@@ -182,8 +182,8 @@ hc-reclaim-diskspace() {
     echo "  - lists Bazel output bases whose workspace no longer exists (removes nothing;"
     echo "    'bin/canva-slot gc --remove-orphan-output-bases' in tomasv-docs removes"
     echo "    them)"
-    echo "  - prunes Bazel repository-cache downloads unused for 90+ days (skipped while"
-    echo "    a Bazel server is running)"
+    echo "  - prunes Bazel repository-cache downloads no fetch has read for 14+ days"
+    echo "    (skipped while a Bazel server is running)"
     echo "  - deletes unavailable iOS Simulators"
     echo "  - reports the change in free space at the end"
     echo ""
@@ -371,17 +371,22 @@ hc-reclaim-diskspace() {
   bazel_servers=$(ps -axo command | grep -E '^bazel\([^)]*\) .*A-server\.jar' | sed -n 's/.*--workspace_directory=\([^ ]*\).*/\1/p' | sort -u | tr '\n' ' ')
 
   # Bazel 9 keeps two things under cache/repos/v1: `contents/` (extracted repos, which
-  # Bazel itself garbage-collects after 14 idle days - --repo_contents_cache_gc_max_age)
-  # and `content_addressable/` (raw downloads, never GC'd). Bazel touches an entry's
-  # `file` on every cache hit, so its mtime is the last use; a pruned entry simply
-  # re-downloads the next time a build needs it.
+  # Bazel itself garbage-collects once unused for --repo_contents_cache_gc_max_age: 14 days
+  # by default, 9 in canva trees through ~/.bazelrc since 2026-10-12) and
+  # `content_addressable/<algo>/` (raw downloads, never GC'd). Bazel touches an entry's
+  # `file` only when a fetch or a Bzlmod registry read takes it from this cache
+  # (DownloadCache.findCacheValue); a build served from `contents/` or an up-to-date repo
+  # does not, so its mtime is the last fetch, not the last build. A pruned entry simply
+  # re-downloads the next time a fetch needs it. Bazel copies downloads with APFS clones,
+  # so a prune can free less than `du` shows.
   local bazel_download bazel_download_count=0
   if [[ -n "$bazel_servers" ]]; then
     log_warning "Bazel servers are running for: $bazel_servers"
     log_warning "Skipping the Bazel repository-cache prune (run 'bazel shutdown' in those workspaces first)."
   else
-    log_info "Pruning Bazel repository-cache downloads unused for 90+ days..."
-    for bazel_download in "$bazel_root"/cache/repos/v1/content_addressable/sha256/*/file(N.m+90); do
+    log_info "Pruning Bazel repository-cache downloads no fetch has read for 14+ days..."
+    # m+13 matches files at least 14 whole days old (zsh rounds the age down)
+    for bazel_download in "$bazel_root"/cache/repos/v1/content_addressable/*/*/file(N.m+13); do
       rm -rf "${bazel_download:h}"
       (( bazel_download_count += 1 ))
     done
@@ -395,8 +400,9 @@ hc-reclaim-diskspace() {
       log_warning "Skipping the Bazel build-cache wipe (run 'bazel shutdown' in those workspaces and re-run with --bazel)."
     else
       # Rarely needed: Canva's generated bazelrc caps the disk cache
-      # (--experimental_disk_cache_gc_max_size=250G) and Bazel GCs both repo-contents
-      # caches after 14 idle days (the main checkout uses the default cache/repos/v1/contents;
+      # (--experimental_disk_cache_gc_max_size=250G; ~/.bazelrc lowers it to 40G for canva
+      # trees) and Bazel GCs both repo-contents caches once entries go unused (14 days by
+      # default, 9 for canva trees; the main checkout uses the default cache/repos/v1/contents;
       # older worktree rcs still point at ~/.cache/canva_bazel_repo_contents_cache).
       log_info "Wiping Bazel build caches (next builds will run cold)..."
       # Same story: parts of these caches are write-protected
