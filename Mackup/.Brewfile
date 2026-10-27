@@ -220,6 +220,7 @@ cask "glance-chamburr"          # https://github.com/chamburr/glance
 
 # Web Browsers  ---
 cask "arc"
+cask "thebrowsercompany-dia"
 cask "google-chrome"
 cask "firefox"
 #cask "tor-browser"
