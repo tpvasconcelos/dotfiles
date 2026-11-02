@@ -219,7 +219,6 @@ cask "quicklook-video"          # https://github.com/Marginal/QuickLookVideo
 cask "glance-chamburr"          # https://github.com/chamburr/glance
 
 # Web Browsers  ---
-cask "arc"
 cask "thebrowsercompany-dia"
 cask "google-chrome"
 cask "firefox"
@@ -273,7 +272,6 @@ cask "lm-studio"                                # https://lmstudio.ai/
 cask "chatgpt"                                  # https://chatgpt.com/
 cask "claude"                                   # https://claude.ai/download
 cask "claude-code"                              # https://claude.com/product/claude-code
-brew "gemini-cli"                               # https://github.com/google-gemini/gemini-cli
 cask "codex"                                    # https://github.com/openai/codex
 brew "anomalyco/tap/opencode", trusted: true    # https://github.com/anomalyco/opencode
 # LSPs for opencode
