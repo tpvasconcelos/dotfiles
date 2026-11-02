@@ -25,6 +25,7 @@ brew "uutils-diffutils"     # PATH="/opt/homebrew/opt/uutils-diffutils/libexec/u
 brew "gnu-sed"              # PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 brew "gnu-tar"              # PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 brew "grep"                 # PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+brew "gzip"
 brew "eza"                  # https://github.com/eza-community/eza
 brew "moreutils"
 
@@ -45,6 +46,7 @@ brew "openjdk@21"
 # Databases  ---
 brew "sqlite"
 brew "postgresql"           # https://www.postgresql.org/
+brew "mysql-client"         # https://dev.mysql.com/doc/refman/en/programs-client.html
 brew "redis"
 
 # Kafka tools  ---
@@ -68,6 +70,7 @@ brew "minamijoyo/tfupdate/tfupdate", trusted: true  # https://github.com/minamij
 brew "hcloud"                                       # https://github.com/hetznercloud/cli
 brew "ssh-audit"                                    # https://github.com/jtesta/ssh-audit
 brew "direnv"                                       # https://direnv.net/
+brew "cloudflared"                                  # https://github.com/cloudflare/cloudflared
 
 # git  ---
 brew "git"
@@ -150,6 +153,7 @@ brew "curl"
 brew "wget"
 brew "croc"                 # https://github.com/schollz/croc
 brew "grpc"                 # https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md
+brew "grpcurl"              # https://github.com/fullstorydev/grpcurl
 brew "htop"
 brew "iproute2mac"          # macos wrapper to the linux `ip` utility (https://github.com/brona/iproute2mac)
 brew "tree"
@@ -158,6 +162,7 @@ brew "fzf"                  # https://github.com/junegunn/fzf
 brew "openssl"              # https://www.openssl.org/
 brew "readline"
 brew "pandoc"		        # https://github.com/jgm/pandoc
+brew "poppler"              # https://poppler.freedesktop.org/
 brew "graphviz"
 brew "protobuf"             # https://github.com/protocolbuffers/protobuf/
 brew "mackup"               # https://github.com/lra/mackup
@@ -179,8 +184,11 @@ brew "gh"                   # https://github.com/cli/cli
 brew "act"                  # https://github.com/nektos/act
 brew "zoxide"               # https://github.com/ajeetdsouza/zoxide
 brew "ripgrep"              # https://github.com/BurntSushi/ripgrep
+brew "ast-grep"             # https://github.com/ast-grep/ast-grep
 brew "fd"                   # https://github.com/sharkdp/fd
 brew "hyperfine"            # https://github.com/sharkdp/hyperfine
+brew "hey"                  # https://github.com/rakyll/hey
+brew "wireshark"            # https://www.wireshark.org/
 cask "soulver-cli"          # https://github.com/soulverteam/Soulver-CLI
 brew "just"                 # https://github.com/casey/just
 brew "unison"               # https://www.cis.upenn.edu/~bcpierce/unison/
@@ -203,7 +211,7 @@ cask "visual-studio-code"
 cask "sublime-text"
 cask "miaoyan"                  # https://github.com/tw93/MiaoYan
 cask "r-app"
-#mas "Xcode", id: 497799835
+mas "Xcode", id: 497799835
 
 # Other desktop dev tools  ---
 cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
@@ -215,6 +223,7 @@ cask "devutils"                 # https://devutils.com/
 cask "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
 cask "quicklook-video"          # https://github.com/Marginal/QuickLookVideo
 cask "glance-chamburr"          # https://github.com/chamburr/glance
+cask "qlmarkdown"               # https://github.com/sbarex/QLMarkdown
 
 # Web Browsers  ---
 cask "thebrowsercompany-dia"
@@ -226,6 +235,7 @@ cask "zen"
 mas "Grammarly for Safari", id: 1462114288
 mas "Dashlane – Password Manager", id: 517914548
 mas "HotspotShield VPN - Wifi Proxy", id: 771076721
+mas "Okta Extension App", id: 1439967473
 
 # Productivity apps  ---
 cask "anki"                                             # https://apps.ankiweb.net/
@@ -240,6 +250,8 @@ cask "viz"                                              # https://github.com/ali
 mas "TickTick:To-Do List, Calendar", id: 966085870      # https://www.ticktick.com/home
 cask "todoist-app"                                      # https://www.todoist.com/home
 cask "hammerspoon"                                      # https://www.hammerspoon.org/
+mas "NotePlan", id: 1505432629                          # https://noteplan.co/
+mas "MarkChart", id: 6475648822
 
 # Office apps  ---
 cask "anytype"
@@ -263,6 +275,8 @@ cask "slack"
 cask "diffusionbee"             # https://www.diffusionbee.com/
 cask "upscayl"                  # https://upscayl.org/
 cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/software/x-raw-studio/
+mas "Pixelmator Pro", id: 1289583905
+mas "Photomator", id: 1444636541
 
 # AI apps  ---
 brew "ollama"                                   # https://ollama.com/
@@ -271,6 +285,7 @@ cask "chatgpt"                                  # https://chatgpt.com/
 cask "claude"                                   # https://claude.ai/download
 cask "claude-code"                              # https://claude.com/product/claude-code
 cask "codex"                                    # https://github.com/openai/codex
+mas "Spokenly", id: 6740315592                  # https://spokenly.app/
 brew "anomalyco/tap/opencode", trusted: true    # https://github.com/anomalyco/opencode
 # LSPs for opencode
 brew "gopls"

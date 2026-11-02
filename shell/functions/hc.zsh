@@ -1,12 +1,13 @@
 _hc::check_expired_gpg_keys() {
-  # Check for expired gpg keys
+  # Check for expired gpg keys. Only our own (secret) keys are checked, since
+  # the expiry of imported third-party public keys can't be extended anyway.
   yellow-bold() {
     fg_yellow "$(bold "$*")"
   }
-  if gpg --list-keys | grep -q expired; then
+  if gpg --list-secret-keys | grep -q expired; then
     log_warning "Found expired GPG keys!"
     echo "Steps to update them:"
-    echo "1. Run $(yellow-bold 'gpg --list-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
+    echo "1. Run $(yellow-bold 'gpg --list-secret-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
     echo "2. Run $(yellow-bold 'gpg --quick-set-expire FINGERPRINT EXPIRE [SUBKEY-FPRS]') to update them."
     echo "For instance, to update the 'ABC123' key and its DEF456 subkey to expire in 1 year, run:"
     yellow-bold "$ gpg --quick-set-expire 'ABCD1234' '1y' 'DEF456'"
