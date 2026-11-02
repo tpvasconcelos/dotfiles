@@ -40,7 +40,7 @@ brew "pyenv"                # TODO: Remove this once uv completely replaces pyen
 brew "uv"                   # https://github.com/astral-sh/uv
 
 # openjdk (Java's development kit)  ---
-brew "openjdk@11"
+brew "openjdk@21"
 
 # Databases  ---
 brew "sqlite"
@@ -63,7 +63,6 @@ brew "ansible"                                      # https://www.ansible.com/
 brew "checkov"                                      # https://www.checkov.io/
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform", trusted: true       # https://developer.hashicorp.com/terraform
-brew "tflint"                                       # https://github.com/terraform-linters/tflint
 brew "trivy"                                        # https://trivy.dev/
 brew "minamijoyo/tfupdate/tfupdate", trusted: true  # https://github.com/minamijoyo/tfupdate
 brew "hcloud"                                       # https://github.com/hetznercloud/cli
@@ -97,7 +96,6 @@ brew "z3"           # https://github.com/Z3Prover/z3
 # Terminal emulators  ---
 cask "iterm2"                   # https://iterm2.com/
 cask "kitty"                    # https://githb.com/kovidgoyal/kitty
-cask "alacritty"                # https://github.com/alacritty/alacritty
 cask "ghostty"                  # https://github.com/ghostty-org/ghostty
 # OpenInTerminal
 cask "openinterminal-lite"      # https://github.com/Ji4n1ng/OpenInTerminal
@@ -296,7 +294,6 @@ cask "pdf-squeezer"
 cask "image2icon"                       # https://img2icnsapp.com/
 cask "gimp"                             # https://www.gimp.org/
 cask "p4v"
-cask "diffmerge"
 cask "thorium"                          # https://github.com/edrlab/thorium-reader
 cask "istherenet"                       # https://lowtechguys.com/istherenet/
 cask "alt-tab"                          # https://github.com/lwouis/alt-tab-macos

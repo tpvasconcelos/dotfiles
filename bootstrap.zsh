@@ -320,7 +320,7 @@ fi
 log_info "Performing final config steps..."
 
 log_info "Symlinking the openjdk JDK (exposing it to the system Java wrappers)"
-sudo-alias ln -snfTv "${HOMEBREW_PREFIX}/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+sudo-alias ln -snfTv "${HOMEBREW_PREFIX}/opt/openjdk@21/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-21.jdk"
 
 log_info "Creating bin/ and src/ directories for Golang..."
 mkdir -p "$HOME/go/bin" "$HOME/go/src"

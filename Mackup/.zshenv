@@ -89,7 +89,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
   "$HOMEBREW_PREFIX/opt/llvm/bin"
-  "$HOMEBREW_PREFIX/opt/openjdk@11/bin"
+  "$HOMEBREW_PREFIX/opt/openjdk@21/bin"
   "$HOMEBREW_PREFIX/opt/ruby/bin"
   "$HOMEBREW_PREFIX/share/google-cloud-sdk/bin"
   "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin

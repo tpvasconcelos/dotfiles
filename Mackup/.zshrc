@@ -208,7 +208,7 @@ export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/ruby/include ${CPPFLAGS}"
 export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/ruby/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 # openjdk (Java)
-export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk@11/include ${CPPFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk@21/include ${CPPFLAGS}"
 
 
 ################################################################################
