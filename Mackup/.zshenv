@@ -95,7 +95,6 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
   "$HOME/.cargo/bin"
   "$HOME/.docker/bin"
-  "$HOME/.flutter/bin"
   "$HOME/.gem/bin"
   "$HOME/.lmstudio/bin"
   "$HOME/.local/bin"

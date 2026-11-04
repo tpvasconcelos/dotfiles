@@ -292,15 +292,6 @@ else
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --verbose -y
 fi
 
-# https://flutter.dev/docs/get-started/install/macos
-if [[ -d "$HOME/.flutter/bin" ]]; then
-  log_success "Flutter and Dart already installed!"
-else
-  softwareupdate --install-rosetta --agree-to-license
-  gsc 'Flutter and Dart' https://github.com/flutter/flutter.git "$HOME/.flutter" stable
-  "$HOME/.flutter/bin/flutter" doctor
-fi
-
 gsc "Sublime Text's 'One Dark' theme" \
   https://github.com/andresmichel/one-dark-theme.git \
   "$HOME/Library/Application Support/Sublime Text/Packages/Theme - One Dark"

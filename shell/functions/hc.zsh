@@ -102,7 +102,6 @@ hc-update-everything() {
     echo "Options:"
     echo "    --system              Run a system software update first"
     echo "    --brew-greedy-latest  Also update brew casks with a :latest version tag"
-    echo "    --flutter             Also update Flutter and Dart"
     echo "    --help                Show this help message and exit"
     return 0
   fi
@@ -128,11 +127,6 @@ hc-update-everything() {
 
   # Update rust
   rustup update
-
-  # Update Flutter and Dart
-  if [[ "$*" == *--flutter* ]]; then
-    flutter upgrade
-  fi
 
   # Upgrade all `gh` CLI extensions
   gh extension upgrade --all

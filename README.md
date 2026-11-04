@@ -142,7 +142,7 @@ This script will run a series of checks, such as:
 If you want to update (almost) everything in your system with a single command, you can run
 
 ```shell script
-hc-update-everything --system --brew-greedy-latest --flutter
+hc-update-everything --system --brew-greedy-latest
 ```
 
 For simple routine updates, you can just call the `hc-update-everything` helper without any arguments.
@@ -160,7 +160,6 @@ Usage: hc-update-everything [OPTIONS]
 Options:
     --system              Run a system software update first
     --brew-greedy-latest  Also update brew casks with a :latest version tag
-    --flutter             Also update Flutter and Dart
     --help                Show this help message and exit
 ```
 

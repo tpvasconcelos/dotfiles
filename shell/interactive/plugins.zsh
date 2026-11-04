@@ -15,7 +15,6 @@ plugins=(
   docker
   docker-compose
   extract
-  flutter
   gitfast
   #gpg-agent
   golang
