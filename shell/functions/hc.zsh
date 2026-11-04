@@ -117,10 +117,10 @@ hc-update-everything() {
   # Update brew packages
   brew update
   brew bundle --global
-  brew upgrade
+  brew upgrade --no-ask
   if [[ "$*" == *--brew-greedy-latest* ]]; then
     # Also update brew casks with a :latest version tag
-    brew upgrade --greedy-latest
+    brew upgrade --no-ask --greedy-latest
   fi
 
   # Update all uv tools
