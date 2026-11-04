@@ -303,7 +303,7 @@ cask "vlc"
 cask "iina"                             # https://iina.io/
 cask "calibre"                          # https://calibre-ebook.com/
 cask "betterdisplay"                    # https://github.com/waydabber/BetterDisplay
-cask "disk-inventory-x"
+cask "grandperspective"                 # https://grandperspectiv.sourceforge.net/
 cask "imageoptim"                       # https://github.com/ImageOptim/ImageOptim
 cask "pdf-squeezer"
 cask "image2icon"                       # https://img2icnsapp.com/
