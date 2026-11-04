@@ -4,7 +4,13 @@ _hc::check_expired_gpg_keys() {
   yellow-bold() {
     fg_yellow "$(bold "$*")"
   }
-  if gpg --list-secret-keys | grep -q expired; then
+  local secret_keys
+  secret_keys=$(gpg --list-secret-keys) || {
+    local gpg_exit_code=$?
+    log_error "Could not check GPG keys (exit $gpg_exit_code)."
+    return "$gpg_exit_code"
+  }
+  if [[ "$secret_keys" == *expired* ]]; then
     log_warning "Found expired GPG keys!"
     echo "Steps to update them:"
     echo "1. Run $(yellow-bold 'gpg --list-secret-keys --with-subkey-fingerprints') to check the fingerprints of the expired keys."
@@ -95,69 +101,163 @@ hc-doctor() {
   fi
 }
 
-hc-update-everything() {
-  if [[ "$*" == *--help* ]]; then
-    echo "Usage: hc-update-everything [OPTIONS]"
-    echo ""
-    echo "Options:"
-    echo "    --system              Run a system software update first"
-    echo "    --brew-greedy-latest  Also update brew casks with a :latest version tag"
-    echo "    --help                Show this help message and exit"
+_hc::run_update_step() {
+  # Usage: _hc::run_update_step [--label LABEL] COMMAND [ARG...]
+  local step_label
+  if [[ "${1:-}" == --label ]]; then
+    step_label="$2"
+    shift 2
+  else
+    # Quote arguments for display without changing the command that is executed.
+    step_label="${(j: :)${(q-)@}}"
+  fi
+
+  # These locals belong to hc-update-everything; Zsh makes them visible to callees.
+  if (( _hc_update_interrupted )); then
     return 0
   fi
 
-  # Update oh-my-zsh
-  if [[ -n "$ZSH" ]]; then
-    zsh "$ZSH/tools/upgrade.sh" -v minimal
+  log_info "Running \`$step_label\`..."
+  "$@" || {
+    local step_exit_code=$?
+    _hc_update_failures+=("$step_label (exit $step_exit_code)")
+    log_error "'$step_label' failed (exit $step_exit_code)."
+    if (( step_exit_code == 130 || step_exit_code == 143 )); then
+      _hc_update_interrupted=$step_exit_code
+    fi
+  }
+  # The caller decides the overall result after all steps have been attempted.
+  return 0
+}
+
+_hc::update_yarn_globals() {
+  if ! command -v yarn >/dev/null 2>&1; then
+    log_info "Skipping Yarn: it is not installed."
+    return 0
+  fi
+
+  local yarn_global_dir yarn_has_packages
+  yarn_global_dir=$(yarn global dir --silent) || return $?
+  if [[ -z "$yarn_global_dir" ]]; then
+    log_error "Yarn returned an empty global directory."
+    return 1
+  fi
+  if [[ ! -f "$yarn_global_dir/package.json" ]]; then
+    log_info "Skipping Yarn: no global packages are configured."
+    return 0
+  fi
+
+  yarn_has_packages=$(node -e '
+    const fs = require("fs");
+    const manifest = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+    const sections = ["dependencies", "devDependencies", "optionalDependencies"];
+    console.log(sections.some(key => Object.keys(manifest[key] || {}).length) ? "yes" : "no");
+  ' "$yarn_global_dir/package.json") || return $?
+
+  if [[ "$yarn_has_packages" == yes ]]; then
+    yarn global upgrade --non-interactive
   else
-    log_warning "Skipping omz update. ZSH is not available which means that you're probably running in non-interactive mode."
+    log_info "Skipping Yarn: no global packages are configured."
+  fi
+}
+
+hc-update-everything() {
+  # Keep caller options such as ERR_EXIT and ERR_RETURN from aborting independent steps.
+  emulate -L zsh
+
+  local -i update_system=0 brew_greedy_latest=0 show_help=0
+  local option
+  for option in "$@"; do
+    case "$option" in
+      --system) update_system=1 ;;
+      --brew-greedy-latest) brew_greedy_latest=1 ;;
+      -h|--help) show_help=1 ;;
+      *)
+        log_error "Unknown option or argument: $option"
+        print -r -- "Run 'hc-update-everything --help' for usage."
+        return 2
+        ;;
+    esac
+  done
+
+  if (( show_help )); then
+    echo "Usage: hc-update-everything [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "    --system              Run a system software update last"
+    echo "    --brew-greedy-latest  Also update brew casks with a :latest version tag"
+    echo "    -h, --help            Show this help message and exit"
+    return 0
+  fi
+
+  local -a _hc_update_failures=()
+  local -i _hc_update_interrupted=0
+
+  # Update oh-my-zsh
+  if [[ -n "${ZSH:-}" ]]; then
+    _hc::run_update_step --label "Oh My Zsh update" zsh "$ZSH/tools/upgrade.sh" -v minimal
+  else
+    log_warning "Skipping the Oh My Zsh update. ZSH is not available which means that you're probably running in non-interactive mode."
   fi
 
   # Update brew packages
-  brew update
-  brew bundle --global
-  brew upgrade --no-ask
-  if [[ "$*" == *--brew-greedy-latest* ]]; then
-    # Also update brew casks with a :latest version tag
-    brew upgrade --no-ask --greedy-latest
+  _hc::run_update_step brew update
+  _hc::run_update_step brew bundle --global
+  _hc::run_update_step brew upgrade --no-ask
+  if (( brew_greedy_latest )); then
+    _hc::run_update_step brew upgrade --no-ask --greedy-latest
   fi
 
   # Update all uv tools
-  uv tool upgrade --all
+  _hc::run_update_step uv tool upgrade --all
 
   # Update rust
-  rustup update
+  _hc::run_update_step rustup update
 
   # Upgrade all `gh` CLI extensions
-  gh extension upgrade --all
+  _hc::run_update_step gh extension upgrade --all
 
   # Update npm
   # NOTE: no sudo here - Homebrew's global prefix is user-owned, and running
   # npm as root plants root-owned files in ~/.npm that break `npm cache clean`
-  npm install npm --global --no-fund
-  npm update --global --no-fund
+  _hc::run_update_step npm install npm --global --no-fund
+  _hc::run_update_step npm update --global --no-fund
 
-  # Update yarn
-  yarn global upgrade
+  # Update Yarn globals only when packages are configured.
+  _hc::run_update_step --label "Yarn global package updates" _hc::update_yarn_globals
 
-  # Update Ruby gems
-  sudo gem update --system
+  # Update RubyGems itself (Homebrew's Ruby installation is user-owned)
+  _hc::run_update_step gem update --system
 
   # Check for expired gpg keys
-  _hc::check_expired_gpg_keys
-
-  # Backup dotfiles
-  dot-backup
+  _hc::run_update_step --label "GPG key check" _hc::check_expired_gpg_keys
 
   # System software update
-  if [[ "$*" == *--system* ]]; then
-    sudo softwareupdate --install --all --verbose --force --agree-to-license
+  if (( update_system )); then
+    _hc::run_update_step --label "System software update" sudo softwareupdate --install --all --verbose --force --agree-to-license
+  fi
+
+  if (( _hc_update_interrupted )); then
+    log_error "Update interrupted; no further updates were run."
+    return "$_hc_update_interrupted"
+  fi
+
+  if (( ${#_hc_update_failures} )); then
+    log_error "Update completed with ${#_hc_update_failures} failed step(s):"
+    local failed_step
+    for failed_step in "${_hc_update_failures[@]}"; do
+      print -ru2 -- "  - $failed_step"
+    done
+    return 1
   fi
 
   log_success "Done! 🚀"
 
-  # Restart the shell
-  exec zsh
+  # Scripts receive the result directly; successful interactive runs restart the shell.
+  if [[ -o interactive ]]; then
+    exec zsh || return $?
+  fi
+  return 0
 }
 
 hc-reclaim-diskspace() {

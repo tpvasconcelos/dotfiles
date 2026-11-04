@@ -158,9 +158,9 @@ $ hc-update-everything --help
 Usage: hc-update-everything [OPTIONS]
 
 Options:
-    --system              Run a system software update first
+    --system              Run a system software update last
     --brew-greedy-latest  Also update brew casks with a :latest version tag
-    --help                Show this help message and exit
+    -h, --help            Show this help message and exit
 ```
 
 ### Reclaim some disk space
