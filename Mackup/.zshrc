@@ -227,6 +227,7 @@ source "${HOME}/.iterm2_shell_integration.zsh"
 
 ################################################################################
 # Customize shell prompt
-# To customize prompt, run `p10k configure` or edit ./shell/interactive/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit:
+#   ~/.dotfiles/shell/interactive/.p10k.zsh
 ################################################################################
 source "${SHELL_DIR_INTERACTIVE}/.p10k.zsh"
