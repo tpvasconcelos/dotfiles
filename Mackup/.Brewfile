@@ -39,7 +39,6 @@ brew "rsync"                # https://rsync.samba.org/
 # Python dev tools  ---
 brew "pyenv"                # TODO: Remove this once uv completely replaces pyenv in tau
 brew "uv"                   # https://github.com/astral-sh/uv
-brew "mise"                 # https://mise.jdx.dev/ (~/.zshrc activates it)
 
 # openjdk (Java's development kit)  ---
 brew "openjdk@21"
@@ -242,7 +241,6 @@ cask "the-unarchiver"
 cask "shottr"                                           # https://shottr.cc/
 cask "raycast"                                          # https://www.raycast.com/
 cask "google-drive"
-cask "raindropio"
 cask "zotero"                                           # https://www.zotero.org/
 cask "adobe-acrobat-reader"                             # https://www.adobe.com/acrobat/pdf-reader.html
 cask "viz"                                              # https://github.com/alienator88/Viz
@@ -253,7 +251,6 @@ mas "NotePlan", id: 1505432629                          # https://noteplan.co/
 mas "MarkChart", id: 6475648822
 
 # Office apps  ---
-cask "anytype"
 cask "notion"                   # https://www.notion.so/
 cask "notion-calendar"
 cask "obsidian"                 # https://obsidian.md/
@@ -271,8 +268,6 @@ cask "slack"
 #cask "zoom"
 
 # Photo & video  ---
-cask "diffusionbee"             # https://www.diffusionbee.com/
-cask "upscayl"                  # https://upscayl.org/
 cask "fujifilm-x-raw-studio"    # https://fujifilm-x.com/global/products/software/x-raw-studio/
 mas "Pixelmator Pro", id: 1289583905
 mas "Photomator", id: 1444636541
@@ -308,12 +303,10 @@ cask "pdf-squeezer"
 cask "image2icon"                       # https://img2icnsapp.com/
 cask "gimp"                             # https://www.gimp.org/
 cask "p4v"
-cask "thorium"                          # https://github.com/edrlab/thorium-reader
 cask "istherenet"                       # https://lowtechguys.com/istherenet/
 cask "alt-tab"                          # https://github.com/lwouis/alt-tab-macos
 #cask "vuze"
 cask "transmission"                     # https://transmissionbt.com/
 cask "zotero"
 mas "Amphetamine", id: 937984704
-mas "GIPHY CAPTURE", id: 668208984
 mas "Shareful", id: 1522267256
