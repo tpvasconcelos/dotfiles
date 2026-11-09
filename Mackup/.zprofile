@@ -18,3 +18,6 @@ path=(
 if [[ -r "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile" ]]; then
   source "${SHELL_DIR_EXTRA_STARTUP_SCRIPTS}/.zprofile"
 fi
+# BEGIN ANSIBLE MANAGED BLOCK FOR canva_git
+export PATH="$HOME/.local/share/canva-git/bin:$PATH"
+# END ANSIBLE MANAGED BLOCK FOR canva_git

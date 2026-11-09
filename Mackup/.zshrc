@@ -231,3 +231,7 @@ source "${HOME}/.iterm2_shell_integration.zsh"
 #   ~/.dotfiles/shell/interactive/.p10k.zsh
 ################################################################################
 source "${SHELL_DIR_INTERACTIVE}/.p10k.zsh"
+# BEGIN ANSIBLE MANAGED BLOCK FOR canva_git
+export PATH="$HOME/.local/share/canva-git/bin:$PATH"
+# END ANSIBLE MANAGED BLOCK FOR canva_git
+export PATH="$HOME/.local/share/taz/tools/bin:$PATH"
