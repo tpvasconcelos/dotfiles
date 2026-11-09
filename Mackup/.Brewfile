@@ -39,6 +39,7 @@ brew "rsync"                # https://rsync.samba.org/
 # Python dev tools  ---
 brew "pyenv"                # TODO: Remove this once uv completely replaces pyenv in tau
 brew "uv"                   # https://github.com/astral-sh/uv
+brew "mise"                 # https://mise.jdx.dev/ (~/.zshrc activates it)
 
 # openjdk (Java's development kit)  ---
 brew "openjdk@21"
@@ -214,7 +215,6 @@ cask "r-app"
 mas "Xcode", id: 497799835
 
 # Other desktop dev tools  ---
-cask "jupyter-notebook-viewer"  # https://github.com/tuxu/nbviewer-app
 cask "postman"
 cask "proxyman"                 # https://github.com/ProxymanApp/Proxyman
 cask "devutils"                 # https://devutils.com/
@@ -222,7 +222,6 @@ cask "devutils"                 # https://devutils.com/
 # Quick-look plugins  ---
 cask "syntax-highlight"         # https://github.com/sbarex/SourceCodeSyntaxHighlight
 cask "quicklook-video"          # https://github.com/Marginal/QuickLookVideo
-cask "glance-chamburr"          # https://github.com/chamburr/glance
 cask "qlmarkdown"               # https://github.com/sbarex/QLMarkdown
 
 # Web Browsers  ---
@@ -262,9 +261,9 @@ cask "linear"                   # https://linear.app/
 cask "microsoft-office"
 cask "microsoft-auto-update"
 cask "libreoffice"
-mas "Pages", id: 409201541
-mas "Numbers", id: 409203825
-mas "Keynote", id: 409183694
+mas "Pages", id: 361309726
+mas "Numbers", id: 361304891
+mas "Keynote", id: 361285480
 
 # Social media, messaging, and communication apps  ---
 cask "whatsapp"
