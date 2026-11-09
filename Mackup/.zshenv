@@ -92,7 +92,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$HOMEBREW_PREFIX/opt/openjdk@21/bin"
   "$HOMEBREW_PREFIX/opt/ruby/bin"
   "$HOMEBREW_PREFIX/share/google-cloud-sdk/bin"
-  "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin
+  "$HOMEBREW_PREFIX"/lib/ruby/gems/*/bin(N)
   "$HOME/.cargo/bin"
   "$HOME/.docker/bin"
   "$HOME/.gem/bin"
@@ -104,7 +104,7 @@ _ZSHENV_PATH_EXTRAS=(
   "$JAVA_HOME/bin"
   "${KREW_ROOT:-$HOME/.krew}/bin"
   # Do not quote the following path!! (note the globbing)
-  /usr/local/texlive/*/bin/universal-darwin
+  /usr/local/texlive/*/bin/universal-darwin(N)
 )
 path=(
   "${_ZSHENV_PATH_EXTRAS[@]}"
