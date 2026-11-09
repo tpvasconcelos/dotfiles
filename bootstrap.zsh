@@ -99,6 +99,15 @@ else
   xcode-select --install
 fi
 
+# Homebrew refuses to install formulae with Command Line Tools older than the macOS release
+CLT_UPDATE="$(softwareupdate --list 2>&1 | sed -n 's/^\* Label: \(Command Line Tools.*\)$/\1/p' | tail -n 1)"
+if [[ -n "$CLT_UPDATE" ]]; then
+  log_info "Updating the Command Line Tools ($CLT_UPDATE)..."
+  sudo softwareupdate --install "$CLT_UPDATE"
+else
+  log_success "Command Line Tools are up to date!"
+fi
+
 ################################################################################
 # Xcode (install and accept the license agreement)
 ################################################################################
