@@ -279,8 +279,8 @@ log_debug "Configuring 'Dock' settings..."
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items to 38 pixels
+defaults write com.apple.dock tilesize -int 38
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -308,7 +308,7 @@ defaults write com.apple.dock expose-animation-duration -int 0
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool true
+defaults write com.apple.dock mru-spaces -bool false
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
